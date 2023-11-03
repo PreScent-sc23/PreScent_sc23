@@ -167,12 +167,14 @@ public class DBSellerRepository implements SellerRepository{
 
 
 
-    /*
+/*
     @Override
     public SellerDto save(SellerDto seller) {
 
         return null;
     }
+
+ */
 
     @Override
     public Optional<SellerDto> findBySellerKey(Long sellerKey) {
@@ -198,11 +200,13 @@ public class DBSellerRepository implements SellerRepository{
     public Optional<SellerDto> findBySellerPhoneNum(String sellerPhoneNum) {
         return Optional.empty();
     }
-
+/*
     @Override
     public List<SellerDto> findAll() {
         return null;
     }
 
-     */
+
+ */
+
 }

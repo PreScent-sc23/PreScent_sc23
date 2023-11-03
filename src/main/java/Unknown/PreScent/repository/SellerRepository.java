@@ -8,14 +8,14 @@ import java.util.Optional;
 
 public interface SellerRepository extends JpaRepository<SellerDto, String> {
 
-    /*
-    SellerDto save(SellerDto seller);
+
+//    SellerDto save(SellerDto seller);
     Optional<SellerDto> findBySellerKey(Long sellerKey);
     Optional<SellerDto> findBySellerName(String sellerName);
     Optional<SellerDto> findByID(String ID);
     Optional<SellerDto> findByPassword(String password);
     Optional<SellerDto> findBySellerPhoneNum(String sellerPhoneNum);
-    List<SellerDto> findAll();
+//    List<SellerDto> findAll();
 
-     */
+
 }
