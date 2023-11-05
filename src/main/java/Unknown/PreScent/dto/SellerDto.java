@@ -1,5 +1,18 @@
 package Unknown.PreScent.dto;
 
+import Unknown.PreScent.entity.SellerEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class SellerDto {
 
     private Long sellerKey;    //system ID
@@ -8,9 +21,17 @@ public class SellerDto {
     private String password;
     private String sellerPhoneNum;
 
-    public SellerDto() {
-    }
+    public static SellerDto toSellerDto(SellerEntity sellerEntity){
+        SellerDto sellerDto = new SellerDto();
 
+        sellerDto.setSellerKey(sellerEntity.getSellerKey());
+        sellerDto.setSellerName(sellerEntity.getSellerName());
+        sellerDto.setSellerPhoneNum(sellerEntity.getSellerPhoneNum());
+        sellerDto.setID(sellerEntity.getID());
+        sellerDto.setPassword(sellerEntity.getPassword());
+        return sellerDto;
+    }
+    /*
     public Long getSellerKey() {
         return sellerKey;
     }
@@ -49,4 +70,6 @@ public class SellerDto {
     public void setSellerPhoneNum(String sellerPhoneNum) {
         this.sellerPhoneNum = sellerPhoneNum;
     }
+     */
+
 }
