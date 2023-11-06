@@ -1,9 +1,10 @@
-package Unknown.PreScent.dto;
+package Unknown.PreScent.entity;
 
 import javax.persistence.*;
 
 @Entity
-public class FlowerShop {
+@Table(name = "flower_shop")
+public class FlowerShopEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class FlowerShop {
     @Column(nullable = false)
     private boolean isSub = false;
 
-    public FlowerShop(Integer shopKey, Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
+    public FlowerShopEntity(Integer shopKey, Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
         this.shopKey = shopKey;
         this.sellerKey = sellerKey;
         this.shopName = shopName;
@@ -34,7 +35,7 @@ public class FlowerShop {
         this.holiday = holiday;
         this.isSub = isSub;
     }
-    public FlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
+    public FlowerShopEntity(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
         this.sellerKey = sellerKey;
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
@@ -44,7 +45,7 @@ public class FlowerShop {
         this.holiday = holiday;
     }
 
-    public FlowerShop(){}
+    public FlowerShopEntity(){}
     public Integer getshopKey() {
         return shopKey;
     }

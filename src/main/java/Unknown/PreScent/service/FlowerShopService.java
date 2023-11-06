@@ -1,6 +1,6 @@
 package Unknown.PreScent.service;
 
-import Unknown.PreScent.dto.FlowerShop;
+import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FlowerShopRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +16,13 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShop addFlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+    public FlowerShopEntity addFlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
     {
-        FlowerShop flowerShop = new FlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
-        return flowerShopRepo.save(flowerShop);
+        FlowerShopEntity flowerShopEntity = new FlowerShopEntity(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
+        return flowerShopRepo.save(flowerShopEntity);
     }
 
-    public Optional<FlowerShop> getFlowerShopByshopKey(Integer shopKey)
+    public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)
     {
         return flowerShopRepo.findByshopKey(shopKey);
     }

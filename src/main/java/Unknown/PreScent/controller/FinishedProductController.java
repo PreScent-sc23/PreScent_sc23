@@ -1,6 +1,6 @@
 package Unknown.PreScent.controller;
 
-import Unknown.PreScent.dto.FinishedProduct;
+import Unknown.PreScent.entity.FinishedProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FinishedProductService;
@@ -21,23 +21,23 @@ public class FinishedProductController {
     }
 
     @PostMapping("/add")
-    public FinishedProduct addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
+    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
     {
         return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
     }
 
     @GetMapping("/{fpKey}")
-    public Optional<FinishedProduct> getFinishedProductByFpKey(@PathVariable Integer fpKey)
+    public Optional<FinishedProductEntity> getFinishedProductByFpKey(@PathVariable Integer fpKey)
     {
         return finishedProductService.getFinishedProductWithFpKey(fpKey);
     }
     @GetMapping("/{fpName}")
-    public Optional<List<FinishedProduct>> getFinishedProductByFpName(@PathVariable String fpName)
+    public Optional<List<FinishedProductEntity>> getFinishedProductByFpName(@PathVariable String fpName)
     {
         return finishedProductService.getFinishedProductWithFpName(fpName);
     }
     @GetMapping("/{fpTag}")
-    public Optional<List<FinishedProduct>> getFinishedProductByFpTag(@PathVariable String fpTag)
+    public Optional<List<FinishedProductEntity>> getFinishedProductByFpTag(@PathVariable String fpTag)
     {
         return finishedProductService.getFinishedProductWithFpTag(fpTag);
     }

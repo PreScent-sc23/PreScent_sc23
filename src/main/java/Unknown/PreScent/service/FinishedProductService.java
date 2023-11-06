@@ -1,9 +1,7 @@
 package Unknown.PreScent.service;
 
-import Unknown.PreScent.dto.FinishedProduct;
+import Unknown.PreScent.entity.FinishedProductEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,20 +15,20 @@ public class FinishedProductService {
         this.finishedProductRepo = finishedProductRepo;
     }
 
-    public FinishedProduct addFinishedProduct(Integer shopKey,String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
-        FinishedProduct finishedProduct = new FinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
-        return finishedProductRepo.save(finishedProduct);
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
+        FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
+        return finishedProductRepo.save(finishedProductEntity);
     }
 
-    public Optional<FinishedProduct> getFinishedProductWithFpKey(Integer fpKey)
+    public Optional<FinishedProductEntity> getFinishedProductWithFpKey(Integer fpKey)
     {
         return finishedProductRepo.findByFpKey(fpKey);
     }
-    public Optional<List<FinishedProduct>> getFinishedProductWithFpName(String fpName)
+    public Optional<List<FinishedProductEntity>> getFinishedProductWithFpName(String fpName)
     {
         return finishedProductRepo.findByFpNameContaining(fpName);
     }
-    public Optional<List<FinishedProduct>> getFinishedProductWithFpTag(String fpTag)
+    public Optional<List<FinishedProductEntity>> getFinishedProductWithFpTag(String fpTag)
     {
         return finishedProductRepo.findByFpTagContaining(fpTag);
     }

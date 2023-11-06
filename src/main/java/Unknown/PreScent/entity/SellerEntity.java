@@ -22,6 +22,9 @@ public class SellerEntity {
     private String sellerPassword;
     @Column(name = "seller_phonenum")
     private String sellerPhonenum;
+    @OneToOne
+    @JoinColumn(name = "FlowerShopEntity_sellerKey")
+    private FlowerShopEntity flowerShop;
 
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
