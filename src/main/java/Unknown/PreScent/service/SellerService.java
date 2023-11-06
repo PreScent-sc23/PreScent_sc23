@@ -23,8 +23,8 @@ public class SellerService {
         validateDuplicatedSeller(sellerEntity);
 
         String encoded;
-        encoded = passwordEncoder.encode(sellerEntity.getPassword());
-        sellerEntity.setPassword(encoded);
+        encoded = passwordEncoder.encode(sellerEntity.getSellerPassword());
+        sellerEntity.setSellerPassword(encoded);
 
         sellerRepository.save(sellerEntity);
         return sellerEntity.getSellerKey();
@@ -35,7 +35,7 @@ public class SellerService {
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 등록된 사업자입니다.");
                 });
-        sellerRepository.findByID(seller.getID())
+        sellerRepository.findBySellerId(seller.getSellerId())
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 사용중인 아이디입니다.");
                 });
@@ -48,10 +48,10 @@ public class SellerService {
 
     public SellerDto login(String id, String password) {
 
-        Optional<SellerEntity> byId = sellerRepository.findByID(id);
+        Optional<SellerEntity> byId = sellerRepository.findBySellerId(id);
         if (byId.isPresent()) {
             SellerEntity seller = byId.get();
-            if (passwordEncoder.matches(password, seller.getPassword())) {
+            if (passwordEncoder.matches(password, seller.getSellerPassword())) {
                 // 비밀번호 일치
                 return SellerDto.toSellerDto(seller);
             } else {

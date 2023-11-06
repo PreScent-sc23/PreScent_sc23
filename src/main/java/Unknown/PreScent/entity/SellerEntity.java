@@ -9,27 +9,27 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "Seller")
+@Table(name = "seller")
 public class SellerEntity {
     @Id
-    @Column(name = "sellerKey")
+    @Column(name = "seller_key")
     private Long sellerKey;
-    @Column(name = "sellerName")
+    @Column(name = "seller_name")
     private String sellerName;
-    @Column(name = "ID", unique = true)
-    private String ID;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "sellerPhoneNum")
-    private String sellerPhoneNum;
+    @Column(name = "seller_id")
+    private String sellerId;
+    @Column(name = "seller_password")
+    private String sellerPassword;
+    @Column(name = "seller_phonenum")
+    private String sellerPhonenum;
 
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
         sellerEntity.setSellerKey(sellerDto.getSellerKey());
         sellerEntity.setSellerName(sellerDto.getSellerName());
-        sellerEntity.setSellerPhoneNum(sellerDto.getSellerPhoneNum());
-        sellerEntity.setID(sellerDto.getID());
-        sellerEntity.setPassword(sellerDto.getPassword());
+        sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());
+        sellerEntity.setSellerId(sellerDto.getSellerId());
+        sellerEntity.setSellerPassword(sellerDto.getSellerPassword());
         return sellerEntity;
     }
 }

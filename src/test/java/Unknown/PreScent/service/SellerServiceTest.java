@@ -2,7 +2,6 @@ package Unknown.PreScent.service;
 
 
 import Unknown.PreScent.dto.SellerDto;
-import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.SellerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,9 +36,9 @@ class SellerServiceTest {
         SellerDto sellerDto = new SellerDto();
         sellerDto.setSellerKey(123456789L);
         sellerDto.setSellerName("suhyeon");
-        sellerDto.setSellerPhoneNum("010-1111-2222");
-        sellerDto.setID("sooh");
-        sellerDto.setPassword("04prescent");
+        sellerDto.setSellerPhonenum("010-1111-2222");
+        sellerDto.setSellerId("sooh");
+        sellerDto.setSellerPassword("04prescent");
         return sellerDto;
     }
 
@@ -53,10 +52,10 @@ class SellerServiceTest {
 
     @Test
     @DisplayName("중복 사업자번호 가입 테스트")
-    public void saveDuplicateMemberTest(){
+    public void saveDuplicateSellerTest(){
         SellerDto seller1 = createSellerDto();
         SellerDto seller2 = createSellerDto();
-        seller2.setID("differentId");
+        seller2.setSellerId("differentId");
 
         sellerService.saveSeller(toSellerEntity(seller1));
         Throwable e = assertThrows(IllegalStateException.class, () -> {
@@ -81,10 +80,10 @@ class SellerServiceTest {
     @DisplayName("로그인 성공 테스트")
     public void loginSuccessTest() {
         SellerDto sellerDto = createSellerDto();
-        sellerDto.setPassword(passwordEncoder.encode(sellerDto.getPassword()));
+        sellerDto.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
         Long sellerKey = sellerService.signup(sellerDto);
 
-        SellerDto loggedInSeller = sellerService.login(sellerDto.getID(), sellerDto.getPassword());
+        SellerDto loggedInSeller = sellerService.login(sellerDto.getSellerId(), sellerDto.getSellerPassword());
         assertNotNull(loggedInSeller);
     }
 

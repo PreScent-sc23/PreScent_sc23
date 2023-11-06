@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,18 +14,18 @@ public class SellerDto {
 
     private Long sellerKey;    //system ID
     private String sellerName;
-    private String ID;
-    private String password;
-    private String sellerPhoneNum;
+    private String sellerId;
+    private String sellerPassword;
+    private String sellerPhonenum;
 
     public static SellerDto toSellerDto(SellerEntity sellerEntity){
         SellerDto sellerDto = new SellerDto();
 
         sellerDto.setSellerKey(sellerEntity.getSellerKey());
         sellerDto.setSellerName(sellerEntity.getSellerName());
-        sellerDto.setSellerPhoneNum(sellerEntity.getSellerPhoneNum());
-        sellerDto.setID(sellerEntity.getID());
-        sellerDto.setPassword(sellerEntity.getPassword());
+        sellerDto.setSellerPhonenum(sellerEntity.getSellerPhonenum());
+        sellerDto.setSellerId(sellerEntity.getSellerId());
+        sellerDto.setSellerPassword(sellerEntity.getSellerPassword());
         return sellerDto;
     }
     /*
