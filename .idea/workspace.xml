@@ -4,23 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="FEAT:signup">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
+    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/DBSellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/DBSellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/SellerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/SellerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/SellerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/SellerEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/repository/MemorySellerRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,10 +54,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -74,7 +69,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="36e2bf36-eabc-4590-9f71-2697fd7bc830" />
+        <option name="accountId" value="c32f508f-540e-44bf-b47a-7a6a4a5ece9c" />
         <option name="url" value="https://github.com/PreScent-sc23/PreScent_sc23.git" />
       </UrlAndAccount>
     </option>
@@ -86,97 +81,39 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2XSq9azdhqOtCSM6LRvrgHAcKop" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-    <ConfirmationsSetting value="1" id="Remove" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "Doyun",
-    "last_opened_file_path": "C:/Users/김도윤/Desktop/학교/4-2/PreScent",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
-  },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
-    ]
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;suhyeon&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/김도윤/Desktop/학교/4-2/PreScent&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\김도윤\Desktop\학교\4-2\PreScent\src\test\java\Unknown\PreScent\service" />
+      <recent name="C:\Users\user\IdeaProjects\PreScent_sc23\src\main\java\Unknown\PreScent\repository" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="Unknown.PreScent.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FinishedProductServiceTest.testAddFinishedProduct">
-    <configuration name="MemorySellerRepositoryTest.save (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;Unknown.PreScent.repository.MemorySellerRepositoryTest.save&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="SellerServiceTest.join" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;Unknown.PreScent.service.SellerServiceTest.join&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="FinishedProductServiceTest.testAddFinishedProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SellerServiceTest">
+    <configuration name="SellerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PreScent.test" />
       <extension name="coverage">
         <pattern>
@@ -185,23 +122,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FinishedProductServiceTest" />
-      <option name="METHOD_NAME" value="testAddFinishedProduct" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FlowerShopServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PreScent.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Unknown.PreScent.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FlowerShopServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -222,20 +143,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SellerServiceTest.saveSellerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PreScent.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Unknown.PreScent.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
+      <option name="METHOD_NAME" value="saveSellerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerServiceTest.signup_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PreScent.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Unknown.PreScent.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
+      <option name="METHOD_NAME" value="signup_Success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerServiceTest.testSignup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PreScent.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Unknown.PreScent.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
+      <option name="METHOD_NAME" value="testSignup" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FinishedProductServiceTest.testAddFinishedProduct" />
-        <item itemvalue="JUnit.FlowerShopServiceTest" />
         <item itemvalue="JUnit.SellerServiceTest" />
-        <item itemvalue="Gradle.MemorySellerRepositoryTest.save (1)" />
-        <item itemvalue="Gradle.SellerServiceTest.join" />
+        <item itemvalue="JUnit.SellerServiceTest.saveSellerTest" />
+        <item itemvalue="JUnit.SellerServiceTest.signup_Success" />
+        <item itemvalue="JUnit.SellerControllerTest" />
+        <item itemvalue="JUnit.SellerServiceTest.testSignup" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="" />
@@ -268,13 +234,13 @@
       <option name="project" value="LOCAL" />
       <updated>1698663711626</updated>
     </task>
-    <task id="LOCAL-00004" summary="FEAT:signup">
+    <task id="LOCAL-00004" summary="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login">
       <option name="closed" value="true" />
-      <created>1698928017840</created>
+      <created>1699180511388</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1698928017840</updated>
+      <updated>1699180511388</updated>
     </task>
     <option name="localTasksCounter" value="5" />
     <servers />
@@ -311,11 +277,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initiate" />
     <MESSAGE value="initiate again" />
-    <MESSAGE value="FEAT:signup" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT:signup" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login" />
   </component>
 </project>
