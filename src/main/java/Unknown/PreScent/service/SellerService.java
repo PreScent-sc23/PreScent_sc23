@@ -18,7 +18,7 @@ public class SellerService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long signup(SellerDto sellerDto){
+    public Integer signup(SellerDto sellerDto){
         SellerEntity sellerEntity = SellerEntity.toSellerEntity(sellerDto);
         validateDuplicatedSeller(sellerEntity);
 

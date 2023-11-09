@@ -1,7 +1,13 @@
 package Unknown.PreScent.entity;
 
+import Unknown.PreScent.dto.FinishedProductDto;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "finished_product")
 public class FinishedProductEntity {
@@ -22,7 +28,7 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private Integer fpPrice;
     @Column(nullable = false)
-    private boolean fpState=false;
+    private boolean fpState;
 
     private String[] fpFlowerList;
     @ManyToOne
@@ -50,67 +56,17 @@ public class FinishedProductEntity {
     public FinishedProductEntity() {
     }
 
-    public Integer getFpKey() {
-        return fpKey;
+    public static FinishedProductEntity toFinishedProductEntity(FinishedProductDto finishedProductDto)
+    {
+        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
+        finishedProductEntity.setFpKey(finishedProductDto.getFpKey());
+        finishedProductEntity.setShopKey(finishedProductDto.getShopKey());
+        finishedProductEntity.setFpName(finishedProductDto.getFpName());
+        finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
+        finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
+        finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
+        finishedProductEntity.setFpState(finishedProductDto.isFpState());
+        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
+        return finishedProductEntity;
     }
-
-    public void setFpKey(Integer fpKey) {
-        this.fpKey = fpKey;
-    }
-
-    public Integer getShopKey() {
-        return shopKey;
-    }
-
-    public void setShopKey(Integer shopKey) {
-        this.shopKey = shopKey;
-    }
-
-    public String getFpName() {
-        return fpName;
-    }
-
-    public void setFpName(String fpName) {
-        this.fpName = fpName;
-    }
-
-    public String getFpTag() {
-        return fpTag;
-    }
-
-    public void setFpTag(String fpTag) {
-        this.fpTag = fpTag;
-    }
-
-    public String getFpImage() {
-        return fpImage;
-    }
-
-    public void setFpImage(String fpImage) {
-        this.fpImage = fpImage;
-    }
-
-    public Integer getFpPrice() {
-        return fpPrice;
-    }
-
-    public void setFpPrice(Integer fpPrice) {
-        this.fpPrice = fpPrice;
-    }
-
-    public boolean isFpState() {
-        return fpState;
-    }
-
-    public void setFpState(boolean fpState) {
-        this.fpState = fpState;
-    }
-
-    public String[] getFpFlowerList() {
-        return fpFlowerList;
-    }
-
-//    public void setFpFlowerList(String[] fpFlowerList) {
-//        this.fpFlowerList = fpFlowerList;
-//    }
 }

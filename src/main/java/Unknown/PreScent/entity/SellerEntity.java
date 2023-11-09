@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class SellerEntity {
     @Id
     @Column(name = "seller_key")
-    private Long sellerKey;
+    private Integer sellerKey;
     @Column(name = "seller_name")
     private String sellerName;
     @Column(name = "seller_id")

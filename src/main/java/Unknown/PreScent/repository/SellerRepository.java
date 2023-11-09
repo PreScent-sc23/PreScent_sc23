@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface SellerRepository extends JpaRepository<SellerEntity, String> {
 
     //SellerDto save(SellerDto seller);
-    Optional<SellerEntity> findBySellerKey(Long sellerKey);
+    Optional<SellerEntity> findBySellerKey(Integer sellerKey);
     Optional<SellerEntity> findBySellerName(String sellerName);
     Optional<SellerEntity> findBySellerId(String sellerId);
     Optional<SellerEntity> findBySellerPassword(String sellerPassword);
