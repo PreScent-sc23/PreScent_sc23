@@ -4,14 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login">
+    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Refactor: for connecting AWS server">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/CustomerEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/SellerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/SellerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/CustomerDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/SellerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/dto/SellerDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/SellerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/SellerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/CustomerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/SellerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" afterDir="false" />
@@ -112,8 +127,8 @@
       <recent name="Unknown.PreScent.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SellerServiceTest">
-    <configuration name="SellerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.service in PreScent.test">
+    <configuration name="CustomerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PreScent.test" />
       <extension name="coverage">
         <pattern>
@@ -122,7 +137,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.CustomerServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -175,29 +190,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SellerServiceTest.testSignup" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="service in PreScent.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PreScent.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Unknown.PreScent.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
-      <option name="METHOD_NAME" value="testSignup" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.service in PreScent.test" />
         <item itemvalue="JUnit.SellerServiceTest" />
+        <item itemvalue="JUnit.CustomerServiceTest" />
         <item itemvalue="JUnit.SellerServiceTest.saveSellerTest" />
         <item itemvalue="JUnit.SellerServiceTest.signup_Success" />
-        <item itemvalue="JUnit.SellerControllerTest" />
-        <item itemvalue="JUnit.SellerServiceTest.testSignup" />
       </list>
     </recent_temporary>
   </component>
@@ -242,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699180511388</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor: for connecting AWS server">
+      <option name="closed" value="true" />
+      <created>1699262505476</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699262505477</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +293,7 @@
     <MESSAGE value="initiate" />
     <MESSAGE value="initiate again" />
     <MESSAGE value="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: seller signup&#10;Feat: seller login&#10;Test: seller signup, seller login" />
+    <MESSAGE value="Refactor: for connecting AWS server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: for connecting AWS server" />
   </component>
 </project>

@@ -35,10 +35,6 @@ public class SellerService {
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 등록된 사업자입니다.");
                 });
-        sellerRepository.findBySellerId(seller.getSellerId())
-                .ifPresent(s ->{
-                    throw new IllegalStateException("이미 사용중인 아이디입니다.");
-                });
     }
 
     public SellerEntity saveSeller(SellerEntity sellerEntity){
@@ -48,7 +44,7 @@ public class SellerService {
 
     public SellerDto login(String id, String password) {
 
-        Optional<SellerEntity> byId = sellerRepository.findBySellerId(id);
+        Optional<SellerEntity> byId = sellerRepository.findBySellerIdEmail(id);
         if (byId.isPresent()) {
             SellerEntity seller = byId.get();
             if (passwordEncoder.matches(password, seller.getSellerPassword())) {
@@ -60,7 +56,7 @@ public class SellerService {
             }
         } else {
             // ID가 데이터베이스에 없음
-            throw new IllegalArgumentException("존재하지 않는 사용자 ID입니다.");
+            throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
         }
     }
 }
