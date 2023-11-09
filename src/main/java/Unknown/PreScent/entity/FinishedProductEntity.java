@@ -10,20 +10,23 @@ public class FinishedProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fpKey;
 
-    @Column(nullable = false)
+    @Column(name = "shop_key", nullable = false)
     private Integer shopKey;
 
-    @Column(nullable = false)
+    @Column(name = "fp_name", nullable = false)
     private String fpName;
 
+    @Column(name = "fp_tag")
     private String fpTag;
 
+    @Column(name = "fp_image")
     private String fpImage;
-    @Column(nullable = false)
+    @Column(name = "fp_price", nullable = false)
     private Integer fpPrice;
-    @Column(nullable = false)
+    @Column(name = "fp_state", nullable = false)
     private boolean fpState=false;
 
+    @Column(name = "fp_flowerList")
     private String[] fpFlowerList;
     @ManyToOne
     @JoinColumn(name = "FlowerShop_shopKey")

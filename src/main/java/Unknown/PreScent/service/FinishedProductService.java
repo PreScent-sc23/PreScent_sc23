@@ -1,6 +1,7 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.entity.FinishedProductEntity;
+import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,19 @@ public class FinishedProductService {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
         return finishedProductRepo.save(finishedProductEntity);
     }
+/*
+    private void validateDuplicatedFp(FinishedProductEntity fpEntity) {
+        finishedProductRepo.(fpEntity.getFpName())
+                .ifPresent(s ->{
+                    throw new IllegalStateException("이미 등록된 사업자입니다.");
+                });
+        finishedProductRepo.findBySellerId(seller.getSellerId())
+                .ifPresent(s ->{
+                    throw new IllegalStateException("이미 사용중인 아이디입니다.");
+                });
+    }
+
+ */
 
     public Optional<FinishedProductEntity> getFinishedProductWithFpKey(Integer fpKey)
     {
