@@ -1,7 +1,13 @@
 package Unknown.PreScent.entity;
 
+import Unknown.PreScent.dto.FlowerShopDto;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "flower_shop")
 public class FlowerShopEntity {
@@ -19,10 +25,12 @@ public class FlowerShopEntity {
     private String shopLocation;
     private int[][] openingHours;
     @Column(nullable = false)
-    private boolean isOpened = false;
+    private boolean isOpened;
     private String[] holiday;
     @Column(nullable = false)
-    private boolean isSub = false;
+    private boolean isSub;
+    @OneToOne(mappedBy = "flowerShop")
+    private SellerEntity seller;
 
     public FlowerShopEntity(Integer shopKey, Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
         this.shopKey = shopKey;
@@ -45,76 +53,21 @@ public class FlowerShopEntity {
         this.holiday = holiday;
     }
 
-    public FlowerShopEntity(){}
-    public Integer getshopKey() {
-        return shopKey;
+    public FlowerShopEntity() {
     }
 
-    public void setShopKey(Integer shopKey) {
-        this.shopKey = shopKey;
+    public static FlowerShopEntity toFlowerShopEntity(FlowerShopDto flowerShopDto)
+    {
+        FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
+        flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
+        flowerShopEntity.setSellerKey(flowerShopDto.getSellerKey());
+        flowerShopEntity.setShopName(flowerShopDto.getShopName());
+        flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
+        flowerShopEntity.setOpeningHours(flowerShopDto.getOpeningHours());
+        flowerShopEntity.setOpened(flowerShopDto.isOpened());
+        flowerShopEntity.setHoliday(flowerShopDto.getHoliday());
+        flowerShopEntity.setSub(flowerShopDto.isSub());
+        return flowerShopEntity;
     }
 
-    public int getSellerKey() {
-        return sellerKey;
-    }
-
-    public void setSellerKey(Integer sellerKey) {
-        this.sellerKey = sellerKey;
-    }
-
-    public String getShopName() {
-        return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
-    public String getShopPhoneNum() {
-        return shopPhoneNum;
-    }
-
-    public void setShopPhoneNum(String shopPhoneNum) {
-        this.shopPhoneNum = shopPhoneNum;
-    }
-
-    public String getShopLocation() {
-        return shopLocation;
-    }
-
-    public void setShopLocation(String shopLocation) {
-        this.shopLocation = shopLocation;
-    }
-
-    public int[][] getOpeningHours() {
-        return openingHours;
-    }
-
-    public void setOpeningHours(int[][] openingHours) {
-        this.openingHours = openingHours;
-    }
-
-    public boolean isOpened() {
-        return isOpened;
-    }
-
-    public void setisOpened(boolean opened) {
-        isOpened = opened;
-    }
-
-    public String[] getHoliday() {
-        return holiday;
-    }
-
-    public void setHoliday(String[] holiday) {
-        this.holiday = holiday;
-    }
-
-    public boolean isSub() {
-        return isSub;
-    }
-
-    public void setSub(boolean sub) {
-        isSub = sub;
-    }
 }

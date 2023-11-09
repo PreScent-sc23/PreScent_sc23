@@ -34,7 +34,7 @@ class SellerServiceTest {
 
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(123456789L);
+        sellerDto.setSellerKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
         sellerDto.setSellerId("sooh");
@@ -46,7 +46,7 @@ class SellerServiceTest {
     @DisplayName("회원가입 테스트")
     public void signupSellerTest() {
         SellerDto sellerDto = createSellerDto();
-        Long sellerKey = sellerService.signup(sellerDto);
+        Integer sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
     }
 
@@ -68,7 +68,7 @@ class SellerServiceTest {
     public void signupDuplicateIdTest() {
         SellerDto seller1 = createSellerDto();
         SellerDto seller2 = createSellerDto();
-        seller2.setSellerKey(987654321L);
+        seller2.setSellerKey(987654321);
 
         sellerService.saveSeller(toSellerEntity(seller1));
         Throwable e = assertThrows(IllegalStateException.class, () -> {
@@ -81,7 +81,7 @@ class SellerServiceTest {
     public void loginSuccessTest() {
         SellerDto sellerDto = createSellerDto();
         sellerDto.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
-        Long sellerKey = sellerService.signup(sellerDto);
+        Integer sellerKey = sellerService.signup(sellerDto);
 
         SellerDto loggedInSeller = sellerService.login(sellerDto.getSellerId(), sellerDto.getSellerPassword());
         assertNotNull(loggedInSeller);

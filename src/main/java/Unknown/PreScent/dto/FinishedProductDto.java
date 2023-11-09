@@ -1,19 +1,14 @@
 package Unknown.PreScent.dto;
 
 import Unknown.PreScent.entity.FinishedProductEntity;
-import Unknown.PreScent.entity.FlowerShopEntity;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 public class FinishedProductDto {
     private Integer fpKey;
@@ -24,4 +19,19 @@ public class FinishedProductDto {
     private Integer fpPrice;
     private boolean fpState=false;
     private String[] fpFlowerList;
+
+    public static FinishedProductDto toFinishedProductDto(FinishedProductEntity finishedProductEntity)
+    {
+        FinishedProductDto finishedProductDto = new FinishedProductDto();
+
+        finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
+        finishedProductDto.setShopKey(finishedProductEntity.getShopKey());
+        finishedProductDto.setFpName(finishedProductEntity.getFpName());
+        finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
+        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
+        finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
+        finishedProductDto.setFpState(finishedProductEntity.isFpState());
+        finishedProductDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
+        return finishedProductDto;
+    }
 }

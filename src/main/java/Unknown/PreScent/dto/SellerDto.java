@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class SellerDto {
 
-    private Long sellerKey;    //system ID
+    private Integer sellerKey;    //system ID
     private String sellerName;
     private String sellerId;
     private String sellerPassword;

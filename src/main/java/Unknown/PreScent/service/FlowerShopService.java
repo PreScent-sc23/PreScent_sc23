@@ -1,9 +1,11 @@
 package Unknown.PreScent.service;
 
+import Unknown.PreScent.dto.FlowerShopDto;
 import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FlowerShopRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -25,5 +27,10 @@ public class FlowerShopService {
     public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)
     {
         return flowerShopRepo.findByshopKey(shopKey);
+    }
+
+    public Optional<FlowerShopEntity> getFlowerShopBySellerKey(Integer sellerKey)
+    {
+        return flowerShopRepo.findBySellerKey(sellerKey);
     }
 }
