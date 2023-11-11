@@ -28,7 +28,6 @@ public class FlowerShopDto {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
 
         flowerShopDto.setShopKey(flowerShopEntity.getShopKey());
-        flowerShopDto.setSellerKey(flowerShopEntity.getSellerKey());
         flowerShopDto.setShopName(flowerShopEntity.getShopName());
         flowerShopDto.setShopPhoneNum(flowerShopEntity.getShopPhoneNum());
         flowerShopDto.setShopLocation(flowerShopEntity.getShopLocation());

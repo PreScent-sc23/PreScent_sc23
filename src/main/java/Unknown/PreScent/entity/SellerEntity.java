@@ -22,9 +22,16 @@ public class SellerEntity {
     private String sellerPassword;
     @Column(name = "seller_phonenum")
     private String sellerPhonenum;
+
     @OneToOne
-    @JoinColumn(name = "FlowerShopEntity_sellerKey")
-    private FlowerShopEntity flowerShop;
+    @JoinColumn(name = "shopKey")
+    private FlowerShopEntity flowerShopEntity;
+
+    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
+    {
+        this.flowerShopEntity = flowerShopEntity;
+        this.flowerShopEntity.setSellerEntity(this);
+    }
 
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();

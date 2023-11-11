@@ -31,6 +31,7 @@ public class SellerService {
     }
 
     private void validateDuplicatedSeller(SellerEntity seller) {
+
         sellerRepository.findBySellerKey(seller.getSellerKey())
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 등록된 사업자입니다.");

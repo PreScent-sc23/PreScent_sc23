@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface FlowerShopRepository extends JpaRepository<FlowerShopEntity, Integer> {
     Optional<FlowerShopEntity> findByshopKey(Integer shopKey);
 
-    Optional<FlowerShopEntity> findBySellerKey(Integer sellerKey);
 }

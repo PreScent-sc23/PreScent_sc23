@@ -110,4 +110,14 @@ class SellerServiceTest {
         });
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
     }
+
+    @Test
+    @DisplayName("sellerKey 이용한 seller 쿼리 테스트")
+    void sellerQueryWithSelleKeyTest()
+    {
+        SellerDto newSeller = createSellerDto();
+        sellerService.signup(newSeller);
+
+        assertTrue(sellerRepository.findBySellerKey(123456789).isPresent());
+    }
 }
