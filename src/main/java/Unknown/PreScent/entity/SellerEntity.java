@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class SellerEntity {
     @Id
     @Column(nullable = false)
-    private Long sellerKey;
+    private Integer sellerKey;
     @Column(nullable = false)
     private String sellerName;
     @Column(nullable = false, unique = true)
@@ -24,6 +24,10 @@ public class SellerEntity {
     @Column(nullable = false)
     private String sellerPhonenum;
     private Integer isgrant;
+
+    @OneToOne
+    @JoinColumn(name = "FlowerShopEntity_sellerKey")
+    private FlowerShopEntity flowerShop;
 
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();

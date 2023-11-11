@@ -44,15 +44,19 @@ public class CustomerController {
 
     @PostMapping("/customer/login")
     public String login(@RequestParam String id, @RequestParam String password,
-                        HttpSession session, RedirectAttributes redirectAttributes){
+                        HttpSession session, RedirectAttributes redirectAttributes) {
         try {
             CustomerDto loginResult = customerService.login(id, password);
             session.setAttribute("loginCustomerIdEmail", loginResult.getCustomerIdEmail());
-            return "redirect:/customer/main";
+
+            if (loginResult.getCustomerLocation() == null) {
+                return "redirect:/customer/set-location";
+            } else {
+                return "redirect:/customer/main";
+            }
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("loginError", e.getMessage());
             return "redirect:/customer/login";
         }
     }
-
 }

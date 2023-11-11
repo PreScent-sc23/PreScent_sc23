@@ -47,14 +47,11 @@ public class CustomerService {
         if (byId.isPresent()) {
             CustomerEntity customer = byId.get();
             if (passwordEncoder.matches(password, customer.getCustomerPassword())) {
-                // 비밀번호 일치
                 return CustomerDto.toCustomerDto(customer);
             } else {
-                // 비밀번호 불일치
                 throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
             }
         } else {
-            // ID가 데이터베이스에 없음
             throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
         }
     }

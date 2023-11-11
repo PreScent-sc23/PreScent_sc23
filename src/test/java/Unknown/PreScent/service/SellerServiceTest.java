@@ -33,7 +33,7 @@ class SellerServiceTest {
 
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(123456789L);
+        sellerDto.setSellerKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
         sellerDto.setSellerIdEmail("ajou.gmail.com");
@@ -45,7 +45,7 @@ class SellerServiceTest {
     @DisplayName("판매자/ 회원가입 테스트")
     public void signupSellerTest() {
         SellerDto sellerDto = createSellerDto();
-        Long sellerKey = sellerService.signup(sellerDto);
+        Integer sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
     }
 
@@ -84,7 +84,7 @@ class SellerServiceTest {
     public void loginSuccessTest() {
         SellerDto sellerDto = createSellerDto();
         sellerDto.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
-        Long sellerKey = sellerService.signup(sellerDto);
+        Integer sellerKey = sellerService.signup(sellerDto);
 
         SellerDto loggedInSeller = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
         assertNotNull(loggedInSeller);

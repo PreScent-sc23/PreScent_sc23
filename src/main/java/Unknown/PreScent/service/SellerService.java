@@ -18,7 +18,7 @@ public class SellerService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long signup(SellerDto sellerDto){
+    public Integer signup(SellerDto sellerDto){
         SellerEntity sellerEntity = SellerEntity.toSellerEntity(sellerDto);
         validateDuplicatedSeller(sellerEntity);
 
@@ -48,14 +48,11 @@ public class SellerService {
         if (byId.isPresent()) {
             SellerEntity seller = byId.get();
             if (passwordEncoder.matches(password, seller.getSellerPassword())) {
-                // 비밀번호 일치
                 return SellerDto.toSellerDto(seller);
             } else {
-                // 비밀번호 불일치
                 throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
             }
         } else {
-            // ID가 데이터베이스에 없음
             throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
         }
     }

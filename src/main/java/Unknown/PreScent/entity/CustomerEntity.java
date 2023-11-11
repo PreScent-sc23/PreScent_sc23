@@ -11,11 +11,12 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "customer")
+
 public class CustomerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerKey;
+    private Integer customerKey;
     @Column(nullable = false)
     private String customerName;
     @Column(nullable = false, unique = true)

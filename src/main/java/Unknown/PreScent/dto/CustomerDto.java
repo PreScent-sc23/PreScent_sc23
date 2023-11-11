@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class CustomerDto {
 
-    private Long customerKey;
+    private Integer customerKey;
     @NotBlank(message = "이름을 작성해주세요")
     private String customerName;
     @Email(message = "올바른 이메일 형식을 사용해주세요")
