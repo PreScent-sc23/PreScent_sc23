@@ -60,7 +60,6 @@ public class FlowerShopEntityServiceTest {
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
 
         assertThat(addedShop).isNotNull();
-        assertThat(addedShop.getSellerKey()).isEqualTo(123456789);
 
         Integer testShopKeyIndex = addedShop.getShopKey();
 

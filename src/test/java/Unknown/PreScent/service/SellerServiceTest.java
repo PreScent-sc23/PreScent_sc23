@@ -17,7 +17,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
+//@Transactional
 class SellerServiceTest {
 
     @Autowired
@@ -109,5 +109,14 @@ class SellerServiceTest {
             sellerService.login("sooh", "wrongpassword");
         });
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
+    }
+
+    @Test
+    @DisplayName("sellerKey를 이용한 seller쿼리 테스트")
+    void sellerQueryWithSellerKeyTest() {
+        SellerDto newSeller = createSellerDto();
+        sellerService.signup(newSeller);
+
+        assertTrue(sellerRepository.findBySellerKey(123456789).isPresent());
     }
 }

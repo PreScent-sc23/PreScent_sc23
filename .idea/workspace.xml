@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="FEAT:TagSearch/SortByColumn">
+    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Refactor: refactor overall of finishedProduct">
       <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/CustomerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/entity/CustomerEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/FinishedProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/FinishedProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/repository/SellerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/FinishedProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Unknown/PreScent/service/FinishedProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/FinishedProductEntityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/FinishedProductEntityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/FlowerShopEntityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/FlowerShopEntityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Unknown/PreScent/service/SellerServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,8 +118,24 @@
       <recent name="Unknown.PreScent.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FinishedProductEntityServiceTest.testAddFinishedProduct">
-    <configuration name="FinishedProductEntityServiceTest.setUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CartTest.doNotingTest">
+    <configuration name="CartTest.doNotingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PreScent.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Unknown.PreScent.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.CartTest" />
+      <option name="METHOD_NAME" value="doNotingTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FinishedProductEntityServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PreScent.test" />
       <extension name="coverage">
         <pattern>
@@ -125,8 +145,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
       <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FinishedProductEntityServiceTest" />
-      <option name="METHOD_NAME" value="setUp" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -142,38 +161,6 @@
       <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
       <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FinishedProductEntityServiceTest" />
       <option name="METHOD_NAME" value="testAddFinishedProduct" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FinishedProductEntityServiceTest.testAddManyFinishedProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PreScent.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Unknown.PreScent.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FinishedProductEntityServiceTest" />
-      <option name="METHOD_NAME" value="testAddManyFinishedProduct" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FinishedProductEntityServiceTest.testTagSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PreScent.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Unknown.PreScent.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FinishedProductEntityServiceTest" />
-      <option name="METHOD_NAME" value="testTagSearch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -195,12 +182,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SellerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PreScent.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Unknown.PreScent.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CartTest.doNotingTest" />
+        <item itemvalue="JUnit.FinishedProductEntityServiceTest" />
+        <item itemvalue="JUnit.SellerServiceTest" />
         <item itemvalue="JUnit.FinishedProductEntityServiceTest.testAddFinishedProduct" />
-        <item itemvalue="JUnit.FinishedProductEntityServiceTest.testAddManyFinishedProduct" />
-        <item itemvalue="JUnit.FinishedProductEntityServiceTest.testTagSearch" />
-        <item itemvalue="JUnit.FinishedProductEntityServiceTest.setUp" />
         <item itemvalue="JUnit.FinishedProductEntityServiceTest.testTagSearchSort" />
       </list>
     </recent_temporary>
@@ -257,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699528242495</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor: refactor overall of finishedProduct">
+      <option name="closed" value="true" />
+      <created>1699677563726</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699677563727</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -294,7 +304,8 @@
     <MESSAGE value="initiate again" />
     <MESSAGE value="FEAT:signup" />
     <MESSAGE value="FEAT:TagSearch/SortByColumn" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT:TagSearch/SortByColumn" />
+    <MESSAGE value="Refactor: refactor overall of finishedProduct" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: refactor overall of finishedProduct" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

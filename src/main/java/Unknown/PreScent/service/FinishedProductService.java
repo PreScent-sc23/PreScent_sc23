@@ -1,7 +1,6 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.entity.FinishedProductEntity;
-import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,24 +24,34 @@ public class FinishedProductService {
     }
 
     private void validateDuplicatedFp(Integer shopKey, String fpName, Integer fpPrice) {
-        System.out.println("중복 상품 검사 시작 입니다.\n\n");
-        //Optional<List<FinishedProductEntity>> compFPEntity = getFinishedProductWithShopKey(shopKey);
-        //List<FinishedProductEntity> compList = getFinishedProductWithShopKey(shopKey).get();
+        Optional<List<FinishedProductEntity>> compFPEntity = getFinishedProductWithShopKey(shopKey);
+        List<FinishedProductEntity> compList = getFinishedProductWithShopKey(shopKey).get();
 
-        //finishedProductRepo.findByShopKeyContaining(shopKey);
+        Optional<List<FinishedProductEntity>> shopKeyResult = finishedProductRepo.findByShopKey(shopKey);
 
         Optional<List<FinishedProductEntity>> nameResult = finishedProductRepo.findByFpNameContaining(fpName);
 
-        nameResult.ifPresent(s ->{
-                    //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
+//        nameResult.ifPresent(s ->{
+//                    //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
+//
+//                    for(FinishedProductEntity fp : nameResult.get()){
+//                        if(shopKey.equals(fp.getShopKey())){
+//                            throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
+//                            //System.out.println(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
+//                        }
+//                    }
+//                });
 
-                    for(FinishedProductEntity fp : nameResult.get()){
-                        if(shopKey.equals(fp.getShopKey())){
-                            throw new IllegalStateException("이미 등록된 상품 이름 입니다.\n");
-                            //System.out.println("이미 등록된 상품 이름 입니다.\n\n");
-                        }
-                    }
-                });
+        shopKeyResult.ifPresent(s ->{
+            //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
+
+            for(FinishedProductEntity fp : shopKeyResult.get()){
+                if(fpName.equals(fp.getFpName())){
+                    throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
+                    //System.out.println(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
+                }
+            }
+        });
     }
 
 
@@ -60,7 +69,7 @@ public class FinishedProductService {
         return finishedProductRepo.findByFpTagContaining(fpTag);
     }
     public Optional<List<FinishedProductEntity>> getFinishedProductWithShopKey(Integer shopKey){
-        return finishedProductRepo.findByShopKeyContaining(shopKey);
+        return finishedProductRepo.findByShopKey(shopKey);
     }
 //    public Optional<List<FinishedProduct>> getFinishedProductWithFlower(String flower)
 //    {
