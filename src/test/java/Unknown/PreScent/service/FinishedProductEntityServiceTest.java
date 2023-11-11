@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
-//@Transactional
+@Transactional
 @SpringBootTest
 public class FinishedProductEntityServiceTest {
     @Autowired
@@ -39,7 +39,10 @@ public class FinishedProductEntityServiceTest {
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(1, "장미꽃다발", "연인", null , 20000, true, new String[]{"장미","안개꽃"});
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(405, "장미꽃다발", "연인", null , 20000, true, new String[]{"장미","안개꽃"});
+
+        //finishedProductRepository.findByShopKeyContaining(1);
+
 
         assertThat(addedFinishedProductEntity).isNotNull();
 
@@ -54,6 +57,7 @@ public class FinishedProductEntityServiceTest {
     @DisplayName("완제품 복수 등록")
     public void testAddManyFinishedProduct()
     {
+        //FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(1, "장미꽃다발1", "연인", null, 20000+1000, true, new String[]{"장미", "안개꽃"});
         for(int i = 1; i < 10; i++) {
             FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(i, "장미꽃다발"+i, "연인", null, 20000+(i*1000), true, new String[]{"장미", "안개꽃"});
 
