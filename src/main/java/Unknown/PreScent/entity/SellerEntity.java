@@ -26,9 +26,14 @@ public class SellerEntity {
     private Integer isgrant;
 
     @OneToOne
-    @JoinColumn(name = "FlowerShopEntity_sellerKey")
-    private FlowerShopEntity flowerShop;
+    @JoinColumn(name = "shopKey")
+    private FlowerShopEntity flowerShopEntity;
 
+    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
+    {
+        this.flowerShopEntity = flowerShopEntity;
+        // this.flowerShopEntity.setSellerEntity(this);
+    }
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
         sellerEntity.setSellerKey(sellerDto.getSellerKey());
