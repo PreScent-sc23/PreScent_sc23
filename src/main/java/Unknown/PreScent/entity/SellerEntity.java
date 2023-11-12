@@ -30,8 +30,9 @@ public class SellerEntity {
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
-        this.flowerShopEntity.setSellerEntity(this);
+        // this.flowerShopEntity.setSellerEntity(this);
     }
+
 
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();

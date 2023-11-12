@@ -4,10 +4,9 @@ import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FlowerShopRepository;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.repository.SellerRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,7 +17,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
+
 @Transactional
 @SpringBootTest
 public class FlowerShopEntityServiceTest {
@@ -75,11 +74,13 @@ public class FlowerShopEntityServiceTest {
     @DisplayName("Sellerkey같은 매장 생성 테스트")
     public void testSameSellerKeyShop()
     {
-//        SellerDto sellerDto = createSellerDto();
-//        Integer sellerKey = sellerService.signup(sellerDto);
-//        assertNotNull(sellerKey);
+        SellerDto sellerDto = createSellerDto();
+        Integer sellerKey = sellerService.signup(sellerDto);
+        assertNotNull(sellerKey);
 
         FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
-        FlowerShopEntity addedShop2 = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
+        Throwable e = assertThrows(IllegalStateException.class, () -> {
+            flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});});
+        assertEquals("이미 매장을 등록한 판매자입니다.", e.getMessage());
     }
 }

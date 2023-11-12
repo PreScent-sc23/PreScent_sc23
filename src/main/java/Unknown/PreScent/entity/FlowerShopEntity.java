@@ -34,7 +34,7 @@ public class FlowerShopEntity {
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
-//        this.sellerEntity.setFlowerShopEntity(this);
+        this.sellerEntity.setFlowerShopEntity(this);
     }
     public FlowerShopEntity(Integer shopKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
         this.shopKey = shopKey;
@@ -71,6 +71,6 @@ public class FlowerShopEntity {
         return flowerShopEntity;
     }
 
-    public void setSellerEntity(Optional<SellerEntity> sellerEntity) {
-    }
+    // public void setSellerEntity(Optional<SellerEntity> sellerEntity) {
+    // }
 }
