@@ -10,9 +10,10 @@ public interface SellerRepository extends JpaRepository<SellerEntity, Integer> {
     //SellerDto save(SellerDto seller);
     Optional<SellerEntity> findBySellerKey(Integer sellerKey);
     Optional<SellerEntity> findBySellerName(String sellerName);
-    Optional<SellerEntity> findBySellerId(String sellerId);
+    Optional<SellerEntity> findBySellerIdEmail(String sellerIdEmail);
     Optional<SellerEntity> findBySellerPassword(String sellerPassword);
     Optional<SellerEntity> findBySellerPhonenum(String sellerPhonenum);
+    Optional<SellerEntity> findByIsgrant(String sellerIsgrant);
     //List<SellerDto> findAll();
 
 }

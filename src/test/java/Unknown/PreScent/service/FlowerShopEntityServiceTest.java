@@ -44,7 +44,7 @@ public class FlowerShopEntityServiceTest {
         sellerDto.setSellerKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerId("sooh");
+        sellerDto.setSellerIdEmail("sooh");
         sellerDto.setSellerPassword("04prescent");
         return sellerDto;
     }

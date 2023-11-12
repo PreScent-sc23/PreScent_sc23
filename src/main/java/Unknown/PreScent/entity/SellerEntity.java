@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -12,16 +13,18 @@ import javax.persistence.*;
 @Table(name = "seller")
 public class SellerEntity {
     @Id
-    @Column(name = "seller_key")
+    @Column(nullable = false)
     private Integer sellerKey;
-    @Column(name = "seller_name")
+    @Column(nullable = false)
     private String sellerName;
-    @Column(name = "seller_id")
-    private String sellerId;
-    @Column(name = "seller_password")
+    @Column(nullable = false, unique = true)
+    private String sellerIdEmail;
+    @Column(nullable = false)
     private String sellerPassword;
-    @Column(name = "seller_phonenum")
+    @Column(nullable = false)
     private String sellerPhonenum;
+    private Integer isgrant;
+
     @OneToOne
     @JoinColumn(name = "FlowerShopEntity_sellerKey")
     private FlowerShopEntity flowerShop;
@@ -31,8 +34,9 @@ public class SellerEntity {
         sellerEntity.setSellerKey(sellerDto.getSellerKey());
         sellerEntity.setSellerName(sellerDto.getSellerName());
         sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());
-        sellerEntity.setSellerId(sellerDto.getSellerId());
+        sellerEntity.setSellerIdEmail(sellerDto.getSellerIdEmail());
         sellerEntity.setSellerPassword(sellerDto.getSellerPassword());
+        sellerEntity.setIsgrant(sellerDto.getIsgrant());
         return sellerEntity;
     }
 }

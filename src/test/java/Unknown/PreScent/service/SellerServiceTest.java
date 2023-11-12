@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.Commit;
 
 import javax.transaction.Transactional;
 
@@ -37,13 +36,13 @@ class SellerServiceTest {
         sellerDto.setSellerKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerId("sooh");
+        sellerDto.setSellerIdEmail("ajou.gmail.com");
         sellerDto.setSellerPassword("04prescent");
         return sellerDto;
     }
 
     @Test
-    @DisplayName("회원가입 테스트")
+    @DisplayName("판매자/ 회원가입 테스트")
     public void signupSellerTest() {
         SellerDto sellerDto = createSellerDto();
         Integer sellerKey = sellerService.signup(sellerDto);
@@ -51,11 +50,11 @@ class SellerServiceTest {
     }
 
     @Test
-    @DisplayName("중복 사업자번호 가입 테스트")
+    @DisplayName("판매자/ 중복 사업자번호 가입 테스트")
     public void saveDuplicateSellerTest(){
         SellerDto seller1 = createSellerDto();
         SellerDto seller2 = createSellerDto();
-        seller2.setSellerId("differentId");
+        seller2.setSellerIdEmail("differentId");
 
         sellerService.saveSeller(toSellerEntity(seller1));
         Throwable e = assertThrows(IllegalStateException.class, () -> {
@@ -63,32 +62,36 @@ class SellerServiceTest {
         assertEquals("이미 등록된 사업자입니다.", e.getMessage());
     }
 
-    @Test
-    @DisplayName("중복 아이디 가입 테스트")
-    public void signupDuplicateIdTest() {
-        SellerDto seller1 = createSellerDto();
-        SellerDto seller2 = createSellerDto();
-        seller2.setSellerKey(987654321);
 
-        sellerService.saveSeller(toSellerEntity(seller1));
+    @Test
+    @DisplayName("판매자/ 중복 이메일 가입 테스트")
+    public void signupDuplicateEmailTest() {
+        SellerDto seller1 = createSellerDto();
+        sellerService.signup(seller1);
+
+        SellerDto seller2 = createSellerDto();
+        seller2.setSellerPhonenum("010-2222-3333");
+
         Throwable e = assertThrows(IllegalStateException.class, () -> {
-            sellerService.saveSeller(toSellerEntity(seller2));});
-        assertEquals("이미 사용중인 아이디입니다.", e.getMessage());
+            sellerService.signup(seller2);
+        });
+        assertEquals("이미 등록된 사업자입니다.", e.getMessage());
     }
 
+
     @Test
-    @DisplayName("로그인 성공 테스트")
+    @DisplayName("판매자/ 로그인 성공 테스트")
     public void loginSuccessTest() {
         SellerDto sellerDto = createSellerDto();
         sellerDto.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
         Integer sellerKey = sellerService.signup(sellerDto);
 
-        SellerDto loggedInSeller = sellerService.login(sellerDto.getSellerId(), sellerDto.getSellerPassword());
+        SellerDto loggedInSeller = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
         assertNotNull(loggedInSeller);
     }
 
     @Test
-    @DisplayName("로그인 실패 - 잘못된 ID 테스트")
+    @DisplayName("판매자/ 로그인 실패 - 잘못된 Email 테스트")
     void loginFailureWrongIdTest() {
         SellerDto newSeller = createSellerDto();
         sellerService.signup(newSeller);
@@ -96,17 +99,17 @@ class SellerServiceTest {
         Throwable e = assertThrows(IllegalArgumentException.class, () -> {
             sellerService.login("wrongId", "04prescent");
         });
-        assertEquals("존재하지 않는 사용자 ID입니다.", e.getMessage());
+        assertEquals("존재하지 않는 사용자 Email입니다.", e.getMessage());
     }
 
     @Test
-    @DisplayName("로그인 실패 - 잘못된 PASSWORD 테스트")
+    @DisplayName("판매자/ 로그인 실패 - 잘못된 PASSWORD 테스트")
     void loginFailureWrongPasswordTest() {
         SellerDto newSeller = createSellerDto();
         sellerService.signup(newSeller);
 
         Throwable e = assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("sooh", "wrongpassword");
+            sellerService.login("ajou.gmail.com", "wrongpassword");
         });
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
     }
