@@ -1,7 +1,6 @@
 package Unknown.PreScent.dto;
 
 import Unknown.PreScent.entity.CustomerEntity;
-import Unknown.PreScent.entity.SellerEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

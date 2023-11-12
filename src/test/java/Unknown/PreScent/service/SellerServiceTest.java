@@ -16,7 +16,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class SellerServiceTest {
 
     @Autowired
@@ -115,8 +115,9 @@ class SellerServiceTest {
     }
 
     @Test
-    @DisplayName("sellerKey를 이용한 seller쿼리 테스트")
-    void sellerQueryWithSellerKeyTest() {
+    @DisplayName("sellerKey 이용한 seller 쿼리 테스트")
+    void sellerQueryWithSelleKeyTest()
+    {
         SellerDto newSeller = createSellerDto();
         sellerService.signup(newSeller);
 
