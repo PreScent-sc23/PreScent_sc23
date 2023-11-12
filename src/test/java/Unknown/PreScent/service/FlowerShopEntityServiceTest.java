@@ -4,7 +4,7 @@ import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FlowerShopRepository;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.repository.SellerRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
+
 @Transactional
 @SpringBootTest
 public class FlowerShopEntityServiceTest {
