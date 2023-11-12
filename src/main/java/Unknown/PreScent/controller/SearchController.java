@@ -34,7 +34,6 @@ public class SearchController {
                         HttpSession session, RedirectAttributes redirectAttributes){
         try {
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagAsc(fpTag, sortHow);
-
             session.setAttribute("tagSearchAscResult", searchResult);
             return "redirect:/finished-product";//????
         } catch (IllegalArgumentException e) {

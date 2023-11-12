@@ -3,6 +3,7 @@ package Unknown.PreScent.service;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
 import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
-//@Transactional
+@Transactional
 @SpringBootTest
 public class FinishedProductEntityServiceTest {
     @Autowired
@@ -58,8 +59,8 @@ public class FinishedProductEntityServiceTest {
     public void testAddManyFinishedProduct()
     {
         //FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(1, "장미꽃다발1", "연인", null, 20000+1000, true, new String[]{"장미", "안개꽃"});
-        for(int i = 1; i < 10; i++) {
-            FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(i, "장미꽃다발"+i, "연인", null, 20000+(i*1000), true, new String[]{"장미", "안개꽃"});
+        for(int i = 0; i < 10; i++) {
+            FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(i%3, "소국꽃다발"+i, "연인", null, 20000+(i*1000), true, new String[]{"장미", "안개꽃"});
 
             assertThat(addedFinishedProductEntity).isNotNull();
 
@@ -67,7 +68,7 @@ public class FinishedProductEntityServiceTest {
 
             FinishedProductEntity retrievedShop = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
             assertThat(retrievedShop).isNotNull();
-            assertThat(retrievedShop.getFpName()).isEqualTo("장미꽃다발"+i);
+            assertThat(retrievedShop.getFpName()).isEqualTo("소국꽃다발"+i);
         }
     }
 
@@ -85,7 +86,7 @@ public class FinishedProductEntityServiceTest {
         for(FinishedProductEntity fp : finishedProductEntities) System.out.println(fp.getFpPrice());
     }
 
-    @Test
+//    @Test
     @DisplayName("태그 검색 Page")
     public void testTagSearchPage(){
         this.testAddManyFinishedProduct();

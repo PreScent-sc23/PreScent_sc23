@@ -31,9 +31,16 @@ public class FinishedProductEntity {
     private boolean fpState;
 
     private String[] fpFlowerList;
+
+
     @ManyToOne
-    @JoinColumn(name = "FlowerShop_shopKey")
-    private FlowerShopEntity flowerShopEntity;
+    @JoinColumn(name = "cart_id")
+    private CartEntity cart;
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "FlowerShop_shopKey")
+//    private FlowerShopEntity flowerShopEntity;
 
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.fpName = fpName;
