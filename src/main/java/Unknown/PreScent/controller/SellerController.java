@@ -17,37 +17,37 @@ import javax.validation.Valid;
 public class SellerController {
     private SellerService sellerService;
 
-    @GetMapping("/sellersignup")
+    @GetMapping("/seller/signup")
     public String signup(){
         return "signup";
     }
 
-    @PostMapping("/sellersignup")
+    @PostMapping("/seller/signup")
     public String registerSeller(@Valid @ModelAttribute SellerDto sellerDto,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.sellerDto", bindingResult);
             redirectAttributes.addFlashAttribute("sellerDto", sellerDto);
-            return "redirect:/sellersignup";
+            return "redirect:/seller/signup";
         }
         sellerService.signup(sellerDto);
-        return "redirect:/sellerlogin";
+        return "redirect:/seller/login";
     }
 
-    @GetMapping("/sellerlogin")
-    public String login() { return "sellerlogin"; }
+    @GetMapping("/seller/login")
+    public String login() { return "seller/login"; }
 
-    @PostMapping("/sellerlogin")
+    @PostMapping("/seller/login")
     public String login(@RequestParam String id, @RequestParam String password,
                         HttpSession session, RedirectAttributes redirectAttributes){
         try {
             SellerDto loginResult = sellerService.login(id, password);
             session.setAttribute("loginSellerKey", loginResult.getSellerKey());
-            return "redirect:/sellermain";
+            return "redirect:/seller/main";
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("loginError", e.getMessage());
-            return "redirect:/sellerlogin";
+            return "redirect:/seller/login";
         }
     }
 
