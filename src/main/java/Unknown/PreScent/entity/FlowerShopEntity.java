@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -15,8 +16,6 @@ public class FlowerShopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer shopKey;
-    @Column(nullable = false)
-    private Integer sellerKey;
     @Column(nullable = false)
     private String shopName;
     @Column(nullable = false)
@@ -29,12 +28,16 @@ public class FlowerShopEntity {
     private String[] holiday;
     @Column(nullable = false)
     private boolean isSub;
-    @OneToOne(mappedBy = "flowerShop")
-    private SellerEntity seller;
+    @OneToOne(mappedBy = "flowerShopEntity")
+    private SellerEntity sellerEntity;
 
-    public FlowerShopEntity(Integer shopKey, Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
+    public void setSellerEntity(SellerEntity sellerEntity)
+    {
+        this.sellerEntity = sellerEntity;
+        this.sellerEntity.setFlowerShopEntity(this);
+    }
+    public FlowerShopEntity(Integer shopKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
         this.shopKey = shopKey;
-        this.sellerKey = sellerKey;
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
         this.shopLocation = shopLocation;
@@ -43,8 +46,7 @@ public class FlowerShopEntity {
         this.holiday = holiday;
         this.isSub = isSub;
     }
-    public FlowerShopEntity(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
-        this.sellerKey = sellerKey;
+    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
         this.shopLocation = shopLocation;
@@ -60,7 +62,6 @@ public class FlowerShopEntity {
     {
         FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
         flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
-        flowerShopEntity.setSellerKey(flowerShopDto.getSellerKey());
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
         flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
         flowerShopEntity.setOpeningHours(flowerShopDto.getOpeningHours());
@@ -70,4 +71,6 @@ public class FlowerShopEntity {
         return flowerShopEntity;
     }
 
+    // public void setSellerEntity(Optional<SellerEntity> sellerEntity) {
+    // }
 }

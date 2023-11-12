@@ -21,9 +21,7 @@ public class FinishedProductEntity {
 
     @Column(nullable = false)
     private String fpName;
-
     private String fpTag;
-
     private String fpImage;
     @Column(nullable = false)
     private Integer fpPrice;
@@ -35,6 +33,10 @@ public class FinishedProductEntity {
     @JoinColumn(name = "FlowerShop_shopKey")
     private FlowerShopEntity flowerShopEntity;
 
+    public void setFlowerShop(FlowerShopEntity flowerShopEntity)
+    {
+        this.flowerShopEntity = flowerShopEntity;
+    }
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.fpName = fpName;
         this.fpTag = fpTag;
