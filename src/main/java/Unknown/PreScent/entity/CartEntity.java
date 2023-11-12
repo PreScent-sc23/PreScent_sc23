@@ -16,9 +16,9 @@ import java.util.List;
 public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private int count; // 카트에 담긴 총 상품 개수
+    private Integer count; // 카트에 담긴 총 상품 개수
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="customer_id")

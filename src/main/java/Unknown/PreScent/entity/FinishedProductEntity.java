@@ -36,9 +36,9 @@ public class FinishedProductEntity {
     private CartEntity cart;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "FlowerShop_shopKey")
-//    private FlowerShopEntity flowerShopEntity;
+    @ManyToOne
+    @JoinColumn(name = "FlowerShop_shopKey")
+    private FlowerShopEntity flowerShopEntity;
 
     public void setFlowerShop(FlowerShopEntity flowerShopEntity)
     {

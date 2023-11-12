@@ -16,7 +16,7 @@ public class CartItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
@@ -28,7 +28,7 @@ public class CartItemEntity {
 
     private int count; // 상품 개수
 
-    public static CartItemEntity createCartItem(CartEntity cart, FinishedProductEntity fp, int amount) {
+    public static CartItemEntity createCartItem(CartEntity cart, FinishedProductEntity fp, Integer amount) {
         CartItemEntity cartItem = new CartItemEntity();
         cartItem.setCart(cart);
         cartItem.setFinishedProduct(fp);
@@ -37,7 +37,7 @@ public class CartItemEntity {
     }
 
     // 이미 담겨있는 물건 또 담을 경우 수량 증가
-    public void addCount(int count) {
+    public void addCount(Integer count) {
         this.count += count;
     }
 
