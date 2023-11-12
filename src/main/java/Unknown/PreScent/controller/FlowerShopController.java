@@ -8,6 +8,7 @@ import Unknown.PreScent.entity.FlowerShopEntity;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/flower-shops")
 public class FlowerShopController {
 
