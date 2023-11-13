@@ -3,6 +3,8 @@ package Unknown.PreScent.controller;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.service.SellerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +25,13 @@ public class SellerController {
     }
 
     @PostMapping("/seller/signup")
-    public String registerSeller(@Valid @ModelAttribute SellerDto sellerDto,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.sellerDto", bindingResult);
-            redirectAttributes.addFlashAttribute("sellerDto", sellerDto);
-            return "redirect:/seller/signup";
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
         sellerService.signup(sellerDto);
-        return "redirect:/seller/login";
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/seller/login")
