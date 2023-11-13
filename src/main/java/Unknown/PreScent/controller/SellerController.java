@@ -28,7 +28,13 @@ public class SellerController {
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
                                             BindingResult bindingResult) {
         System.out.println("Enter registerSeller!!!");
+        System.out.println("=>result: " + sellerDto.getSellerName());
+        System.out.println("=>result: " + sellerDto.getSellerPassword());
+        System.out.println("=>result: " + sellerDto.getSellerIdEmail());
+        System.out.println("=>result: " + sellerDto.getSellerPhonenum());
+
         if (bindingResult.hasErrors()) {
+
             System.out.println("bindingResult error!!!");
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
