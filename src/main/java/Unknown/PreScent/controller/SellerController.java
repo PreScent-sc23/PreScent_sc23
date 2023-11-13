@@ -3,6 +3,7 @@ package Unknown.PreScent.controller;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.service.SellerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class SellerController {
+    @Autowired
     private SellerService sellerService;
 
     @GetMapping("/seller/signup")
