@@ -27,10 +27,14 @@ public class SellerController {
     @PostMapping("/seller/signup")
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
                                             BindingResult bindingResult) {
+        System.out.println("Enter registerSeller!!!");
         if (bindingResult.hasErrors()) {
+            System.out.println("bindingResult error!!!");
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
+        System.out.println("sellerService start!!!");
         sellerService.signup(sellerDto);
+        System.out.println("sellerService ended!!!");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
