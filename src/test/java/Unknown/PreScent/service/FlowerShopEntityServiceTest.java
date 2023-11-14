@@ -53,7 +53,7 @@ public class FlowerShopEntityServiceTest {
     public void testAddFlowerShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signup(sellerDto);
+        SellerDto sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
 
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
@@ -75,7 +75,7 @@ public class FlowerShopEntityServiceTest {
     public void testSameSellerKeyShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signup(sellerDto);
+        SellerDto sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
 
         FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});

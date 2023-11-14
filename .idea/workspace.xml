@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Fix: restore mapping">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.3/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="53ef051b-b835-4129-afbe-5c343c2fde69" name="Changes" comment="Refactor: SecurityConfig refactor" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +47,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -107,7 +103,7 @@
       <recent name="Unknown.PreScent.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.service in PreScent.test">
+  <component name="RunManager" selected="Gradle.backend [build]">
     <configuration name="PreScentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.PreScentApplication" />
       <module name="PreScent.main" />
@@ -158,7 +154,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlowerShopEntityServiceTest.testAddFlowerShop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SellerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PreScent.test" />
       <extension name="coverage">
         <pattern>
@@ -167,9 +163,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Unknown.PreScent.service" />
-      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.FlowerShopEntityServiceTest" />
-      <option name="METHOD_NAME" value="testAddFlowerShop" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="Unknown.PreScent.service.SellerServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.service in PreScent.test" />
-        <item itemvalue="Application.PreScentApplication" />
         <item itemvalue="Gradle.backend [build]" />
         <item itemvalue="JUnit.FinishedProductEntityServiceTest" />
-        <item itemvalue="JUnit.FlowerShopEntityServiceTest.testAddFlowerShop" />
+        <item itemvalue="JUnit.SellerServiceTest" />
+        <item itemvalue="JUnit.service in PreScent.test" />
+        <item itemvalue="Application.PreScentApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -284,7 +279,103 @@
       <option name="project" value="LOCAL" />
       <updated>1699814040132</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Feat: template added">
+      <option name="closed" value="true" />
+      <created>1699815711487</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699815711487</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Chore: revise application.properties">
+      <option name="closed" value="true" />
+      <created>1699868136971</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1699868136971</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactor: seller signup">
+      <option name="closed" value="true" />
+      <created>1699869163840</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699869163841</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Refactor: seller signup">
+      <option name="closed" value="true" />
+      <created>1699869438367</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699869438367</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Refactor: seller signup">
+      <option name="closed" value="true" />
+      <created>1699869477248</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699869477248</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Refactor: seller signup">
+      <option name="closed" value="true" />
+      <created>1699869516608</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699869516608</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Refactor: seller signup">
+      <option name="closed" value="true" />
+      <created>1699872293804</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1699872293804</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactor: SecurityConfig refactor">
+      <option name="closed" value="true" />
+      <created>1699873369342</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1699873369342</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactor: SecurityConfig refactor">
+      <option name="closed" value="true" />
+      <created>1699873837431</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1699873837431</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Refactor: SecurityConfig refactor">
+      <option name="closed" value="true" />
+      <created>1699875488672</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1699875488672</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Refactor: SecurityConfig refactor">
+      <option name="closed" value="true" />
+      <created>1699877217715</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1699877217715</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactor: SecurityConfig refactor">
+      <option name="closed" value="true" />
+      <created>1699877602171</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1699877602171</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -326,7 +417,11 @@
     <MESSAGE value="Feat: CrossOrigin added to every controller" />
     <MESSAGE value="Refactor: refactor mapping" />
     <MESSAGE value="Fix: restore mapping" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: restore mapping" />
+    <MESSAGE value="Feat: template added" />
+    <MESSAGE value="Chore: revise application.properties" />
+    <MESSAGE value="Refactor: seller signup" />
+    <MESSAGE value="Refactor: SecurityConfig refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor: SecurityConfig refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
