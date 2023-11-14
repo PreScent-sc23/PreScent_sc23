@@ -3,6 +3,7 @@ package Unknown.PreScent.controller;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.service.SellerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class SellerController {
+    @Autowired
     private SellerService sellerService;
 
     @GetMapping("/seller/signup")
