@@ -24,7 +24,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,12 +71,15 @@ public class SearchController {
     @GetMapping("/search")
     public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
                                                                               HttpServletRequest request, HttpServletResponse response){
-        System.out.println("Qurey: " + query + "----------------\n");
+        String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
+        System.out.println("Qurey: " + query + "----------------");
+        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
 
         if(query.startsWith("#")){
-            String[] queryResult = query.split("#");
+            String[] queryResult = decodedQuery.split("#");
 
-            System.out.println("query split: " + queryResult[0] + "----------------\n");
+            System.out.println("query split0: " + queryResult[0] + "----------------\n");
+            System.out.println("query split1: " + queryResult[1] + "----------------\n");
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
             List<FinishedProductEntity> result = searchResult.get();
