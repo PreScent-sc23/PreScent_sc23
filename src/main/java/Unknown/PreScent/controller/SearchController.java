@@ -67,7 +67,7 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
+    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestBody String query,
                                                                               HttpServletRequest request, HttpServletResponse response){
         System.out.println("Qurey: " + query + "----------------\n");
 
