@@ -75,7 +75,7 @@ public class SearchController {
         System.out.println("Qurey: " + query + "----------------");
         System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
 
-        if(query.startsWith("#")){
+        if(decodedQuery.startsWith("#")){
             String[] queryResult = decodedQuery.split("#");
 
             System.out.println("query split0: " + queryResult[0] + "----------------\n");
