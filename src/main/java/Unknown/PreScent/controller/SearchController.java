@@ -81,7 +81,7 @@ public class SearchController {
             System.out.println("query split0: " + queryResult[0] + "----------------\n");
             System.out.println("query split1: " + queryResult[1] + "----------------\n");
 
-            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
+            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
 
             Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
