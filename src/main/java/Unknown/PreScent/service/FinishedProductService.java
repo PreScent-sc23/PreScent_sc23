@@ -31,20 +31,7 @@ public class FinishedProductService {
 
         Optional<List<FinishedProductEntity>> nameResult = finishedProductRepo.findByFpNameContaining(fpName);
 
-//        nameResult.ifPresent(s ->{
-//                    //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
-//
-//                    for(FinishedProductEntity fp : nameResult.get()){
-//                        if(shopKey.equals(fp.getShopKey())){
-//                            throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                            //System.out.println(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                        }
-//                    }
-//                });
-
         shopKeyResult.ifPresent(s ->{
-            //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
-
             for(FinishedProductEntity fp : shopKeyResult.get()){
                 if(fpName.equals(fp.getFpName())){
                     throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");

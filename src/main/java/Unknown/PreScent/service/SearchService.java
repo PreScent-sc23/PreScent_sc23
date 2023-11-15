@@ -24,6 +24,10 @@ public class SearchService {
         return finishedProductRepository.findByFpTagContaining(fpTag, PageRequest.of(pageNum, 5, Sort.by(Sort.Order.asc(sortHow))));
     }
 
+    public Optional<List<FinishedProductEntity>> searchByTagDefault(String fpTag){
+        return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.asc("fpName")));
+    }
+
     public Optional<List<FinishedProductEntity>> searchByTagAsc(String fpTag, String sortHow){
         return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.asc(sortHow)));
     }

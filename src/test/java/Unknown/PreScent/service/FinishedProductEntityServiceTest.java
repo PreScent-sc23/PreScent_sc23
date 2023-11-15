@@ -86,8 +86,8 @@ public class FinishedProductEntityServiceTest {
         for(FinishedProductEntity fp : finishedProductEntities) System.out.println(fp.getFpPrice());
     }
 
-    //    @Test
-    @DisplayName("태그 검색 Page")
+//    @Test
+    @DisplayName("태그 검색 Page")      //Optional 문제로 포기
     public void testTagSearchPage(){
         this.testAddManyFinishedProduct();
 

@@ -11,13 +11,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,15 +37,29 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @GetMapping("/finished-product")
-    public String searchTag() { return "finished-product"; }
+    @GetMapping("/search")
+    public ResponseEntity<Map<List<FinishedProductEntity>, Object>> searchTag(@RequestParam String query,
+                                                                HttpServletRequest request, HttpServletResponse response){
+        System.out.println("Qurey: " + query + "----------------\n");
 
-    @PostMapping("/finished-product")
-    public List<FinishedProductEntity> searchTag(@RequestParam String fpTag, @RequestParam String sortHow,
-                        HttpSession session, RedirectAttributes redirectAttributes){
-        Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagAsc(fpTag, sortHow);
-        session.setAttribute("tagSearchAscResult", searchResult);
-        return searchResult.get();//????
+        if(query.startsWith("#")){
+            String[] queryResult = query.split("#");
+
+            System.out.println("query split: " + queryResult[0] + "----------------\n");
+
+            Map<List<FinishedProductEntity>,Object> result = new HashMap<>();
+            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
+//            Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
+            result.put(searchResult.get(), request.getAttribute(ERROR_EXCEPTION));
+//            result.put("Message", ex.getMessage());
+
+            Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
+
+            return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));//????
+        }
+
+        return ResponseEntity.noContent().build();
+
     }
 
 }
