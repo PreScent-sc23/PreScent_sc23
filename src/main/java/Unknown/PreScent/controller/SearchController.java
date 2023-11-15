@@ -70,7 +70,8 @@ public class SearchController {
 
     @GetMapping("/search")
     public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
-                                                                              HttpServletRequest request, HttpServletResponse response){
+                                                                 HttpServletRequest request,
+                                                                 HttpServletResponse response){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
 //        System.out.println("Qurey: " + query + "----------------");
 //        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
@@ -90,6 +91,7 @@ public class SearchController {
                 System.out.println("fpPrice: " + fp.getFpPrice());
                 System.out.println("fpTag: " + fp.getFpTag());
                 System.out.println("shopKey: " + fp.getShopKey());
+                System.out.println("----------------------------------");
             }
             System.out.println("---------------------------------------------------------------------");
 
