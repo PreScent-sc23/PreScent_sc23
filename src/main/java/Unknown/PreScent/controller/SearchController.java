@@ -72,8 +72,8 @@ public class SearchController {
     public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
                                                                               HttpServletRequest request, HttpServletResponse response){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
-        System.out.println("Qurey: " + query + "----------------");
-        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
+//        System.out.println("Qurey: " + query + "----------------");
+//        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
 
         if(decodedQuery.startsWith("#")){
             String[] queryResult = decodedQuery.split("#");
@@ -83,6 +83,15 @@ public class SearchController {
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
+
+            System.out.println("---------------------------------------------------------------------");
+            for(FinishedProductEntity fp : result){
+                System.out.println("fpName: " + fp.getFpName());
+                System.out.println("fpPrice: " + fp.getFpPrice());
+                System.out.println("fpTag: " + fp.getFpTag());
+                System.out.println("shopKey: " + fp.getShopKey());
+            }
+            System.out.println("---------------------------------------------------------------------");
 
             Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
 
