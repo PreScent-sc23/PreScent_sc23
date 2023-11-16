@@ -23,7 +23,7 @@ public class SellerController {
 
     @GetMapping("/seller/signup")
     public String signup(){
-        return "signup";
+        return "seller/signup";
     }
 
     @PostMapping("/seller/signup")
