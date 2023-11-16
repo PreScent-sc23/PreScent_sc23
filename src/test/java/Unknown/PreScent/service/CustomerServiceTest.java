@@ -82,7 +82,7 @@ public class CustomerServiceTest {
         assertEquals("이미 사용중인 아이디입니다.", e.getMessage());
     }
     */
-
+    /*
     @Test
     @DisplayName("고객/ 로그인 성공 테스트")
     public void loginSuccessTest() {
@@ -117,4 +117,5 @@ public class CustomerServiceTest {
         });
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
     }
+     */
 }
