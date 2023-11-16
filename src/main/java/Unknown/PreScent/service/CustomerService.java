@@ -55,4 +55,9 @@ public class CustomerService {
             throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
         }
     }
+
+    public CustomerDto findCustomer(Integer customerKey){
+        CustomerEntity resultEntity = customerRepository.findByCustomerKey(customerKey).get();
+        return CustomerDto.toCustomerDto(resultEntity);
+    }
 }

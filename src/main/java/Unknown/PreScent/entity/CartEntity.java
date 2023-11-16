@@ -16,7 +16,7 @@ import java.util.List;
 public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer cartKey;
 
     private Integer count; // 카트에 담긴 총 상품 개수
 

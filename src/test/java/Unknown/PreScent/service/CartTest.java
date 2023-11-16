@@ -19,14 +19,25 @@ import static org.assertj.core.api.Assertions.*;
 @Transactional
 @SpringBootTest
 public class CartTest {
-//    @Autowired
-//    private CartEntity cartEntity;
-//
-//
-//    @Test
-//    @DisplayName("아무 것도 안함")
-//    public void doNotingTest(){
-//
-//    }
+    @Autowired
+    private CartService cartService;
+
+    @Test
+    @DisplayName("아무 것도 안함")
+    public void doNotingTest(){
+
+    }
+
+    @Test
+    @DisplayName("장바구니 추가")
+    public void addCartTest(){
+        int a;
+    }
+
+    @Test
+    @DisplayName("장바구니 아이템 추가")
+    public void addCartItemTest(){
+        int a;
+    }
 
 }
