@@ -62,8 +62,7 @@ public class CustomerServiceTest {
         customerService.signup(customer1);
 
         CustomerDto customer2 = createCustomerDto();
-        customer2.setCustomerIdEmail("newemail@gmail.com");
-        customer2.setCustomerPhonenum("010-3333-4444");
+        customer2.setCustomerPhonenum("010-5555-6666");
 
         assertThrows(IllegalStateException.class, () -> customerService.signup(customer2));
     }
