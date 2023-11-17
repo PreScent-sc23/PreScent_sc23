@@ -1,7 +1,10 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.entity.FinishedProductEntity;
+import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
+import Unknown.PreScent.repository.FlowerShopRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,18 +12,30 @@ import java.util.Optional;
 
 @Service
 public class FinishedProductService {
-    private final FinishedProductRepository finishedProductRepo;
+    @Autowired
+    private FinishedProductRepository finishedProductRepo;
+    @Autowired
+    private FlowerShopRepository flowerShopRepo;
 
-    public FinishedProductService(FinishedProductRepository finishedProductRepo) {
-        this.finishedProductRepo = finishedProductRepo;
-    }
-
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
-        validateDuplicatedFp(shopKey, fpName, fpPrice);
-
-        FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, FinishedProductEntity finishedProductEntity){
+        validateDuplicatedFp(finishedProductEntity.getShopKey(), finishedProductEntity.getFpName(), finishedProductEntity.getFpPrice());
+        addToShop(shopKey, finishedProductEntity);
 
         return finishedProductRepo.save(finishedProductEntity);
+    }
+
+    private void addToShop(Integer shopKey, FinishedProductEntity finishedProductEntity) {
+        Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
+        if(foundFlowerShopEntity.isPresent()){
+            FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
+            finishedProductEntity.setFlowerShopEntity(flowerShopEntity);
+            finishedProductRepo.save(finishedProductEntity);
+            flowerShopRepo.save(flowerShopEntity);
+        }
+        else
+        {
+            throw new IllegalStateException("인식할 수 없는 매장입니다. 완제품을 등록할 수 없습니다.");
+        }
     }
 
     private void validateDuplicatedFp(Integer shopKey, String fpName, Integer fpPrice) {

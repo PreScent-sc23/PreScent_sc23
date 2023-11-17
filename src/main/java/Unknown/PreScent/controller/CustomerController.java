@@ -1,7 +1,7 @@
 package Unknown.PreScent.controller;
 
 import Unknown.PreScent.dto.CustomerDto;
-import Unknown.PreScent.dto.SellerDto;
+import Unknown.PreScent.dto.CustomerLoginRequestDto;
 import Unknown.PreScent.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -41,10 +41,10 @@ public class CustomerController {
     public String login() { return "customer/login"; }
 
     @PostMapping("/customer/login")
-    public String login(@RequestParam String id, @RequestParam String password,
+    public String login(@RequestParam CustomerLoginRequestDto customerLoginRequestDto ,
                         HttpSession session, RedirectAttributes redirectAttributes) {
         try {
-            CustomerDto loginResult = customerService.login(id, password);
+            CustomerDto loginResult = customerService.login(customerLoginRequestDto.getId(), customerLoginRequestDto.getPassword());
             session.setAttribute("loginCustomerIdEmail", loginResult.getCustomerIdEmail());
 
             if (loginResult.getCustomerLocation() == null) {

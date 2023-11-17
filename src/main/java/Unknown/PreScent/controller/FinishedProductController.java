@@ -22,9 +22,9 @@ public class FinishedProductController {
     }
 
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
+    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, FinishedProductEntity finishedProductEntity)
     {
-        return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
+        return finishedProductService.addFinishedProduct(shopKey, finishedProductEntity);
     }
 
     @GetMapping("/{fpKey}")

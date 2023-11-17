@@ -5,7 +5,7 @@ import Unknown.PreScent.dto.CustomerDto;
 import Unknown.PreScent.service.CustomerService;
 import net.bytebuddy.asm.MemberAttributeExtension;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;

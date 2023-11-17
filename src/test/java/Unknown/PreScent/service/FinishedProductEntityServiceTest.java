@@ -36,14 +36,27 @@ public class FinishedProductEntityServiceTest {
         finishedProductRepository.deleteAllInBatch();
     }
 
+    public FinishedProductEntity createFinishedProductEntity()
+    {
+        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
+        finishedProductEntity.setFpKey(405);
+        finishedProductEntity.setFpName("장미꽃다발");
+        finishedProductEntity.setFpTag("연인");
+        finishedProductEntity.setFpImage(null);
+        finishedProductEntity.setFpPrice(20000);
+        finishedProductEntity.setFpState(true);
+        finishedProductEntity.setFpFlowerList(new String[]{"장미","안개꽃"});
+        return finishedProductEntity;
+    }
+
     @Test
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(405, "장미꽃다발", "연인", null , 20000, true, new String[]{"장미","안개꽃"});
+        FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(1, finishedProductEntity);
 
         //finishedProductRepository.findByShopKeyContaining(1);
-
 
         assertThat(addedFinishedProductEntity).isNotNull();
 

@@ -40,9 +40,10 @@ public class FinishedProductEntity {
     @JoinColumn(name = "FlowerShop_shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    public void setFlowerShop(FlowerShopEntity flowerShopEntity)
+    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
+        this.flowerShopEntity.setFinishedProductEntityList(this);
     }
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.fpName = fpName;

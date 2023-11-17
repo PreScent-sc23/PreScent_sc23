@@ -34,6 +34,10 @@ public class FlowerShopEntity {
     @OneToMany(mappedBy = "flowerShopEntity")
     private List<FinishedProductEntity> finishedProductEntityList;
 
+    public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
+    {
+        this.finishedProductEntityList.add(finishedProductEntity);
+    }
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
