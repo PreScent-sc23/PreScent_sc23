@@ -1,6 +1,9 @@
 package Unknown.PreScent.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FlowerShopService;
 import Unknown.PreScent.entity.FlowerShopEntity;
@@ -20,10 +23,26 @@ public class FlowerShopController {
         this.flowerShopService = flowerShopService;
     }
 
+//    @PostMapping("/add")
+//    public FlowerShopEntity addFlowerShop(@RequestBody Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+//    {
+//        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
+//    }
+
     @PostMapping("/add")
-    public FlowerShopEntity addFlowerShop(@RequestBody Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+    public ResponseEntity<?> addFlowerShop(@RequestBody Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, String description,
+                                          BindingResult bindingResult)
     {
-        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
+        if (bindingResult.hasErrors()) {
+
+            System.out.println("bindingResult error!!!");
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+//        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);
     }
 
     @GetMapping("/{shopKey}")
