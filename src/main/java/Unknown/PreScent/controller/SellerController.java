@@ -15,16 +15,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class SellerController {
     @Autowired
     private SellerService sellerService;
 
     @GetMapping("/seller/signup")
-    public String signup(){
-        return "seller/signup";
-    }
+    public String signup() { return "seller/signup"; }
 
     @PostMapping("/seller/signup")
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
@@ -49,9 +46,11 @@ public class SellerController {
     @GetMapping("/seller/login")
     public String login() { return "seller/login"; }
 
+    /*
     @PostMapping("/seller/login")
     public String login(@RequestParam String id, @RequestParam String password,
                         HttpSession session, RedirectAttributes redirectAttributes){
+
         try {
             SellerDto loginResult = sellerService.login(id, password);
             session.setAttribute("loginSellerKey", loginResult.getSellerKey());
@@ -61,5 +60,6 @@ public class SellerController {
             return "redirect:/seller/login";
         }
     }
+     */
 
 }
