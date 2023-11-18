@@ -30,11 +30,18 @@ public class FlowerShopEntity {
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity")
     private SellerEntity sellerEntity;
+    private String description;
 
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
         this.sellerEntity.setFlowerShopEntity(this);
+    }
+    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, String description) {
+        this.shopName = shopName;
+        this.shopPhoneNum = shopPhoneNum;
+        this.shopLocation = shopLocation;
+        this.description = description;
     }
     public FlowerShopEntity(Integer shopKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
         this.shopKey = shopKey;
