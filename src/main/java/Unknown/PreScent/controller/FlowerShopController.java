@@ -31,8 +31,8 @@ public class FlowerShopController {
 //    }
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
-    @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam("sSellerKey") String sSellerKey,
+    @PostMapping("/add/{sSellerKey}")
+    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam String sSellerKey,
                                            @RequestBody FlowerShopEntity flowerShopEntity,
                                           BindingResult bindingResult)
     {
