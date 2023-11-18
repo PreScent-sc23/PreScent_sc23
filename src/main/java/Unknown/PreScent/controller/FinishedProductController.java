@@ -32,6 +32,7 @@ public class FinishedProductController {
     @PostMapping("/add")
     public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductEntity finishedProductEntity)
     {
+        System.out.println("Result: " + finishedProductEntity.getFpFlowerList() + "// //" + finishedProductEntity.getFpDetail() + "\n");
         finishedProductService.addFinishedProduct(finishedProductEntity.getShopKey(),
                 finishedProductEntity.getFpName(),
                 finishedProductEntity.getFpTag(),
