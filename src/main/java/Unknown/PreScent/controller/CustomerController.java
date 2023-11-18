@@ -4,21 +4,22 @@ import Unknown.PreScent.dto.CustomerDto;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class CustomerController {
-
+    @Autowired
     private CustomerService customerService;
 
     @GetMapping("/customer/signup")
@@ -27,16 +28,23 @@ public class CustomerController {
     }
 
     @PostMapping("/customer/signup")
-    public String registerCustomer(@Valid @ModelAttribute CustomerDto customerDto,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes) {
+    public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto,
+                                              BindingResult bindingResult) {
+        System.out.println("Enter registerCustomer!!!");
+        System.out.println("=>result: " + customerDto.getCustomerName());
+        System.out.println("=>result: " + customerDto.getCustomerPassword());
+        System.out.println("=>result: " + customerDto.getCustomerIdEmail());
+        System.out.println("=>result: " + customerDto.getCustomerPhonenum());
+
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customerDto", bindingResult);
-            redirectAttributes.addFlashAttribute("customerDto", customerDto);
-            return "redirect:/customer/signup";
+
+            System.out.println("bindingResult error!!!");
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
+        System.out.println("customerService start!!!");
         customerService.signup(customerDto);
-        return "redirect:/customer/login";
+        System.out.println("customerService ended!!!");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/customer/login")

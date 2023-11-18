@@ -1,7 +1,9 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.dto.CustomerDto;
+import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.entity.CustomerEntity;
+import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,32 +15,26 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class CustomerService {
+
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public String signup(CustomerDto customerDto){
+    public CustomerDto signup(CustomerDto customerDto){
+        validateDuplicatedCustomer(customerDto.getCustomerIdEmail());
+
         CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
-        validateDuplicatedCustomer(customerEntity);
+        customerEntity.setCustomerPassword(passwordEncoder.encode(customerDto.getCustomerPassword()));
 
-        String encoded;
-        encoded = passwordEncoder.encode(customerEntity.getCustomerPassword());
-        customerEntity.setCustomerPassword(encoded);
-
-        customerRepository.save(customerEntity);
-        return customerEntity.getCustomerIdEmail();
+        CustomerEntity savedEntity = customerRepository.save(customerEntity);
+        return CustomerDto.toCustomerDto(savedEntity);
     }
 
-    private void validateDuplicatedCustomer(CustomerEntity customer) {
-        customerRepository.findByCustomerIdEmail(customer.getCustomerIdEmail())
+    private void validateDuplicatedCustomer(String customerIdEmail) {
+        customerRepository.findByCustomerIdEmail(customerIdEmail)
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 등록된 회원입니다.");
                 });
-    }
-
-    public CustomerEntity saveCustomer(CustomerEntity customerEntity){
-        validateDuplicatedCustomer(customerEntity);
-        return customerRepository.save(customerEntity);
     }
 
     public CustomerDto login(String id, String password) {

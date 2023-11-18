@@ -9,5 +9,4 @@ public class PreScentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PreScentApplication.class, args);
 	}
-	int aaa;
 }

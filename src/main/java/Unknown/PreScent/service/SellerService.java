@@ -18,29 +18,21 @@ public class SellerService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Integer signup(SellerDto sellerDto){
+    public SellerDto signup(SellerDto sellerDto) {
+        validateDuplicatedSeller(sellerDto.getSellerKey());
+
         SellerEntity sellerEntity = SellerEntity.toSellerEntity(sellerDto);
-        validateDuplicatedSeller(sellerEntity);
+        sellerEntity.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
 
-        String encoded;
-        encoded = passwordEncoder.encode(sellerEntity.getSellerPassword());
-        sellerEntity.setSellerPassword(encoded);
-
-        sellerRepository.save(sellerEntity);
-        return sellerEntity.getSellerKey();
+        SellerEntity savedEntity = sellerRepository.save(sellerEntity);
+        return SellerDto.toSellerDto(savedEntity);
     }
 
-    private void validateDuplicatedSeller(SellerEntity seller) {
-
-        sellerRepository.findBySellerKey(seller.getSellerKey())
-                .ifPresent(s ->{
+    private void validateDuplicatedSeller(Integer sellerKey) {
+        sellerRepository.findBySellerKey(sellerKey)
+                .ifPresent(s -> {
                     throw new IllegalStateException("이미 등록된 사업자입니다.");
                 });
-    }
-
-    public SellerEntity saveSeller(SellerEntity sellerEntity){
-        validateDuplicatedSeller(sellerEntity);
-        return sellerRepository.save(sellerEntity);
     }
 
     public SellerDto login(String id, String password) {

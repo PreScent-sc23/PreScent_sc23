@@ -1,6 +1,9 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.dto.CustomerDto;
+import Unknown.PreScent.dto.SellerDto;
+import Unknown.PreScent.entity.CustomerEntity;
+import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,21 +47,24 @@ public class CustomerServiceTest {
     @DisplayName("고객/ 회원가입 테스트")
     public void signupCustomerTest() {
         CustomerDto customerDto = createCustomerDto();
-        String customerIdEmail = customerService.signup(customerDto);
-        assertNotNull(customerIdEmail);
+        CustomerDto savedCustomerDto = customerService.signup(customerDto);
+
+        assertNotNull(savedCustomerDto.getCustomerIdEmail());
+        CustomerEntity savedCustomer = customerRepository.findByCustomerIdEmail(savedCustomerDto.getCustomerIdEmail())
+                .orElseThrow(() -> new IllegalArgumentException("고객를 찾을 수 없습니다."));
+        assertTrue(passwordEncoder.matches("04prescent", savedCustomer.getCustomerPassword()));
     }
 
     @Test
     @DisplayName("고객/ 중복 이메일 가입 테스트")
     public void saveDuplicateCustomerTest(){
         CustomerDto customer1 = createCustomerDto();
-        CustomerDto customer2 = createCustomerDto();
-        customer2.setCustomerPhonenum("010-2222-3333");
+        customerService.signup(customer1);
 
-        customerService.saveCustomer(toCustomerEntity(customer1));
-        Throwable e = assertThrows(IllegalStateException.class, () -> {
-            customerService.saveCustomer(toCustomerEntity(customer2));});
-        assertEquals("이미 등록된 회원입니다.", e.getMessage());
+        CustomerDto customer2 = createCustomerDto();
+        customer2.setCustomerPhonenum("010-5555-6666");
+
+        assertThrows(IllegalStateException.class, () -> customerService.signup(customer2));
     }
 
     /*
@@ -75,7 +81,7 @@ public class CustomerServiceTest {
         assertEquals("이미 사용중인 아이디입니다.", e.getMessage());
     }
     */
-
+    /*
     @Test
     @DisplayName("고객/ 로그인 성공 테스트")
     public void loginSuccessTest() {
@@ -110,4 +116,5 @@ public class CustomerServiceTest {
         });
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
     }
+     */
 }

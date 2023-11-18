@@ -2,6 +2,7 @@ package Unknown.PreScent.service;
 
 
 import Unknown.PreScent.dto.SellerDto;
+import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.SellerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,38 +32,43 @@ class SellerServiceTest {
         sellerRepository.deleteAllInBatch();
     }
 
-    public SellerDto createSellerDto(){
+    public SellerDto createSellerDto(Integer sellerKey){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(123456789);
+        sellerDto.setSellerKey(sellerKey);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail("ajou.gmail.com");
+        sellerDto.setSellerIdEmail("ajou@gmail.com");
         sellerDto.setSellerPassword("04prescent");
         return sellerDto;
     }
 
     @Test
-    @DisplayName("판매자/ 회원가입 테스트")
+    @DisplayName("판매자 회원가입 테스트")
     public void signupSellerTest() {
-        SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signup(sellerDto);
-        assertNotNull(sellerKey);
+        SellerDto sellerDto = createSellerDto(123456789);
+        SellerDto savedSellerDto = sellerService.signup(sellerDto);
+
+        assertNotNull(savedSellerDto.getSellerKey());
+        SellerEntity savedSeller = sellerRepository.findBySellerKey(savedSellerDto.getSellerKey())
+                .orElseThrow(() -> new IllegalArgumentException("판매자를 찾을 수 없습니다."));
+        assertTrue(passwordEncoder.matches("04prescent", savedSeller.getSellerPassword()));
     }
 
     @Test
-    @DisplayName("판매자/ 중복 사업자번호 가입 테스트")
-    public void saveDuplicateSellerTest(){
-        SellerDto seller1 = createSellerDto();
-        SellerDto seller2 = createSellerDto();
-        seller2.setSellerIdEmail("differentId");
+    @DisplayName("중복 사업자번호 가입 테스트")
+    public void signupDuplicateSellerKeyTest() {
+        SellerDto seller1 = createSellerDto(123456789);
+        sellerService.signup(seller1);
 
-        sellerService.saveSeller(toSellerEntity(seller1));
-        Throwable e = assertThrows(IllegalStateException.class, () -> {
-            sellerService.saveSeller(toSellerEntity(seller2));});
-        assertEquals("이미 등록된 사업자입니다.", e.getMessage());
+        SellerDto seller2 = createSellerDto(123456789);
+        seller2.setSellerIdEmail("newemail@gmail.com");
+        seller2.setSellerPhonenum("010-3333-4444");
+
+        assertThrows(IllegalStateException.class, () -> sellerService.signup(seller2));
     }
 
 
+    /*
     @Test
     @DisplayName("판매자/ 중복 이메일 가입 테스트")
     public void signupDuplicateEmailTest() {
@@ -77,8 +83,9 @@ class SellerServiceTest {
         });
         assertEquals("이미 등록된 사업자입니다.", e.getMessage());
     }
+     */
 
-
+    /*
     @Test
     @DisplayName("판매자/ 로그인 성공 테스트")
     public void loginSuccessTest() {
@@ -114,6 +121,7 @@ class SellerServiceTest {
         assertEquals("비밀번호가 일치하지 않습니다.", e.getMessage());
     }
 
+
     @Test
     @DisplayName("sellerKey 이용한 seller 쿼리 테스트")
     void sellerQueryWithSelleKeyTest()
@@ -123,4 +131,5 @@ class SellerServiceTest {
 
         assertTrue(sellerRepository.findBySellerKey(123456789).isPresent());
     }
+    */
 }

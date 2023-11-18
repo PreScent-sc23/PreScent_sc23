@@ -29,6 +29,13 @@ public class FinishedProductEntity {
     private boolean fpState;
 
     private String[] fpFlowerList;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private CartEntity cart;
+
+
     @ManyToOne
     @JoinColumn(name = "FlowerShop_shopKey")
     private FlowerShopEntity flowerShopEntity;
