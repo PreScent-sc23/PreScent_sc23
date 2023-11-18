@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FlowerShopService;
 import Unknown.PreScent.entity.FlowerShopEntity;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -31,7 +32,7 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@RequestParam String sSellerKey,
+    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam("sSellerKey") String sSellerKey,
                                            @RequestBody FlowerShopEntity flowerShopEntity,
                                           BindingResult bindingResult)
     {
