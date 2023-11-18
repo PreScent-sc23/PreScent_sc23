@@ -23,6 +23,14 @@ public class FinishedProductService {
         return finishedProductRepo.save(finishedProductEntity);
     }
 
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList, String fpDetail){
+        validateDuplicatedFp(shopKey, fpName, fpPrice);
+
+        FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpPrice, fpFlowerList, fpDetail);
+
+        return finishedProductRepo.save(finishedProductEntity);
+    }
+
     private void validateDuplicatedFp(Integer shopKey, String fpName, Integer fpPrice) {
         Optional<List<FinishedProductEntity>> compFPEntity = getFinishedProductWithShopKey(shopKey);
         List<FinishedProductEntity> compList = getFinishedProductWithShopKey(shopKey).get();

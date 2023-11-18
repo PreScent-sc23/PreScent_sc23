@@ -2,6 +2,8 @@ package Unknown.PreScent.controller;
 
 import Unknown.PreScent.entity.FinishedProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FinishedProductService;
 
@@ -10,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/flower-shops/{shopKey}/finished-product")
+@RequestMapping("/finished-product")
 public class FinishedProductController {
 
     private final FinishedProductService finishedProductService;
@@ -21,10 +23,23 @@ public class FinishedProductController {
         this.finishedProductService = finishedProductService;
     }
 
+//    @PostMapping("/add")
+//    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
+//    {
+//        return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
+//    }
+
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductEntity finishedProductEntity)
     {
-        return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
+        finishedProductService.addFinishedProduct(finishedProductEntity.getShopKey(),
+                finishedProductEntity.getFpName(),
+                finishedProductEntity.getFpTag(),
+                finishedProductEntity.getFpPrice(),
+                finishedProductEntity.getFpFlowerList(),
+                finishedProductEntity.getFpDetail());
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{fpKey}")

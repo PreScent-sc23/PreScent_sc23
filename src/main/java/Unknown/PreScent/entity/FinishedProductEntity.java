@@ -30,6 +30,8 @@ public class FinishedProductEntity {
 
     private String[] fpFlowerList;
 
+    private String fpDetail;
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "cart_id")
@@ -60,6 +62,15 @@ public class FinishedProductEntity {
         this.fpPrice = fpPrice;
         this.fpState = fpState;
         this.fpFlowerList = fpFlowerList;
+    }
+
+    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList, String fpDetail) {
+        this.shopKey = shopKey;
+        this.fpName = fpName;
+        this.fpTag = fpTag;
+        this.fpPrice = fpPrice;
+        this.fpFlowerList = fpFlowerList;
+        this.fpDetail = fpDetail;
     }
 
     public FinishedProductEntity() {
