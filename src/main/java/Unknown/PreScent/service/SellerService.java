@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -35,18 +36,16 @@ public class SellerService {
                 });
     }
 
-    public SellerDto login(String id, String password) {
+    public SellerDto login(String id, String password, HttpSession session) {
 
-        Optional<SellerEntity> byId = sellerRepository.findBySellerIdEmail(id);
-        if (byId.isPresent()) {
-            SellerEntity seller = byId.get();
-            if (passwordEncoder.matches(password, seller.getSellerPassword())) {
-                return SellerDto.toSellerDto(seller);
-            } else {
-                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-            }
+        SellerEntity seller = sellerRepository.findBySellerIdEmail(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 판매자 Email입니다."));
+
+        if (passwordEncoder.matches(password, seller.getSellerPassword())) {
+            session.setAttribute("sellerKey", seller.getSellerKey());
+            return SellerDto.toSellerDto(seller);
         } else {
-            throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
     }
 }

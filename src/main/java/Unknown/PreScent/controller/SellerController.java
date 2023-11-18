@@ -46,20 +46,10 @@ public class SellerController {
     @GetMapping("/seller/login")
     public String login() { return "seller/login"; }
 
-    /*
     @PostMapping("/seller/login")
-    public String login(@RequestParam String id, @RequestParam String password,
-                        HttpSession session, RedirectAttributes redirectAttributes){
-
-        try {
-            SellerDto loginResult = sellerService.login(id, password);
-            session.setAttribute("loginSellerKey", loginResult.getSellerKey());
-            return "redirect:/seller/main";
-        } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("loginError", e.getMessage());
-            return "redirect:/seller/login";
-        }
+    public ResponseEntity<SellerDto> login(@RequestParam String id, @RequestParam String password, HttpSession session) {
+        SellerDto sellerDto = sellerService.login(id, password, session);
+        return ResponseEntity.ok(sellerDto);
     }
-     */
 
 }

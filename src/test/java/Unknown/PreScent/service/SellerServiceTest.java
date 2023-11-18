@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.mock.web.MockHttpSession;
 
 import javax.transaction.Transactional;
 
@@ -27,13 +28,10 @@ class SellerServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    /*
-    //transactional이므로 불필요
     @BeforeEach
     public void setUp() {
         sellerRepository.deleteAllInBatch();
     }
-     */
 
     private SellerDto createSellerDto(Integer sellerKey, String email) {
         SellerDto sellerDto = new SellerDto();
@@ -71,32 +69,35 @@ class SellerServiceTest {
     @Test
     @DisplayName("판매자 로그인 성공 테스트")
     public void loginSuccessTest() {
+        MockHttpSession session = new MockHttpSession();
         SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
         sellerService.signup(sellerDto);
 
-        SellerDto loggedInSeller = sellerService.login("ajou@gmail.com", "04prescent");
+        SellerDto loggedInSeller = sellerService.login("ajou@gmail.com", "04prescent", session);
         assertNotNull(loggedInSeller);
     }
 
     @Test
     @DisplayName("판매자 로그인 실패 - 잘못된 Email 테스트")
     void loginFailureWrongIdTest() {
+        MockHttpSession session = new MockHttpSession();
         SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("wrongemail@gmail.com", "04prescent");
+            sellerService.login("wrongemail@gmail.com", "04prescent", session);
         });
     }
 
     @Test
     @DisplayName("판매자 로그인 실패 - 잘못된 비밀번호 테스트")
     void loginFailureWrongPasswordTest() {
+        MockHttpSession session = new MockHttpSession();
         SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("ajou@gmail.com", "wrongpassword");
+            sellerService.login("ajou@gmail.com", "wrongpassword", session);
         });
     }
 
