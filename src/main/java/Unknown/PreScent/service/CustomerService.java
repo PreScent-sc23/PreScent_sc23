@@ -29,6 +29,18 @@ public class CustomerService {
         return customerEntity.getCustomerIdEmail();
     }
 
+    public Integer signupForTest(CustomerDto customerDto){
+        CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
+        validateDuplicatedCustomer(customerEntity);
+
+        String encoded;
+        encoded = passwordEncoder.encode(customerEntity.getCustomerPassword());
+        customerEntity.setCustomerPassword(encoded);
+
+        customerRepository.save(customerEntity);
+        return customerEntity.getCustomerKey();
+    }
+
     private void validateDuplicatedCustomer(CustomerEntity customer) {
         customerRepository.findByCustomerIdEmail(customer.getCustomerIdEmail())
                 .ifPresent(s ->{

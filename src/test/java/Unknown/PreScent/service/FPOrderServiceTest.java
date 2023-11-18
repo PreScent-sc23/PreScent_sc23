@@ -19,20 +19,21 @@ import Unknown.PreScent.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
+
 
 import javax.transaction.Transactional;
 
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 // @Transactional
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class FPOrderServiceTest {
     @Autowired
@@ -47,7 +48,8 @@ public class FPOrderServiceTest {
     FinishedProductService finishedProductService;
     @Autowired
     FPOrderService fpOrderService;
-
+    @Autowired
+    PasswordEncoder passwordEncoder;
     public SellerDto createSellerDto(Integer sellerKey) {
         SellerDto sellerDto = new SellerDto();
         sellerDto.setSellerKey(sellerKey);
@@ -70,7 +72,6 @@ public class FPOrderServiceTest {
 
     public FinishedProductEntity createFinishedProductEntity() {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpKey(405);
         finishedProductEntity.setFpName("장미꽃다발");
         finishedProductEntity.setFpTag("연인");
         finishedProductEntity.setFpImage(null);
@@ -89,11 +90,11 @@ public class FPOrderServiceTest {
         return customerDto;
     }
 
-    public FPOrderCustomerDto createFPOrderCustomerDto(Integer fpKey, Integer customerkey, Date pickupDate)
+    public FPOrderCustomerDto createFPOrderCustomerDto(Integer fpKey, Integer customerKey, Date pickupDate)
     {
         FPOrderCustomerDto fpOrderCustomerDto = new FPOrderCustomerDto();
         fpOrderCustomerDto.setFpKey(fpKey);
-        fpOrderCustomerDto.setCustomerKey(customerkey);
+        fpOrderCustomerDto.setCustomerKey(customerKey);
         fpOrderCustomerDto.setPickupDate(pickupDate);
         return fpOrderCustomerDto;
     }
@@ -103,8 +104,8 @@ public class FPOrderServiceTest {
     public void customerFPOrderTest()
     {
         CustomerDto customerDto = createCustomerDto();
-        String customerIdEmail = customerService.signup(customerDto);
-        assertNotNull(customerIdEmail);
+        Integer customerKey = customerService.signupForTest(customerDto);
+        assertNotNull(customerKey);
 
         SellerDto sellerDto = createSellerDto(123456789);
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
@@ -113,10 +114,13 @@ public class FPOrderServiceTest {
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
         FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(1, finishedProductEntity);
+        System.out.println(addedShop.getShopKey()+"----------------------------------------------\n");
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductEntity);
 
-        FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerDto.getCustomerKey(), new Date());
-        assertNotNull(FPOrderEntity.FPOrderSellerDtoToFPOrderEntity(fpOrderCustomerDto));
+        FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerKey, new Date());
+
+        assertNotNull(fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto).getPickupDate());
     }
 
     /*

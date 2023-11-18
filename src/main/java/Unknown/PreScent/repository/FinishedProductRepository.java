@@ -13,7 +13,7 @@ public interface FinishedProductRepository extends JpaRepository<FinishedProduct
 {
     Optional<FinishedProductEntity> findByFpKey(Integer fpKey);
     Optional<List<FinishedProductEntity>> findByFpNameContaining(String fpName);
-    Optional<List<FinishedProductEntity>> findByShopKey(Integer shopKey); //Not working
+    //Optional<List<FinishedProductEntity>> findByShopKey(Integer shopKey); //Not working
     Optional<List<FinishedProductEntity>> findByFpTagContaining(String fpTag);
     Optional<List<FinishedProductEntity>> findByFpTagContaining(String fpTag, Sort sort);
     Page<Optional<FinishedProductEntity>> findByFpTagContaining(String fpTag, Pageable pageable);

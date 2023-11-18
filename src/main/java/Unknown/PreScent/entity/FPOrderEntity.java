@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Optional;
 
+import Unknown.PreScent.dto.CustomerDto;
 import Unknown.PreScent.dto.FPOrderCustomerDto;
 import Unknown.PreScent.repository.CustomerRepository;
 import Unknown.PreScent.repository.FinishedProductRepository;
@@ -38,37 +39,23 @@ public class FPOrderEntity {
     private void setFinishedProductEntity(FinishedProductEntity finishedProductEntity)
     {
         this.finishedProductEntity = finishedProductEntity;
-        this.finishedProductEntity.setFpOrderEntity(this);
+        this.finishedProductEntity.setFpOrderEntityList(this);
     }
 
     private void setCustomerEntity(CustomerEntity customerEntity)
     {
         this.customerEntity = customerEntity;
-        this.customerEntity.setFpOrderEntity(this);
+        this.customerEntity.setFpOrderEntityList(this);
     }
 
-    public static FPOrderEntity FPOrderSellerDtoToFPOrderEntity(FPOrderCustomerDto fpOrderCustomerDto)
+    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, Date pickupDate)
     {
         FPOrderEntity fpOrderEntity = new FPOrderEntity();
 
-        final FinishedProductRepository finishedProductRepository = null;
-        Optional<FinishedProductEntity> finishedProductEntity = finishedProductRepository.findByFpKey(fpOrderCustomerDto.getFpKey());
-        if(!finishedProductEntity.isPresent())
-        {
-            throw new IllegalStateException("주문하려고 하는 제품이 존재하지 않는 제품입니다.");
-        }
-        fpOrderEntity.setFinishedProductEntity(finishedProductEntity.get());
-
-        final CustomerRepository customerRepository = null;
-        Optional<CustomerEntity> customerEntity = customerRepository.findByCustomerKey(fpOrderCustomerDto.getCustomerKey());
-        if(!customerEntity.isPresent())
-        {
-            throw new IllegalStateException("주문하려는 고객의 정보가 존재하지 않습니다.");
-        }
-        fpOrderEntity.setCustomerEntity(customerEntity.get());
-
-        fpOrderEntity.setPurchaseInfo(fpOrderCustomerDto.getPurchaseInfo());
-        fpOrderEntity.setPickupDate(fpOrderCustomerDto.getPickupDate());
+        fpOrderEntity.setFinishedProductEntity(finishedProductEntity);
+        fpOrderEntity.setCustomerEntity(customerEntity);
+        fpOrderEntity.setPurchaseInfo(purchaseInfo);
+        fpOrderEntity.setPickupDate(pickupDate);
 
         return fpOrderEntity;
     }

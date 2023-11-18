@@ -19,7 +19,6 @@ public class FPOrderCustomerDto {
     private Integer fpKey;
     @NotNull
     private Integer customerKey;
-    @NotNull
     private String purchaseInfo;
     @NotNull
     private Date pickupDate;

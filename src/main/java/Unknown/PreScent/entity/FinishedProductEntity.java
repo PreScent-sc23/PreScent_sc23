@@ -1,10 +1,14 @@
 package Unknown.PreScent.entity;
 
 import Unknown.PreScent.dto.FinishedProductDto;
+import Unknown.PreScent.repository.FlowerShopRepository;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -15,9 +19,6 @@ public class FinishedProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fpKey;
-
-    @Column(nullable = false)
-    private Integer shopKey;
 
     @Column(nullable = false)
     private String fpName;
@@ -37,18 +38,24 @@ public class FinishedProductEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "FlowerShop_shopKey")
+    @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    @OneToMany(mappedBy = "finishedFlowerEntity")
-    private FPOrderEntity fpOrderEntity;
+    @OneToMany(mappedBy = "finishedProductEntity",fetch = FetchType.EAGER)
+    private List<FPOrderEntity> fpOrderEntityList;
 
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
         this.flowerShopEntity.setFinishedProductEntityList(this);
     }
-    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
+
+    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
+    {
+        this.fpOrderEntityList.add(fpOrderEntity);
+    }
+
+    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;
@@ -56,30 +63,34 @@ public class FinishedProductEntity {
         this.fpState = fpState;
         this.fpFlowerList = fpFlowerList;
     }
-    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
-        this.shopKey = shopKey;
-        this.fpName = fpName;
-        this.fpTag = fpTag;
-        this.fpImage = fpImage;
-        this.fpPrice = fpPrice;
-        this.fpState = fpState;
-        this.fpFlowerList = fpFlowerList;
-    }
+
+//    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
+//        FlowerShopRepository flowerShopRepo = null;
+//
+//        Optional<FlowerShopEntity> flowerShopEntity = flowerShopRepo.findByshopKey(shopKey);
+//
+//        this.flowerShopEntity = shopKey;
+//        this.fpName = fpName;
+//        this.fpTag = fpTag;
+//        this.fpImage = fpImage;
+//        this.fpPrice = fpPrice;
+//        this.fpState = fpState;
+//        this.fpFlowerList = fpFlowerList;
+//    }
 
     public FinishedProductEntity() {
     }
 
-    public static FinishedProductEntity toFinishedProductEntity(FinishedProductDto finishedProductDto)
-    {
-        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpKey(finishedProductDto.getFpKey());
-        finishedProductEntity.setShopKey(finishedProductDto.getShopKey());
-        finishedProductEntity.setFpName(finishedProductDto.getFpName());
-        finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
-        finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
-        finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
-        finishedProductEntity.setFpState(finishedProductDto.isFpState());
-        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
-        return finishedProductEntity;
-    }
+//    public static FinishedProductEntity toFinishedProductEntity(FinishedProductDto finishedProductDto)
+//    {
+//        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
+//        finishedProductEntity.setFpKey(finishedProductDto.getFpKey());
+//        finishedProductEntity.setFpName(finishedProductDto.getFpName());
+//        finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
+//        finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
+//        finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
+//        finishedProductEntity.setFpState(finishedProductDto.isFpState());
+//        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
+//        return finishedProductEntity;
+//    }
 }

@@ -31,7 +31,7 @@ public class FlowerShopEntity {
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity")
     private SellerEntity sellerEntity;
-    @OneToMany(mappedBy = "flowerShopEntity")
+    @OneToMany(mappedBy = "flowerShopEntity",fetch = FetchType.EAGER)
     private List<FinishedProductEntity> finishedProductEntityList;
 
 

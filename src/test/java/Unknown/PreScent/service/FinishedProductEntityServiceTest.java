@@ -1,16 +1,17 @@
 package Unknown.PreScent.service;
 
+import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
+import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
-import org.junit.Test;
-//import org.junit.jupiter.api.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.context.junit4.SpringRunner;
+
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
+
 @Transactional
 @SpringBootTest
 public class FinishedProductEntityServiceTest {
@@ -30,6 +31,10 @@ public class FinishedProductEntityServiceTest {
 
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private SellerService sellerService;
+    @Autowired
+    private FlowerShopService flowerShopService;
 
     @BeforeEach
     public void setUp() {
@@ -48,13 +53,37 @@ public class FinishedProductEntityServiceTest {
         finishedProductEntity.setFpFlowerList(new String[]{"장미","안개꽃"});
         return finishedProductEntity;
     }
+    public FlowerShopEntity createFlowerShopEntity() {
+        FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
+        flowerShopEntity.setShopName("it's me");
+        flowerShopEntity.setShopPhoneNum("031-308-8223");
+        flowerShopEntity.setShopLocation("suwon city");
+        flowerShopEntity.setOpeningHours(new int[][]{{1, 2, 3}, {3, 4, 5}});
+        flowerShopEntity.setHoliday(new String[]{"monday"});
+        return flowerShopEntity;
+    }
+    public SellerDto createSellerDto(Integer sellerKey) {
+        SellerDto sellerDto = new SellerDto();
+        sellerDto.setSellerKey(sellerKey);
+        sellerDto.setSellerName("suhyeon");
+        sellerDto.setSellerPhonenum("010-1111-2222");
+        sellerDto.setSellerIdEmail("ajou@gmail.com");
+        sellerDto.setSellerPassword("04prescent");
+        return sellerDto;
+    }
 
     @Test
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
+        SellerDto sellerDto = createSellerDto(123456789);
+        SellerDto savedSellerDto = sellerService.signup(sellerDto);
+
+        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
+        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
+
         FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(1, finishedProductEntity);
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(flowerShopEntity.getShopKey(), finishedProductEntity);
 
         //finishedProductRepository.findByShopKeyContaining(1);
 

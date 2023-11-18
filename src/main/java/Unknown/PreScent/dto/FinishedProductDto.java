@@ -25,7 +25,6 @@ public class FinishedProductDto {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
 
         finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
-        finishedProductDto.setShopKey(finishedProductEntity.getShopKey());
         finishedProductDto.setFpName(finishedProductEntity.getFpName());
         finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
         finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
