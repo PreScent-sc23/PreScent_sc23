@@ -40,6 +40,8 @@ public class FinishedProductController {
                 finishedProductEntity.getFpFlowerList(),
                 finishedProductEntity.getFpDetail());
 
+        System.out.println(finishedProductService.getFinishedProductWithShopKey(0).get().get(0).getFpFlowerList());
+
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
