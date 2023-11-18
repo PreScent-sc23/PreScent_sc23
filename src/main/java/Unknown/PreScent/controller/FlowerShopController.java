@@ -29,16 +29,18 @@ public class FlowerShopController {
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
 //    }
 
+//@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@RequestBody String sellerKey, String shopName, String shopPhoneNum, String shopLocation, String description,
+    public ResponseEntity<?> addFlowerShop(@RequestParam String sellerKey,
+                                           @RequestBody FlowerShopEntity flowerShopEntity,
                                           BindingResult bindingResult)
     {
         System.out.println("---------------------------------------------------------------------");
         System.out.println("sellerKey: " + sellerKey);
-        System.out.println("shopName: " + shopName);
-        System.out.println("shopPhoneNum: " + shopPhoneNum);
-        System.out.println("shopLocation: " + shopLocation);
-        System.out.println("description: " + description + "\n");
+        System.out.println("shopName: " + flowerShopEntity.getShopName());
+        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
+        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
+        System.out.println("description: " + flowerShopEntity.getDescription() + "\n");
         System.out.println("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {
 
