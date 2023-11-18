@@ -31,10 +31,12 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@RequestParam Integer sellerKey,
+    public ResponseEntity<?> addFlowerShop(@RequestParam String sSellerKey,
                                            @RequestBody FlowerShopEntity flowerShopEntity,
                                           BindingResult bindingResult)
     {
+        Integer sellerKey = Integer.parseInt(sSellerKey);
+
         System.out.println("---------------------------------------------------------------------");
         System.out.println("sellerKey: " + sellerKey);
         System.out.println("shopName: " + flowerShopEntity.getShopName());
