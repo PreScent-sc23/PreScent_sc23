@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Unknown.PreScent.service.CustomerServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-11-18T11:01:24" hostname="SWSEO_LT" time="2.403">
+<testsuite name="Unknown.PreScent.service.CustomerServiceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-11-18T11:17:36" hostname="SWSEO_LT" time="2.019">
   <properties/>
-  <testcase name="고객/ 회원가입 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.883"/>
-  <testcase name="고객/ 로그인 실패 - 잘못된 PASSWORD 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.568"/>
-  <testcase name="고객/ 로그인 성공 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.511"/>
-  <testcase name="고객/ 중복 이메일 가입 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.106"/>
-  <testcase name="고객/ 로그인 실패 - 잘못된 Email 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.325"/>
-  <system-out><![CDATA[20:01:05.231 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-20:01:05.258 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-20:01:05.335 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [Unknown.PreScent.service.CustomerServiceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-20:01:05.362 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [Unknown.PreScent.service.CustomerServiceTest], using SpringBootContextLoader
-20:01:05.368 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [Unknown.PreScent.service.CustomerServiceTest]: class path resource [Unknown/PreScent/service/CustomerServiceTest-context.xml] does not exist
-20:01:05.369 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [Unknown.PreScent.service.CustomerServiceTest]: class path resource [Unknown/PreScent/service/CustomerServiceTestContext.groovy] does not exist
-20:01:05.369 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [Unknown.PreScent.service.CustomerServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-20:01:05.371 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [Unknown.PreScent.service.CustomerServiceTest]: CustomerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-20:01:05.458 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [Unknown.PreScent.service.CustomerServiceTest]
-20:01:05.599 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\swseo\IdeaProjects\backend\build\classes\java\main\Unknown\PreScent\PreScentApplication.class]
-20:01:05.601 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration Unknown.PreScent.PreScentApplication for test class Unknown.PreScent.service.CustomerServiceTest
-20:01:05.853 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [Unknown.PreScent.service.CustomerServiceTest]: using defaults.
-20:01:05.854 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-20:01:05.890 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@10567255, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@e362c57, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1c4ee95c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@79c4715d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5aa360ea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6548bb7d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@e27ba81, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@54336c81, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1556f2dd, org.springframework.test.context.event.EventPublishingTestExecutionListener@35e52059, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@62577d6, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@49bd54f7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6b5f8707, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@772485dd, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5a12c728, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@79ab3a71, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6e5bfdfc]
-20:01:05.898 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4837595f testClass = CustomerServiceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2bffa76d testClass = CustomerServiceTest, locations = '{}', classes = '{class Unknown.PreScent.PreScentApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@160ac7fb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@62dae540, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@636e8cc, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@619bfe29, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@485a3466, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@7354b8c5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+  <testcase name="고객/ 회원가입 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.937"/>
+  <testcase name="고객/ 로그인 실패 - 잘못된 PASSWORD 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.337"/>
+  <testcase name="고객/ 로그인 성공 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.399"/>
+  <testcase name="고객/ 중복 이메일 가입 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.103"/>
+  <testcase name="고객/ 로그인 실패 - 잘못된 Email 테스트" classname="Unknown.PreScent.service.CustomerServiceTest" time="0.232"/>
+  <system-out><![CDATA[20:17:24.046 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+20:17:24.064 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+20:17:24.137 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [Unknown.PreScent.service.CustomerServiceTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+20:17:24.214 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [Unknown.PreScent.service.CustomerServiceTest], using SpringBootContextLoader
+20:17:24.228 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [Unknown.PreScent.service.CustomerServiceTest]: class path resource [Unknown/PreScent/service/CustomerServiceTest-context.xml] does not exist
+20:17:24.230 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [Unknown.PreScent.service.CustomerServiceTest]: class path resource [Unknown/PreScent/service/CustomerServiceTestContext.groovy] does not exist
+20:17:24.230 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [Unknown.PreScent.service.CustomerServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+20:17:24.233 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [Unknown.PreScent.service.CustomerServiceTest]: CustomerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:17:24.324 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [Unknown.PreScent.service.CustomerServiceTest]
+20:17:24.480 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\swseo\IdeaProjects\backend\build\classes\java\main\Unknown\PreScent\PreScentApplication.class]
+20:17:24.482 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration Unknown.PreScent.PreScentApplication for test class Unknown.PreScent.service.CustomerServiceTest
+20:17:24.694 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [Unknown.PreScent.service.CustomerServiceTest]: using defaults.
+20:17:24.695 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+20:17:24.727 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@10567255, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@e362c57, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1c4ee95c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@79c4715d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5aa360ea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6548bb7d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@e27ba81, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@54336c81, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1556f2dd, org.springframework.test.context.event.EventPublishingTestExecutionListener@35e52059, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@62577d6, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@49bd54f7, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6b5f8707, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@772485dd, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5a12c728, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@79ab3a71, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6e5bfdfc]
+20:17:24.733 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4837595f testClass = CustomerServiceTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@2bffa76d testClass = CustomerServiceTest, locations = '{}', classes = '{class Unknown.PreScent.PreScentApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@160ac7fb, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@62dae540, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@636e8cc, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@619bfe29, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@485a3466, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@7354b8c5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -30,36 +30,28 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-11-18 20:01:06.797  INFO 19828 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : Starting CustomerServiceTest using Java 11.0.21 on SWSEO_LT with PID 19828 (started by swseo in C:\Users\swseo\IdeaProjects\backend)
-2023-11-18 20:01:06.800  INFO 19828 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-11-18 20:01:08.881  INFO 19828 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-11-18 20:01:09.053  INFO 19828 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 4 JPA repository interfaces.
-2023-11-18 20:01:11.683  INFO 19828 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-11-18 20:01:11.940  INFO 19828 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
-2023-11-18 20:01:12.780  INFO 19828 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-11-18 20:01:13.288  INFO 19828 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-11-18 20:01:14.148  INFO 19828 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-11-18 20:01:14.225  INFO 19828 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-11-18 20:01:17.262 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
-    
-    alter table finished_product 
-       add column fp_detail varchar(255)
-Hibernate: 
-    
-    alter table finished_product 
-       add column fp_detail varchar(255)
-2023-11-18 20:01:17.454  INFO 19828 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-11-18 20:01:17.515  INFO 19828 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-11-18 20:01:17.757  WARN 19828 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-11-18 20:01:20.380  WARN 19828 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+2023-11-18 20:17:25.534  INFO 8952 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : Starting CustomerServiceTest using Java 11.0.21 on SWSEO_LT with PID 8952 (started by swseo in C:\Users\swseo\IdeaProjects\backend)
+2023-11-18 20:17:25.537  INFO 8952 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-11-18 20:17:27.523  INFO 8952 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-18 20:17:27.665  INFO 8952 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 118 ms. Found 4 JPA repository interfaces.
+2023-11-18 20:17:29.029  INFO 8952 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-18 20:17:29.171  INFO 8952 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-18 20:17:29.635  INFO 8952 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-18 20:17:29.941  INFO 8952 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-18 20:17:30.328  INFO 8952 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-18 20:17:30.366  INFO 8952 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-11-18 20:17:32.456  INFO 8952 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-18 20:17:32.486  INFO 8952 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-18 20:17:32.685  WARN 8952 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-18 20:17:34.135  WARN 8952 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: 5f8aadff-f8c1-413a-86e1-9c7cefed897f
+Using generated security password: df4ae837-52cd-4e90-926d-9469954e3eac
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2023-11-18 20:01:21.438  INFO 19828 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@357e7113, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8d23cd8, org.springframework.security.web.context.SecurityContextPersistenceFilter@18d14de3, org.springframework.security.web.header.HeaderWriterFilter@23e297d9, org.springframework.security.web.authentication.logout.LogoutFilter@1e49a77e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f6e3b67, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e76134d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5feaafb3, org.springframework.security.web.session.SessionManagementFilter@4a7ac98b, org.springframework.security.web.access.ExceptionTranslationFilter@b666366]
-2023-11-18 20:01:24.324  INFO 19828 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : Started CustomerServiceTest in 18.331 seconds (JVM running for 23.035)
-2023-11-18 20:01:24.834 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:34.471  INFO 8952 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2eb03908, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ead245, org.springframework.security.web.context.SecurityContextPersistenceFilter@3c65f2e1, org.springframework.security.web.header.HeaderWriterFilter@629cf53c, org.springframework.security.web.authentication.logout.LogoutFilter@1edf52e6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76c85485, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@469bd719, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e49a77e, org.springframework.security.web.session.SessionManagementFilter@66576bd2, org.springframework.security.web.access.ExceptionTranslationFilter@f391e52]
+2023-11-18 20:17:36.362  INFO 8952 --- [    Test worker] U.PreScent.service.CustomerServiceTest   : Started CustomerServiceTest in 11.552 seconds (JVM running for 16.155)
+2023-11-18 20:17:36.909 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         customer
@@ -67,7 +59,7 @@ Hibernate:
     delete 
     from
         customer
-2023-11-18 20:01:24.964 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.033 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -91,8 +83,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:24.975 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:25.175 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.039 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.234 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         customer
@@ -106,12 +98,12 @@ Hibernate:
         (customer_id_email, customer_location, customer_name, customer_password, customer_phonenum) 
     values
         (?, ?, ?, ?, ?)
-2023-11-18 20:01:25.178 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:25.178 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
-2023-11-18 20:01:25.179 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
-2023-11-18 20:01:25.179 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$3SmgL3sLTZVg8n8N4UtzSe7ZOT/Cm9JFFuqd8iokehykWZsJyfVdu]
-2023-11-18 20:01:25.179 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
-2023-11-18 20:01:25.261 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.239 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.239 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-11-18 20:17:37.242 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
+2023-11-18 20:17:37.243 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$JpT0BkYp5L3K5CaCSQJ31uepB9sgLDP3mYi0LTFmXPlloUf0wT4e.]
+2023-11-18 20:17:37.244 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
+2023-11-18 20:17:37.356 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         customer
@@ -119,7 +111,7 @@ Hibernate:
     delete 
     from
         customer
-2023-11-18 20:01:25.295 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.389 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -143,8 +135,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:25.299 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:25.565 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.391 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.502 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         customer
@@ -158,12 +150,12 @@ Hibernate:
         (customer_id_email, customer_location, customer_name, customer_password, customer_phonenum) 
     values
         (?, ?, ?, ?, ?)
-2023-11-18 20:01:25.568 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:25.569 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
-2023-11-18 20:01:25.570 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
-2023-11-18 20:01:25.571 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$IKB0TT9I2UiPhDjcvrx6HO7ld2TmOeFiZKt6NxaUmWl.LkaAZqE5S]
-2023-11-18 20:01:25.572 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
-2023-11-18 20:01:25.656 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.507 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.508 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-11-18 20:17:37.508 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
+2023-11-18 20:17:37.509 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$jH5sdpkKQhNY17uOdAn.geH2ru.WP8rq4sjtb1GpST.89beAm4KZa]
+2023-11-18 20:17:37.509 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
+2023-11-18 20:17:37.564 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -187,8 +179,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:25.659 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:25.833 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.565 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.693 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         customer
@@ -196,7 +188,7 @@ Hibernate:
     delete 
     from
         customer
-2023-11-18 20:01:25.969 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.822 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -220,8 +212,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:25.971 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.079 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.824 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.923 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         customer
@@ -235,12 +227,12 @@ Hibernate:
         (customer_id_email, customer_location, customer_name, customer_password, customer_phonenum) 
     values
         (?, ?, ?, ?, ?)
-2023-11-18 20:01:26.080 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.080 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
-2023-11-18 20:01:26.081 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
-2023-11-18 20:01:26.081 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$VaRitn7RowLg9bNbVs1TV.pOHf0mkVJK0faO2iLOQMt3ts.enCoVW]
-2023-11-18 20:01:26.082 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
-2023-11-18 20:01:26.109 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.925 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:37.926 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-11-18 20:17:37.926 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
+2023-11-18 20:17:37.927 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$X/EOTY36UVGxAbV1HkxjIuBc9y69646jnuyt8gqNtZklSwrLPP/SK]
+2023-11-18 20:17:37.927 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
+2023-11-18 20:17:37.951 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -264,8 +256,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:26.111 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.344 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:37.952 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.095 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         customer
@@ -273,7 +265,7 @@ Hibernate:
     delete 
     from
         customer
-2023-11-18 20:01:26.371 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.120 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -297,8 +289,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:26.374 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.390 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.124 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.141 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         customer
@@ -312,12 +304,12 @@ Hibernate:
         (customer_id_email, customer_location, customer_name, customer_password, customer_phonenum) 
     values
         (?, ?, ?, ?, ?)
-2023-11-18 20:01:26.393 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.394 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
-2023-11-18 20:01:26.395 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
-2023-11-18 20:01:26.396 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [04prescent]
-2023-11-18 20:01:26.396 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
-2023-11-18 20:01:26.424 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.144 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.144 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-11-18 20:17:38.145 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
+2023-11-18 20:17:38.145 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [04prescent]
+2023-11-18 20:17:38.146 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
+2023-11-18 20:17:38.171 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -341,8 +333,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:26.427 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.456 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.174 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.203 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         customer
@@ -350,7 +342,7 @@ Hibernate:
     delete 
     from
         customer
-2023-11-18 20:01:26.490 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.238 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -374,8 +366,8 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:26.493 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.724 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.241 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.384 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         customer
@@ -389,12 +381,12 @@ Hibernate:
         (customer_id_email, customer_location, customer_name, customer_password, customer_phonenum) 
     values
         (?, ?, ?, ?, ?)
-2023-11-18 20:01:26.726 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
-2023-11-18 20:01:26.726 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
-2023-11-18 20:01:26.727 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
-2023-11-18 20:01:26.728 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$5RT550uf9RXQNIlY4ylakecZgiJSp0MvjLNbwavFHoeuAHDQ75ZT2]
-2023-11-18 20:01:26.728 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
-2023-11-18 20:01:26.755 DEBUG 19828 --- [    Test worker] org.hibernate.SQL                        : 
+2023-11-18 20:17:38.385 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ajou.gmail.com]
+2023-11-18 20:17:38.385 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - [null]
+2023-11-18 20:17:38.386 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [suhyeon]
+2023-11-18 20:17:38.386 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$qYF5Iy6JcGjFFYe6LGgF7u4bdL3O/qmVug6a/YwVBUnUTP6Cow0Xu]
+2023-11-18 20:17:38.387 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [010-1111-2222]
+2023-11-18 20:17:38.411 DEBUG 8952 --- [    Test worker] org.hibernate.SQL                        : 
     select
         customeren0_.customer_key as customer1_0_,
         customeren0_.customer_id_email as customer2_0_,
@@ -418,7 +410,7 @@ Hibernate:
         customer customeren0_ 
     where
         customeren0_.customer_id_email=?
-2023-11-18 20:01:26.758 TRACE 19828 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [wrongId]
+2023-11-18 20:17:38.413 TRACE 8952 --- [    Test worker] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [wrongId]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

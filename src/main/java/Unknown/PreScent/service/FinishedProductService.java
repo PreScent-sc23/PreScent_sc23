@@ -15,7 +15,7 @@ public class FinishedProductService {
         this.finishedProductRepo = finishedProductRepo;
     }
 
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String fpFlowerList){
         validateDuplicatedFp(shopKey, fpName, fpPrice);
 
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
@@ -23,7 +23,7 @@ public class FinishedProductService {
         return finishedProductRepo.save(finishedProductEntity);
     }
 
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList, String fpDetail){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String fpFlowerList, String fpDetail){
         validateDuplicatedFp(shopKey, fpName, fpPrice);
 
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity(shopKey, fpName, fpTag, fpPrice, fpFlowerList, fpDetail);

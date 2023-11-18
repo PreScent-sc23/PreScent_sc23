@@ -18,7 +18,7 @@ public class FinishedProductDto {
     private String fpImage;
     private Integer fpPrice;
     private boolean fpState=false;
-    private String[] fpFlowerList;
+    private String fpFlowerList;
 
     public static FinishedProductDto toFinishedProductDto(FinishedProductEntity finishedProductEntity)
     {

@@ -28,7 +28,8 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private boolean fpState;
 
-    private String[] fpFlowerList;
+    //private String[] fpFlowerList;
+    private String fpFlowerList;
 
     private String fpDetail;
 
@@ -46,7 +47,7 @@ public class FinishedProductEntity {
     {
         this.flowerShopEntity = flowerShopEntity;
     }
-    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
+    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String fpFlowerList) {
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;
@@ -54,7 +55,7 @@ public class FinishedProductEntity {
         this.fpState = fpState;
         this.fpFlowerList = fpFlowerList;
     }
-    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
+    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String fpFlowerList) {
         this.shopKey = shopKey;
         this.fpName = fpName;
         this.fpTag = fpTag;
@@ -64,7 +65,7 @@ public class FinishedProductEntity {
         this.fpFlowerList = fpFlowerList;
     }
 
-    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList, String fpDetail) {
+    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String fpFlowerList, String fpDetail) {
         this.shopKey = shopKey;
         this.fpName = fpName;
         this.fpTag = fpTag;
