@@ -31,9 +31,9 @@ public class FinishedProductEntity {
     private String[] fpFlowerList;
 
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private CartEntity cart;
+//    @ManyToOne
+//    @JoinColumn(name = "cart_id")
+//    private CartEntity cart;
 
 
     @ManyToOne

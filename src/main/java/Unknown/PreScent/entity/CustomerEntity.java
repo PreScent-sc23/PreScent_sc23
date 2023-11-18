@@ -20,9 +20,9 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerKey;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="cart_id")
-    private CartEntity cart;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="cart_id")
+//    private CartEntity cart;
 
     @Column(nullable = false)
     private String customerName;
