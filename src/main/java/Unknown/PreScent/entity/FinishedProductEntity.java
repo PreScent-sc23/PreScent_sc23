@@ -29,13 +29,24 @@ public class FinishedProductEntity {
     private boolean fpState;
 
     private String[] fpFlowerList;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private CartEntity cart;
+
+
     @ManyToOne
     @JoinColumn(name = "FlowerShop_shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    public void setFlowerShop(FlowerShopEntity flowerShopEntity)
+    @OneToMany(mappedBy = "finishedFlowerEntity")
+    private FPOrderEntity fpOrderEntity;
+
+    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
+        this.flowerShopEntity.setFinishedProductEntityList(this);
     }
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.fpName = fpName;

@@ -15,12 +15,12 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class SellerDto {
 
-    @NotBlank(message = "사업자등록번호를 작성해주세요")
+//    @NotBlank(message = "사업자등록번호를 작성해주세요")
     private Integer sellerKey;
     @NotBlank(message = "이름을 작성해주세요")
     private String sellerName;
-    @Email(message = "올바른 이메일 형식을 사용해주세요")
     @NotBlank(message = "이메일을 작성해주세요")
+    @Email(message = "올바른 이메일 형식을 사용해주세요")
     private String sellerIdEmail;
     @NotBlank(message = "비밀번호를 작성해주세요")
     private String sellerPassword;

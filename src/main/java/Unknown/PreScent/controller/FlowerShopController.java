@@ -8,6 +8,7 @@ import Unknown.PreScent.entity.FlowerShopEntity;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/flower-shops")
 public class FlowerShopController {
 
@@ -20,9 +21,9 @@ public class FlowerShopController {
     }
 
     @PostMapping("/add")
-    public FlowerShopEntity addFlowerShop(@RequestBody Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+    public FlowerShopEntity addFlowerShop(@RequestBody Integer sellerKey, FlowerShopEntity flowerShopEntity)
     {
-        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
+        return flowerShopService.addFlowerShop(sellerKey, flowerShopEntity);
     }
 
     @GetMapping("/{shopKey}")

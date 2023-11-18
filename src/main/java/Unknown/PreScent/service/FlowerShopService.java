@@ -20,9 +20,8 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+    public FlowerShopEntity addFlowerShop(Integer sellerKey, FlowerShopEntity flowerShopEntity)
     {
-        FlowerShopEntity flowerShopEntity = new FlowerShopEntity(shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
         Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
@@ -42,10 +41,8 @@ public class FlowerShopService {
             return flowerShopEntity;
         }
         else{
-            // 일치하는 seller없음. 시스템 오류 seller가 서버에 저장되어 있지 않음
-            System.out.print("-----------------------------------------sellerEntity를 sellerKey로 찾았는데 없단다 -----------------------------------------");
+            throw new IllegalStateException("판매자를 조회하지 못했습니다.");
         }
-        return flowerShopRepo.save(flowerShopEntity);
     }
 
     public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)

@@ -47,16 +47,26 @@ public class FlowerShopEntityServiceTest {
         sellerDto.setSellerPassword("04prescent");
         return sellerDto;
     }
+    public FlowerShopEntity createFlowerShopEntity(){
+        FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
+        flowerShopEntity.setShopName("it's me");
+        flowerShopEntity.setShopPhoneNum("031-308-8223");
+        flowerShopEntity.setShopLocation("suwon city");
+        flowerShopEntity.setOpeningHours(new int[][] {{1, 2, 3},{3, 4, 5}});
+        flowerShopEntity.setHoliday(new String[]{"monday"});
+        return flowerShopEntity;
+    }
     @Test
     //@Transactional
     @DisplayName("매장 등록, 쿼리 테스트")
     public void testAddFlowerShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signup(sellerDto);
+        SellerDto sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
 
-        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
+        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
+        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
         assertThat(addedShop).isNotNull();
         assertThat(addedShop.getSellerEntity()).isNotNull();
@@ -66,7 +76,7 @@ public class FlowerShopEntityServiceTest {
 
         FlowerShopEntity retrievedShop = flowerShopService.getFlowerShopByshopKey(testShopKeyIndex).orElse(null);
         assertThat(retrievedShop).isNotNull();
-        assertThat(retrievedShop.getShopName()).isEqualTo("its me");
+        assertThat(retrievedShop.getShopName()).isEqualTo("it's me");
     }
 
     @Test
@@ -75,12 +85,14 @@ public class FlowerShopEntityServiceTest {
     public void testSameSellerKeyShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signup(sellerDto);
+        SellerDto sellerKey = sellerService.signup(sellerDto);
         assertNotNull(sellerKey);
 
-        FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
+        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
+
+        FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
         Throwable e = assertThrows(IllegalStateException.class, () -> {
-            flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});});
+            flowerShopService.addFlowerShop(123456789, flowerShopEntity);});
         assertEquals("이미 매장을 등록한 판매자입니다.", e.getMessage());
     }
 }
