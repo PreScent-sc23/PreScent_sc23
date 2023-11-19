@@ -47,9 +47,9 @@ public class SellerController {
     public String login() { return "seller/login"; }
 
     @PostMapping("/seller/login")
-    public ResponseEntity<SellerDto> login(@RequestParam String id, @RequestParam String password, HttpSession session) {
+    public ResponseEntity<Integer> login(@RequestParam String id, @RequestParam String password, HttpSession session) {
         SellerDto sellerDto = sellerService.login(id, password, session);
-        return ResponseEntity.ok(sellerDto);
+        return ResponseEntity.ok(sellerDto.getSellerKey());
     }
 
 }
