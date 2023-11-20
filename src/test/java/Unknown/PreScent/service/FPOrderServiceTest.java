@@ -2,6 +2,7 @@ package Unknown.PreScent.service;
 
 import Unknown.PreScent.dto.CustomerDto;
 import Unknown.PreScent.dto.FPOrderCustomerDto;
+import Unknown.PreScent.dto.FinishedProductDto;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.entity.FPOrderEntity;
 import Unknown.PreScent.entity.FinishedProductEntity;
@@ -69,15 +70,14 @@ public class FPOrderServiceTest {
         return flowerShopEntity;
     }
 
-    public FinishedProductEntity createFinishedProductEntity() {
-        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpName("장미꽃다발");
-        finishedProductEntity.setFpTag("연인");
-        finishedProductEntity.setFpImage(null);
-        finishedProductEntity.setFpPrice(20000);
-        finishedProductEntity.setFpState(true);
-        finishedProductEntity.setFpFlowerList(new String[]{"장미", "안개꽃"});
-        return finishedProductEntity;
+    public FinishedProductDto createFinishedProductDto() {
+        FinishedProductDto finishedProductDto = new FinishedProductDto();
+        finishedProductDto.setFpName("장미꽃다발");
+        finishedProductDto.setFpTag("연인");
+        finishedProductDto.setFpImage(null);
+        finishedProductDto.setFpPrice(20000);
+        finishedProductDto.setFpFlowerList(new String[]{"장미", "안개꽃"});
+        return finishedProductDto;
     }
 
     public CustomerDto createCustomerDto() {
@@ -113,9 +113,9 @@ public class FPOrderServiceTest {
         FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
-        FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
+        FinishedProductDto finishedProductDto = createFinishedProductDto();
         assertNotNull(addedShop.getShopKey());
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductEntity);
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductDto);
 
         Date inputDate = new Date();
         FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerKey, "국민카드 결제정보",inputDate);

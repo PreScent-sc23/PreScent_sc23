@@ -4,33 +4,42 @@ import Unknown.PreScent.entity.FinishedProductEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.Column;
+import java.io.IOException;
 
 @Getter
 @Setter
 @ToString
 public class FinishedProductDto {
-    private Integer fpKey;
-    private Integer shopKey;
+    private  MultipartFile fpImage;
     private String fpName;
     private String fpTag;
-    private String fpImage;
     private Integer fpPrice;
-    private boolean fpState=false;
     private String[] fpFlowerList;
+
+    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList) {
+    }
+
+    public FinishedProductDto() {
+
+    }
 
     public static FinishedProductDto toFinishedProductDto(FinishedProductEntity finishedProductEntity)
     {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
 
-        finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
+        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
         finishedProductDto.setFpName(finishedProductEntity.getFpName());
         finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
-        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
         finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
-        finishedProductDto.setFpState(finishedProductEntity.isFpState());
         finishedProductDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
         return finishedProductDto;
+    }
+
+    public MultipartFile setFpImage(byte[] fpImage) {
+        return null;
     }
 }

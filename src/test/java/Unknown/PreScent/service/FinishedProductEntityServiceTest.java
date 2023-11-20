@@ -1,5 +1,6 @@
 package Unknown.PreScent.service;
 
+import Unknown.PreScent.dto.FinishedProductDto;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import Unknown.PreScent.entity.FlowerShopEntity;
@@ -41,16 +42,15 @@ public class FinishedProductEntityServiceTest {
         finishedProductRepository.deleteAllInBatch();
     }
 
-    public FinishedProductEntity createFinishedProductEntity()
+    public FinishedProductDto createFinishedProductDto()
     {
-        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpName("장미꽃다발");
-        finishedProductEntity.setFpTag("연인");
-        finishedProductEntity.setFpImage(null);
-        finishedProductEntity.setFpPrice(20000);
-        finishedProductEntity.setFpState(true);
-        finishedProductEntity.setFpFlowerList(new String[]{"장미","안개꽃"});
-        return finishedProductEntity;
+        FinishedProductDto finishedProductDto = new FinishedProductDto();
+        finishedProductDto.setFpName("장미꽃다발");
+        finishedProductDto.setFpTag("연인");
+        finishedProductDto.setFpImage(null);
+        finishedProductDto.setFpPrice(20000);
+        finishedProductDto.setFpFlowerList(new String[]{"장미","안개꽃"});
+        return finishedProductDto;
     }
     public FlowerShopEntity createFlowerShopEntity() {
         FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
@@ -81,8 +81,8 @@ public class FinishedProductEntityServiceTest {
         FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
-        FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductEntity);
+        FinishedProductDto finishedProductDto = createFinishedProductDto();
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductDto);
 
         //finishedProductRepository.findByShopKeyContaining(1);
 

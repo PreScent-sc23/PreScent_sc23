@@ -7,9 +7,12 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.swing.plaf.multi.MultiListUI;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -24,11 +27,13 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private String fpName;
     private String fpTag;
-    private String fpImage;
+    @Lob
+    @Column(name = "fpImage", columnDefinition="BLOB")
+    private byte[] fpImage;
     @Column(nullable = false)
     private Integer fpPrice;
     @Column(nullable = false)
-    private boolean fpState;
+    private boolean fpState=true;
 
     private String[] fpFlowerList;
 
@@ -60,7 +65,7 @@ public class FinishedProductEntity {
         this.fpOrderEntityList.add(fpOrderEntity);
     }
 
-    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
+    public FinishedProductEntity(String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;
@@ -86,16 +91,19 @@ public class FinishedProductEntity {
     public FinishedProductEntity() {
     }
 
-//    public static FinishedProductEntity toFinishedProductEntity(FinishedProductDto finishedProductDto)
-//    {
-//        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-//        finishedProductEntity.setFpKey(finishedProductDto.getFpKey());
-//        finishedProductEntity.setFpName(finishedProductDto.getFpName());
-//        finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
-//        finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
-//        finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
-//        finishedProductEntity.setFpState(finishedProductDto.isFpState());
-//        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
-//        return finishedProductEntity;
-//    }
+    public static FinishedProductEntity finishedProductDtotoEntity(FinishedProductDto finishedProductDto)
+    {
+        FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
+        try {
+            if(finishedProductDto.getFpImage()!=null)
+            {finishedProductEntity.setFpImage(finishedProductDto.getFpImage().getBytes());}
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        finishedProductEntity.setFpName(finishedProductDto.getFpName());
+        finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
+        finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
+        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
+        return finishedProductEntity;
+    }
 }

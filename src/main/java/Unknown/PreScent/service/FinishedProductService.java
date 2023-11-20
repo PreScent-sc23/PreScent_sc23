@@ -1,12 +1,12 @@
 package Unknown.PreScent.service;
 
+import Unknown.PreScent.dto.FinishedProductDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import Unknown.PreScent.entity.FlowerShopEntity;
-import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.FinishedProductRepository;
 import Unknown.PreScent.repository.FlowerShopRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,30 +14,35 @@ import java.util.Optional;
 
 @Service
 public class FinishedProductService {
-    @Autowired
-    private FinishedProductRepository finishedProductRepo;
-    @Autowired
-    private FlowerShopRepository flowerShopRepo;
 
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, FinishedProductEntity finishedProductEntity){
-        validateDuplicatedFp(shopKey, finishedProductEntity.getFpName());
-        return addFinishedProductToShop(shopKey, finishedProductEntity);
+    final FinishedProductRepository finishedProductRepo;
+    final FlowerShopRepository flowerShopRepo;
+
+    public FinishedProductService(FinishedProductRepository finishedProductRepo, FlowerShopRepository flowerShopRepo) {
+        this.finishedProductRepo = finishedProductRepo;
+        this.flowerShopRepo = flowerShopRepo;
+    }
+
+
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, FinishedProductDto finishedProductDto){
+        validateDuplicatedFp(shopKey, finishedProductDto.getFpName());
+        // FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
+        return addFinishedProductToShop(shopKey, finishedProductDto);
     }
 
     // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
         validateDuplicatedFp(shopKey, fpName);
 
-        FinishedProductEntity finishedProductEntity = new FinishedProductEntity(fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
-        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(shopKey, finishedProductEntity);
+        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpFlowerList);
+        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(shopKey, finishedProductDto);
 
         return finishedProductRepo.save(addedFinishedProductEntity);
     }
 
-    private FinishedProductEntity addFinishedProductToShop(Integer shopKey, FinishedProductEntity finishedProductEntity) {
-        System.out.println("---------------------------------in addFinishedProductToShop findByShopKey전");
+    private FinishedProductEntity addFinishedProductToShop(Integer shopKey, FinishedProductDto finishedProductDto) {
+        FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
         Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
-        System.out.println("---------------------------------in addFinishedProductToShop findByShopKey후");
         if(foundFlowerShopEntity.isPresent()){
             System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()전");
             FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();

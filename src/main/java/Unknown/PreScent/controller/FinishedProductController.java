@@ -1,5 +1,6 @@
 package Unknown.PreScent.controller;
 
+import Unknown.PreScent.dto.FinishedProductDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,9 @@ public class FinishedProductController {
     }
 
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, FinishedProductEntity finishedProductEntity)
+    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, FinishedProductDto finishedProductDto)
     {
-        return finishedProductService.addFinishedProduct(shopKey, finishedProductEntity);
+        return finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
     }
 
     @GetMapping("/{fpKey}")
