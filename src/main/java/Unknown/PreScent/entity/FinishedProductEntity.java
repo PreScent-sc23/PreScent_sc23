@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,10 @@ public class FinishedProductEntity {
 
     public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
     {
+        if(this.fpOrderEntityList == null)
+        {
+            fpOrderEntityList = new ArrayList<>();
+        }
         this.fpOrderEntityList.add(fpOrderEntity);
     }
 

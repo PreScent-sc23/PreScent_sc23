@@ -56,6 +56,7 @@ public class FPOrderEntity {
         fpOrderEntity.setCustomerEntity(customerEntity);
         fpOrderEntity.setPurchaseInfo(purchaseInfo);
         fpOrderEntity.setPickupDate(pickupDate);
+        System.out.println("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 
         return fpOrderEntity;
     }

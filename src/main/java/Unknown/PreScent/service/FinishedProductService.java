@@ -29,18 +29,24 @@ public class FinishedProductService {
         validateDuplicatedFp(shopKey, fpName);
 
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity(fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
-        finishedProductEntity = addFinishedProductToShop(shopKey,finishedProductEntity);
+        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(shopKey, finishedProductEntity);
 
-        return finishedProductRepo.save(finishedProductEntity);
+        return finishedProductRepo.save(addedFinishedProductEntity);
     }
 
     private FinishedProductEntity addFinishedProductToShop(Integer shopKey, FinishedProductEntity finishedProductEntity) {
+        System.out.println("---------------------------------in addFinishedProductToShop findByShopKey전");
         Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
+        System.out.println("---------------------------------in addFinishedProductToShop findByShopKey후");
         if(foundFlowerShopEntity.isPresent()){
+            System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()전");
             FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
+            System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()후"+foundFlowerShopEntity.get().getShopKey());
             finishedProductEntity.setFlowerShopEntity(flowerShopEntity);
+            System.out.println("---------------------------------in addFinishedProductToShop setFlowershopEntity후"+finishedProductEntity);
             finishedProductRepo.save(finishedProductEntity);
             flowerShopRepo.save(flowerShopEntity);
+            System.out.println("---------------------------------in addFinishedProductToShop save끝");
             return finishedProductEntity;
         }
         else
@@ -55,6 +61,10 @@ public class FinishedProductService {
             throw new IllegalStateException("인식할 수 없는 매장입니다. 완제품을 등록할 수 없습니다.");
         }
         FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
+        if (flowerShopEntity.getFinishedProductEntityList()==null) {
+            System.out.println("매장이 가진 완제품이 존재하지 않습니다.");
+            return;
+        }
         List<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
         for( FinishedProductEntity fpEntity : finishedProductEntityList) {
             if(fpEntity.getFpName().equals(fpName))

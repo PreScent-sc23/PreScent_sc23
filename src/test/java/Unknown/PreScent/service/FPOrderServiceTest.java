@@ -32,8 +32,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-// @Transactional
-
+@Transactional
 @SpringBootTest
 public class FPOrderServiceTest {
     @Autowired
@@ -90,11 +89,12 @@ public class FPOrderServiceTest {
         return customerDto;
     }
 
-    public FPOrderCustomerDto createFPOrderCustomerDto(Integer fpKey, Integer customerKey, Date pickupDate)
+    public FPOrderCustomerDto createFPOrderCustomerDto(Integer fpKey, Integer customerKey,String purchaseInfo, Date pickupDate)
     {
         FPOrderCustomerDto fpOrderCustomerDto = new FPOrderCustomerDto();
         fpOrderCustomerDto.setFpKey(fpKey);
         fpOrderCustomerDto.setCustomerKey(customerKey);
+        fpOrderCustomerDto.setPurchaseInfo(purchaseInfo);
         fpOrderCustomerDto.setPickupDate(pickupDate);
         return fpOrderCustomerDto;
     }
@@ -114,13 +114,12 @@ public class FPOrderServiceTest {
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
         FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
-        System.out.println(addedShop.getShopKey()+"----------------------------------------------\n");
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductEntity);
 
-        FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerKey, new Date());
-
-        assertNotNull(fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto).getPickupDate());
+        Date inputDate = new Date();
+        FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerKey, "국민카드 결제정보",inputDate);
+        assertEquals(fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto).getPickupDate(),inputDate);
     }
 
     /*

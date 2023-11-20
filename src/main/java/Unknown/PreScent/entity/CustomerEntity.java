@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -40,11 +41,15 @@ public class CustomerEntity {
     @Column
     private String customerLocation;
 
-    @OneToMany(mappedBy = "customerEntity")
+    @OneToMany(mappedBy = "customerEntity",fetch = FetchType.EAGER)
     private List<FPOrderEntity> fpOrderEntityList;
 
     public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
     {
+        if(this.fpOrderEntityList == null)
+        {
+            fpOrderEntityList = new ArrayList<>();
+        }
         this.fpOrderEntityList.add(fpOrderEntity);
     }
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto) {

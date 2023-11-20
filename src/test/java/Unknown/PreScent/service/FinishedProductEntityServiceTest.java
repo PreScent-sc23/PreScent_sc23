@@ -44,7 +44,6 @@ public class FinishedProductEntityServiceTest {
     public FinishedProductEntity createFinishedProductEntity()
     {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpKey(405);
         finishedProductEntity.setFpName("장미꽃다발");
         finishedProductEntity.setFpTag("연인");
         finishedProductEntity.setFpImage(null);
@@ -83,7 +82,7 @@ public class FinishedProductEntityServiceTest {
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
 
         FinishedProductEntity finishedProductEntity = createFinishedProductEntity();
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(flowerShopEntity.getShopKey(), finishedProductEntity);
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductEntity);
 
         //finishedProductRepository.findByShopKeyContaining(1);
 
@@ -100,7 +99,7 @@ public class FinishedProductEntityServiceTest {
     @DisplayName("완제품 복수 등록")
     public void testAddManyFinishedProduct()
     {
-        //FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(1, "장미꽃다발1", "연인", null, 20000+1000, true, new String[]{"장미", "안개꽃"});
+        FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(1, "장미꽃다발1", "연인", null, 20000+1000, true, new String[]{"장미", "안개꽃"});
 
         for(int i = 0; i < 10; i++) {
             FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(i%3, "소국꽃다발"+i, "연인", null, 20000+(i*1000), true, new String[]{"장미", "안개꽃"});

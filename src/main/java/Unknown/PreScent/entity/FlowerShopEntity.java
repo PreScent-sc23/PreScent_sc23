@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,9 @@ public class FlowerShopEntity {
 
     public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
     {
+        if (this.finishedProductEntityList == null) {
+            this.finishedProductEntityList = new ArrayList<>();
+        }
         this.finishedProductEntityList.add(finishedProductEntity);
     }
     public void setSellerEntity(SellerEntity sellerEntity)
