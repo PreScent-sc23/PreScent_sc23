@@ -19,7 +19,6 @@ import javax.validation.Valid;
 
 @RestController
 //@RequestMapping("/api/v1/auth")
-@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class SellerController {
 
