@@ -23,6 +23,12 @@ public class FinishedProductDto {
     private String[] fpFlowerList;
 
     public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
+        this.fpImage = fpImage;
+        this.fpName = fpName;
+        this.fpTag = fpTag;
+        this.fpPrice = fpPrice;
+        this.fpDetail = fpDetail;
+        this.fpFlowerList =fpFlowerList;
     }
 
     public FinishedProductDto() {
