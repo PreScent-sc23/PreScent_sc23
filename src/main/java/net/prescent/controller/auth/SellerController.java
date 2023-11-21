@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
 @RestController
 //@RequestMapping("/api/v1/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class SellerController {
 
