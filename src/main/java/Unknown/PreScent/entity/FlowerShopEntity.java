@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Getter
@@ -30,8 +32,18 @@ public class FlowerShopEntity {
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity")
     private SellerEntity sellerEntity;
+    @OneToMany(mappedBy = "flowerShopEntity",fetch = FetchType.EAGER)
+    private List<FinishedProductEntity> finishedProductEntityList;
     private String description;
 
+
+    public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
+    {
+        if (this.finishedProductEntityList == null) {
+            this.finishedProductEntityList = new ArrayList<>();
+        }
+        this.finishedProductEntityList.add(finishedProductEntity);
+    }
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;

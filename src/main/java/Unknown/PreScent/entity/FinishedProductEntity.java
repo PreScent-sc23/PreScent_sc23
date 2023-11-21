@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,14 +25,16 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private String fpName;
     private String fpTag;
-    private String fpImage;
+    @Lob
+    @Column(name = "fpImage", columnDefinition="BLOB")
+    private byte[] fpImage;
     @Column(nullable = false)
     private Integer fpPrice;
     @Column(nullable = false)
-    private boolean fpState;
+    private boolean fpState = true;
 
-    //private String[] fpFlowerList;
-    private String fpFlowerList;
+    private String[] fpFlowerList;
+//    private String fpFlowerList;
 
     private String fpDetail;
 
@@ -38,16 +43,28 @@ public class FinishedProductEntity {
 //    @JoinColumn(name = "cart_id")
 //    private CartEntity cart;
 
-
     @ManyToOne
-    @JoinColumn(name = "FlowerShop_shopKey")
+    @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    public void setFlowerShop(FlowerShopEntity flowerShopEntity)
+    @OneToMany(mappedBy = "finishedProductEntity",fetch = FetchType.EAGER)
+    private List<FPOrderEntity> fpOrderEntityList;
+
+    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
+        this.flowerShopEntity.setFinishedProductEntityList(this);
     }
-    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String fpFlowerList) {
+
+    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
+    {
+        if(this.fpOrderEntityList == null)
+        {
+            fpOrderEntityList = new ArrayList<>();
+        }
+        this.fpOrderEntityList.add(fpOrderEntity);
+    }
+    public FinishedProductEntity(String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;
@@ -55,7 +72,7 @@ public class FinishedProductEntity {
         this.fpState = fpState;
         this.fpFlowerList = fpFlowerList;
     }
-    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String fpFlowerList) {
+    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
         this.shopKey = shopKey;
         this.fpName = fpName;
         this.fpTag = fpTag;
@@ -65,7 +82,7 @@ public class FinishedProductEntity {
         this.fpFlowerList = fpFlowerList;
     }
 
-    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String fpFlowerList, String fpDetail) {
+    public FinishedProductEntity(Integer shopKey, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList, String fpDetail) {
         this.shopKey = shopKey;
         this.fpName = fpName;
         this.fpTag = fpTag;
@@ -77,16 +94,18 @@ public class FinishedProductEntity {
     public FinishedProductEntity() {
     }
 
-    public static FinishedProductEntity toFinishedProductEntity(FinishedProductDto finishedProductDto)
+    public static FinishedProductEntity finishedProductDtotoEntity(FinishedProductDto finishedProductDto)
     {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        finishedProductEntity.setFpKey(finishedProductDto.getFpKey());
-        finishedProductEntity.setShopKey(finishedProductDto.getShopKey());
+        try {
+            if(finishedProductDto.getFpImage()!=null)
+            {finishedProductEntity.setFpImage(finishedProductDto.getFpImage().getBytes());}
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
-        finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
-        finishedProductEntity.setFpState(finishedProductDto.isFpState());
         finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
         return finishedProductEntity;
     }
