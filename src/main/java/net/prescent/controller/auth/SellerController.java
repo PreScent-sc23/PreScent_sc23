@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+//@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class SellerController {
 
