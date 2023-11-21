@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class CustomerController {
