@@ -31,10 +31,10 @@ public class FinishedProductService {
     }
 
     // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, String fpDetail, String[] fpFlowerList){
         validateDuplicatedFp(shopKey, fpName);
 
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpFlowerList);
+        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
         FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(shopKey, finishedProductDto);
 
         return finishedProductRepo.save(addedFinishedProductEntity);

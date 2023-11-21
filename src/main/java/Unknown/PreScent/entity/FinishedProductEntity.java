@@ -105,6 +105,7 @@ public class FinishedProductEntity {
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
+        finishedProductEntity.setFpDetail(finishedProductDto.getFpDetail());
         finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList());
         return finishedProductEntity;
     }

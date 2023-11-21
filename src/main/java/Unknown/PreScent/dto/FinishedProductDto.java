@@ -14,13 +14,14 @@ import java.io.IOException;
 @Setter
 @ToString
 public class FinishedProductDto {
-    private  MultipartFile fpImage;
+    private MultipartFile fpImage;
     private String fpName;
     private String fpTag;
     private Integer fpPrice;
+    private String fpDetail;
     private String[] fpFlowerList;
 
-    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String[] fpFlowerList) {
+    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
     }
 
     public FinishedProductDto() {
@@ -35,6 +36,7 @@ public class FinishedProductDto {
         finishedProductDto.setFpName(finishedProductEntity.getFpName());
         finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
         finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
+        finishedProductDto.setFpDetail(finishedProductEntity.getFpDetail());
         finishedProductDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
         return finishedProductDto;
     }
