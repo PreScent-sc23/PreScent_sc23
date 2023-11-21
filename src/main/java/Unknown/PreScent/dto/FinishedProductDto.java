@@ -20,9 +20,9 @@ public class FinishedProductDto {
     private String fpTag;
     private Integer fpPrice;
     private String fpDetail;
-    private List<String> fpFlowerList;
+    private String[] fpFlowerList;
 
-    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, List<String> fpFlowerList) {
+    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
     }
 
     public FinishedProductDto() {
