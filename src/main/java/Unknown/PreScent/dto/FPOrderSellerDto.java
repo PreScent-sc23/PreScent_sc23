@@ -20,4 +20,5 @@ public class FPOrderSellerDto {
     private Integer fpOrderKey;
     @NotNull
     private Byte fpOrderState;
+
 }

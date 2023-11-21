@@ -40,6 +40,7 @@ public class FinishedProductService {
         return finishedProductRepo.save(addedFinishedProductEntity);
     }
 
+
     private FinishedProductEntity addFinishedProductToShop(Integer shopKey, FinishedProductDto finishedProductDto) {
         FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
         Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
@@ -77,39 +78,6 @@ public class FinishedProductService {
                 throw new IllegalStateException(fpName+"는 이미 등록된 상품입니다.");
             }
         }
-
-
-//        Optional<List<FinishedProductEntity>> compFPEntity = getFinishedProductWithShopKey(flower);
-//        List<FinishedProductEntity> compList = getFinishedProductWithShopKey(shopKey).get();
-//
-//        Optional<List<FinishedProductEntity>> shopKeyResult = finishedProductRepo.findByShopKey(shopKey);
-//
-//        Optional<List<FinishedProductEntity>> nameResult = finishedProductRepo.findByFpNameContaining(fpName);
-
-//        nameResult.ifPresent(s ->{
-//                    //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
-//
-//                    for(FinishedProductEntity fp : nameResult.get()){
-//                        if(shopKey.equals(fp.getShopKey())){
-//                            throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                            //System.out.println(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                        }
-//                    }
-//                });
-
-//        shopKeyResult.ifPresent(s ->{
-//            //throw new IllegalStateException("이미 등록된 상품 이름 입니다.");
-//
-//            for(FinishedProductEntity fp : shopKeyResult.get()){
-//                if(fpName.equals(fp.getFpName())){
-//                    throw new IllegalStateException(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                    //System.out.println(fp.getFpName() + "는 이미 등록된 상품 이름 입니다.\n");
-//                }
-//            }
-//         });
-    }
-
-
 
     public Optional<FinishedProductEntity> getFinishedProductWithFpKey(Integer fpKey)
     {

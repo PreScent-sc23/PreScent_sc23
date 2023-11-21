@@ -20,8 +20,13 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
+<<<<<<< HEAD
 
 @Transactional
+=======
+@RunWith(SpringRunner.class)
+//@Transactional
+>>>>>>> 6cd4fec9f1af647a89825b6e4abb9c4dab509f21
 @SpringBootTest
 public class FinishedProductEntityServiceTest {
     @Autowired
@@ -103,7 +108,6 @@ public class FinishedProductEntityServiceTest {
 
         for(int i = 0; i < 10; i++) {
             FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(i%3, "소국꽃다발"+i, "연인", null, 20000+(i*1000), true, new String[]{"장미", "안개꽃"});
-
             assertThat(addedFinishedProductEntity).isNotNull();
 
             Integer testFpIndex = addedFinishedProductEntity.getFpKey();
@@ -128,8 +132,8 @@ public class FinishedProductEntityServiceTest {
         for(FinishedProductEntity fp : finishedProductEntities) System.out.println(fp.getFpPrice());
     }
 
-    //    @Test
-    @DisplayName("태그 검색 Page")
+//    @Test
+    @DisplayName("태그 검색 Page")      //Optional 문제로 포기
     public void testTagSearchPage(){
         this.testAddManyFinishedProduct();
 

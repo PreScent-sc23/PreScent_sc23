@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Transactional
+//@Transactional
 @SpringBootTest
 public class FlowerShopEntityServiceTest {
     @Autowired
@@ -57,7 +57,6 @@ public class FlowerShopEntityServiceTest {
         return flowerShopEntity;
     }
     @Test
-    //@Transactional
     @DisplayName("매장 등록, 쿼리 테스트")
     public void testAddFlowerShop()
     {

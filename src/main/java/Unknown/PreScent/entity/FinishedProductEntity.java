@@ -33,15 +33,17 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private Integer fpPrice;
     @Column(nullable = false)
-    private boolean fpState=true;
+    private boolean fpState = true;
 
     private String[] fpFlowerList;
+//    private String fpFlowerList;
+
+    private String fpDetail;
 
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private CartEntity cart;
-
+//    @ManyToOne
+//    @JoinColumn(name = "cart_id")
+//    private CartEntity cart;
 
     @ManyToOne
     @JoinColumn(name = "shopKey")

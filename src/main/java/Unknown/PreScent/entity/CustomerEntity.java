@@ -22,9 +22,10 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerKey;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="cart_id")
-    private CartEntity cart;
+
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="cart_id")
+//    private CartEntity cart;
 
     @Column(nullable = false)
     private String customerName;
