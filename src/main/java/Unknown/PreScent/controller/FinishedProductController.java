@@ -48,8 +48,11 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestParam Integer shopKey, @RequestPart("fpImage") MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
+    public FinishedProductEntity addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
     {
+        if (fpImage != null && !fpImage.isEmpty()) {
+            System.out.println("file is not provided");
+        }
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
         FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
         return finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
