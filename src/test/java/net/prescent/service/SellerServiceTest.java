@@ -27,7 +27,7 @@ class SellerServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
-    AccessTokenService accessTokenService;  // 토큰 서비스 추가
+    AccessTokenService accessTokenService;
 
     @BeforeEach
     public void setUp() {
