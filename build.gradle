@@ -59,6 +59,16 @@ dependencies {
 
 	//firebase
 	//implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+	// JSON
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// HTTP 클라이언트
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 tasks.named('test') {
