@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 public class CustomerServiceTest {
     @Autowired
     CustomerService customerService;

@@ -90,7 +90,6 @@ public class SearchController {
                 System.out.println("fpName: " + fp.getFpName());
                 System.out.println("fpPrice: " + fp.getFpPrice());
                 System.out.println("fpTag: " + fp.getFpTag());
-                System.out.println("shopKey: " + fp.getShopKey());
                 System.out.println("----------------------------------");
             }
             System.out.println("---------------------------------------------------------------------");

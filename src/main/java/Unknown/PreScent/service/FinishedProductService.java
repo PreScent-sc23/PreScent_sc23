@@ -62,25 +62,23 @@ public class FinishedProductService {
     }
 
     private void validateDuplicatedFp(Integer shopKey, String fpName) {
-        Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
-        if(!foundFlowerShopEntity.isPresent()) {
+        Optional<FlowerShopEntity> foundFlowerShopEntity = flowerShopRepo.findByshopKey(shopKey);
+        if (!foundFlowerShopEntity.isPresent()) {
             throw new IllegalStateException("인식할 수 없는 매장입니다. 완제품을 등록할 수 없습니다.");
         }
         FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
-        if (flowerShopEntity.getFinishedProductEntityList()==null) {
+        if (flowerShopEntity.getFinishedProductEntityList() == null) {
             System.out.println("매장이 가진 완제품이 존재하지 않습니다.");
             return;
         }
         List<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
-        for( FinishedProductEntity fpEntity : finishedProductEntityList) {
-            if(fpEntity.getFpName().equals(fpName))
-            {
-                throw new IllegalStateException(fpName+"는 이미 등록된 상품입니다.");
+        for (FinishedProductEntity fpEntity : finishedProductEntityList) {
+            if (fpEntity.getFpName().equals(fpName)) {
+                throw new IllegalStateException(fpName + "는 이미 등록된 상품입니다.");
             }
         }
-
-    public Optional<FinishedProductEntity> getFinishedProductWithFpKey(Integer fpKey)
-    {
+    }
+    public Optional<FinishedProductEntity> getFinishedProductWithFpKey(Integer fpKey){
         return finishedProductRepo.findByFpKey(fpKey);
     }
     public Optional<List<FinishedProductEntity>> getFinishedProductWithFpName(String fpName)

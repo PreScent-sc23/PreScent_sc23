@@ -44,7 +44,7 @@ public class CustomerController {
     public String login(@RequestParam CustomerLoginRequestDto customerLoginRequestDto ,
                         HttpSession session, RedirectAttributes redirectAttributes) {
         try {
-            CustomerDto loginResult = customerService.login(customerLoginRequestDto.getId(), customerLoginRequestDto.getPassword());
+            CustomerDto loginResult = customerService.login(customerLoginRequestDto.getSellerIdEmail(), customerLoginRequestDto.getSellerPassword());
             session.setAttribute("loginCustomerIdEmail", loginResult.getCustomerIdEmail());
 
             if (loginResult.getCustomerLocation() == null) {
