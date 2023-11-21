@@ -9,6 +9,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.Column;
 import java.io.IOException;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,9 +20,9 @@ public class FinishedProductDto {
     private String fpTag;
     private Integer fpPrice;
     private String fpDetail;
-    private String[] fpFlowerList;
+    private List<String> fpFlowerList;
 
-    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
+    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, List<String> fpFlowerList) {
     }
 
     public FinishedProductDto() {

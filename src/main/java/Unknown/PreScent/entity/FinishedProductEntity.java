@@ -35,7 +35,7 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private boolean fpState = true;
 
-    private String[] fpFlowerList;
+    private List<String> fpFlowerList;
 //    private String fpFlowerList;
 
     private String fpDetail;
@@ -67,7 +67,7 @@ public class FinishedProductEntity {
         this.fpOrderEntityList.add(fpOrderEntity);
     }
 
-    public FinishedProductEntity(String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
+    public FinishedProductEntity(String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, List<String> fpFlowerList) { // 테스트용
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;

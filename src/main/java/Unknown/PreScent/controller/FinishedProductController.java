@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FinishedProductService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,8 +48,9 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestPart Integer shopKey, @RequestPart FinishedProductDto finishedProductDto)
+    public FinishedProductEntity addFinishedProduct(@RequestParam Integer shopKey, @RequestPart("fpImage") MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") List<String> fpFlowerList)
     {
+        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
         return finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
     }
 

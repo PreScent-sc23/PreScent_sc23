@@ -31,7 +31,7 @@ public class FinishedProductService {
     }
 
     // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, String fpDetail, String[] fpFlowerList){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, String fpDetail, List<String> fpFlowerList){
         validateDuplicatedFp(shopKey, fpName);
 
         FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
