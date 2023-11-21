@@ -50,6 +50,14 @@ public class FinishedProductService {
             System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()후"+foundFlowerShopEntity.get().getShopKey());
             finishedProductEntity.setFlowerShopEntity(flowerShopEntity);
             System.out.println("---------------------------------in addFinishedProductToShop setFlowershopEntity후"+finishedProductEntity);
+
+            System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
+            System.out.println("fpName 값 : "+finishedProductEntity.getFpName()+"--------------------------------------------");
+            System.out.println("fpTag 값 : "+finishedProductEntity.getFpTag()+"--------------------------------------------");
+            System.out.println("fpPrice 값 : "+finishedProductEntity.getFpPrice()+"--------------------------------------------");
+            System.out.println("fpDetail 값 : "+finishedProductEntity.getFpDetail()+"--------------------------------------------");
+            System.out.println("fpFlowerList 값 : "+finishedProductEntity.getFpFlowerList()+"--------------------------------------------");
+
             finishedProductRepo.save(finishedProductEntity);
             flowerShopRepo.save(flowerShopEntity);
             System.out.println("---------------------------------in addFinishedProductToShop save끝");
