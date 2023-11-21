@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class FinishedProductController {
 
     private final FinishedProductService finishedProductService;
-
+    private Logger log;
     @Autowired
     public FinishedProductController(FinishedProductService finishedProductService)
     {
@@ -50,6 +51,13 @@ public class FinishedProductController {
     @PostMapping("/add")
     public FinishedProductEntity addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
     {
+        log.debug("shopKey 값 : "+shopKey+"--------------------------------------------");
+        log.debug("fpName 값 : "+fpName+"--------------------------------------------");
+        log.debug("fpTag 값 : "+fpTag+"--------------------------------------------");
+        log.debug("fpPrice 값 : "+fpPrice+"--------------------------------------------");
+        log.debug("fpDetail 값 : "+fpDetail+"--------------------------------------------");
+        log.debug("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+
         if (fpImage != null && !fpImage.isEmpty()) {
             System.out.println("file is not provided");
         }
