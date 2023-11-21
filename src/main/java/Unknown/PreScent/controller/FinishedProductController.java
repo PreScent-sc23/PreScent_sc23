@@ -63,6 +63,7 @@ public class FinishedProductController {
         }
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
         FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
+        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
