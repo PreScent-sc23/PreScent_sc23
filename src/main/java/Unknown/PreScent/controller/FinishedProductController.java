@@ -47,7 +47,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, @RequestPart FinishedProductDto finishedProductDto)
+    public FinishedProductEntity addFinishedProduct(@RequestPart Integer shopKey, @RequestPart FinishedProductDto finishedProductDto)
     {
         return finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
     }
