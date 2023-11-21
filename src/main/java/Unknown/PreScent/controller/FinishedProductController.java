@@ -51,12 +51,12 @@ public class FinishedProductController {
     @PostMapping("/add")
     public FinishedProductEntity addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
     {
-        log.debug("shopKey 값 : "+shopKey+"--------------------------------------------");
-        log.debug("fpName 값 : "+fpName+"--------------------------------------------");
-        log.debug("fpTag 값 : "+fpTag+"--------------------------------------------");
-        log.debug("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-        log.debug("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-        log.debug("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+        System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
+        System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
+        System.out.println("fpTag 값 : "+fpTag+"--------------------------------------------");
+        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
+        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
+        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
         if (fpImage != null && !fpImage.isEmpty()) {
             System.out.println("file is not provided");
