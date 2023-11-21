@@ -76,6 +76,10 @@ public class FlowerShopService {
         return flowerShopRepo.save(flowerShopEntity);
     }
 
+    public void addFlowerShopSchedule(){
+
+    }
+
     public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)
     {
         return flowerShopRepo.findByshopKey(shopKey);

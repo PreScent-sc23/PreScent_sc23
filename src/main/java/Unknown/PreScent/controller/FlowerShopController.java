@@ -38,13 +38,13 @@ public class FlowerShopController {
     {
         Integer sellerKey = Integer.parseInt(sSellerKey);
 
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("sellerKey: " + sellerKey);
-        System.out.println("shopName: " + flowerShopEntity.getShopName());
-        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
-        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
-        System.out.println("description: " + flowerShopEntity.getDescription() + "\n");
-        System.out.println("---------------------------------------------------------------------");
+//        System.out.println("---------------------------------------------------------------------");
+//        System.out.println("sellerKey: " + sellerKey);
+//        System.out.println("shopName: " + flowerShopEntity.getShopName());
+//        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
+//        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
+//        System.out.println("description: " + flowerShopEntity.getDescription() + "\n");
+//        System.out.println("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {
 
             System.out.println("bindingResult error!!!");

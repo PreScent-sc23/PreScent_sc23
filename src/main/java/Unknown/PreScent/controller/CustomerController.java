@@ -15,16 +15,17 @@ import javax.validation.Valid;
 @Controller
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
+@RequestMapping("/customer")
 public class CustomerController {
 
     private CustomerService customerService;
 
-    @GetMapping("/customer/signup")
+    @GetMapping("/signup")
     public String signup(){
         return "customer/signup";
     }
 
-    @PostMapping("/customer/signup")
+    @PostMapping("/signup")
     public String registerCustomer(@Valid @ModelAttribute CustomerDto customerDto,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes) {
@@ -37,10 +38,10 @@ public class CustomerController {
         return "redirect:/customer/login";
     }
 
-    @GetMapping("/customer/login")
+    @GetMapping("/login")
     public String login() { return "customer/login"; }
 
-    @PostMapping("/customer/login")
+    @PostMapping("/login")
     public String login(@RequestParam String id, @RequestParam String password,
                         HttpSession session, RedirectAttributes redirectAttributes) {
         try {
