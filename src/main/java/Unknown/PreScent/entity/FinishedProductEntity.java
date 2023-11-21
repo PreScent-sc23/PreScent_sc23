@@ -102,6 +102,8 @@ public class FinishedProductEntity {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+//        if(finishedProductEntity.getFpImage().length > 0) System.out.println("영보다커!!!---------------------------------------------------------------");
+//        else System.out.println("아냐 이미지 없어!!!-----------------------------------------------");
         if(finishedProductEntity.getFpImage() != null)
         {System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage().length+"---------------");}
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
