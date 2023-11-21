@@ -8,6 +8,7 @@ import net.prescent.service.AccessTokenService;
 import net.prescent.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class SellerController {
 
     private final SellerService sellerService;
     private final AccessTokenService accessTokenService;
-    private Logger log;
+    private Logger log = LoggerFactory.getLogger(SellerController.class);
 
     @PostMapping("/seller/signup")
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
