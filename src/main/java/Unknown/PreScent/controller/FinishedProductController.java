@@ -1,5 +1,6 @@
 package Unknown.PreScent.controller;
 
+import Unknown.PreScent.dto.FinishedProductDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,20 +30,26 @@ public class FinishedProductController {
 //        return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
 //    }
 
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductEntity finishedProductEntity)
+//    {
+//        System.out.println("Result: " + finishedProductEntity.getFpFlowerList() + "// //" + finishedProductEntity.getFpDetail() + "\n");
+//        finishedProductService.addFinishedProduct(finishedProductEntity.getShopKey(),
+//                finishedProductEntity.getFpName(),
+//                finishedProductEntity.getFpTag(),
+//                finishedProductEntity.getFpPrice(),
+//                finishedProductEntity.getFpFlowerList(),
+//                finishedProductEntity.getFpDetail());
+//
+//        System.out.println(finishedProductService.getFinishedProductWithShopKey(0).get().get(0).getFpFlowerList());
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    } //old version
+
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductEntity finishedProductEntity)
+    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, FinishedProductDto finishedProductDto)
     {
-        System.out.println("Result: " + finishedProductEntity.getFpFlowerList() + "// //" + finishedProductEntity.getFpDetail() + "\n");
-        finishedProductService.addFinishedProduct(finishedProductEntity.getShopKey(),
-                finishedProductEntity.getFpName(),
-                finishedProductEntity.getFpTag(),
-                finishedProductEntity.getFpPrice(),
-                finishedProductEntity.getFpFlowerList(),
-                finishedProductEntity.getFpDetail());
-
-        System.out.println(finishedProductService.getFinishedProductWithShopKey(0).get().get(0).getFpFlowerList());
-
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
     }
 
     @GetMapping("/{fpKey}")
