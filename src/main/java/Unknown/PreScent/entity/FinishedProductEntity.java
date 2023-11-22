@@ -98,12 +98,16 @@ public class FinishedProductEntity {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
         try {
             if(finishedProductDto.getFpImage()!=null)
-            {finishedProductEntity.setFpImage(finishedProductDto.getFpImage().getBytes());}
+            {
+                finishedProductEntity.setFpImage(finishedProductDto.getFpImage().getBytes());
+                System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage().length+"---------------");
+            }
+            else {
+                System.out.println("DtoToEntity내부 fpImage가 비어있습니다 ******************************");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(finishedProductEntity.getFpImage() != null)
-        {System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage().length+"---------------");}
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());

@@ -79,7 +79,6 @@ public class FlowerShopEntityServiceTest {
     }
 
     @Test
-    //@Transactional
     @DisplayName("Sellerkey같은 매장 생성 테스트")
     public void testSameSellerKeyShop()
     {

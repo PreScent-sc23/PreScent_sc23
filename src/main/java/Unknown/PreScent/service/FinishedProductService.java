@@ -56,7 +56,7 @@ public class FinishedProductService {
             System.out.println("fpTag 값 : "+finishedProductEntity.getFpTag()+"--------------------------------------------");
             System.out.println("fpPrice 값 : "+finishedProductEntity.getFpPrice()+"--------------------------------------------");
             System.out.println("fpDetail 값 : "+finishedProductEntity.getFpDetail()+"--------------------------------------------");
-            System.out.println("fpFlowerList 값 : "+finishedProductEntity.getFpFlowerList()+"--------------------------------------------");
+            System.out.printf("fpFlowerList 값 : %s--------------------------------------------%n", finishedProductEntity.getFpFlowerList());
             if(finishedProductEntity.getFpImage() != null)
             {System.out.println("여긴 addFinishedProduct fpImage길이를 확인"+finishedProductEntity.getFpImage().length+"---------------");
             System.out.println("여긴 addFinishedProduct fpImage값을 확인"+finishedProductEntity.getFpImage().toString()+"---------------");}
@@ -67,7 +67,7 @@ public class FinishedProductService {
         }
         else
         {
-            throw new IllegalStateException("인식할 수 없는 매장입니다. 완제품을 등록할 수 없습니다.");
+            throw new IllegalStateException("addFinishedProduct내부 인식할 수 없는 매장입니다. 완제품을 등록할 수 없습니다.");
         }
     }
 

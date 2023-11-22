@@ -49,7 +49,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam String fpName, @RequestParam(required = false) String fpTag, @RequestParam Integer fpPrice, @RequestParam(required = false) String fpDetail, @RequestParam(required = false) String fpFlowerList)
     {
         System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
         System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
@@ -58,11 +58,12 @@ public class FinishedProductController {
         System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
         System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
-        if (fpImage != null && !fpImage.isEmpty()) {
+        if (fpImage == null || fpImage.isEmpty()) {
             System.out.println("file is not provided");
         }
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
         FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
+        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
