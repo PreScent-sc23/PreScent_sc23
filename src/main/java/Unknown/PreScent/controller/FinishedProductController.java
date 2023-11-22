@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import Unknown.PreScent.service.FinishedProductService;
 import org.springframework.web.multipart.MultipartFile;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,29 +49,50 @@ public class FinishedProductController {
 //        return ResponseEntity.status(HttpStatus.CREATED).build();
 //    } //old version
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam String shopKey,
-                                                @RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
-                                                @RequestParam("fpName") String fpName,
-                                                @RequestParam("fpTag") String fpTag,
-                                                @RequestParam("fpPrice") String fpPrice,
-                                                @RequestParam("fpDetail") String fpDetail,
-                                                @RequestParam("fpFlowerList") String fpFlowerList)
-    {
-        System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
-        System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
-        System.out.println("fpTag 값 : "+fpTag+"--------------------------------------------");
-        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addFinishedProduct(@RequestParam String shopKey,
+//                                                @RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
+//                                                @RequestParam("fpName") String fpName,
+//                                                @RequestParam("fpTag") String fpTag,
+//                                                @RequestParam("fpPrice") String fpPrice,
+//                                                @RequestParam("fpDetail") String fpDetail,
+//                                                @RequestParam("fpFlowerList") String fpFlowerList)
+//    {
+//        System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
+//        System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
+//        System.out.println("fpTag 값 : "+fpTag+"--------------------------------------------");
+//        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
+//        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
+//        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+//
+//        if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+//        if(fpImage == null) System.out.println("fpImage is Null!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+//        System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
+//
+//        String[] fpFlowerListToStringArray = fpFlowerList.split(",");
+//        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, Integer.parseInt(fpPrice), fpDetail, fpFlowerListToStringArray);
+//        finishedProductService.addFinishedProduct(Integer.parseInt(shopKey), finishedProductDto);
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    }
 
+    @PostMapping("/add")
+    public ResponseEntity<?> addFinishedProduct(@RequestParam(name = "fpImage", required = false) MultipartFile fpImage,
+                                                @RequestParam("jsonData") String jsonData)
+    {
         if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-        if(fpImage == null) System.out.println("fpImage is Null!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
 
+        JSONObject jsonObject = new JSONObject(jsonData);
+        Integer shopKey = Integer.parseInt(jsonObject.getString("shopKey"));
+        String fpName = jsonObject.getString("fpName");
+        String fpTag = jsonObject.getString("fpTag");
+        Integer fpPrice = Integer.parseInt(jsonObject.getString("fpPrice"));
+        String fpDetail = jsonObject.getString("fpDetail");
+        String fpFlowerList = jsonObject.getString("fpFlowerList");
+
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, Integer.parseInt(fpPrice), fpDetail, fpFlowerListToStringArray);
-        finishedProductService.addFinishedProduct(Integer.parseInt(shopKey), finishedProductDto);
+        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
+        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
