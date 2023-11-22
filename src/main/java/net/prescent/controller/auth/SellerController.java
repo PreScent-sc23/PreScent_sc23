@@ -44,7 +44,11 @@ public class SellerController {
     }
 
     @PostMapping("/seller/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
         String token = sellerService.login(loginRequest.getId(), loginRequest.getPassword());
         return ResponseEntity.ok(new LoginResponse(token));
     }
