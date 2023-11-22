@@ -7,17 +7,14 @@
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.DisplayName;
-//import org.junit.runner.RunWith;
 //import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
 //
 //import static org.assertj.core.api.Assertions.*;
 //import static org.junit.jupiter.api.Assertions.*;
 //
 //
 ////@Transactional
-////@SpringBootTest
-//@RunWith(SpringRunner.class)
+//@SpringBootTest
 //public class FlowerShopEntityServiceTest {
 //    private final FlowerShopService flowerShopService;
 //    private final FlowerShopRepository flowerShopRepository;

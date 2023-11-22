@@ -68,6 +68,31 @@ public class FinishedProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
+    @PostMapping("/testadd")
+    public ResponseEntity<?> handleFileUpload(
+            @RequestPart("fpImage") MultipartFile fpImage,
+            @RequestPart(value = "description", required = false) String description) {
+
+        // 파일 처리 로직
+        if (!fpImage.isEmpty()) {
+            // 파일이 비어 있지 않은 경우에만 처리
+            try {
+                byte[] fileBytes = fpImage.getBytes();
+                // 여기에서 파일을 저장하거나 추가 로직을 수행할 수 있습니다.
+                System.out.println("File Name: " + fpImage.getOriginalFilename());
+                System.out.println("File Size: " + fpImage.getSize());
+                System.out.println("Description: " + description);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(500).body("Error while processing the file.");
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
     @GetMapping("/{fpKey}")
     public Optional<FinishedProductEntity> getFinishedProductByFpKey(@PathVariable Integer fpKey)
     {
