@@ -58,6 +58,7 @@ public class FinishedProductController {
         System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
         System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
+        if(fpImage == null || fpImage.isEmpty()) System.out.println("Did't get any file!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         if (fpImage != null && !fpImage.isEmpty()) {
             System.out.println("file is not provided");
         }
