@@ -76,11 +76,13 @@ public class FinishedProductController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam(name = "fpImage", required = false) MultipartFile fpImage,
-                                                @RequestParam("jsonData") String jsonData)
+    public ResponseEntity<?> addFinishedProduct(@RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
+                                                @RequestPart("jsonData") String jsonData)
     {
-        if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-        System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
+//        if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+//        System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
+        String fileName = fpImage.getOriginalFilename();
+        System.out.println("FileName is: " + fileName + "++++++++++++++++++++++++++++++++");
 
         JSONObject jsonObject = new JSONObject(jsonData);
         Integer shopKey = Integer.parseInt(jsonObject.getString("shopKey"));
