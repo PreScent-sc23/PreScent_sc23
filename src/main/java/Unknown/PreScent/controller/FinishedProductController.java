@@ -49,13 +49,13 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey,
-                                                @RequestParam(name = "fpImage", required = false) MultipartFile fpImage,
-                                                @RequestParam("fpName") String fpName,
-                                                @RequestParam("fpTag") String fpTag,
-                                                @RequestParam("fpPrice") Integer fpPrice,
-                                                @RequestParam("fpDetail") String fpDetail,
-                                                @RequestParam("fpFlowerList") String fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(@RequestPart String shopKey,
+                                                @RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
+                                                @RequestPart("fpName") String fpName,
+                                                @RequestPart("fpTag") String fpTag,
+                                                @RequestPart("fpPrice") String fpPrice,
+                                                @RequestPart("fpDetail") String fpDetail,
+                                                @RequestPart("fpFlowerList") String fpFlowerList)
     {
         System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
         System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
@@ -69,8 +69,8 @@ public class FinishedProductController {
         System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
 
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
-        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
+        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, Integer.parseInt(fpPrice), fpDetail, fpFlowerListToStringArray);
+        finishedProductService.addFinishedProduct(Integer.parseInt(shopKey), finishedProductDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
