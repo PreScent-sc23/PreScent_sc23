@@ -18,6 +18,7 @@ public class SellerService {
     private final PasswordEncoder passwordEncoder;
     private final AccessTokenService accessTokenService;
 
+    @Transactional
     public SellerDto signup(SellerDto sellerDto) {
         validateDuplicatedSeller(sellerDto.getSellerKey());
 
@@ -35,6 +36,7 @@ public class SellerService {
                 });
     }
 
+    @Transactional
     public String login(String id, String password) {
         SellerEntity seller = sellerRepository.findBySellerIdEmail(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 판매자 Email입니다."));
