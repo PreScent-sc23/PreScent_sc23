@@ -18,7 +18,6 @@ public class SellerService {
     private final PasswordEncoder passwordEncoder;
     private final AccessTokenService accessTokenService;
 
-    @Transactional
     public SellerDto signup(SellerDto sellerDto) {
         validateDuplicatedSeller(sellerDto.getSellerKey());
 
