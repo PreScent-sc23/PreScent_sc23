@@ -7,30 +7,29 @@
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.DisplayName;
-//import org.springframework.beans.factory.annotation.Autowired;
+//import org.junit.runner.RunWith;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.test.context.junit4.SpringRunner;
 //
-//import javax.transaction.Transactional;
-//
-//import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 //import static org.assertj.core.api.Assertions.*;
 //import static org.junit.jupiter.api.Assertions.*;
 //
 //
-//@Transactional
-//@SpringBootTest
+////@Transactional
+////@SpringBootTest
+//@RunWith(SpringRunner.class)
 //public class FlowerShopEntityServiceTest {
-//    @Autowired
-//    private FlowerShopService flowerShopService;
+//    private final FlowerShopService flowerShopService;
+//    private final FlowerShopRepository flowerShopRepository;
+//    private final SellerRepository sellerRepository;
+//    private final SellerService sellerService;
 //
-//    @Autowired
-//    private FlowerShopRepository flowerShopRepository;
-//
-//    @Autowired
-//    private SellerRepository sellerRepository;
-//    @Autowired
-//    private SellerService sellerService;
+//    public FlowerShopEntityServiceTest(FlowerShopService flowerShopService, FlowerShopRepository flowerShopRepository, SellerRepository sellerRepository, SellerService sellerService) {
+//        this.flowerShopService = flowerShopService;
+//        this.flowerShopRepository = flowerShopRepository;
+//        this.sellerRepository = sellerRepository;
+//        this.sellerService = sellerService;
+//    }
 //
 //    @BeforeEach
 //    public void setup()

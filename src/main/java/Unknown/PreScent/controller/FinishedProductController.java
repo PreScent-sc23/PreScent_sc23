@@ -49,7 +49,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage") MultipartFile fpImage, @RequestParam("fpName") String fpName, @RequestParam("fpTag") String fpTag, @RequestParam("fpPrice") Integer fpPrice, @RequestParam("fpDetail") String fpDetail, @RequestParam("fpFlowerList") String fpFlowerList)
     {
         System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
         System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
@@ -61,9 +61,7 @@ public class FinishedProductController {
         if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         if(fpImage == null) System.out.println("fpImage is Null!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
-        if (fpImage != null && !fpImage.isEmpty()) {
-            System.out.println("file is not provided");
-        }
+
         String[] fpFlowerListToStringArray = fpFlowerList.split(",");
         FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
         finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
