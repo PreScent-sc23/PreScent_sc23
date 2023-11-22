@@ -49,13 +49,13 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestPart String shopKey,
+    public ResponseEntity<?> addFinishedProduct(@RequestParam String shopKey,
                                                 @RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
-                                                @RequestPart("fpName") String fpName,
-                                                @RequestPart("fpTag") String fpTag,
-                                                @RequestPart("fpPrice") String fpPrice,
-                                                @RequestPart("fpDetail") String fpDetail,
-                                                @RequestPart("fpFlowerList") String fpFlowerList)
+                                                @RequestParam("fpName") String fpName,
+                                                @RequestParam("fpTag") String fpTag,
+                                                @RequestParam("fpPrice") String fpPrice,
+                                                @RequestParam("fpDetail") String fpDetail,
+                                                @RequestParam("fpFlowerList") String fpFlowerList)
     {
         System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
         System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
