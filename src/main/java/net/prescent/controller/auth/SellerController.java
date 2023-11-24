@@ -3,19 +3,16 @@ package net.prescent.controller.auth;
 import net.prescent.dto.SellerDto;
 import net.prescent.dto.LoginResponse;
 import net.prescent.dto.LoginRequest;
-import net.prescent.entity.SellerEntity;
 import net.prescent.service.AccessTokenService;
 import net.prescent.service.SellerService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
@@ -26,7 +23,7 @@ public class SellerController {
 
     private final SellerService sellerService;
     private final AccessTokenService accessTokenService;
-    private Logger log = LoggerFactory.getLogger(SellerController.class);
+    private Logger log = LoggerFactory.getLogger(CustomerController.class);
 
     @PostMapping("/seller/signup")
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.mock.web.MockHttpSession;
 
 import javax.transaction.Transactional;
 
@@ -34,35 +33,36 @@ class SellerServiceTest {
         sellerRepository.deleteAllInBatch();
     }
 
-    private SellerDto createSellerDto(Integer sellerKey, String email) {
+    private SellerDto createSellerDto() {
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(sellerKey);
-        sellerDto.setSellerName("suhyeon");
-        sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail(email);
-        sellerDto.setSellerPassword("04prescent");
+        sellerDto.setBusinessKey(1234512345);
+        sellerDto.setSellerName("사업자");
+        sellerDto.setSellerPhonenum("010-5678-5678");
+        sellerDto.setSellerIdEmail("sellerTest@gmail.com");
+        sellerDto.setSellerPassword("04seller");
         return sellerDto;
     }
 
     @Test
     @DisplayName("판매자 회원가입 테스트")
     public void signupSellerTest() {
-        SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
+        SellerDto sellerDto = createSellerDto();
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
 
-        assertNotNull(savedSellerDto.getSellerKey());
+        assertNotNull(savedSellerDto.getBusinessKey());
         SellerEntity savedSeller = sellerRepository.findBySellerIdEmail(savedSellerDto.getSellerIdEmail())
                 .orElseThrow(() -> new IllegalArgumentException("판매자를 찾을 수 없습니다."));
-        assertTrue(passwordEncoder.matches("04prescent", savedSeller.getSellerPassword()));
+        assertTrue(passwordEncoder.matches(sellerDto.getSellerPassword(), savedSeller.getSellerPassword()));
     }
 
     @Test
     @DisplayName("중복 사업자번호 가입 테스트")
-    public void signupDuplicateSellerKeyTest() {
-        SellerDto seller1 = createSellerDto(123456789, "ajou@gmail.com");
+    public void signupDuplicateBusinessKeyTest() {
+        SellerDto seller1 = createSellerDto();
         sellerService.signup(seller1);
 
-        SellerDto seller2 = createSellerDto(123456789, "newemail@gmail.com");
+        SellerDto seller2 = createSellerDto();
+        seller2.setSellerIdEmail("newemail@gmail.com");
 
         assertThrows(IllegalStateException.class, () -> sellerService.signup(seller2));
     }
@@ -70,10 +70,10 @@ class SellerServiceTest {
     @Test
     @DisplayName("판매자 로그인 성공 테스트")
     public void loginSuccessTest() {
-        SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
+        SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
 
-        String token = sellerService.login("ajou@gmail.com", "04prescent");
+        String token = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
         assertNotNull(token, "토큰이 반환되지 않았습니다.");
 
         boolean isValidToken = accessTokenService.validateAccessToken(token);
@@ -83,31 +83,31 @@ class SellerServiceTest {
     @Test
     @DisplayName("판매자 로그인 실패 - 잘못된 Email 테스트")
     void loginFailureWrongIdTest() {
-        SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
+        SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("wrongemail@gmail.com", "04prescent");
+            sellerService.login("wrongemail@gmail.com", sellerDto.getSellerPassword());
         });
     }
 
     @Test
     @DisplayName("판매자 로그인 실패 - 잘못된 비밀번호 테스트")
     void loginFailureWrongPasswordTest() {
-        SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
+        SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("ajou@gmail.com", "wrongpassword");
+            sellerService.login(sellerDto.getSellerIdEmail(), "wrongpassword");
         });
     }
 
     @Test
     @DisplayName("판매자 로그아웃 테스트")
     public void logoutTest() {
-        SellerDto sellerDto = createSellerDto(123456789, "ajou@gmail.com");
+        SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
-        String token = sellerService.login("ajou@gmail.com", "04prescent");
+        String token = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
 
         boolean isValidTokenBeforeLogout = accessTokenService.validateAccessToken(token);
         assertTrue(isValidTokenBeforeLogout, "로그아웃 전 토큰이 유효해야 합니다.");

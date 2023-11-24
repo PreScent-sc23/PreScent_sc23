@@ -1,6 +1,8 @@
 package net.prescent.security;
 
+import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
+import net.prescent.entity.UserEntity;
 import net.prescent.service.AccessTokenService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,19 +31,25 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String token = request.getHeader("Authorization");
         if (token != null && accessTokenService.validateAccessToken(token)) {
-            SellerEntity seller = accessTokenService.getSellerFromToken(token);
-            if (seller != null) {
-                Collection<? extends GrantedAuthority> authorities = getAuthorities(seller);
+            UserEntity user = accessTokenService.getUserFromToken(token);
+            if (user != null) {
+                Collection<? extends GrantedAuthority> authorities = getAuthorities(user);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        seller.getSellerIdEmail(), null, authorities);
+                        user.getKey(), null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
         filterChain.doFilter(request, response);
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(SellerEntity seller) {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_SELLER"));
+    private Collection<? extends GrantedAuthority> getAuthorities(UserEntity user) {
+
+        if (user instanceof SellerEntity) {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_SELLER"));
+        }
+        else if (user instanceof CustomerEntity) {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
+        }
+        return Collections.emptyList();
     }
 }
-

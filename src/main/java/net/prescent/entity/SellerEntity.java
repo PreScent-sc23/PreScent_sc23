@@ -10,10 +10,12 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "seller")
-public class SellerEntity {
-    @Id
+public class SellerEntity extends UserEntity {
+
     @Column(nullable = false)
     private Integer sellerKey;
+    @Column(nullable = false)
+    private Integer businessKey;
     @Column(nullable = false)
     private String sellerName;
     @Column(nullable = false, unique = true)
@@ -35,12 +37,19 @@ public class SellerEntity {
     }
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
+
         sellerEntity.setSellerKey(sellerDto.getSellerKey());
+        sellerEntity.setBusinessKey(sellerDto.getBusinessKey());
         sellerEntity.setSellerName(sellerDto.getSellerName());
         sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());
         sellerEntity.setSellerIdEmail(sellerDto.getSellerIdEmail());
         sellerEntity.setSellerPassword(sellerDto.getSellerPassword());
         sellerEntity.setIsgrant(sellerDto.getIsgrant());
         return sellerEntity;
+    }
+
+    @Override
+    public String getUserType() {
+        return "Seller";
     }
 }

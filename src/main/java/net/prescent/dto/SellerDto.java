@@ -5,7 +5,6 @@ import net.prescent.entity.SellerEntity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.net.http.HttpHeaders;
 
 @Getter
 @Setter
@@ -13,8 +12,10 @@ import java.net.http.HttpHeaders;
 @ToString(exclude = "sellerPassword")
 public class SellerDto {
 
-    //@NotBlank(message = "사업자등록번호를 작성해주세요")
+
     private Integer sellerKey;
+    //@NotBlank(message = "사업자등록번호를 작성해주세요")
+    private Integer businessKey;
     @NotBlank(message = "이름을 작성해주세요")
     private String sellerName;
     @NotBlank(message = "이메일을 작성해주세요")
@@ -30,6 +31,7 @@ public class SellerDto {
         SellerDto sellerDto = new SellerDto();
 
         sellerDto.setSellerKey(sellerEntity.getSellerKey());
+        sellerDto.setBusinessKey(sellerEntity.getBusinessKey());
         sellerDto.setSellerName(sellerEntity.getSellerName());
         sellerDto.setSellerPhonenum(sellerEntity.getSellerPhonenum());
         sellerDto.setSellerIdEmail(sellerEntity.getSellerIdEmail());

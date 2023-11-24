@@ -38,7 +38,7 @@ public class FlowerShopEntityServiceTest {
     }
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(123456789);
+        sellerDto.setBusinessKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
         sellerDto.setSellerIdEmail("sooh");
@@ -58,7 +58,7 @@ public class FlowerShopEntityServiceTest {
 
         assertThat(addedShop).isNotNull();
         assertThat(addedShop.getSellerEntity()).isNotNull();
-        assertThat((addedShop.getSellerEntity()).getSellerKey()).isEqualTo(123456789);
+        assertThat((addedShop.getSellerEntity()).getBusinessKey()).isEqualTo(123456789);
 
         Integer testShopKeyIndex = addedShop.getShopKey();
 

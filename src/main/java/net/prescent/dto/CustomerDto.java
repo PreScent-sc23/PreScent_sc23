@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "customerPassword")
 public class CustomerDto {
 
     private Integer customerKey;

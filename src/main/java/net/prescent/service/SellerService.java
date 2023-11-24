@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
@@ -20,7 +19,7 @@ public class SellerService {
 
     @Transactional
     public SellerDto signup(SellerDto sellerDto) {
-        validateDuplicatedSeller(sellerDto.getSellerKey());
+        validateDuplicatedSeller(sellerDto.getBusinessKey());
 
         SellerEntity sellerEntity = SellerEntity.toSellerEntity(sellerDto);
         sellerEntity.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
@@ -29,8 +28,8 @@ public class SellerService {
         return SellerDto.toSellerDto(savedEntity);
     }
 
-    private void validateDuplicatedSeller(Integer sellerKey) {
-        sellerRepository.findBySellerKey(sellerKey)
+    private void validateDuplicatedSeller(Integer businessKey) {
+        sellerRepository.findByBusinessKey(businessKey)
                 .ifPresent(s -> {
                     throw new IllegalStateException("이미 등록된 사업자입니다.");
                 });

@@ -1,68 +1,59 @@
 package net.prescent.controller.auth;
 
 import net.prescent.dto.CustomerDto;
-import net.prescent.service.CustomerService;
+import net.prescent.dto.LoginRequest;
+import net.prescent.dto.LoginResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.prescent.service.AccessTokenService;
+import net.prescent.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 @RestController
+//@RequestMapping("/api/v1/auth")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class CustomerController {
-    @Autowired
-    private CustomerService customerService;
 
-    @GetMapping("/customer/signup")
-    public String signup(){
-        return "customer/signup";
-    }
+    private final CustomerService customerService;
+    private final AccessTokenService accessTokenService;
+    private Logger log = LoggerFactory.getLogger(CustomerController.class);
 
     @PostMapping("/customer/signup")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto,
-                                              BindingResult bindingResult) {
-        System.out.println("Enter registerCustomer!!!");
-        System.out.println("=>result: " + customerDto.getCustomerName());
-        System.out.println("=>result: " + customerDto.getCustomerPassword());
-        System.out.println("=>result: " + customerDto.getCustomerIdEmail());
-        System.out.println("=>result: " + customerDto.getCustomerPhonenum());
+                                            BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-
-            System.out.println("bindingResult error!!!");
+            log.debug("BindingResult errors: {}", bindingResult.getAllErrors());
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
-        System.out.println("customerService start!!!");
+
+        log.debug("Proceeding with registration for: {}", customerDto);
         customerService.signup(customerDto);
-        System.out.println("customerService ended!!!");
+        log.debug("customerService ended!");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/customer/login")
-    public String login() { return "customer/login"; }
-
-    @PostMapping("/customer/login")
-    public String login(@RequestParam String id, @RequestParam String password,
-                        HttpSession session, RedirectAttributes redirectAttributes) {
-        try {
-            CustomerDto loginResult = customerService.login(id, password);
-            session.setAttribute("loginCustomerIdEmail", loginResult.getCustomerIdEmail());
-
-            if (loginResult.getCustomerLocation() == null) {
-                return "redirect:/customer/set-location";
-            } else {
-                return "redirect:/customer/main";
-            }
-        } catch (IllegalArgumentException e) {
-            redirectAttributes.addFlashAttribute("loginError", e.getMessage());
-            return "redirect:/customer/login";
+    @PostMapping("/seller/login")  //token 방식으로 수정 후 /login으로 통합 예정
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
+
+        String token = customerService.login(loginRequest.getId(), loginRequest.getPassword());
+        return ResponseEntity.ok(new LoginResponse(token));
+    }
+
+    @PostMapping("/customer/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
+        accessTokenService.deleteAccessToken(token);
+        return ResponseEntity.ok().build();
     }
 }

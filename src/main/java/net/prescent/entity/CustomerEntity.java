@@ -10,9 +10,8 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "customer")
-public class CustomerEntity {
+public class CustomerEntity extends UserEntity {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerKey;
 
@@ -38,6 +37,7 @@ public class CustomerEntity {
 
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto) {
         CustomerEntity customerEntity = new CustomerEntity();
+
         customerEntity.setCustomerKey(customerDto.getCustomerKey());
         customerEntity.setCustomerName(customerDto.getCustomerName());
         customerEntity.setCustomerPhonenum(customerDto.getCustomerPhonenum());
@@ -45,6 +45,11 @@ public class CustomerEntity {
         customerEntity.setCustomerPassword(customerDto.getCustomerPassword());
         customerEntity.setCustomerLocation(customerDto.getCustomerLocation());
         return customerEntity;
+    }
+
+    @Override
+    public String getUserType() {
+        return "Customer";
     }
 
 //    public static FinishedProductEntity createFp(CartEntity cart, Item item, int amount) {
