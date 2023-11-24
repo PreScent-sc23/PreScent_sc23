@@ -1,5 +1,6 @@
 package Unknown.PreScent.service;
 
+import Unknown.PreScent.dto.FlowerShopDto;
 import Unknown.PreScent.entity.FlowerShopEntity;
 import Unknown.PreScent.entity.SellerEntity;
 import Unknown.PreScent.repository.FlowerShopRepository;
@@ -20,8 +21,9 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, FlowerShopEntity flowerShopEntity)
+    public FlowerShopEntity addFlowerShop(Integer sellerKey, FlowerShopDto flowerShopDto)
     {
+        FlowerShopEntity flowerShopEntity = FlowerShopEntity.FlowerShopDtoToEntity(flowerShopDto);
         Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();

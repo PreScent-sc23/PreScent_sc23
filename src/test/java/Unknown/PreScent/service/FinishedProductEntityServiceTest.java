@@ -1,6 +1,7 @@
 package Unknown.PreScent.service;
 
 import Unknown.PreScent.dto.FinishedProductDto;
+import Unknown.PreScent.dto.FlowerShopDto;
 import Unknown.PreScent.dto.SellerDto;
 import Unknown.PreScent.entity.FinishedProductEntity;
 import Unknown.PreScent.entity.FlowerShopEntity;
@@ -51,14 +52,16 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpFlowerList(new String[]{"장미", "안개꽃"});
         return finishedProductDto;
     }
-    public FlowerShopEntity createFlowerShopEntity() {
-        FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
-        flowerShopEntity.setShopName("it's me");
-        flowerShopEntity.setShopPhoneNum("031-308-8223");
-        flowerShopEntity.setShopLocation("suwon city");
-        flowerShopEntity.setOpeningHours(new int[][]{{1, 2, 3}, {3, 4, 5}});
-        flowerShopEntity.setHoliday(new String[]{"monday"});
-        return flowerShopEntity;
+    public FlowerShopDto createFlowerShopDto(){
+        FlowerShopDto flowerShopDto = new FlowerShopDto();
+        flowerShopDto.setShopName("it's me");
+        flowerShopDto.setShopPhoneNum("031-308-8223");
+        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setOpenHour(10);
+        flowerShopDto.setCloseHour(20);
+        flowerShopDto.setWorkday(new String[]{"월", "화", "수", "목", "금"});
+        flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
+        return flowerShopDto;
     }
     public SellerDto createSellerDto(Integer sellerKey) {
         SellerDto sellerDto = new SellerDto();
@@ -74,11 +77,11 @@ public class FinishedProductEntityServiceTest {
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        SellerDto sellerDto = createSellerDto(123456789);
+        SellerDto sellerDto = createSellerDto(12345678);
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
 
-        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
-        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
+        FlowerShopDto flowerShopDto = createFlowerShopDto();
+        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(12345678, flowerShopDto);
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
         FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductDto);

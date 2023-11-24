@@ -1,5 +1,6 @@
 package Unknown.PreScent.controller;
 
+import Unknown.PreScent.dto.FlowerShopDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class FlowerShopController {
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
     public ResponseEntity<?> addFlowerShop(@Valid @RequestParam String sSellerKey,
-                                           @RequestBody FlowerShopEntity flowerShopEntity,
+                                           @RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
         Integer sellerKey = Integer.parseInt(sSellerKey);
@@ -51,7 +52,7 @@ public class FlowerShopController {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
 
-        flowerShopService.addFlowerShop(sellerKey, flowerShopEntity.getShopName(), flowerShopEntity.getShopPhoneNum(), flowerShopEntity.getShopLocation(), flowerShopEntity.getDescription());
+        flowerShopService.addFlowerShop(sellerKey, flowerShopDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);

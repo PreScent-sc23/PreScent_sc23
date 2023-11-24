@@ -20,7 +20,6 @@ public class FinishedProductController {
 
     private final FinishedProductService finishedProductService;
     private Logger log;
-    @Autowired
     public FinishedProductController(FinishedProductService finishedProductService)
     {
         this.finishedProductService = finishedProductService;
@@ -49,7 +48,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestParam(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam String fpName, @RequestParam(required = false) String fpTag, @RequestParam Integer fpPrice, @RequestParam(required = false) String fpDetail, @RequestParam(required = false) String fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam String fpName, @RequestParam(required = false) String fpTag, @RequestParam Integer fpPrice, @RequestParam(required = false) String fpDetail, @RequestParam(required = false) String fpFlowerList)
     {
         System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
         System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
