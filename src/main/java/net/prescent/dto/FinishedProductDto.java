@@ -6,18 +6,22 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
+
 @Getter
 @Setter
 @ToString
 public class FinishedProductDto {
+    private Integer shopKey;
     private MultipartFile fpImage;
     private String fpName;
     private String fpTag;
     private Integer fpPrice;
     private String fpDetail;
-    private String[] fpFlowerList;
+    private String fpFlowerList;
 
-    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
+    public FinishedProductDto(Integer shopKey, MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String fpFlowerList) {
+        this.shopKey = shopKey;
         this.fpImage = fpImage;
         this.fpName = fpName;
         this.fpTag = fpTag;
@@ -39,7 +43,7 @@ public class FinishedProductDto {
         finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
         finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
         finishedProductDto.setFpDetail(finishedProductEntity.getFpDetail());
-        finishedProductDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
+        finishedProductDto.setFpFlowerList(Arrays.toString(finishedProductEntity.getFpFlowerList()));
         return finishedProductDto;
     }
 

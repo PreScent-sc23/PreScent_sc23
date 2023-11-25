@@ -24,26 +24,26 @@ public class FinishedProductService {
     }
 
 
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, FinishedProductDto finishedProductDto){
-        validateDuplicatedFp(shopKey, finishedProductDto.getFpName());
+    public FinishedProductEntity addFinishedProduct(FinishedProductDto finishedProductDto){
+        validateDuplicatedFp(finishedProductDto.getShopKey(), finishedProductDto.getFpName());
         // FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
-        return addFinishedProductToShop(shopKey, finishedProductDto);
+        return addFinishedProductToShop(finishedProductDto);
     }
 
     // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, String fpDetail, String[] fpFlowerList){
+    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, MultipartFile fpImage, Integer fpPrice, String fpDetail, String fpFlowerList){
         validateDuplicatedFp(shopKey, fpName);
 
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(shopKey, finishedProductDto);
+        FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
+        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(finishedProductDto);
 
         return finishedProductRepo.save(addedFinishedProductEntity);
     }
 
 
-    private FinishedProductEntity addFinishedProductToShop(Integer shopKey, FinishedProductDto finishedProductDto) {
+    private FinishedProductEntity addFinishedProductToShop(FinishedProductDto finishedProductDto) {
         FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
-        Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(shopKey);
+        Optional<FlowerShopEntity> foundFlowerShopEntity =  flowerShopRepo.findByshopKey(finishedProductDto.getShopKey());
         if(foundFlowerShopEntity.isPresent()){
             System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()전");
             FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
@@ -51,7 +51,7 @@ public class FinishedProductService {
             finishedProductEntity.setFlowerShopEntity(flowerShopEntity);
             System.out.println("---------------------------------in addFinishedProductToShop setFlowershopEntity후"+finishedProductEntity);
 
-            System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
+            System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
             System.out.println("fpName 값 : "+finishedProductEntity.getFpName()+"--------------------------------------------");
             System.out.println("fpTag 값 : "+finishedProductEntity.getFpTag()+"--------------------------------------------");
             System.out.println("fpPrice 값 : "+finishedProductEntity.getFpPrice()+"--------------------------------------------");

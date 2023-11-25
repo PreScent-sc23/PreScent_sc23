@@ -47,21 +47,19 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestParam Integer shopKey, @RequestPart(name = "fpImage", required = false) MultipartFile fpImage, @RequestParam String fpName, @RequestParam(required = false) String fpTag, @RequestParam Integer fpPrice, @RequestParam(required = false) String fpDetail, @RequestParam(required = false) String fpFlowerList)
+    public ResponseEntity<?> addFinishedProduct(FinishedProductDto finishedProductDto)
     {
-        System.out.println("shopKey 값 : "+shopKey+"--------------------------------------------");
-        System.out.println("fpName 값 : "+fpName+"--------------------------------------------");
-        System.out.println("fpTag 값 : "+fpTag+"--------------------------------------------");
-        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
+        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
+        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
+        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
+        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
+        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
 
-        if (fpImage == null || fpImage.isEmpty()) {
+        if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
             System.out.println("file is not provided");
         }
-        String[] fpFlowerListToStringArray = fpFlowerList.split(",");
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
-        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
+        finishedProductService.addFinishedProduct(finishedProductDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

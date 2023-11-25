@@ -18,8 +18,8 @@ public class FlowerShopController {
 
     private final FlowerShopService flowerShopService;
 
-    @Autowired
-    public FlowerShopController(FlowerShopService flowerShopService)
+
+    FlowerShopController(FlowerShopService flowerShopService)
     {
         this.flowerShopService = flowerShopService;
     }

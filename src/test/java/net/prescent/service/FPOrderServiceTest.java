@@ -79,7 +79,7 @@ public class FPOrderServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-        finishedProductDto.setFpFlowerList(new String[]{"장미", "안개꽃"});
+        finishedProductDto.setFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
 
@@ -117,8 +117,9 @@ public class FPOrderServiceTest {
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
+        finishedProductDto.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductDto);
+        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
 
         Date inputDate = new Date();
         FPOrderCustomerDto fpOrderCustomerDto = createFPOrderCustomerDto(addedFinishedProductEntity.getFpKey(), customerKey, "국민카드 결제정보",inputDate);
