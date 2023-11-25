@@ -17,7 +17,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 class SellerServiceTest {
 
     @Autowired

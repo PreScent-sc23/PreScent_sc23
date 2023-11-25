@@ -37,8 +37,8 @@ public class FlowerShopController {
                                           BindingResult bindingResult)
     {
 
-//        System.out.println("---------------------------------------------------------------------");
-//        System.out.println("sellerKey: " + sellerKey);
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("sellerKey: " + flowerShopDto.getSellerKey());
 //        System.out.println("shopName: " + flowerShopEntity.getShopName());
 //        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
 //        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
