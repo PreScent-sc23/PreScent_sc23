@@ -40,6 +40,7 @@ public class SellerController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -55,4 +56,5 @@ public class SellerController {
         accessTokenService.deleteAccessToken(token);
         return ResponseEntity.ok().build();
     }
+     */
 }
