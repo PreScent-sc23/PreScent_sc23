@@ -47,15 +47,32 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestPart FinishedProductDto finishedProductDto)
+    public ResponseEntity<?> addFinishedProduct(@RequestPart("fpImage") MultipartFile fpImage,
+                                                @RequestPart("shopKey") Integer shopKey,
+                                                @RequestPart("fpName") String fpName,
+                                                @RequestPart("fpTag") String fpTag,
+                                                @RequestPart("fpPrice") Integer fpPrice,
+                                                @RequestPart("fpDetail") String fpDetail,
+                                                @RequestPart("fpFlowerList") String fpFlowerList)
     {
-        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
-        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
-        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
-        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
-        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
-        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
+//        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
+//        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
+//        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
+//        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
+//        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
+//        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
 
+        System.out.println("shopKey 값 : "+ shopKey +"--------------------------------------------");
+        System.out.println("fpName 값 : "+ fpName +"--------------------------------------------");
+        System.out.println("fpTag 값 : "+ fpTag+"--------------------------------------------");
+        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
+        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
+        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+
+        if (fpImage == null || fpImage.isEmpty()) {
+            System.out.println("file is not provided");
+        }
+        FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
         if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
             System.out.println("file is not provided");
         }
