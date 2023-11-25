@@ -47,7 +47,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductDto finishedProductDto)
+    public ResponseEntity<?> addFinishedProduct(@RequestPart FinishedProductDto finishedProductDto)
     {
         System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
         System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
