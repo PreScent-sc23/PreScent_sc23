@@ -40,10 +40,10 @@ public class FlowerShopEntityServiceTest {
         SellerDto sellerDto = new SellerDto();
 
         sellerDto.setBusinessKey(123456789);
-        sellerDto.setSellerName("suhyeon");
-        sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail("sooh");
-        sellerDto.setSellerPassword("04prescent");
+        sellerDto.setName("suhyeon");
+        sellerDto.setPhonenum("010-1111-2222");
+        sellerDto.setIdEmail("sooh");
+        sellerDto.setPassword("04prescent");
         return sellerDto;
     }
     @Test

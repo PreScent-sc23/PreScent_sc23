@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = "sellerPassword")
+@ToString(exclude = "password")
 public class SellerDto {
 
 
@@ -17,24 +17,24 @@ public class SellerDto {
     //@NotBlank(message = "사업자등록번호를 작성해주세요")
     private Integer businessKey;
     @NotBlank(message = "이름을 작성해주세요")
-    private String sellerName;
+    private String name;
     @NotBlank(message = "이메일을 작성해주세요")
     @Email(message = "올바른 이메일 형식을 사용해주세요")
-    private String sellerIdEmail;
+    private String idEmail;
     @NotBlank(message = "비밀번호를 작성해주세요")
-    private String sellerPassword;
+    private String password;
     @NotBlank(message = "전화번호를 작성해주세요")
-    private String sellerPhonenum;
+    private String phonenum;
     private Integer isgrant;
 
     public static SellerDto toSellerDto(SellerEntity sellerEntity) {
         SellerDto sellerDto = new SellerDto();
 
         sellerDto.setBusinessKey(sellerEntity.getBusinessKey());
-        sellerDto.setSellerName(sellerEntity.getSellerName());
-        sellerDto.setSellerPhonenum(sellerEntity.getSellerPhonenum());
-        sellerDto.setSellerIdEmail(sellerEntity.getSellerIdEmail());
-        sellerDto.setSellerPassword(sellerEntity.getSellerPassword());
+        sellerDto.setName(sellerEntity.getName());
+        sellerDto.setPhonenum(sellerEntity.getPhonenum());
+        sellerDto.setIdEmail(sellerEntity.getIdEmail());
+        sellerDto.setPassword(sellerEntity.getPassword());
         sellerDto.setIsgrant(sellerEntity.getIsgrant());
         return sellerDto;
     }

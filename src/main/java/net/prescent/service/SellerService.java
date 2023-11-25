@@ -22,7 +22,7 @@ public class SellerService {
         validateDuplicatedSeller(sellerDto.getBusinessKey());
 
         SellerEntity sellerEntity = SellerEntity.toSellerEntity(sellerDto);
-        sellerEntity.setSellerPassword(passwordEncoder.encode(sellerDto.getSellerPassword()));
+        sellerEntity.setPassword(passwordEncoder.encode(sellerDto.getPassword()));
 
         SellerEntity savedEntity = sellerRepository.save(sellerEntity);
         return SellerDto.toSellerDto(savedEntity);
@@ -37,10 +37,10 @@ public class SellerService {
 
     @Transactional
     public String login(String id, String password) {
-        SellerEntity seller = sellerRepository.findBySellerIdEmail(id)
+        SellerEntity seller = sellerRepository.findByIdEmail(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 판매자 Email입니다."));
 
-        if (passwordEncoder.matches(password, seller.getSellerPassword())) {
+        if (passwordEncoder.matches(password, seller.getPassword())) {
             return accessTokenService.createAccessToken(seller);
         } else {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");

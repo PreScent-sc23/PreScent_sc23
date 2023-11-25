@@ -19,17 +19,17 @@ public class CustomerService {
 
     @Transactional
     public CustomerDto signup(CustomerDto customerDto) {
-        validateDuplicatedCustomer(customerDto.getCustomerIdEmail());
+        validateDuplicatedCustomer(customerDto.getIdEmail());
 
         CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
-        customerEntity.setCustomerPassword(passwordEncoder.encode(customerDto.getCustomerPassword()));
+        customerEntity.setPassword(passwordEncoder.encode(customerDto.getPassword()));
 
         CustomerEntity savedEntity = customerRepository.save(customerEntity);
         return CustomerDto.toCustomerDto(savedEntity);
     }
 
     private void validateDuplicatedCustomer(String customerIdEmail) {
-        customerRepository.findByCustomerIdEmail(customerIdEmail)
+        customerRepository.findByIdEmail(customerIdEmail)
                 .ifPresent(s -> {
                     throw new IllegalStateException("이미 등록된 회원입니다.");
                 });
@@ -37,10 +37,10 @@ public class CustomerService {
 
     @Transactional
     public String login(String id, String password) {
-        CustomerEntity customer = customerRepository.findByCustomerIdEmail(id)
+        CustomerEntity customer = customerRepository.findByIdEmail(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자 Email입니다."));
 
-        if (passwordEncoder.matches(password, customer.getCustomerPassword())) {
+        if (passwordEncoder.matches(password, customer.getPassword())) {
             return accessTokenService.createAccessToken(customer);
         } else {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");

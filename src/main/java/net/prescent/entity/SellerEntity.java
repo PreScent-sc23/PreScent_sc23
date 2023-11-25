@@ -15,13 +15,13 @@ public class SellerEntity extends UserEntity {
     @Column(nullable = false)
     private Integer businessKey;
     @Column(nullable = false)
-    private String sellerName;
+    private String name;
     @Column(nullable = false, unique = true)
-    private String sellerIdEmail;
+    private String idEmail;
     @Column(nullable = false)
-    private String sellerPassword;
+    private String password;
     @Column(nullable = false)
-    private String sellerPhonenum;
+    private String phonenum;
     private Integer isgrant;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -37,10 +37,10 @@ public class SellerEntity extends UserEntity {
         SellerEntity sellerEntity = new SellerEntity();
 
         sellerEntity.setBusinessKey(sellerDto.getBusinessKey());
-        sellerEntity.setSellerName(sellerDto.getSellerName());
-        sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());
-        sellerEntity.setSellerIdEmail(sellerDto.getSellerIdEmail());
-        sellerEntity.setSellerPassword(sellerDto.getSellerPassword());
+        sellerEntity.setName(sellerDto.getName());
+        sellerEntity.setPhonenum(sellerDto.getPhonenum());
+        sellerEntity.setIdEmail(sellerDto.getIdEmail());
+        sellerEntity.setPassword(sellerDto.getPassword());
         sellerEntity.setIsgrant(sellerDto.getIsgrant());
         return sellerEntity;
     }

@@ -35,10 +35,10 @@ public class CustomerServiceTest {
     private CustomerDto createCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
 
-        customerDto.setCustomerName("고객");
-        customerDto.setCustomerPhonenum("010-1234-1234");
-        customerDto.setCustomerIdEmail("customerTest@gmail.com");
-        customerDto.setCustomerPassword("04customer");
+        customerDto.setName("고객");
+        customerDto.setPhonenum("010-1234-1234");
+        customerDto.setIdEmail("customerTest@gmail.com");
+        customerDto.setPassword("04customer");
         return customerDto;
     }
 
@@ -49,9 +49,9 @@ public class CustomerServiceTest {
         CustomerDto savedCustomerDto = customerService.signup(customerDto);
 
         assertNotNull(customerRepository.findByUserKey(savedCustomerDto.getUserKey()));
-        CustomerEntity savedCustomer = customerRepository.findByCustomerIdEmail(savedCustomerDto.getCustomerIdEmail())
+        CustomerEntity savedCustomer = customerRepository.findByIdEmail(savedCustomerDto.getIdEmail())
                 .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
-        assertTrue(passwordEncoder.matches(customerDto.getCustomerPassword(), savedCustomer.getCustomerPassword()));
+        assertTrue(passwordEncoder.matches(customerDto.getPassword(), savedCustomer.getPassword()));
     }
 
     @org.junit.jupiter.api.Test
@@ -61,7 +61,7 @@ public class CustomerServiceTest {
         customerService.signup(customer1);
 
         CustomerDto customer2 = createCustomerDto();
-        customer2.setCustomerPassword("04prescent");
+        customer2.setPassword("04prescent");
 
         assertThrows(IllegalStateException.class, () -> customerService.signup(customer2));
     }
@@ -72,7 +72,7 @@ public class CustomerServiceTest {
         CustomerDto customerDto = createCustomerDto();
         customerService.signup(customerDto);
 
-        String token = customerService.login(customerDto.getCustomerIdEmail(), customerDto.getCustomerPassword());
+        String token = customerService.login(customerDto.getIdEmail(), customerDto.getPassword());
         assertNotNull(token, "토큰이 반환되지 않았습니다.");
 
         boolean isValidToken = accessTokenService.validateAccessToken(token);
@@ -86,7 +86,7 @@ public class CustomerServiceTest {
         customerService.signup(customerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            customerService.login("wrongemail@gmail.com", customerDto.getCustomerPassword());
+            customerService.login("wrongemail@gmail.com", customerDto.getPassword());
         });
     }
 
@@ -97,7 +97,7 @@ public class CustomerServiceTest {
         customerService.signup(customerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            customerService.login(customerDto.getCustomerIdEmail(), "wrongpassword");
+            customerService.login(customerDto.getIdEmail(), "wrongpassword");
         });
     }
 
@@ -106,7 +106,7 @@ public class CustomerServiceTest {
     public void logoutTest() {
         CustomerDto customerDto = createCustomerDto();
         customerService.signup(customerDto);
-        String token = customerService.login(customerDto.getCustomerIdEmail(), customerDto.getCustomerPassword());
+        String token = customerService.login(customerDto.getIdEmail(), customerDto.getPassword());
 
         boolean isValidTokenBeforeLogout = accessTokenService.validateAccessToken(token);
         assertTrue(isValidTokenBeforeLogout, "로그아웃 전 토큰이 유효해야 합니다.");

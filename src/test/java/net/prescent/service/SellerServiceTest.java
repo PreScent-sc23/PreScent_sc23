@@ -37,10 +37,10 @@ class SellerServiceTest {
         SellerDto sellerDto = new SellerDto();
 
         sellerDto.setBusinessKey(1234512345);
-        sellerDto.setSellerName("사업자");
-        sellerDto.setSellerPhonenum("010-5678-5678");
-        sellerDto.setSellerIdEmail("sellerTest@gmail.com");
-        sellerDto.setSellerPassword("04seller");
+        sellerDto.setName("사업자");
+        sellerDto.setPhonenum("010-5678-5678");
+        sellerDto.setIdEmail("sellerTest@gmail.com");
+        sellerDto.setPassword("04seller");
         return sellerDto;
     }
 
@@ -51,9 +51,9 @@ class SellerServiceTest {
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
 
         assertNotNull(savedSellerDto.getBusinessKey());
-        SellerEntity savedSeller = sellerRepository.findBySellerIdEmail(savedSellerDto.getSellerIdEmail())
+        SellerEntity savedSeller = sellerRepository.findByIdEmail(savedSellerDto.getIdEmail())
                 .orElseThrow(() -> new IllegalArgumentException("판매자를 찾을 수 없습니다."));
-        assertTrue(passwordEncoder.matches(sellerDto.getSellerPassword(), savedSeller.getSellerPassword()));
+        assertTrue(passwordEncoder.matches(sellerDto.getPassword(), savedSeller.getPassword()));
     }
 
     @Test
@@ -63,7 +63,7 @@ class SellerServiceTest {
         sellerService.signup(seller1);
 
         SellerDto seller2 = createSellerDto();
-        seller2.setSellerIdEmail("newemail@gmail.com");
+        seller2.setIdEmail("newemail@gmail.com");
 
         assertThrows(IllegalStateException.class, () -> sellerService.signup(seller2));
     }
@@ -74,7 +74,7 @@ class SellerServiceTest {
         SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
 
-        String token = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
+        String token = sellerService.login(sellerDto.getIdEmail(), sellerDto.getPassword());
         assertNotNull(token, "토큰이 반환되지 않았습니다.");
 
         boolean isValidToken = accessTokenService.validateAccessToken(token);
@@ -88,7 +88,7 @@ class SellerServiceTest {
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login("wrongemail@gmail.com", sellerDto.getSellerPassword());
+            sellerService.login("wrongemail@gmail.com", sellerDto.getPassword());
         });
     }
 
@@ -99,7 +99,7 @@ class SellerServiceTest {
         sellerService.signup(sellerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            sellerService.login(sellerDto.getSellerIdEmail(), "wrongpassword");
+            sellerService.login(sellerDto.getIdEmail(), "wrongpassword");
         });
     }
 
@@ -108,7 +108,7 @@ class SellerServiceTest {
     public void logoutTest() {
         SellerDto sellerDto = createSellerDto();
         sellerService.signup(sellerDto);
-        String token = sellerService.login(sellerDto.getSellerIdEmail(), sellerDto.getSellerPassword());
+        String token = sellerService.login(sellerDto.getIdEmail(), sellerDto.getPassword());
 
         boolean isValidTokenBeforeLogout = accessTokenService.validateAccessToken(token);
         assertTrue(isValidTokenBeforeLogout, "로그아웃 전 토큰이 유효해야 합니다.");
