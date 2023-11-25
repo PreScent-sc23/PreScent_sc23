@@ -17,7 +17,7 @@ import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
+//@Transactional
 class SellerServiceTest {
 
     @Autowired
@@ -45,7 +45,7 @@ class SellerServiceTest {
     @Test
     @DisplayName("판매자 회원가입 테스트")
     public void signupSellerTest() {
-        SellerDto sellerDto = createSellerDto(123456789);
+        SellerDto sellerDto = createSellerDto(12345678);
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
 
         assertNotNull(savedSellerDto.getSellerKey());
@@ -58,11 +58,11 @@ class SellerServiceTest {
     @DisplayName("중복 사업자번호 가입 테스트")
     public void signupDuplicateSellerKeyTest() {
         // Given
-        SellerDto seller1 = createSellerDto(123456789);
+        SellerDto seller1 = createSellerDto(12345678);
         sellerService.signup(seller1);
 
         // When & Then
-        SellerDto seller2 = createSellerDto(123456789);
+        SellerDto seller2 = createSellerDto(12345678);
         seller2.setSellerIdEmail("newemail@gmail.com");
         seller2.setSellerPhonenum("010-3333-4444");
 
