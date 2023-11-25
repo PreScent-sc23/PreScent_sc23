@@ -64,7 +64,9 @@ public class FPOrderServiceTest {
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
         flowerShopDto.setOpenHour(10);
+        flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
+        flowerShopDto.setCloseMinute(0);
         flowerShopDto.setWorkday(new String[]{"월", "화", "수", "목", "금"});
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;

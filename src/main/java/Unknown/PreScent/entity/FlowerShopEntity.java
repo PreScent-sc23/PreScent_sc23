@@ -25,6 +25,7 @@ public class FlowerShopEntity {
     private String shopPhoneNum;
     @Column(nullable = false)
     private String shopLocation;
+    private boolean isOpened=true;
 
     private Integer openHour;
     private Integer openMinute;
@@ -81,6 +82,7 @@ public class FlowerShopEntity {
         flowerShopEntity.setOpenMinute(flowerShopDto.getOpenMinute());
         flowerShopEntity.setCloseHour(flowerShopDto.getCloseHour());
         flowerShopEntity.setCloseMinute(flowerShopDto.getCloseMinute());
+        flowerShopEntity.setWorkday(flowerShopDto.getWorkday());
 
         flowerShopEntity.setDescription(flowerShopDto.getDescription());
 

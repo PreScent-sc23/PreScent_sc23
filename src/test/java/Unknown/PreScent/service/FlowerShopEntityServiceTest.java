@@ -10,11 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
-import static Unknown.PreScent.entity.SellerEntity.toSellerEntity;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,7 +52,9 @@ public class FlowerShopEntityServiceTest {
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
         flowerShopDto.setOpenHour(10);
+        flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
+        flowerShopDto.setCloseMinute(0);
         flowerShopDto.setWorkday(new String[]{"월", "화", "수", "목", "금"});
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
@@ -91,9 +91,9 @@ public class FlowerShopEntityServiceTest {
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
 
-        FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, flowerShopDto);
+        FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(12345678, flowerShopDto);
         Throwable e = assertThrows(IllegalStateException.class, () -> {
-            flowerShopService.addFlowerShop(123456789, flowerShopDto);});
+            flowerShopService.addFlowerShop(12345678, flowerShopDto);});
         assertEquals("이미 매장을 등록한 판매자입니다.", e.getMessage());
     }
 }
