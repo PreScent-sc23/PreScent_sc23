@@ -33,11 +33,10 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam String sSellerKey,
+    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam Integer sellerKey,
                                            @RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
-        Integer sellerKey = Integer.parseInt(sSellerKey);
 
 //        System.out.println("---------------------------------------------------------------------");
 //        System.out.println("sellerKey: " + sellerKey);
