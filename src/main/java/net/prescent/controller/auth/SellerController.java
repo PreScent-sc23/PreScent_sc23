@@ -40,7 +40,7 @@ public class SellerController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("/seller/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
@@ -50,7 +50,7 @@ public class SellerController {
         return ResponseEntity.ok(new LoginResponse(token));
     }
 
-    @PostMapping("/seller/logout")
+    @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
         accessTokenService.deleteAccessToken(token);
         return ResponseEntity.ok().build();
