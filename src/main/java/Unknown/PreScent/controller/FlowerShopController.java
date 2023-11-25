@@ -39,11 +39,11 @@ public class FlowerShopController {
 
         System.out.println("---------------------------------------------------------------------");
         System.out.println("sellerKey: " + flowerShopDto.getSellerKey());
-//        System.out.println("shopName: " + flowerShopEntity.getShopName());
-//        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
-//        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
-//        System.out.println("description: " + flowerShopEntity.getDescription() + "\n");
-//        System.out.println("---------------------------------------------------------------------");
+        System.out.println("shopName: " + flowerShopDto.getShopName());
+        System.out.println("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
+        System.out.println("shopLocation: " + flowerShopDto.getShopLocation());
+        System.out.println("description: " + flowerShopDto.getDescription() + "\n");
+        System.out.println("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {
 
             System.out.println("bindingResult error!!!");
