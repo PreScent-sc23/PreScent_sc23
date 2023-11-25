@@ -14,6 +14,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @ToString
 public class FlowerShopDto {
+    private Integer sellerKey;
     private Integer shopKey;
     private String shopName;
     private String shopPhoneNum;
@@ -30,6 +31,7 @@ public class FlowerShopDto {
     public static FlowerShopDto FlowerShopEntityToDto(FlowerShopEntity flowerShopEntity) {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
 
+        flowerShopDto.setSellerKey(flowerShopEntity.getSellerEntity().getSellerKey());
         flowerShopDto.setShopKey(flowerShopEntity.getShopKey());
         flowerShopDto.setShopName(flowerShopEntity.getShopName());
         flowerShopDto.setShopPhoneNum(flowerShopEntity.getShopPhoneNum());

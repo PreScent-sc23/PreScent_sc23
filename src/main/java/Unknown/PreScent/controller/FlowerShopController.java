@@ -33,8 +33,7 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam Integer sellerKey,
-                                           @RequestBody FlowerShopDto flowerShopDto,
+    public ResponseEntity<?> addFlowerShop(@RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
 
@@ -51,7 +50,7 @@ public class FlowerShopController {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
 
-        flowerShopService.addFlowerShop(sellerKey, flowerShopDto);
+        flowerShopService.addFlowerShop(flowerShopDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);

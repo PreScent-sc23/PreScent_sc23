@@ -54,6 +54,7 @@ public class FinishedProductEntityServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
+        flowerShopDto.setSellerKey(12345678);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -83,7 +84,7 @@ public class FinishedProductEntityServiceTest {
         SellerDto savedSellerDto = sellerService.signup(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
-        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(12345678, flowerShopDto);
+        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
         FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(addedShop.getShopKey(), finishedProductDto);

@@ -21,10 +21,10 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, FlowerShopDto flowerShopDto)
+    public FlowerShopEntity addFlowerShop(FlowerShopDto flowerShopDto)
     {
         FlowerShopEntity flowerShopEntity = FlowerShopEntity.FlowerShopDtoToEntity(flowerShopDto);
-        Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
+        Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(flowerShopDto.getSellerKey());
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
