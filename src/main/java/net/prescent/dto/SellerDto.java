@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 public class SellerDto {
 
 
-    private Integer sellerKey;
+    private Integer userKey;
     //@NotBlank(message = "사업자등록번호를 작성해주세요")
     private Integer businessKey;
     @NotBlank(message = "이름을 작성해주세요")
@@ -30,7 +30,6 @@ public class SellerDto {
     public static SellerDto toSellerDto(SellerEntity sellerEntity) {
         SellerDto sellerDto = new SellerDto();
 
-        sellerDto.setSellerKey(sellerEntity.getSellerKey());
         sellerDto.setBusinessKey(sellerEntity.getBusinessKey());
         sellerDto.setSellerName(sellerEntity.getSellerName());
         sellerDto.setSellerPhonenum(sellerEntity.getSellerPhonenum());

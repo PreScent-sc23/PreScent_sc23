@@ -35,7 +35,7 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             if (user != null) {
                 Collection<? extends GrantedAuthority> authorities = getAuthorities(user);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        user.getKey(), null, authorities);
+                        user.getUserKey(), null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

@@ -41,7 +41,7 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("/seller/login")  //token 방식으로 수정 후 /login으로 통합 예정
+    @PostMapping("/customer/login")  //token 방식으로 수정 후 /login으로 통합 예정
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());

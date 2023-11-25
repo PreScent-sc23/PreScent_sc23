@@ -41,7 +41,6 @@ dependencies {
 	//implementation 'mysql:mysql-connector-java'
 	runtimeOnly 'com.h2database:h2'
 	implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	//lombok
 	compileOnly 'org.projectlombok:lombok:1.18.20'
@@ -54,8 +53,6 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	//firebase
 	//implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
@@ -71,8 +68,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
 	// Swagger
-	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+	//implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 }
 
 tasks.named('test') {

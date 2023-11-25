@@ -12,8 +12,6 @@ import javax.persistence.*;
 @Table(name = "customer")
 public class CustomerEntity extends UserEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customerKey;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="cart_id")
@@ -38,7 +36,6 @@ public class CustomerEntity extends UserEntity {
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto) {
         CustomerEntity customerEntity = new CustomerEntity();
 
-        customerEntity.setCustomerKey(customerDto.getCustomerKey());
         customerEntity.setCustomerName(customerDto.getCustomerName());
         customerEntity.setCustomerPhonenum(customerDto.getCustomerPhonenum());
         customerEntity.setCustomerIdEmail(customerDto.getCustomerIdEmail());

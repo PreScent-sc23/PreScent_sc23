@@ -13,8 +13,6 @@ import javax.persistence.*;
 public class SellerEntity extends UserEntity {
 
     @Column(nullable = false)
-    private Integer sellerKey;
-    @Column(nullable = false)
     private Integer businessKey;
     @Column(nullable = false)
     private String sellerName;
@@ -26,8 +24,8 @@ public class SellerEntity extends UserEntity {
     private String sellerPhonenum;
     private Integer isgrant;
 
-    @OneToOne
-    @JoinColumn(name = "shopKey")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shopKey", referencedColumnName = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
@@ -38,7 +36,6 @@ public class SellerEntity extends UserEntity {
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
 
-        sellerEntity.setSellerKey(sellerDto.getSellerKey());
         sellerEntity.setBusinessKey(sellerDto.getBusinessKey());
         sellerEntity.setSellerName(sellerDto.getSellerName());
         sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());

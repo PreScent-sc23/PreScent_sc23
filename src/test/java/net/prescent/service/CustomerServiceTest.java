@@ -34,6 +34,7 @@ public class CustomerServiceTest {
 
     private CustomerDto createCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
+
         customerDto.setCustomerName("고객");
         customerDto.setCustomerPhonenum("010-1234-1234");
         customerDto.setCustomerIdEmail("customerTest@gmail.com");
@@ -47,7 +48,7 @@ public class CustomerServiceTest {
         CustomerDto customerDto = createCustomerDto();
         CustomerDto savedCustomerDto = customerService.signup(customerDto);
 
-        assertNotNull(customerRepository.findByCustomerKey(savedCustomerDto.getCustomerKey()));
+        assertNotNull(customerRepository.findByUserKey(savedCustomerDto.getUserKey()));
         CustomerEntity savedCustomer = customerRepository.findByCustomerIdEmail(savedCustomerDto.getCustomerIdEmail())
                 .orElseThrow(() -> new IllegalArgumentException("회원을 찾을 수 없습니다."));
         assertTrue(passwordEncoder.matches(customerDto.getCustomerPassword(), savedCustomer.getCustomerPassword()));

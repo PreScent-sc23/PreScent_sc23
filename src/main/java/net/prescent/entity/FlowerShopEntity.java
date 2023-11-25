@@ -27,7 +27,7 @@ public class FlowerShopEntity {
     private String[] holiday;
     @Column(nullable = false)
     private boolean isSub;
-    @OneToOne(mappedBy = "flowerShopEntity")
+    @OneToOne(mappedBy = "flowerShopEntity", cascade = CascadeType.ALL)
     private SellerEntity sellerEntity;
 
     public void setSellerEntity(SellerEntity sellerEntity)

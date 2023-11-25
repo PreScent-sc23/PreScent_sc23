@@ -1,38 +1,20 @@
 package net.prescent.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userKey;
-
-    /*
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-     */
-
-    /*
-    @Column(nullable = false, unique = true)
-    private String idEmail;
-
-
-    public String getIdEmail() {
-        return idEmail;
-    }
-
-    public void setIdEmail(String email) {
-        this.idEmail = email;
-    }
-     */
+    private Integer userKey;
 
     public abstract String getUserType();
+
 }

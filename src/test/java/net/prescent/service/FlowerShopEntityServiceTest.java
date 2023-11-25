@@ -38,6 +38,7 @@ public class FlowerShopEntityServiceTest {
     }
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
+
         sellerDto.setBusinessKey(123456789);
         sellerDto.setSellerName("suhyeon");
         sellerDto.setSellerPhonenum("010-1111-2222");
@@ -51,8 +52,8 @@ public class FlowerShopEntityServiceTest {
     public void testAddFlowerShop()
     {
         SellerDto sellerDto = createSellerDto();
-        SellerDto sellerKey = sellerService.signup(sellerDto);
-        assertNotNull(sellerKey);
+        SellerDto businessKey = sellerService.signup(sellerDto);
+        assertNotNull(businessKey);
 
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
 
@@ -69,12 +70,12 @@ public class FlowerShopEntityServiceTest {
 
     @Test
     //@Transactional
-    @DisplayName("Sellerkey같은 매장 생성 테스트")
-    public void testSameSellerKeyShop()
+    @DisplayName("BusinessKey같은 매장 생성 테스트")
+    public void testSameBusinessKeyShop()
     {
         SellerDto sellerDto = createSellerDto();
-        SellerDto sellerKey = sellerService.signup(sellerDto);
-        assertNotNull(sellerKey);
+        SellerDto businessKey = sellerService.signup(sellerDto);
+        assertNotNull(businessKey);
 
         FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, "its me", "031-308-8223", "suwon-si", new int[][] {{1, 2, 3},{3, 4, 5}},false, new String[]{"monday"});
         Throwable e = assertThrows(IllegalStateException.class, () -> {

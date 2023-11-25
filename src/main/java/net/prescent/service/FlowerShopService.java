@@ -20,10 +20,10 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
+    public FlowerShopEntity addFlowerShop(Integer businessKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday)
     {
         FlowerShopEntity flowerShopEntity = new FlowerShopEntity(shopName, shopPhoneNum, shopLocation, openingHours, isOpened, holiday);
-        Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
+        Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(businessKey);
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");

@@ -34,11 +34,10 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/**").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new CustomAuthenticationFilter(accessTokenService), UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
@@ -47,8 +46,8 @@ public class WebSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.addAllowedOriginPattern("*");
-        configuration.addAllowedOrigin("http://localhost:3000");
-        configuration.addAllowedOrigin("http://172.21.51.119:3000");
+        //configuration.addAllowedOrigin("http://localhost:3000");
+        //configuration.addAllowedOrigin("http://172.21.51.119:3000");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);

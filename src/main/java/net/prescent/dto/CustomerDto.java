@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @ToString(exclude = "customerPassword")
 public class CustomerDto {
 
-    private Integer customerKey;
+    private Integer userKey;
     @NotBlank(message = "이름을 작성해주세요")
     private String customerName;
     @Email(message = "올바른 이메일 형식을 사용해주세요")
@@ -31,7 +31,6 @@ public class CustomerDto {
     public static CustomerDto toCustomerDto(CustomerEntity customerEntity){
         CustomerDto customerDto = new CustomerDto();
 
-        customerDto.setCustomerKey(customerEntity.getCustomerKey());
         customerDto.setCustomerName(customerEntity.getCustomerName());
         customerDto.setCustomerIdEmail(customerEntity.getCustomerIdEmail());
         customerDto.setCustomerPhonenum(customerEntity.getCustomerPhonenum());

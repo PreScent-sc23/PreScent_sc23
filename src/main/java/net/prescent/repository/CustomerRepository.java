@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface CustomerRepository extends JpaRepository<CustomerEntity, String> {
 
     //CustomerDto save(CustomerDto seller);
-    Optional<CustomerEntity> findByCustomerKey(Integer customerKey);
+    Optional<CustomerEntity> findByUserKey(Integer userKey);
     Optional<CustomerEntity> findByCustomerName(String customerName);
     Optional<CustomerEntity> findByCustomerIdEmail(String customerIdEmail);
     Optional<CustomerEntity> findByCustomerPassword(String customerPassword);

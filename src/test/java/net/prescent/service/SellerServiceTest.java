@@ -35,6 +35,7 @@ class SellerServiceTest {
 
     private SellerDto createSellerDto() {
         SellerDto sellerDto = new SellerDto();
+
         sellerDto.setBusinessKey(1234512345);
         sellerDto.setSellerName("사업자");
         sellerDto.setSellerPhonenum("010-5678-5678");
