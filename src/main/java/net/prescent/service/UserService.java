@@ -78,9 +78,12 @@ public class UserService {
     }
 
     private UserEntity findUserByEmail(String idEmail) {
+        if (idEmail == null || idEmail.trim().isEmpty()) {
+            throw new IllegalArgumentException("유효한 이메일 주소를 입력해야 합니다.");
+        }
         return Stream.of(
-                        customerRepository.findByIdEmail(idEmail).orElse(null),
-                        sellerRepository.findByIdEmail(idEmail).orElse(null))
+                customerRepository.findByIdEmail(idEmail).orElse(null),
+                sellerRepository.findByIdEmail(idEmail).orElse(null))
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
