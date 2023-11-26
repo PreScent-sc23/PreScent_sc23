@@ -21,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/register/customer")
+    @PostMapping("/signup/customer")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
@@ -31,7 +31,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping("/register/seller")
+    @PostMapping("/signup/seller")
     public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
