@@ -1,0 +1,61 @@
+package net.prescent.controller.auth;
+
+import lombok.RequiredArgsConstructor;
+import net.prescent.dto.CustomerDto;
+import net.prescent.dto.LoginRequest;
+import net.prescent.dto.LoginResponse;
+import net.prescent.dto.SellerDto;
+import net.prescent.service.UserService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+
+import javax.validation.Valid;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequiredArgsConstructor
+public class UserController {
+
+    private final UserService userService;
+
+    @PostMapping("/register/customer")
+    public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        userService.signupCustomer(customerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/register/seller")
+    public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        userService.signupSeller(sellerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+
+        String token = userService.login(loginRequest.getId(), loginRequest.getPassword());
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+        return new ResponseEntity<>(new LoginResponse(token), headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
+        userService.logout(token);
+        return ResponseEntity.ok().build();
+    }
+}

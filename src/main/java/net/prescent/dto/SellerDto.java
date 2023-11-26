@@ -23,6 +23,7 @@ public class SellerDto {
     private String idEmail;
     @NotBlank(message = "비밀번호를 작성해주세요")
     private String password;
+    private String confirmPassword;
     @NotBlank(message = "전화번호를 작성해주세요")
     private String phonenum;
     private Integer isgrant;
@@ -34,7 +35,6 @@ public class SellerDto {
         sellerDto.setName(sellerEntity.getName());
         sellerDto.setPhonenum(sellerEntity.getPhonenum());
         sellerDto.setIdEmail(sellerEntity.getIdEmail());
-        sellerDto.setPassword(sellerEntity.getPassword());
         sellerDto.setIsgrant(sellerEntity.getIsgrant());
         return sellerDto;
     }

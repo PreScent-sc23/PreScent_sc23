@@ -23,9 +23,11 @@ public class CustomerDto {
     private String idEmail;
     @NotBlank(message = "비밀번호를 작성해주세요")
     private String password;
+    private String confirmPassword;
     @NotBlank(message = "전화번호를 작성해주세요")
     private String phonenum;
     private String location;
+
 
 
 
@@ -35,7 +37,6 @@ public class CustomerDto {
         customerDto.setName(customerEntity.getName());
         customerDto.setIdEmail(customerEntity.getIdEmail());
         customerDto.setPhonenum(customerEntity.getPhonenum());
-        customerDto.setPassword(customerEntity.getPassword());
         customerDto.setLocation(customerEntity.getLocation());
         return customerDto;
     }

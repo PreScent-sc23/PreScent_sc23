@@ -19,8 +19,6 @@ public class SellerEntity extends UserEntity {
     @Column(nullable = false, unique = true)
     private String idEmail;
     @Column(nullable = false)
-    private String password;
-    @Column(nullable = false)
     private String phonenum;
     private Integer isgrant;
 

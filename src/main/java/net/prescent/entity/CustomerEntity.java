@@ -24,9 +24,6 @@ public class CustomerEntity extends UserEntity {
     private String idEmail;
 
     @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
     private String phonenum;
 
     private String location;
