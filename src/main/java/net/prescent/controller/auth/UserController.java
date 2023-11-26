@@ -47,7 +47,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
 
-        String token = userService.login(loginRequest.getId(), loginRequest.getPassword());
+        String token = userService.login(loginRequest.getIdEmail(), loginRequest.getPassword());
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + token);
         return new ResponseEntity<>(new LoginResponse(token), headers, HttpStatus.OK);
