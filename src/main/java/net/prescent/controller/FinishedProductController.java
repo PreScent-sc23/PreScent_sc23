@@ -55,6 +55,7 @@ public class FinishedProductController {
                                                 @RequestPart("fpDetail") String fpDetail,
                                                 @RequestPart("fpFlowerList") String fpFlowerList)
     {
+        // 미완
 //        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
 //        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
 //        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
