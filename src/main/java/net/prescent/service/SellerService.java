@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -16,6 +16,7 @@ public class SellerService {
 
     private final SellerRepository sellerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AccessTokenService accessTokenService;
 
     @Transactional
     public SellerDto signup(SellerDto sellerDto) {
@@ -35,18 +36,15 @@ public class SellerService {
                 });
     }
 
-    public SellerDto login(String id, String password) {
+    @Transactional
+    public String login(String id, String password) {
+        SellerEntity seller = sellerRepository.findBySellerIdEmail(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 판매자 Email입니다."));
 
-        Optional<SellerEntity> byId = sellerRepository.findBySellerIdEmail(id);
-        if (byId.isPresent()) {
-            SellerEntity seller = byId.get();
-            if (passwordEncoder.matches(password, seller.getSellerPassword())) {
-                return SellerDto.toSellerDto(seller);
-            } else {
-                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-            }
+        if (passwordEncoder.matches(password, seller.getSellerPassword())) {
+            return accessTokenService.createAccessToken(seller);
         } else {
-            throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
     }
 }

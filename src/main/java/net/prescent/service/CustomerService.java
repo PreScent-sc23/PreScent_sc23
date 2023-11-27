@@ -13,44 +13,26 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class CustomerService {
+
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public String signup(CustomerDto customerDto){
+    public CustomerDto signup(CustomerDto customerDto){
+        validateDuplicatedCustomer(customerDto.getCustomerIdEmail());
+
         CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
-        validateDuplicatedCustomer(customerEntity);
+        customerEntity.setCustomerPassword(passwordEncoder.encode(customerDto.getCustomerPassword()));
 
-        String encoded;
-        encoded = passwordEncoder.encode(customerEntity.getCustomerPassword());
-        customerEntity.setCustomerPassword(encoded);
-
-        customerRepository.save(customerEntity);
-        return customerEntity.getCustomerIdEmail();
+        CustomerEntity savedEntity = customerRepository.save(customerEntity);
+        return CustomerDto.toCustomerDto(savedEntity);
     }
 
-    public Integer signupForTest(CustomerDto customerDto){
-        CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
-        validateDuplicatedCustomer(customerEntity);
-
-        String encoded;
-        encoded = passwordEncoder.encode(customerEntity.getCustomerPassword());
-        customerEntity.setCustomerPassword(encoded);
-
-        customerRepository.save(customerEntity);
-        return customerEntity.getCustomerKey();
-    }
-
-    private void validateDuplicatedCustomer(CustomerEntity customer) {
-        customerRepository.findByCustomerIdEmail(customer.getCustomerIdEmail())
+    private void validateDuplicatedCustomer(String customerIdEmail) {
+        customerRepository.findByCustomerIdEmail(customerIdEmail)
                 .ifPresent(s ->{
                     throw new IllegalStateException("이미 등록된 회원입니다.");
                 });
-    }
-
-    public CustomerEntity saveCustomer(CustomerEntity customerEntity){
-        validateDuplicatedCustomer(customerEntity);
-        return customerRepository.save(customerEntity);
     }
 
     public CustomerDto login(String id, String password) {
@@ -67,9 +49,15 @@ public class CustomerService {
             throw new IllegalArgumentException("존재하지 않는 사용자 Email입니다.");
         }
     }
+    public Integer signupForTest(CustomerDto customerDto){
+        CustomerEntity customerEntity = CustomerEntity.toCustomerEntity(customerDto);
+        validateDuplicatedCustomer(customerEntity.getCustomerIdEmail());
 
-    public CustomerDto findCustomer(Integer customerKey){
-        CustomerEntity resultEntity = customerRepository.findByCustomerKey(customerKey).get();
-        return CustomerDto.toCustomerDto(resultEntity);
+        String encoded;
+        encoded = passwordEncoder.encode(customerEntity.getCustomerPassword());
+        customerEntity.setCustomerPassword(encoded);
+
+        customerRepository.save(customerEntity);
+        return customerEntity.getCustomerKey();
     }
 }
