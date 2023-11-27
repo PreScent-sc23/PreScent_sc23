@@ -35,7 +35,7 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
-
+	implementation 'org.springframework.session:spring-session-core'
 
 	//database
 	//implementation 'mysql:mysql-connector-java'
@@ -54,21 +54,27 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-	implementation 'org.apache.commons:commons-lang3:3.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	implementation 'io.springfox:springfox-swagger2:2.9.2'
-	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	//firebase
+	//implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
 
-//	// swagger
-//	implementation 'io.springfox:springfox-boot-starter:3.0.0'
-//	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+	// JSON
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// HTTP 클라이언트
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// 아마존 S3
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-
-

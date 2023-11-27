@@ -18,8 +18,7 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerKey;
 
-
-//    @OneToOne(fetch = FetchType.EAGER)
+//    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name="cart_id")
 //    private CartEntity cart;
 
@@ -35,20 +34,12 @@ public class CustomerEntity {
     @Column(nullable = false)
     private String customerPhonenum;
 
-    @Column
     private String customerLocation;
 
-    @OneToMany(mappedBy = "customerEntity",fetch = FetchType.EAGER)
-    private List<FPOrderEntity> fpOrderEntityList;
+    @OneToMany(mappedBy = "customerEntity")
+    private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();
 
-    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
-    {
-        if(this.fpOrderEntityList == null)
-        {
-            fpOrderEntityList = new ArrayList<>();
-        }
-        this.fpOrderEntityList.add(fpOrderEntity);
-    }
+
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto) {
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setCustomerKey(customerDto.getCustomerKey());
@@ -58,6 +49,10 @@ public class CustomerEntity {
         customerEntity.setCustomerPassword(customerDto.getCustomerPassword());
         customerEntity.setCustomerLocation(customerDto.getCustomerLocation());
         return customerEntity;
+    }
+
+    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity) {
+        this.fpOrderEntityList.add(fpOrderEntity);
     }
 
 //    public static FinishedProductEntity createFp(CartEntity cart, Item item, int amount) {
