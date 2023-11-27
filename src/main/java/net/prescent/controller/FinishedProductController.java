@@ -80,17 +80,17 @@ public class FinishedProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{fpKey}")
+    @GetMapping("/key/{fpKey}")
     public Optional<FinishedProductEntity> getFinishedProductByFpKey(@PathVariable Integer fpKey)
     {
         return finishedProductService.getFinishedProductWithFpKey(fpKey);
     }
-    @GetMapping("/{fpName}")
+    @GetMapping("/name/{fpName}")
     public Optional<List<FinishedProductEntity>> getFinishedProductByFpName(@PathVariable String fpName)
     {
         return finishedProductService.getFinishedProductWithFpName(fpName);
     }
-    @GetMapping("/{fpTag}")
+    @GetMapping("/tag/{fpTag}")
     public Optional<List<FinishedProductEntity>> getFinishedProductByFpTag(@PathVariable String fpTag)
     {
         return finishedProductService.getFinishedProductWithFpTag(fpTag);
