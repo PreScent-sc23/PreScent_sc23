@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/finished-product")
@@ -55,7 +57,7 @@ public class FinishedProductController {
 //    } //old version
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestPart("fpImage") FinishedProductDto finishedProductDto)
+    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestPart("data") FinishedProductDto finishedProductDto)
     {
 //        // 미완
 //        @RequestPart("fpImage") MultipartFile fpImage,
