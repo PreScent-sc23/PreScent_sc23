@@ -59,8 +59,8 @@ public class FinishedProductController {
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 //            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage)
-            //@RequestPart("data") FinishedProductDto finishedProductDto
+    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
+            @RequestPart("finishedProduct") FinishedProductDto finishedProductDto)
     {
 //        // 미완
 //        @RequestPart("fpImage") MultipartFile fpImage,
@@ -107,7 +107,9 @@ public class FinishedProductController {
 //        }
         try {
             String fileName=fpImage.getOriginalFilename();
+            System.out.println(fileName);
             String fileUrl= "https://" + bucket + "/test" +fileName;
+            System.out.println(fileUrl);
             ObjectMetadata metadata= new ObjectMetadata();
             metadata.setContentType(fpImage.getContentType());
             metadata.setContentLength(fpImage.getSize());
@@ -116,8 +118,8 @@ public class FinishedProductController {
 //            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
 //                System.out.println("file is not provided");
 //            }
-//            finishedProductService.addFinishedProduct(finishedProductDto);
-//            return ResponseEntity.status(HttpStatus.CREATED).build();
+            finishedProductDto.setFpImage(fileUrl);
+            finishedProductService.addFinishedProduct(finishedProductDto);
             return ResponseEntity.ok(fileUrl);
         } catch (IOException e) {
             e.printStackTrace();

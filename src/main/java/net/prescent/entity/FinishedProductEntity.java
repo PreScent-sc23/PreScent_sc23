@@ -24,7 +24,7 @@ public class FinishedProductEntity {
     private String fpTag;
     @Lob
     @Column(name = "fpImage", columnDefinition="BLOB")
-    private byte[] fpImage;
+    private String fpImage;
     @Column(nullable = false)
     private Integer fpPrice;
     @Column(nullable = false)
@@ -62,7 +62,7 @@ public class FinishedProductEntity {
         this.fpOrderEntityList.add(fpOrderEntity);
     }
 
-    public FinishedProductEntity(String fpName, String fpTag, byte[] fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
+    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpImage = fpImage;
@@ -91,18 +91,14 @@ public class FinishedProductEntity {
     public static FinishedProductEntity finishedProductDtotoEntity(FinishedProductDto finishedProductDto)
     {
         FinishedProductEntity finishedProductEntity = new FinishedProductEntity();
-        try {
             if(finishedProductDto.getFpImage()!=null)
             {
-                finishedProductEntity.setFpImage(finishedProductDto.getFpImage().getBytes());
-                System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage().length+"---------------");
+                finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
+                System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage()+"---------------");
             }
             else {
                 System.out.println("DtoToEntity내부 fpImage가 비어있습니다 ******************************");
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
