@@ -59,7 +59,8 @@ public class FinishedProductController {
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 //            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("formData") MultipartFile fpImage,@RequestPart("data") FinishedProductDto finishedProductDto)
+    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage)
+            //@RequestPart("data") FinishedProductDto finishedProductDto
     {
 //        // 미완
 //        @RequestPart("fpImage") MultipartFile fpImage,
@@ -69,12 +70,12 @@ public class FinishedProductController {
 //        @RequestPart("fpPrice") Integer fpPrice,
 //        @RequestPart("fpDetail") String fpDetail,
 //        @RequestPart("fpFlowerList") String fpFlowerList
-        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
-        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
-        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
-        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
-        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
-        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
+//        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
+//        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
+//        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
+//        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
+//        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
+//        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
 
 //        System.out.println("shopKey 값 : "+ shopKey +"--------------------------------------------");
 //        System.out.println("fpName 값 : "+ fpName +"--------------------------------------------");
@@ -86,32 +87,14 @@ public class FinishedProductController {
 //        if (fpImage == null || fpImage.isEmpty()) {
 //            System.out.println("file is not provided");
 //        }
-        try {
-            String fileName= finishedProductDto.getFpImage().getOriginalFilename();
-            String fileUrl= "https://" + bucket + "/test" +fileName;
-            ObjectMetadata metadata= new ObjectMetadata();
-            metadata.setContentType(finishedProductDto.getFpImage().getContentType());
-            metadata.setContentLength(finishedProductDto.getFpImage().getSize());
-            amazonS3Client.putObject(bucket,fileName,finishedProductDto.getFpImage().getInputStream(),metadata);
-            // FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
-                System.out.println("file is not provided");
-            }
-            finishedProductService.addFinishedProduct(finishedProductDto);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-//            return ResponseEntity.ok(fileUrl);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
 //        try {
-//            String fileName=fpImage.getOriginalFilename();
+//            String fileName= finishedProductDto.getFpImage().getOriginalFilename();
 //            String fileUrl= "https://" + bucket + "/test" +fileName;
 //            ObjectMetadata metadata= new ObjectMetadata();
-//            metadata.setContentType(fpImage.getContentType());
-//            metadata.setContentLength(fpImage.getSize());
-//            amazonS3Client.putObject(bucket,fileName,fpImage.getInputStream(),metadata);
-//            FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
+//            metadata.setContentType(finishedProductDto.getFpImage().getContentType());
+//            metadata.setContentLength(finishedProductDto.getFpImage().getSize());
+//            amazonS3Client.putObject(bucket,fileName,finishedProductDto.getFpImage().getInputStream(),metadata);
+//            // FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
 //            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
 //                System.out.println("file is not provided");
 //            }
@@ -122,6 +105,24 @@ public class FinishedProductController {
 //            e.printStackTrace();
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 //        }
+        try {
+            String fileName=fpImage.getOriginalFilename();
+            String fileUrl= "https://" + bucket + "/test" +fileName;
+            ObjectMetadata metadata= new ObjectMetadata();
+            metadata.setContentType(fpImage.getContentType());
+            metadata.setContentLength(fpImage.getSize());
+            amazonS3Client.putObject(bucket,fileName,fpImage.getInputStream(),metadata);
+//            FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
+//            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
+//                System.out.println("file is not provided");
+//            }
+//            finishedProductService.addFinishedProduct(finishedProductDto);
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.ok(fileUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/key/{fpKey}")
