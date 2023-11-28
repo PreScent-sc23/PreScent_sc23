@@ -7,6 +7,7 @@ import net.prescent.entity.FinishedProductEntity;
 import net.prescent.service.FinishedProductService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,8 +57,9 @@ public class FinishedProductController {
 //        return ResponseEntity.status(HttpStatus.CREATED).build();
 //    } //old version
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestPart("data") FinishedProductDto finishedProductDto)
+    @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+//            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("formData") MultipartFile fpImage,@RequestPart("data") FinishedProductDto finishedProductDto)
     {
 //        // 미완
 //        @RequestPart("fpImage") MultipartFile fpImage,
