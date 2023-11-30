@@ -35,28 +35,6 @@ public class FinishedProductController {
         this.finishedProductService = finishedProductService;
     }
 
-//    @PostMapping("/add")
-//    public FinishedProductEntity addFinishedProduct(@RequestBody Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList)
-//    {
-//        return finishedProductService.addFinishedProduct(shopKey, fpName, fpTag, fpImage, fpPrice, fpState, fpFlowerList);
-//    }
-
-//    @PostMapping("/add")
-//    public ResponseEntity<?> addFinishedProduct(@RequestBody FinishedProductEntity finishedProductEntity)
-//    {
-//        System.out.println("Result: " + finishedProductEntity.getFpFlowerList() + "// //" + finishedProductEntity.getFpDetail() + "\n");
-//        finishedProductService.addFinishedProduct(finishedProductEntity.getShopKey(),
-//                finishedProductEntity.getFpName(),
-//                finishedProductEntity.getFpTag(),
-//                finishedProductEntity.getFpPrice(),
-//                finishedProductEntity.getFpFlowerList(),
-//                finishedProductEntity.getFpDetail());
-//
-//        System.out.println(finishedProductService.getFinishedProductWithShopKey(0).get().get(0).getFpFlowerList());
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).build();
-//    } //old version
-
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 //            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
@@ -87,7 +65,7 @@ public class FinishedProductController {
         try {
             String fileName=fpImage.getOriginalFilename();
             System.out.println(fileName);
-            String fileUrl= "https://" + bucket + "/test" +fileName;
+            String fileUrl= amazonS3Client.getUrl(bucket, fileName).toString();
             System.out.println(fileUrl);
             ObjectMetadata metadata= new ObjectMetadata();
             metadata.setContentType(fpImage.getContentType());
