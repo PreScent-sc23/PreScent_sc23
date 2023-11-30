@@ -22,8 +22,7 @@ public class FinishedProductEntity {
     @Column(nullable = false)
     private String fpName;
     private String fpTag;
-    @Lob
-    @Column(name = "fpImage", columnDefinition="BLOB")
+    @Column(name = "fpImage")
     private String fpImage;
     @Column(nullable = false)
     private Integer fpPrice;

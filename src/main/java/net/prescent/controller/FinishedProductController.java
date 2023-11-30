@@ -84,27 +84,6 @@ public class FinishedProductController {
 //        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
 //        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
-//        if (fpImage == null || fpImage.isEmpty()) {
-//            System.out.println("file is not provided");
-//        }
-//        try {
-//            String fileName= finishedProductDto.getFpImage().getOriginalFilename();
-//            String fileUrl= "https://" + bucket + "/test" +fileName;
-//            ObjectMetadata metadata= new ObjectMetadata();
-//            metadata.setContentType(finishedProductDto.getFpImage().getContentType());
-//            metadata.setContentLength(finishedProductDto.getFpImage().getSize());
-//            amazonS3Client.putObject(bucket,fileName,finishedProductDto.getFpImage().getInputStream(),metadata);
-//            // FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-//            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
-//                System.out.println("file is not provided");
-//            }
-//            finishedProductService.addFinishedProduct(finishedProductDto);
-//            return ResponseEntity.status(HttpStatus.CREATED).build();
-////            return ResponseEntity.ok(fileUrl);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
         try {
             String fileName=fpImage.getOriginalFilename();
             System.out.println(fileName);
