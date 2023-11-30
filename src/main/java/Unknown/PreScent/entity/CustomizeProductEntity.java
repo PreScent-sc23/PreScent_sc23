@@ -14,10 +14,10 @@ import java.util.List;
 public class CustomizeProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer orderNum;
-    public Integer cpKey;
-    public List<String> answers;
-    public String orderTime;
+    private Integer orderNum;
+    private Integer cpKey;
+    private List<String> answers;
+    private String orderTime;
     private boolean isAccept;
 
     public static CustomizeProductEntity customizeProductDtoToEntity(CustomizeProductDto customizeProductDto){
