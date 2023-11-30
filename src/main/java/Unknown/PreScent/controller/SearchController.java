@@ -69,9 +69,7 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
-                                                                 HttpServletRequest request,
-                                                                 HttpServletResponse response){
+    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
 //        System.out.println("Qurey: " + query + "----------------");
 //        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
@@ -81,6 +79,7 @@ public class SearchController {
 
             System.out.println("query split0: " + queryResult[0] + "----------------\n");
             System.out.println("query split1: " + queryResult[1] + "----------------\n");
+            queryResult[1] = "#" + queryResult[1];
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
@@ -94,12 +93,7 @@ public class SearchController {
             }
             System.out.println("---------------------------------------------------------------------");
 
-            Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-            return new ResponseEntity<>(result, headers, HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
         return ResponseEntity.noContent().build();
