@@ -47,6 +47,19 @@ public class FinishedProductDto {
         return finishedProductDto;
     }
 
+    public static FinishedProductDto toFinishedProductDto2(FinishedProductEntity finishedProductEntity)
+    {
+        FinishedProductDto finishedProductDto = new FinishedProductDto();
+
+        finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
+        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
+        finishedProductDto.setFpName(finishedProductEntity.getFpName());
+        finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
+        finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
+//        finishedProductDto.setShopKey(finishedProductEntity.getShopKey());
+        return finishedProductDto;
+    }
+
     public MultipartFile setFpImage(byte[] fpImage) {
         return null;
     }

@@ -74,9 +74,19 @@ public class SearchController {
 
             List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
             for(FinishedProductEntity fp : result){
-                finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
+                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
             }
 
+            System.out.println("---------------------------------====================================");
+            for(FinishedProductDto fp : finalResult){
+                System.out.println("fpKey: " + fp.getFpKey());
+                System.out.println("fpName: " + fp.getFpName());
+                System.out.println("fpPrice: " + fp.getFpPrice());
+                System.out.println("fpTag: " + fp.getFpTag());
+                System.out.println("shopKey: " + fp.getShopKey());
+                System.out.println("----------------------------------");
+            }
+            System.out.println("---------------------------------====================================");
 
             return ResponseEntity.ok(finalResult);
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
