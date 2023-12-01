@@ -27,10 +27,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
 
@@ -69,7 +66,7 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query){
+    public ResponseEntity<List<FinishedProductDto>> searchTag(@RequestParam String query){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
 //        System.out.println("Qurey: " + query + "----------------");
 //        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
@@ -93,7 +90,13 @@ public class SearchController {
             }
             System.out.println("---------------------------------------------------------------------");
 
-            return ResponseEntity.ok(result);
+            List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
+            for(FinishedProductEntity fp : result){
+                finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
+            }
+
+
+            return ResponseEntity.ok(finalResult);
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
