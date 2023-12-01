@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,16 +57,29 @@ public class SearchController {
 
     @GetMapping("/search")
     public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
-                                                                              HttpServletRequest request, HttpServletResponse response){
-        System.out.println("Qurey: " + query + "----------------\n");
+                                                                 HttpServletRequest request,
+                                                                 HttpServletResponse response){
+        String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
+//        System.out.println("Qurey: " + query + "----------------");
+//        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
 
-        if(query.startsWith("#")){
-            String[] queryResult = query.split("#");
+        if(decodedQuery.startsWith("#")){
+            String[] queryResult = decodedQuery.split("#");
 
-            System.out.println("query split: " + queryResult[0] + "----------------\n");
+            System.out.println("query split0: " + queryResult[0] + "----------------\n");
+            System.out.println("query split1: " + queryResult[1] + "----------------\n");
 
-            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
+            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
+
+            System.out.println("---------------------------------------------------------------------");
+            for(FinishedProductEntity fp : result){
+                System.out.println("fpName: " + fp.getFpName());
+                System.out.println("fpPrice: " + fp.getFpPrice());
+                System.out.println("fpTag: " + fp.getFpTag());
+                System.out.println("----------------------------------");
+            }
+            System.out.println("---------------------------------------------------------------------");
 
             Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
 

@@ -9,10 +9,10 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, String
 
     //CustomerDto save(CustomerDto seller);
     Optional<CustomerEntity> findByUserKey(Integer userKey);
-    Optional<CustomerEntity> findByCustomerName(String customerName);
-    Optional<CustomerEntity> findByCustomerIdEmail(String customerIdEmail);
-    Optional<CustomerEntity> findByCustomerPassword(String customerPassword);
-    Optional<CustomerEntity> findByCustomerPhonenum(String customerPhonenum);
-    Optional<CustomerEntity> findByCustomerLocation(String customerLocation);
+    Optional<CustomerEntity> findByName(String name);
+    Optional<CustomerEntity> findByIdEmail(String idEmail);
+    Optional<CustomerEntity> findByPassword(String password);
+    Optional<CustomerEntity> findByPhonenum(String phonenum);
+    Optional<CustomerEntity> findByLocation(String location);
     //List<CustomerDto> findAll();
 }

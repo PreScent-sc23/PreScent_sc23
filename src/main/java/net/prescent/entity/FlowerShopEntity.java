@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -21,52 +24,67 @@ public class FlowerShopEntity {
     private String shopPhoneNum;
     @Column(nullable = false)
     private String shopLocation;
-    private int[][] openingHours;
-    @Column(nullable = false)
-    private boolean isOpened;
-    private String[] holiday;
-    @Column(nullable = false)
+    private boolean isOpened=true;
+
+    private Integer openHour;
+    private Integer openMinute;
+    private Integer closeHour;
+    private Integer closeMinute;
+    private String[] workday;
+    private String description;
+
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity", cascade = CascadeType.ALL)
     private SellerEntity sellerEntity;
+    @OneToMany(mappedBy = "flowerShopEntity",fetch = FetchType.EAGER)
+    private List<FinishedProductEntity> finishedProductEntityList = new ArrayList<>();
 
+
+    public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
+    {
+        if (this.finishedProductEntityList == null) {
+            this.finishedProductEntityList = new ArrayList<>();
+        }
+        this.finishedProductEntityList.add(finishedProductEntity);
+    }
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
         this.sellerEntity.setFlowerShopEntity(this);
     }
-    public FlowerShopEntity(Integer shopKey, String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday, boolean isSub) {
-        this.shopKey = shopKey;
+    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, String description) {
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
         this.shopLocation = shopLocation;
-        this.openingHours = openingHours;
-        this.isOpened = isOpened;
-        this.holiday = holiday;
-        this.isSub = isSub;
+        this.description = description;
     }
-    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
-        this.shopName = shopName;
-        this.shopPhoneNum = shopPhoneNum;
-        this.shopLocation = shopLocation;
-        this.openingHours = openingHours;
-        this.isOpened = isOpened;
-        this.holiday = holiday;
-    }
+//    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
+//        this.shopName = shopName;
+//        this.shopPhoneNum = shopPhoneNum;
+//        this.shopLocation = shopLocation;
+//        this.isOpened = isOpened;
+//        this.holiday = holiday;
+//    }
 
     public FlowerShopEntity() {
     }
 
-    public static FlowerShopEntity toFlowerShopEntity(FlowerShopDto flowerShopDto)
+    public static FlowerShopEntity FlowerShopDtoToEntity(FlowerShopDto flowerShopDto)
     {
         FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
         flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
+        flowerShopEntity.setShopPhoneNum(flowerShopDto.getShopPhoneNum());
         flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
-        flowerShopEntity.setOpeningHours(flowerShopDto.getOpeningHours());
-        flowerShopEntity.setOpened(flowerShopDto.isOpened());
-        flowerShopEntity.setHoliday(flowerShopDto.getHoliday());
-        flowerShopEntity.setSub(flowerShopDto.isSub());
+
+        flowerShopEntity.setOpenHour(flowerShopDto.getOpenHour());
+        flowerShopEntity.setOpenMinute(flowerShopDto.getOpenMinute());
+        flowerShopEntity.setCloseHour(flowerShopDto.getCloseHour());
+        flowerShopEntity.setCloseMinute(flowerShopDto.getCloseMinute());
+        flowerShopEntity.setWorkday(flowerShopDto.getWorkday());
+
+        flowerShopEntity.setDescription(flowerShopDto.getDescription());
+
         return flowerShopEntity;
     }
 

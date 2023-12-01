@@ -1,7 +1,7 @@
 package net.prescent.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import net.prescent.entity.FlowerShopEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 

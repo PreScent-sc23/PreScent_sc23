@@ -12,30 +12,32 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = "customerPassword")
+@ToString(exclude = "password")
 public class CustomerDto {
 
     private Integer userKey;
     @NotBlank(message = "이름을 작성해주세요")
-    private String customerName;
+    private String name;
     @Email(message = "올바른 이메일 형식을 사용해주세요")
     @NotBlank(message = "이메일을 작성해주세요")
-    private String customerIdEmail;
+    private String idEmail;
     @NotBlank(message = "비밀번호를 작성해주세요")
-    private String customerPassword;
+    private String password;
+    private String confirmPassword;
     @NotBlank(message = "전화번호를 작성해주세요")
-    private String customerPhonenum;
-    private String customerLocation;
+    private String phonenum;
+    private String location;
+
+
 
 
     public static CustomerDto toCustomerDto(CustomerEntity customerEntity){
         CustomerDto customerDto = new CustomerDto();
 
-        customerDto.setCustomerName(customerEntity.getCustomerName());
-        customerDto.setCustomerIdEmail(customerEntity.getCustomerIdEmail());
-        customerDto.setCustomerPhonenum(customerEntity.getCustomerPhonenum());
-        customerDto.setCustomerPassword(customerEntity.getCustomerPassword());
-        customerDto.setCustomerLocation(customerEntity.getCustomerLocation());
+        customerDto.setName(customerEntity.getName());
+        customerDto.setIdEmail(customerEntity.getIdEmail());
+        customerDto.setPhonenum(customerEntity.getPhonenum());
+        customerDto.setLocation(customerEntity.getLocation());
         return customerDto;
     }
 }
