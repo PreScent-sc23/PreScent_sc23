@@ -28,6 +28,7 @@ public class CartController {
 
     @PostMapping("/{customerKey}/{fpKey}")
     public String addCartItem(@PathVariable("customerKey") Integer customerKey, @PathVariable("fpKey") Integer fpKey, int amount) {
+        System.out.println("Cart start!!!----------------");
         CustomerDto foundCustomer = customerService.findCustomer(customerKey);
         FinishedProductEntity foundFp = finishedProductService.getFinishedProductWithFpKey(fpKey).get();
 

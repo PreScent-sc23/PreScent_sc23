@@ -10,8 +10,6 @@ import java.util.List;
 @Setter
 public class CustomizeProductFormDto {
     private Integer cpKey;
-    private String title;
     private List<Integer> price;
-    private String detail;
     private List<AdditionalFormDto> additionalForm;
 }

@@ -16,18 +16,14 @@ public class CustomizeProductFormEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cpKey;
-    private String title;
     private List<Integer> price;
-    private String detail;
     private List<AdditionalFormDto> additionalForm;
 
 
     public static CustomizeProductFormEntity customizeProductFormDtoToEntity(CustomizeProductFormDto customizeProductFormDto){
         CustomizeProductFormEntity customizeProductFormEntity = new CustomizeProductFormEntity();
         customizeProductFormEntity.setCpKey(customizeProductFormDto.getCpKey());
-        customizeProductFormEntity.setTitle(customizeProductFormDto.getTitle());
         customizeProductFormEntity.setPrice(customizeProductFormDto.getPrice());
-        customizeProductFormEntity.setDetail(customizeProductFormDto.getDetail());
         customizeProductFormEntity.setAdditionalForm(customizeProductFormDto.getAdditionalForm());
 
         return customizeProductFormEntity;
