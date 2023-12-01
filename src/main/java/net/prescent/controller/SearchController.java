@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -71,7 +72,9 @@ public class SearchController {
                 System.out.println("----------------------------------");
             }
             System.out.println("---------------------------------------------------------------------");
-
+            FinishedProductDto[] arr = new FinishedProductDto[10];
+            arr[0] = FinishedProductDto.toFinishedProductDto2(result.get(0));
+            
             List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
             for(FinishedProductEntity fp : result){
                 finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
@@ -92,6 +95,34 @@ public class SearchController {
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
+        return ResponseEntity.noContent().build();
+
+    }
+
+
+    @GetMapping("/detail/{fpKey}")
+    public ResponseEntity<FinishedProductDto> showDetail(@PathVariable Integer fpKey){
+        System.out.println("received fpKey:" + fpKey + "==================");
+
+        Optional<FinishedProductEntity> searchResult = searchService.searchByFpKey(fpKey);
+
+        if(searchResult.isPresent()) {
+            FinishedProductEntity result = searchResult.get();
+
+            FinishedProductDto finalResult = FinishedProductDto.toFinishedProductDto(result);
+
+            System.out.println("---------------------------------====================================");
+            System.out.println("fpKey: " + finalResult.getFpKey());
+            System.out.println("fpName: " + finalResult.getFpName());
+            System.out.println("fpPrice: " + finalResult.getFpPrice());
+            System.out.println("fpTag: " + finalResult.getFpTag());
+            System.out.println("shopKey: " + finalResult.getShopKey());
+            System.out.println("fpDetail: " + finalResult.getFpDetail());
+            System.out.println("---------------------------------====================================");
+
+            return ResponseEntity.ok(finalResult);
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
         return ResponseEntity.noContent().build();
 
     }

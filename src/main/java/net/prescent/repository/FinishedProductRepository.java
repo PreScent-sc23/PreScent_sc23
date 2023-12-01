@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface FinishedProductRepository extends JpaRepository<FinishedProductEntity, Integer>
 {
     Optional<FinishedProductEntity> findByFpKey(Integer fpKey);
+    Optional<FinishedProductEntity> findByFpKey(Integer fpKey, Sort sort);
     Optional<List<FinishedProductEntity>> findByFpNameContaining(String fpName);
     //Optional<List<FinishedProductEntity>> findByShopKey(Integer shopKey); //Not working
     Optional<List<FinishedProductEntity>> findByFpTagContaining(String fpTag);
