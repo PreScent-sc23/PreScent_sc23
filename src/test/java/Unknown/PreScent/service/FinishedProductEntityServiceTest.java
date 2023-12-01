@@ -20,7 +20,7 @@
 //
 //import static org.assertj.core.api.Assertions.*;
 //
-//@Transactional
+////@Transactional
 //@SpringBootTest
 //public class FinishedProductEntityServiceTest {
 //    @Autowired

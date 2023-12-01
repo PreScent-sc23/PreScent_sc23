@@ -75,28 +75,28 @@ public class FinishedProductController {
 //        return ResponseEntity.status(HttpStatus.CREATED).build();
 //    }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addFinishedProduct(@RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
-                                                @RequestPart("jsonData") String jsonData)
-    {
-//        if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-//        System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
-        String fileName = fpImage.getOriginalFilename();
-        System.out.println("FileName is: " + fileName + "++++++++++++++++++++++++++++++++");
-
-        JSONObject jsonObject = new JSONObject(jsonData);
-        Integer shopKey = Integer.parseInt(jsonObject.getString("shopKey"));
-        String fpName = jsonObject.getString("fpName");
-        String fpTag = jsonObject.getString("fpTag");
-        Integer fpPrice = Integer.parseInt(jsonObject.getString("fpPrice"));
-        String fpDetail = jsonObject.getString("fpDetail");
-        String fpFlowerList = jsonObject.getString("fpFlowerList");
-
-        String[] fpFlowerListToStringArray = fpFlowerList.split(",");
-        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
-        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<?> addFinishedProduct(@RequestPart(name = "fpImage", required = false) MultipartFile fpImage,
+//                                                @RequestPart("jsonData") String jsonData)
+//    {
+////        if(fpImage.isEmpty()) System.out.println("fpImage is Empty!!!-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
+////        System.out.println("-*-*-*-*-*-*-*this is fpImage filename: " + fpImage.getOriginalFilename());
+//        String fileName = fpImage.getOriginalFilename();
+//        System.out.println("FileName is: " + fileName + "++++++++++++++++++++++++++++++++");
+//
+//        JSONObject jsonObject = new JSONObject(jsonData);
+//        Integer shopKey = Integer.parseInt(jsonObject.getString("shopKey"));
+//        String fpName = jsonObject.getString("fpName");
+//        String fpTag = jsonObject.getString("fpTag");
+//        Integer fpPrice = Integer.parseInt(jsonObject.getString("fpPrice"));
+//        String fpDetail = jsonObject.getString("fpDetail");
+//        String fpFlowerList = jsonObject.getString("fpFlowerList");
+//
+//        String[] fpFlowerListToStringArray = fpFlowerList.split(",");
+//        FinishedProductDto finishedProductDto = new FinishedProductDto(fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerListToStringArray);
+//        finishedProductService.addFinishedProduct(shopKey, finishedProductDto);
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    }
 
 
     @PostMapping("/testadd")

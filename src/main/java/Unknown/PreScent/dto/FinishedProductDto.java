@@ -15,20 +15,24 @@ import java.util.List;
 @Setter
 @ToString
 public class FinishedProductDto {
+    private Integer fpKey;
     private MultipartFile fpImage;
     private String fpName;
     private String fpTag;
     private Integer fpPrice;
     private String fpDetail;
     private String[] fpFlowerList;
+    private Integer shopKey;
 
-    public FinishedProductDto(MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
+    public FinishedProductDto(Integer fpKey, MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList, Integer shopKey) {
+        this.fpKey = fpKey;
         this.fpImage = fpImage;
         this.fpName = fpName;
         this.fpTag = fpTag;
         this.fpPrice = fpPrice;
         this.fpDetail = fpDetail;
         this.fpFlowerList =fpFlowerList;
+        this.shopKey = shopKey;
     }
 
     public FinishedProductDto() {
