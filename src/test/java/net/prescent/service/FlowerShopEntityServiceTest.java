@@ -1,0 +1,93 @@
+//package Unknown.PreScent.service;
+//
+//import net.prescent.entity.PreScent.FlowerShopEntity;
+//import net.prescent.repository.PreScent.FlowerShopRepository;
+//import net.prescent.dto.PreScent.SellerDto;
+//import net.prescent.repository.PreScent.SellerRepository;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.DisplayName;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//import static org.assertj.core.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//
+////@Transactional
+//@SpringBootTest
+//public class FlowerShopEntityServiceTest {
+//    private final FlowerShopService flowerShopService;
+//    private final FlowerShopRepository flowerShopRepository;
+//    private final SellerRepository sellerRepository;
+//    private final SellerService sellerService;
+//
+//    public FlowerShopEntityServiceTest(FlowerShopService flowerShopService, FlowerShopRepository flowerShopRepository, SellerRepository sellerRepository, SellerService sellerService) {
+//        this.flowerShopService = flowerShopService;
+//        this.flowerShopRepository = flowerShopRepository;
+//        this.sellerRepository = sellerRepository;
+//        this.sellerService = sellerService;
+//    }
+//
+//    @BeforeEach
+//    public void setup()
+//    {
+//        sellerRepository.deleteAllInBatch();
+//        flowerShopRepository.deleteAllInBatch();
+//    }
+//    public SellerDto createSellerDto(){
+//        SellerDto sellerDto = new SellerDto();
+//        sellerDto.setSellerKey(123456789);
+//        sellerDto.setSellerName("suhyeon");
+//        sellerDto.setSellerPhonenum("010-1111-2222");
+//        sellerDto.setSellerIdEmail("sooh");
+//        sellerDto.setSellerPassword("04prescent");
+//        return sellerDto;
+//    }
+//    public FlowerShopEntity createFlowerShopEntity(){
+//        FlowerShopEntity flowerShopEntity = new FlowerShopEntity();
+//        flowerShopEntity.setShopName("it's me");
+//        flowerShopEntity.setShopPhoneNum("031-308-8223");
+//        flowerShopEntity.setShopLocation("suwon city");
+//        flowerShopEntity.setOpeningHours(new int[][] {{1, 2, 3},{3, 4, 5}});
+//        flowerShopEntity.setHoliday(new String[]{"monday"});
+//        return flowerShopEntity;
+//    }
+//    @Test
+//    @DisplayName("매장 등록, 쿼리 테스트")
+//    public void testAddFlowerShop()
+//    {
+//        SellerDto sellerDto = createSellerDto();
+//        SellerDto sellerKey = sellerService.signup(sellerDto);
+//        assertNotNull(sellerKey);
+//
+//        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
+//        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
+//
+//        assertThat(addedShop).isNotNull();
+//        assertThat(addedShop.getSellerEntity()).isNotNull();
+//        assertThat((addedShop.getSellerEntity()).getSellerKey()).isEqualTo(123456789);
+//
+//        Integer testShopKeyIndex = addedShop.getShopKey();
+//
+//        FlowerShopEntity retrievedShop = flowerShopService.getFlowerShopByshopKey(testShopKeyIndex).orElse(null);
+//        assertThat(retrievedShop).isNotNull();
+//        assertThat(retrievedShop.getShopName()).isEqualTo("it's me");
+//    }
+//
+//    @Test
+//    //@Transactional
+//    @DisplayName("Sellerkey같은 매장 생성 테스트")
+//    public void testSameSellerKeyShop()
+//    {
+//        SellerDto sellerDto = createSellerDto();
+//        SellerDto sellerKey = sellerService.signup(sellerDto);
+//        assertNotNull(sellerKey);
+//
+//        FlowerShopEntity flowerShopEntity = createFlowerShopEntity();
+//
+//        FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(123456789, flowerShopEntity);
+//        Throwable e = assertThrows(IllegalStateException.class, () -> {
+//            flowerShopService.addFlowerShop(123456789, flowerShopEntity);});
+//        assertEquals("이미 매장을 등록한 판매자입니다.", e.getMessage());
+//    }
+//}
