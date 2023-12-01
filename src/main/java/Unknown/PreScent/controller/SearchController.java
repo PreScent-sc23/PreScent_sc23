@@ -93,7 +93,8 @@ public class SearchController {
             }
             System.out.println("---------------------------------------------------------------------");
 
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.ok(result);
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
         return ResponseEntity.noContent().build();
