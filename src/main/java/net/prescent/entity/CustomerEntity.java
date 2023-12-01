@@ -12,47 +12,46 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "customer")
-public class CustomerEntity {
+public class CustomerEntity extends UserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customerKey;
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name="cart_id")
 //    private CartEntity cart;
 
     @Column(nullable = false)
-    private String customerName;
+    private String name;
 
     @Column(nullable = false, unique = true)
-    private String customerIdEmail;
+    private String idEmail;
 
     @Column(nullable = false)
-    private String customerPassword;
+    private String phonenum;
 
-    @Column(nullable = false)
-    private String customerPhonenum;
-
-    private String customerLocation;
+    private String location;
 
     @OneToMany(mappedBy = "customerEntity")
     private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();
 
 
+
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto) {
         CustomerEntity customerEntity = new CustomerEntity();
-        customerEntity.setCustomerKey(customerDto.getCustomerKey());
-        customerEntity.setCustomerName(customerDto.getCustomerName());
-        customerEntity.setCustomerPhonenum(customerDto.getCustomerPhonenum());
-        customerEntity.setCustomerIdEmail(customerDto.getCustomerIdEmail());
-        customerEntity.setCustomerPassword(customerDto.getCustomerPassword());
-        customerEntity.setCustomerLocation(customerDto.getCustomerLocation());
+
+        customerEntity.setName(customerDto.getName());
+        customerEntity.setPhonenum(customerDto.getPhonenum());
+        customerEntity.setIdEmail(customerDto.getIdEmail());
+        customerEntity.setPassword(customerDto.getPassword());
+        customerEntity.setLocation(customerDto.getLocation());
         return customerEntity;
     }
 
     public void setFpOrderEntityList(FPOrderEntity fpOrderEntity) {
         this.fpOrderEntityList.add(fpOrderEntity);
+    }
+    @Override
+    public String getUserType() {
+        return "Customer";
     }
 
 //    public static FinishedProductEntity createFp(CartEntity cart, Item item, int amount) {

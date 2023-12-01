@@ -37,7 +37,7 @@ public class FlowerShopController {
     {
 
         System.out.println("---------------------------------------------------------------------");
-        System.out.println("sellerKey: " + flowerShopDto.getSellerKey());
+        System.out.println("sellerKey: " + flowerShopDto.getBusinessKey());
         System.out.println("shopName: " + flowerShopDto.getShopName());
         System.out.println("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
         System.out.println("shopLocation: " + flowerShopDto.getShopLocation());

@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-//@Transactional
+@Transactional
 @SpringBootTest
 public class FlowerShopEntityServiceTest {
     @Autowired
@@ -28,7 +28,7 @@ public class FlowerShopEntityServiceTest {
     @Autowired
     private SellerRepository sellerRepository;
     @Autowired
-    private SellerService sellerService;
+    private UserService sellerService;
 
 //    @BeforeEach
 //    public void setup()
@@ -38,16 +38,17 @@ public class FlowerShopEntityServiceTest {
 //    }
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(12345678);
-        sellerDto.setSellerName("suhyeonn");
-        sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail("sooh");
-        sellerDto.setSellerPassword("04prescent");
+        sellerDto.setBusinessKey(12345678L);
+        sellerDto.setName("suhyeonn");
+        sellerDto.setPhonenum("010-1111-2222");
+        sellerDto.setIdEmail("sooh");
+        sellerDto.setPassword("04prescent");
+        sellerDto.setConfirmPassword(("04prescent"));
         return sellerDto;
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setSellerKey(12345678);
+        flowerShopDto.setBusinessKey(12345678L);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -64,15 +65,15 @@ public class FlowerShopEntityServiceTest {
     public void testAddFlowerShop()
     {
         SellerDto sellerDto = createSellerDto();
-        SellerDto sellerKey = sellerService.signup(sellerDto);
-        assertNotNull(sellerKey);
+        Long businessKey = sellerService.signupSeller(sellerDto);
+        assertNotNull(businessKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
         assertThat(addedShop).isNotNull();
         assertThat(addedShop.getSellerEntity()).isNotNull();
-        assertThat((addedShop.getSellerEntity()).getSellerKey()).isEqualTo(12345678);
+        assertThat((addedShop.getSellerEntity()).getBusinessKey()).isEqualTo(12345678L);
 
         Integer testShopKeyIndex = addedShop.getShopKey();
 
@@ -82,12 +83,12 @@ public class FlowerShopEntityServiceTest {
     }
 
     @Test
-    @DisplayName("Sellerkey같은 매장 생성 테스트")
+    @DisplayName("Businesskey같은 매장 생성 테스트")
     public void testSameSellerKeyShop()
     {
         SellerDto sellerDto = createSellerDto();
-        SellerDto sellerKey = sellerService.signup(sellerDto);
-        assertNotNull(sellerKey);
+        Long businessKey = sellerService.signupSeller(sellerDto);
+        assertNotNull(businessKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
 

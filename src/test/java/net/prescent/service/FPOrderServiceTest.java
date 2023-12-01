@@ -1,18 +1,10 @@
 package net.prescent.service;
 
 import net.prescent.dto.*;
-import net.prescent.entity.FPOrderEntity;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
-import net.prescent.entity.CustomerEntity;
 
 import net.prescent.repository.FPOrderRepository;
-import net.prescent.repository.SellerRepository;
-import net.prescent.repository.CustomerRepository;
-import net.prescent.repository.FlowerShopRepository;
-import net.prescent.repository.FinishedProductRepository;
-
-import net.prescent.service.CustomerService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,9 +29,7 @@ public class FPOrderServiceTest {
     @Autowired
     FPOrderRepository fpOrderRepo;
     @Autowired
-    CustomerService customerService;
-    @Autowired
-    SellerService sellerService;
+    UserService userService;
     @Autowired
     FlowerShopService flowerShopService;
     @Autowired
@@ -48,19 +38,20 @@ public class FPOrderServiceTest {
     FPOrderService fpOrderService;
     @Autowired
     PasswordEncoder passwordEncoder;
-    public SellerDto createSellerDto(Integer sellerKey) {
+    public SellerDto createSellerDto(Long businessKey) {
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(sellerKey);
-        sellerDto.setSellerName("suhyeon");
-        sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail("ajou@gmail.com");
-        sellerDto.setSellerPassword("04prescent");
+        sellerDto.setBusinessKey(businessKey);
+        sellerDto.setName("suhyeon");
+        sellerDto.setPhonenum("010-1111-2222");
+        sellerDto.setIdEmail("ajou@gmail.com");
+        sellerDto.setPassword("04prescent");
+        sellerDto.setConfirmPassword(("04prescent"));
         return sellerDto;
     }
 
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setSellerKey(12345678);
+        flowerShopDto.setBusinessKey(12345678L);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -85,10 +76,11 @@ public class FPOrderServiceTest {
 
     public CustomerDto createCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
-        customerDto.setCustomerName("suhyeon");
-        customerDto.setCustomerPhonenum("010-1111-2222");
-        customerDto.setCustomerIdEmail("ajou.gmail.com");
-        customerDto.setCustomerPassword("04prescent");
+        customerDto.setName("suhyeon");
+        customerDto.setPhonenum("010-1111-2222");
+        customerDto.setIdEmail("ajou.gmail.com");
+        customerDto.setPassword("04prescent");
+        customerDto.setConfirmPassword(("04prescent"));
         return customerDto;
     }
 
@@ -107,11 +99,11 @@ public class FPOrderServiceTest {
     public void customerFPOrderTest()
     {
         CustomerDto customerDto = createCustomerDto();
-        Integer customerKey = customerService.signupForTest(customerDto);
+        Integer customerKey = userService.signupCustomer(customerDto);
         assertNotNull(customerKey);
 
-        SellerDto sellerDto = createSellerDto(12345678);
-        SellerDto savedSellerDto = sellerService.signup(sellerDto);
+        SellerDto sellerDto = createSellerDto(12345678L);
+        Long businessKey = userService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);

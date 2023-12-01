@@ -48,7 +48,7 @@ public class FPOrderService {
             throw new IllegalStateException("주문하려고 하는 제품이 존재하지 않는 제품입니다.");
         }
 
-        Optional<CustomerEntity> customerEntity = customerRepo.findByCustomerKey(fpOrderCustomerDto.getCustomerKey());
+        Optional<CustomerEntity> customerEntity = customerRepo.findByUserKey(fpOrderCustomerDto.getCustomerKey());
         System.out.println("=----------------------------------------------------------------preFPOrderToEntity내부 findByCustomerKey실행완료)");
         if(!customerEntity.isPresent())
         {

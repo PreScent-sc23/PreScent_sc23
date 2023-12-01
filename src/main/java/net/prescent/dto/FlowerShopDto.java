@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class FlowerShopDto {
-    private Integer sellerKey;
+    private Long BusinessKey;
     private Integer shopKey;
     private String shopName;
     private String shopPhoneNum;
@@ -28,7 +28,7 @@ public class FlowerShopDto {
     public static FlowerShopDto FlowerShopEntityToDto(FlowerShopEntity flowerShopEntity) {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
 
-        flowerShopDto.setSellerKey(flowerShopEntity.getSellerEntity().getSellerKey());
+        flowerShopDto.setBusinessKey(flowerShopEntity.getSellerEntity().getBusinessKey());
         flowerShopDto.setShopKey(flowerShopEntity.getShopKey());
         flowerShopDto.setShopName(flowerShopEntity.getShopName());
         flowerShopDto.setShopPhoneNum(flowerShopEntity.getShopPhoneNum());

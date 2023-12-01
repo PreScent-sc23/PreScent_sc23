@@ -30,7 +30,7 @@ public class FinishedProductEntityServiceTest {
     @Autowired
     private SearchService searchService;
     @Autowired
-    private SellerService sellerService;
+    private UserService sellerService;
     @Autowired
     private FlowerShopService flowerShopService;
 
@@ -51,7 +51,7 @@ public class FinishedProductEntityServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setSellerKey(12345678);
+        flowerShopDto.setBusinessKey(12345678L);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -63,13 +63,14 @@ public class FinishedProductEntityServiceTest {
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
     }
-    public SellerDto createSellerDto(Integer sellerKey) {
+    public SellerDto createSellerDto(Long businessKey) {
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setSellerKey(sellerKey);
-        sellerDto.setSellerName("suhyeon");
-        sellerDto.setSellerPhonenum("010-1111-2222");
-        sellerDto.setSellerIdEmail("ajou@gmail.com");
-        sellerDto.setSellerPassword("04prescent");
+        sellerDto.setBusinessKey(businessKey);
+        sellerDto.setName("suhyeon");
+        sellerDto.setPhonenum("010-1111-2222");
+        sellerDto.setIdEmail("ajou@gmail.com");
+        sellerDto.setPassword("04prescent");
+        sellerDto.setConfirmPassword(("04prescent"));
         return sellerDto;
     }
 
@@ -77,8 +78,8 @@ public class FinishedProductEntityServiceTest {
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        SellerDto sellerDto = createSellerDto(12345678);
-        SellerDto savedSellerDto = sellerService.signup(sellerDto);
+        SellerDto sellerDto = createSellerDto(12345678L);
+        Long businessKey = sellerService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
