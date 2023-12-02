@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 
 
@@ -81,7 +82,7 @@ public class FinishedProductService
                 System.out.println("매장이 가진 완제품이 존재하지 않습니다.");
                 return;
             }
-            List<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
+            Set<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
             for (FinishedProductEntity fpEntity : finishedProductEntityList) {
                 if (fpEntity.getFpName().equals(fpName)) {
                     throw new IllegalStateException(fpName + "는 이미 등록된 상품입니다.");

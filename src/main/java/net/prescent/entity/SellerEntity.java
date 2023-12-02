@@ -22,7 +22,7 @@ public class SellerEntity extends UserEntity {
     private String phonenum;
     private Integer isgrant;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "shopKey", referencedColumnName = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 

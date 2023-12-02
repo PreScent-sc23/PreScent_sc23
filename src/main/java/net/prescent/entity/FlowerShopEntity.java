@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -37,13 +39,13 @@ public class FlowerShopEntity {
     @OneToOne(mappedBy = "flowerShopEntity", cascade = CascadeType.ALL)
     private SellerEntity sellerEntity;
     @OneToMany(mappedBy = "flowerShopEntity",fetch = FetchType.EAGER)
-    private List<FinishedProductEntity> finishedProductEntityList = new ArrayList<>();
+    private Set<FinishedProductEntity> finishedProductEntityList = new HashSet<>();
 
 
     public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
     {
         if (this.finishedProductEntityList == null) {
-            this.finishedProductEntityList = new ArrayList<>();
+            this.finishedProductEntityList = new HashSet<>();
         }
         this.finishedProductEntityList.add(finishedProductEntity);
     }
