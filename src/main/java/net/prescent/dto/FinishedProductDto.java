@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 public class FinishedProductDto {
     private Integer fpKey;
-    private MultipartFile fpImage;
+    private String fpImage;
     private String fpName;
     private String fpTag;
     private Integer fpPrice;
@@ -19,7 +19,7 @@ public class FinishedProductDto {
     private String[] fpFlowerList;
     private Integer shopKey;
 
-    public FinishedProductDto(Integer fpKey, MultipartFile fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList, Integer shopKey) {
+    public FinishedProductDto(Integer fpKey, String fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList, Integer shopKey) {
         this.fpKey = fpKey;
         this.fpImage = fpImage;
         this.fpName = fpName;
@@ -60,7 +60,4 @@ public class FinishedProductDto {
         return finishedProductDto;
     }
 
-    public MultipartFile setFpImage(byte[] fpImage) {
-        return null;
-    }
 }

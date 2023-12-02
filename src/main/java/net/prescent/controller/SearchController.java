@@ -63,17 +63,6 @@ public class SearchController {
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
-
-            System.out.println("---------------------------------------------------------------------");
-            for(FinishedProductEntity fp : result){
-                System.out.println("fpName: " + fp.getFpName());
-                System.out.println("fpPrice: " + fp.getFpPrice());
-                System.out.println("fpTag: " + fp.getFpTag());
-                System.out.println("----------------------------------");
-            }
-            System.out.println("---------------------------------------------------------------------");
-            FinishedProductDto[] arr = new FinishedProductDto[10];
-            arr[0] = FinishedProductDto.toFinishedProductDto2(result.get(0));
             
             List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
             for(FinishedProductEntity fp : result){
@@ -87,6 +76,7 @@ public class SearchController {
                 System.out.println("fpPrice: " + fp.getFpPrice());
                 System.out.println("fpTag: " + fp.getFpTag());
                 System.out.println("shopKey: " + fp.getShopKey());
+                System.out.println("fpImage: " + fp.getFpImage());
                 System.out.println("----------------------------------");
             }
             System.out.println("---------------------------------====================================");
@@ -101,10 +91,12 @@ public class SearchController {
 
 
     @GetMapping("/detail/{fpKey}")
-    public ResponseEntity<FinishedProductDto> showDetail(@PathVariable Integer fpKey){
+    public ResponseEntity<FinishedProductDto> showDetail(@PathVariable String fpKey){
         System.out.println("received fpKey:" + fpKey + "==================");
 
-        Optional<FinishedProductEntity> searchResult = searchService.searchByFpKey(fpKey);
+        Integer intFpKey = Integer.parseInt(fpKey);
+
+        Optional<FinishedProductEntity> searchResult = searchService.searchByFpKey(intFpKey);
 
         if(searchResult.isPresent()) {
             FinishedProductEntity result = searchResult.get();
