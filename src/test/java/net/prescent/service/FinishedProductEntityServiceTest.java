@@ -94,9 +94,8 @@ public class FinishedProductEntityServiceTest {
 
         Integer testFpIndex = addedFinishedProductEntity.getFpKey();
 
-        FinishedProductEntity retrievedShop = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
-        assertThat(retrievedShop).isNotNull();
-        assertThat(retrievedShop.getFpName()).isEqualTo("장미꽃다발");
+        FinishedProductEntity retrievedFP = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
+        assertThat(retrievedFP.getFpName()).isEqualTo("장미꽃다발");
     }
 
 //    @Test

@@ -45,8 +45,8 @@ public class FinishedProductEntity {
     @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    @OneToMany(mappedBy = "finishedProductEntity",fetch = FetchType.EAGER)
-    private List<FPOrderEntity> fpOrderEntityList= new ArrayList<>();
+//    @OneToMany(mappedBy = "finishedProductEntity", fetch = FetchType.EAGER)
+//    private List<FPOrderEntity> fpOrderEntityList= new ArrayList<>();
 
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
@@ -54,14 +54,14 @@ public class FinishedProductEntity {
         this.flowerShopEntity.setFinishedProductEntityList(this);
     }
 
-    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
-    {
-        if(this.fpOrderEntityList == null)
-        {
-            fpOrderEntityList = new ArrayList<>();
-        }
-        this.fpOrderEntityList.add(fpOrderEntity);
-    }
+//    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
+//    {
+//        if(this.fpOrderEntityList == null)
+//        {
+//            this.fpOrderEntityList = new ArrayList<>();
+//        }
+//        this.fpOrderEntityList.add(fpOrderEntity);
+//    }
 
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;

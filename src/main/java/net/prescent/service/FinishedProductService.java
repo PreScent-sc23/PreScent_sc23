@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Slf4j
@@ -83,7 +84,7 @@ public class FinishedProductService
                 log.debug("매장이 가진 완제품이 존재하지 않습니다.");
                 return;
             }
-            List<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
+            Set<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
             for (FinishedProductEntity fpEntity : finishedProductEntityList) {
                 if (fpEntity.getFpName().equals(fpName)) {
                     throw new IllegalStateException(fpName + "는 이미 등록된 상품입니다.");

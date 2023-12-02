@@ -2,6 +2,7 @@ package net.prescent.service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FPOrderCustomerDto;
+import net.prescent.dto.FPOrderListDto;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.FPOrderEntity;
 import net.prescent.entity.FinishedProductEntity;
@@ -10,6 +11,8 @@ import net.prescent.repository.FPOrderRepository;
 import net.prescent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -57,6 +60,41 @@ public class FPOrderService {
             throw new IllegalStateException("주문하려는 고객의 정보가 존재하지 않습니다.");
         }
         log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 체크까진 끝)");
-        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate());
+        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate(), fpOrderCustomerDto.getPickupTime());
+    }
+
+    public ArrayList<FPOrderListDto> customerFPOrderList(Integer custKey) {
+        Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(custKey);
+        if(foundCustomerEntity.isPresent()){
+            CustomerEntity customerEntity = foundCustomerEntity.get();
+            log.debug("FPOrderService내부 customerFPOrderList메서드"+customerEntity.getIdEmail());
+            List<FPOrderEntity> fpOrderEntityList = customerEntity.getFpOrderEntityList();
+            if(fpOrderEntityList == null)
+            {
+                return null;
+            }
+            else
+            {
+                List<FPOrderListDto> fpOrderListDtoArrayList = new ArrayList<>();
+                for(FPOrderEntity fpOrderEntity : fpOrderEntityList)
+                {
+                    FinishedProductEntity finishedProductEntity = fpOrderEntity.getFinishedProductEntity();
+                    if(finishedProductEntity == null)
+                    {
+                        throw new IllegalStateException("상품이 더이상 존재하지 않습니다.");
+                    }
+                    else
+                    {
+                        FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, finishedProductEntity);
+                        log.debug("FPOrderService내부 customerFPOrderList메서드 for문 내부"+fpOrderListDto.getFpDetail());
+                        fpOrderListDtoArrayList.add(fpOrderListDto);
+                    }
+                }
+                return (ArrayList<FPOrderListDto>) fpOrderListDtoArrayList;
+            }
+        }
+        else {
+            throw new IllegalStateException("주문목록을 조회할 고객 정보가 존재하지 않습니다.");
+        }
     }
 }

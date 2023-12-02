@@ -27,14 +27,19 @@ public class FPOrderEntity {
     @Column(nullable = false)
     private String purchaseInfo;
     @Column(nullable = false)
-    private Date pickupDate;
+    private String pickupDate;
+    private String pickupTime;
     @Column(nullable = false)
     private Byte fpOrderState=0;
+
+    private Integer count=1;
+    private Integer totalPrice;
+
 
     private void setFinishedProductEntity(FinishedProductEntity finishedProductEntity)
     {
         this.finishedProductEntity = finishedProductEntity;
-        this.finishedProductEntity.setFpOrderEntityList(this);
+        //this.finishedProductEntity.setFpOrderEntityList(this);
     }
 
     private void setCustomerEntity(CustomerEntity customerEntity)
@@ -44,7 +49,7 @@ public class FPOrderEntity {
     }
 
 
-    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, Date pickupDate)
+    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, String pickupDate, String pickupTime)
     {
         FPOrderEntity fpOrderEntity = new FPOrderEntity();
 
@@ -52,6 +57,7 @@ public class FPOrderEntity {
         fpOrderEntity.setCustomerEntity(customerEntity);
         fpOrderEntity.setPurchaseInfo(purchaseInfo);
         fpOrderEntity.setPickupDate(pickupDate);
+        fpOrderEntity.setPickupTime(pickupTime);
         log.debug("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 
         return fpOrderEntity;
