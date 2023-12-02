@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.entity.SellerEntity;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class FlowerShopService {
     private final FlowerShopRepository flowerShopRepo;
@@ -27,9 +29,9 @@ public class FlowerShopService {
         Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(flowerShopDto.getBusinessKey());
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
-//            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+//            log.debug(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
 
-            System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
+            log.debug(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
             if(foundSellerEntity.getFlowerShopEntity() != null) {
                 throw new IllegalStateException("이미 매장을 등록한 판매자입니다.");
             }
@@ -38,7 +40,7 @@ public class FlowerShopService {
                 flowerShopEntity.setSellerEntity(foundSellerEntity);
                 flowerShopRepo.save(flowerShopEntity);
                 sellerRepo.save(foundSellerEntity);
-                System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+                log.debug(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
             }
             return flowerShopEntity;
         }
@@ -53,9 +55,9 @@ public class FlowerShopService {
         Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(businessKey);
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
-//            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+//            log.debug(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
 
-            System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
+            log.debug(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
             if(foundSellerEntity.getFlowerShopEntity() != null) {
                 throw new IllegalStateException("이미 매장을 등록한 판매자입니다.");
             }
@@ -64,7 +66,7 @@ public class FlowerShopService {
                 flowerShopEntity.setSellerEntity(foundSellerEntity);
                 flowerShopRepo.save(flowerShopEntity);
                 sellerRepo.save(foundSellerEntity);
-                System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+                log.debug(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
             }
             return flowerShopEntity;
         }

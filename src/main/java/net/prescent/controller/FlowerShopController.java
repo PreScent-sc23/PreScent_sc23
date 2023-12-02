@@ -1,5 +1,6 @@
 package net.prescent.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.service.FlowerShopService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/flower-shops")
@@ -36,16 +38,16 @@ public class FlowerShopController {
                                           BindingResult bindingResult)
     {
 
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("sellerKey: " + flowerShopDto.getBusinessKey());
-        System.out.println("shopName: " + flowerShopDto.getShopName());
-        System.out.println("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
-        System.out.println("shopLocation: " + flowerShopDto.getShopLocation());
-        System.out.println("description: " + flowerShopDto.getDescription() + "\n");
-        System.out.println("---------------------------------------------------------------------");
+        log.debug("---------------------------------------------------------------------");
+        log.debug("sellerKey: " + flowerShopDto.getBusinessKey());
+        log.debug("shopName: " + flowerShopDto.getShopName());
+        log.debug("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
+        log.debug("shopLocation: " + flowerShopDto.getShopLocation());
+        log.debug("description: " + flowerShopDto.getDescription() + "\n");
+        log.debug("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {
 
-            System.out.println("bindingResult error!!!");
+            log.debug("bindingResult error!!!");
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
 

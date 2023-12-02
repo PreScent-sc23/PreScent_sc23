@@ -1,6 +1,8 @@
 package net.prescent.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FPOrderCustomerDto;
+import net.prescent.dto.FPOrderListDto;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.FPOrderEntity;
 import net.prescent.entity.FinishedProductEntity;
@@ -9,8 +11,11 @@ import net.prescent.repository.FPOrderRepository;
 import net.prescent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class FPOrderService {
     final FPOrderRepository fpOrderRepo;
@@ -32,7 +37,7 @@ public class FPOrderService {
         finishedProductRepo.save(fpOrderEntity.getFinishedProductEntity());
         customerRepo.save(fpOrderEntity.getCustomerEntity());
 
-        System.out.println("==================================== fporderEntity저장도 끝+++++++++"+fpOrderEntity);
+        log.debug("==================================== fporderEntity저장도 끝+++++++++"+fpOrderEntity);
         return fpOrderEntity;
         // Dto로 만들어서 보내야 하나? Entity 모든 필드 정보를 보내야 해서 Dto만들어도 entity와 같은 필드.
     }
@@ -40,21 +45,56 @@ public class FPOrderService {
     public FPOrderEntity preFPOrderCustomerDtoToFPOrderEntity(FPOrderCustomerDto fpOrderCustomerDto)
     {
         FPOrderEntity fpOrderEntity = new FPOrderEntity();
-        System.out.println("=----------------------------------------------------------------preFPOrderToEntity내부 체크 시작)"+fpOrderCustomerDto.getFpKey());
+        log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 체크 시작)"+fpOrderCustomerDto.getFpKey());
         Optional<FinishedProductEntity> finishedProductEntity = finishedProductRepo.findByFpKey(fpOrderCustomerDto.getFpKey());
-        System.out.println("=----------------------------------------------------------------preFPOrderToEntity내부 findByKey실행완료)");
+        log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 findByKey실행완료)");
         if(!finishedProductEntity.isPresent())
         {
             throw new IllegalStateException("주문하려고 하는 제품이 존재하지 않는 제품입니다.");
         }
 
         Optional<CustomerEntity> customerEntity = customerRepo.findByUserKey(fpOrderCustomerDto.getCustomerKey());
-        System.out.println("=----------------------------------------------------------------preFPOrderToEntity내부 findByCustomerKey실행완료)");
+        log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 findByCustomerKey실행완료)");
         if(!customerEntity.isPresent())
         {
             throw new IllegalStateException("주문하려는 고객의 정보가 존재하지 않습니다.");
         }
-        System.out.println("=----------------------------------------------------------------preFPOrderToEntity내부 체크까진 끝)");
-        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate());
+        log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 체크까진 끝)");
+        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate(), fpOrderCustomerDto.getPickupTime());
+    }
+
+    public ArrayList<FPOrderListDto> customerFPOrderList(Integer custKey) {
+        Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(custKey);
+        if(foundCustomerEntity.isPresent()){
+            CustomerEntity customerEntity = foundCustomerEntity.get();
+            log.debug("FPOrderService내부 customerFPOrderList메서드"+customerEntity.getIdEmail());
+            List<FPOrderEntity> fpOrderEntityList = customerEntity.getFpOrderEntityList();
+            if(fpOrderEntityList == null)
+            {
+                return null;
+            }
+            else
+            {
+                List<FPOrderListDto> fpOrderListDtoArrayList = new ArrayList<>();
+                for(FPOrderEntity fpOrderEntity : fpOrderEntityList)
+                {
+                    FinishedProductEntity finishedProductEntity = fpOrderEntity.getFinishedProductEntity();
+                    if(finishedProductEntity == null)
+                    {
+                        throw new IllegalStateException("상품이 더이상 존재하지 않습니다.");
+                    }
+                    else
+                    {
+                        FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, finishedProductEntity);
+                        log.debug("FPOrderService내부 customerFPOrderList메서드 for문 내부"+fpOrderListDto.getFpDetail());
+                        fpOrderListDtoArrayList.add(fpOrderListDto);
+                    }
+                }
+                return (ArrayList<FPOrderListDto>) fpOrderListDtoArrayList;
+            }
+        }
+        else {
+            throw new IllegalStateException("주문목록을 조회할 고객 정보가 존재하지 않습니다.");
+        }
     }
 }

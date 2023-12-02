@@ -2,6 +2,7 @@ package net.prescent.controller;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.service.FinishedProductService;
@@ -19,6 +20,7 @@ import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/finished-product")
@@ -48,32 +50,32 @@ public class FinishedProductController {
 //        @RequestPart("fpPrice") Integer fpPrice,
 //        @RequestPart("fpDetail") String fpDetail,
 //        @RequestPart("fpFlowerList") String fpFlowerList
-//        System.out.println("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
-//        System.out.println("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
-//        System.out.println("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
-//        System.out.println("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
-//        System.out.println("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
-//        System.out.println("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
+//        log.debug("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
+//        log.debug("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
+//        log.debug("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
+//        log.debug("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
+//        log.debug("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
+//        log.debug("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
 
-//        System.out.println("shopKey 값 : "+ shopKey +"--------------------------------------------");
-//        System.out.println("fpName 값 : "+ fpName +"--------------------------------------------");
-//        System.out.println("fpTag 값 : "+ fpTag+"--------------------------------------------");
-//        System.out.println("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-//        System.out.println("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-//        System.out.println("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+//        log.debug("shopKey 값 : "+ shopKey +"--------------------------------------------");
+//        log.debug("fpName 값 : "+ fpName +"--------------------------------------------");
+//        log.debug("fpTag 값 : "+ fpTag+"--------------------------------------------");
+//        log.debug("fpPrice 값 : "+fpPrice+"--------------------------------------------");
+//        log.debug("fpDetail 값 : "+fpDetail+"--------------------------------------------");
+//        log.debug("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
         try {
             String fileName=fpImage.getOriginalFilename();
-            System.out.println(fileName);
+            log.debug(fileName);
             String fileUrl= amazonS3Client.getUrl(bucket, fileName).toString();
-            System.out.println(fileUrl);
+            log.debug(fileUrl);
             ObjectMetadata metadata= new ObjectMetadata();
             metadata.setContentType(fpImage.getContentType());
             metadata.setContentLength(fpImage.getSize());
             amazonS3Client.putObject(bucket,fileName,fpImage.getInputStream(),metadata);
 //            FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
 //            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
-//                System.out.println("file is not provided");
+//                log.debug("file is not provided");
 //            }
             finishedProductDto.setFpImage(fileUrl);
             finishedProductService.addFinishedProduct(finishedProductDto);
