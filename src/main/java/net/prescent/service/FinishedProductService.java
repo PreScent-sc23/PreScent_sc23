@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
@@ -10,8 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
+@Slf4j
 @Service
 public class FinishedProductService
 {
@@ -46,24 +49,24 @@ public class FinishedProductService
         FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
         Optional<FlowerShopEntity> foundFlowerShopEntity = flowerShopRepo.findByshopKey(finishedProductDto.getShopKey());
         if (foundFlowerShopEntity.isPresent()) {
-            System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()전");
+            log.debug("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()전");
             FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
-            System.out.println("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()후" + foundFlowerShopEntity.get().getShopKey());
+            log.debug("---------------------------------in addFinishedProductToShop foundFlowerShopEntity.get()후" + foundFlowerShopEntity.get().getShopKey());
             finishedProductEntity.setFlowerShopEntity(flowerShopEntity);
-            System.out.println("---------------------------------in addFinishedProductToShop setFlowershopEntity후" + finishedProductEntity);
+            log.debug("---------------------------------in addFinishedProductToShop setFlowershopEntity후" + finishedProductEntity);
 
-            System.out.println("shopKey 값 : " + finishedProductDto.getShopKey() + "--------------------------------------------");
-            System.out.println("fpName 값 : " + finishedProductEntity.getFpName() + "--------------------------------------------");
-            System.out.println("fpTag 값 : " + finishedProductEntity.getFpTag() + "--------------------------------------------");
-            System.out.println("fpPrice 값 : " + finishedProductEntity.getFpPrice() + "--------------------------------------------");
-            System.out.println("fpDetail 값 : " + finishedProductEntity.getFpDetail() + "--------------------------------------------");
+            log.debug("shopKey 값 : " + finishedProductDto.getShopKey() + "--------------------------------------------");
+            log.debug("fpName 값 : " + finishedProductEntity.getFpName() + "--------------------------------------------");
+            log.debug("fpTag 값 : " + finishedProductEntity.getFpTag() + "--------------------------------------------");
+            log.debug("fpPrice 값 : " + finishedProductEntity.getFpPrice() + "--------------------------------------------");
+            log.debug("fpDetail 값 : " + finishedProductEntity.getFpDetail() + "--------------------------------------------");
             System.out.printf("fpFlowerList 값 : %s--------------------------------------------%n", (Object) finishedProductEntity.getFpFlowerList());
             if (finishedProductEntity.getFpImage() != null) {
-                System.out.println("여긴 addFinishedProduct fpImage를 확인" + finishedProductEntity.getFpImage() + "---------------");
+                log.debug("여긴 addFinishedProduct fpImage를 확인" + finishedProductEntity.getFpImage() + "---------------");
             }
             finishedProductRepo.save(finishedProductEntity);
             flowerShopRepo.save(flowerShopEntity);
-            System.out.println("---------------------------------in addFinishedProductToShop save끝");
+            log.debug("---------------------------------in addFinishedProductToShop save끝");
             return finishedProductEntity;
         }
        else {
@@ -78,10 +81,10 @@ public class FinishedProductService
             }
             FlowerShopEntity flowerShopEntity = foundFlowerShopEntity.get();
             if (flowerShopEntity.getFinishedProductEntityList() == null) {
-                System.out.println("매장이 가진 완제품이 존재하지 않습니다.");
+                log.debug("매장이 가진 완제품이 존재하지 않습니다.");
                 return;
             }
-            List<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
+            Set<FinishedProductEntity> finishedProductEntityList = flowerShopEntity.getFinishedProductEntityList();
             for (FinishedProductEntity fpEntity : finishedProductEntityList) {
                 if (fpEntity.getFpName().equals(fpName)) {
                     throw new IllegalStateException(fpName + "는 이미 등록된 상품입니다.");

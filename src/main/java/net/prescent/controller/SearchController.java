@@ -1,6 +1,7 @@
 package net.prescent.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.service.SearchService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
-
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -32,12 +33,12 @@ public class SearchController {
 //    @GetMapping("/search")
 //    public ResponseEntity<Map<List<FinishedProductEntity>, Object>> searchTag(@RequestParam String query,
 //                                                                HttpServletRequest request, HttpServletResponse response){
-//        System.out.println("Qurey: " + query + "----------------\n");
+//        log.debug("Qurey: " + query + "----------------\n");
 //
 //        if(query.startsWith("#")){
 //            String[] queryResult = query.split("#");
 //
-//            System.out.println("query split: " + queryResult[0] + "----------------\n");
+//            log.debug("query split: " + queryResult[0] + "----------------\n");
 //
 //            Map<List<FinishedProductEntity>,Object> result = new HashMap<>();
 //            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
@@ -60,26 +61,26 @@ public class SearchController {
                                                                  HttpServletRequest request,
                                                                  HttpServletResponse response){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
-//        System.out.println("Qurey: " + query + "----------------");
-//        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
+//        log.debug("Qurey: " + query + "----------------");
+//        log.debug("decodedQuery: " + decodedQuery + "----------------\n");
 
         if(decodedQuery.startsWith("#")){
             String[] queryResult = decodedQuery.split("#");
 
-            System.out.println("query split0: " + queryResult[0] + "----------------\n");
-            System.out.println("query split1: " + queryResult[1] + "----------------\n");
+            log.debug("query split0: " + queryResult[0] + "----------------\n");
+            log.debug("query split1: " + queryResult[1] + "----------------\n");
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
 
-            System.out.println("---------------------------------------------------------------------");
+            log.debug("---------------------------------------------------------------------");
             for(FinishedProductEntity fp : result){
-                System.out.println("fpName: " + fp.getFpName());
-                System.out.println("fpPrice: " + fp.getFpPrice());
-                System.out.println("fpTag: " + fp.getFpTag());
-                System.out.println("----------------------------------");
+                log.debug("fpName: " + fp.getFpName());
+                log.debug("fpPrice: " + fp.getFpPrice());
+                log.debug("fpTag: " + fp.getFpTag());
+                log.debug("----------------------------------");
             }
-            System.out.println("---------------------------------------------------------------------");
+            log.debug("---------------------------------------------------------------------");
 
             Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
 

@@ -3,6 +3,7 @@ package net.prescent.entity;
 import net.prescent.dto.CustomerDto;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class CustomerEntity extends UserEntity {
 
     private String location;
 
-    @OneToMany(mappedBy = "customerEntity")
+    @OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER)
     private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();
 
 
@@ -47,6 +48,10 @@ public class CustomerEntity extends UserEntity {
     }
 
     public void setFpOrderEntityList(FPOrderEntity fpOrderEntity) {
+        if(this.fpOrderEntityList == null)
+        {
+            this.fpOrderEntityList = new ArrayList<>();
+        }
         this.fpOrderEntityList.add(fpOrderEntity);
     }
     @Override

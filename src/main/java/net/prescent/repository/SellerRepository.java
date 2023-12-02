@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SellerRepository extends JpaRepository<SellerEntity, Long> {
+public interface SellerRepository extends JpaRepository<SellerEntity, Integer> {
 
     //SellerDto save(SellerDto seller);
-    Optional<SellerEntity> findByUserKey(Long userKey);
+    Optional<SellerEntity> findByUserKey(Integer userKey);
     Optional<SellerEntity> findByBusinessKey(Long businessKey);
     Optional<SellerEntity> findByName(String name);
     Optional<SellerEntity> findByIdEmail(String idEmail);
