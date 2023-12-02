@@ -15,9 +15,9 @@ import java.util.List;
 public class CustomerEntity extends UserEntity {
 
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="cart_id")
-//    private CartEntity cart;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="cartKey")
+    private CartEntity cartEntity;
 
     @Column(nullable = false)
     private String name;

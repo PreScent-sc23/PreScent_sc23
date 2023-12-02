@@ -1,31 +1,63 @@
-//package Unknown.PreScent.service;
-//
-//import dto.net.prescent.CustomerDto;
-//import Unknown.PreScent.entity.CartEntity;
-//import Unknown.PreScent.entity.CartItemEntity;
-//import entity.net.prescent.CustomerEntity;
-//import entity.net.prescent.FinishedProductEntity;
-//import Unknown.PreScent.repository.CartItemRepository;
-//import Unknown.PreScent.repository.CartRepository;
-//import repository.net.prescent.FinishedProductRepository;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.List;
-//import java.util.Optional;
-//
-//
-//@Service
-//public class CartService {
-//    private FinishedProductRepository finishedProductRepository;
-//    private final CartRepository cartRepository;
-//    private final CartItemRepository cartItemRepository;
-//
-//    public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository){
-//        this.cartRepository = cartRepository;
-//        this.cartItemRepository = cartItemRepository;
-//    }
-//
-//    public void addCartItem(CustomerDto customerDto, FinishedProductEntity newFinishedProductEntity, Integer amount){
+package net.prescent.service;
+
+import net.prescent.entity.CartEntity;
+import net.prescent.entity.CartItemEntity;
+import net.prescent.entity.CustomerEntity;
+import net.prescent.repository.CartItemRepository;
+import net.prescent.repository.CartRepository;
+import net.prescent.repository.CustomerRepository;
+import net.prescent.repository.FinishedProductRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+
+@Service
+public class CartService {
+    private FinishedProductRepository finishedProductRepository;
+    private final CartRepository cartRepository;
+    private final CartItemRepository cartItemRepository;
+    private final UserService userService;
+    private final CustomerRepository customerRepository;
+    private final CustomerEntity customerEntity;
+
+    public CartService(FinishedProductRepository finishedProductRepository, CartRepository cartRepository, CartItemRepository cartItemRepository, UserService userService, CustomerRepository customerRepository, CustomerEntity customerEntity) {
+        this.finishedProductRepository = finishedProductRepository;
+        this.cartRepository = cartRepository;
+        this.cartItemRepository = cartItemRepository;
+        this.userService = userService;
+        this.customerRepository = customerRepository;
+        this.customerEntity = customerEntity;
+    }
+    public void addCartItem(Integer custKey, Integer fpKey, Integer amount){
+        // 나중엔 토큰으로 받으니까 custDto로 받아와도 될 듯
+        Optional<CustomerEntity> foundCustomerEntity = customerRepository.findByUserKey(custKey);
+        if(foundCustomerEntity.isPresent())
+        {
+            CustomerEntity customerEntity = foundCustomerEntity.get();
+            CartEntity cartEntity = customerEntity.getCartEntity();
+            if(cartEntity == null)
+            {
+                cartEntity = new CartEntity(customerEntity, 0, 0);
+
+            }
+        }
+        else
+        {
+            throw new IllegalStateException("장바구니를 소유한 customer를 찾을 수 없습니다.");
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 //        Optional<CartEntity> cart = cartRepository.findByCustomerKey(customerDto.getCustomerKey());
 //
 //        if(cart.isEmpty()){
@@ -46,16 +78,16 @@
 //        }
 //
 //        cart.get().setCount(cart.get().getCount() + amount);
-//    }
-//
-//    private void increaseItemN(Integer amount, CartItemEntity foundCartItem) {
-//        CartItemEntity update = foundCartItem;
-//        update.setCart(foundCartItem.getCart());
-//        update.setFinishedProduct(foundCartItem.getFinishedProduct());
-//        update.addCount(amount);
-//        update.setCount(update.getCount());
-//        cartItemRepository.save(update);
-//    }
-//
-//
-//}
+    }
+
+    private void increaseItemN(Integer amount, CartItemEntity foundCartItem) {
+        CartItemEntity update = foundCartItem;
+        update.setCart(foundCartItem.getCart());
+        update.setFinishedProduct(foundCartItem.getFinishedProduct());
+        update.addCount(amount);
+        update.setCount(update.getCount());
+        cartItemRepository.save(update);
+    }
+
+
+}

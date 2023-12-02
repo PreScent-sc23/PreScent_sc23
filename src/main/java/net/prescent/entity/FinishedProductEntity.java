@@ -34,11 +34,6 @@ public class FinishedProductEntity {
 
     private String fpDetail;
 
-
-//    @ManyToOne
-//    @JoinColumn(name = "cart_id")
-//    private CartEntity cart;
-
     @ManyToOne
     @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
