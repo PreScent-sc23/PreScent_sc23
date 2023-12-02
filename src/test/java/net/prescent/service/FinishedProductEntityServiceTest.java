@@ -128,7 +128,7 @@ public class FinishedProductEntityServiceTest {
 //
 //        List<FinishedProductEntity> finishedProductEntities = fpList.get();
 //
-//        for(FinishedProductEntity fp : finishedProductEntities) System.out.println(fp.getFpPrice());
+//        for(FinishedProductEntity fp : finishedProductEntities) log.debug(fp.getFpPrice());
 //    }
 
 //    @Test
@@ -140,16 +140,16 @@ public class FinishedProductEntityServiceTest {
 //
 //        assertThat(fpPage).isNotNull();
 //
-//        System.out.println("---------Start---------Start---------");
+//        log.debug("---------Start---------Start---------");
 //
 //        List<Optional<FinishedProductEntity>> fpList = fpPage.getContent();
 //
 //        assertThat(fpList).isNotNull();
 //
-//        for(Optional<FinishedProductEntity> fp : fpList) System.out.println(fp);
+//        for(Optional<FinishedProductEntity> fp : fpList) log.debug(fp);
 //
 //
-//        System.out.println("---------End---------End---------");
+//        log.debug("---------End---------End---------");
 //
 //
 //    }
@@ -165,7 +165,7 @@ public class FinishedProductEntityServiceTest {
 //        assertThat(searchResult).isNotNull();
 //        assertThat(searchResult1).isNotNull();
 //
-//        System.out.println("---------Start---------Start---------");
+//        log.debug("---------Start---------Start---------");
 //
 //        List<FinishedProductEntity> fpList = searchResult.get();
 //        List<FinishedProductEntity> fpList1 = searchResult1.get();
@@ -173,12 +173,12 @@ public class FinishedProductEntityServiceTest {
 //        assertThat(fpList).isNotNull();
 //        assertThat(fpList1).isNotNull();
 //
-//        for(FinishedProductEntity fp : fpList) System.out.println(fp.getFpName() + "\t" + fp.getFpPrice());
-//        System.out.println("---------Asc---------Asc---------");
-//        for(FinishedProductEntity fp : fpList1) System.out.println(fp.getFpName() + "\t" + fp.getFpPrice());
+//        for(FinishedProductEntity fp : fpList) log.debug(fp.getFpName() + "\t" + fp.getFpPrice());
+//        log.debug("---------Asc---------Asc---------");
+//        for(FinishedProductEntity fp : fpList1) log.debug(fp.getFpName() + "\t" + fp.getFpPrice());
 //
 //
-//        System.out.println("---------End---------End---------");
+//        log.debug("---------End---------End---------");
 //
 //
 //    }

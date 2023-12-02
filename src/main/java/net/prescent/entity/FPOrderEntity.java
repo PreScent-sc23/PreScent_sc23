@@ -5,7 +5,9 @@ import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 @Setter
 @Entity
@@ -50,7 +52,7 @@ public class FPOrderEntity {
         fpOrderEntity.setCustomerEntity(customerEntity);
         fpOrderEntity.setPurchaseInfo(purchaseInfo);
         fpOrderEntity.setPickupDate(pickupDate);
-        System.out.println("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
+        log.debug("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 
         return fpOrderEntity;
     }
