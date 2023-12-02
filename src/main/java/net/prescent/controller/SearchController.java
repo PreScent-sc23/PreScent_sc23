@@ -103,15 +103,21 @@ public class SearchController {
 
             FinishedProductDto finalResult = FinishedProductDto.toFinishedProductDto(result);
 
+            String[] arr = finalResult.getFpFlowerList();
+            String[] arr2 = arr[0].split(" ");
+            finalResult.setFpFlowerList(arr2);
+
             System.out.println("---------------------------------====================================");
             System.out.println("fpKey: " + finalResult.getFpKey());
             System.out.println("fpName: " + finalResult.getFpName());
             System.out.println("fpPrice: " + finalResult.getFpPrice());
             System.out.println("fpTag: " + finalResult.getFpTag());
-            System.out.println("shopKey: " + finalResult.getShopKey());
             System.out.println("fpDetail: " + finalResult.getFpDetail());
-            String[] arr = finalResult.getFpFlowerList();
-            System.out.println("fpFlowerList: " + arr[0]);
+            System.out.println("fpImage: " + finalResult.getFpImage());
+
+            System.out.println("fpFlowerList1: " + arr2[0]);
+            System.out.println("fpFlowerList2: " + arr2[1]);
+            System.out.println("fpFlowerList3: " + arr2[2]);
             System.out.println("---------------------------------====================================");
 
             return ResponseEntity.ok(finalResult);

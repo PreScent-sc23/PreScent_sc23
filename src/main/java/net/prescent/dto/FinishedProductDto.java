@@ -61,4 +61,7 @@ public class FinishedProductDto {
         return finishedProductDto;
     }
 
+    public void setFpFlowerList(String[] fpFlowerList) {
+        this.fpFlowerList = fpFlowerList;
+    }
 }
