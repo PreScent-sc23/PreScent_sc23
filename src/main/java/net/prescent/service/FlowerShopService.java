@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.entity.SellerEntity;
 import net.prescent.repository.FlowerShopRepository;
@@ -20,14 +21,15 @@ public class FlowerShopService {
     }
 
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, FlowerShopEntity flowerShopEntity)
+    public FlowerShopEntity addFlowerShop(FlowerShopDto flowerShopDto)
     {
-        Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
+        FlowerShopEntity flowerShopEntity = FlowerShopEntity.FlowerShopDtoToEntity(flowerShopDto);
+        Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(flowerShopDto.getBusinessKey());
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
 
-            System.out.println(foundSellerEntity.getSellerIdEmail() + foundSellerEntity.getSellerName() + "-----------------------------------\n\n");
+            System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
             if(foundSellerEntity.getFlowerShopEntity() != null) {
                 throw new IllegalStateException("이미 매장을 등록한 판매자입니다.");
             }
@@ -36,7 +38,7 @@ public class FlowerShopService {
                 flowerShopEntity.setSellerEntity(foundSellerEntity);
                 flowerShopRepo.save(flowerShopEntity);
                 sellerRepo.save(foundSellerEntity);
-                System.out.println(foundSellerEntity.getSellerIdEmail() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+                System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
             }
             return flowerShopEntity;
         }
@@ -45,15 +47,15 @@ public class FlowerShopService {
         }
     }
 
-    public FlowerShopEntity addFlowerShop(Integer sellerKey, String shopName, String shopPhoneNum, String shopLocation, String description)
+    public FlowerShopEntity addFlowerShop(Long businessKey, String shopName, String shopPhoneNum, String shopLocation, String description)
     {
         FlowerShopEntity flowerShopEntity = new FlowerShopEntity(shopName, shopPhoneNum, shopLocation, description);
-        Optional<SellerEntity> sellerEntity = sellerRepo.findBySellerKey(sellerKey);
+        Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(businessKey);
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            System.out.println(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
 
-            System.out.println(foundSellerEntity.getSellerIdEmail() + foundSellerEntity.getSellerName() + "-----------------------------------\n\n");
+            System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + "-----------------------------------\n\n");
             if(foundSellerEntity.getFlowerShopEntity() != null) {
                 throw new IllegalStateException("이미 매장을 등록한 판매자입니다.");
             }
@@ -62,7 +64,7 @@ public class FlowerShopService {
                 flowerShopEntity.setSellerEntity(foundSellerEntity);
                 flowerShopRepo.save(flowerShopEntity);
                 sellerRepo.save(foundSellerEntity);
-                System.out.println(foundSellerEntity.getSellerIdEmail() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
+                System.out.println(foundSellerEntity.getIdEmail() + foundSellerEntity.getName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
             }
             return flowerShopEntity;
         }

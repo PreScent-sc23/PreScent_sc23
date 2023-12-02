@@ -1,8 +1,8 @@
 //package Unknown.PreScent.service;
 //
 //
-//import net.prescent.repository.PreScent.SellerRepository;
-//import net.prescent.entity.PreScent.SellerEntity;
+//import repository.net.prescent.SellerRepository;
+//import entity.net.prescent.SellerEntity;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;

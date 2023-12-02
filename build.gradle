@@ -35,7 +35,7 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
-
+	implementation 'org.springframework.session:spring-session-core'
 
 	//database
 	//implementation 'mysql:mysql-connector-java'
@@ -59,6 +59,23 @@ dependencies {
 
 	//firebase
 	//implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+	// JSON
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// HTTP 클라이언트
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Swagger
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+    //implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+    // 아마존 S3
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {

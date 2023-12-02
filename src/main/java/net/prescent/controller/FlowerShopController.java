@@ -1,14 +1,14 @@
 package net.prescent.controller;
 
+import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
+import net.prescent.service.FlowerShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import net.prescent.service.FlowerShopService;
 
-import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -18,8 +18,8 @@ public class FlowerShopController {
 
     private final FlowerShopService flowerShopService;
 
-    @Autowired
-    public FlowerShopController(FlowerShopService flowerShopService)
+
+    FlowerShopController(FlowerShopService flowerShopService)
     {
         this.flowerShopService = flowerShopService;
     }
@@ -32,26 +32,24 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@Valid @RequestParam String sSellerKey,
-                                           @RequestBody FlowerShopEntity flowerShopEntity,
+    public ResponseEntity<?> addFlowerShop(@RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
-        Integer sellerKey = Integer.parseInt(sSellerKey);
 
-//        System.out.println("---------------------------------------------------------------------");
-//        System.out.println("sellerKey: " + sellerKey);
-//        System.out.println("shopName: " + flowerShopEntity.getShopName());
-//        System.out.println("shopPhoneNum: " + flowerShopEntity.getShopPhoneNum());
-//        System.out.println("shopLocation: " + flowerShopEntity.getShopLocation());
-//        System.out.println("description: " + flowerShopEntity.getDescription() + "\n");
-//        System.out.println("---------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("sellerKey: " + flowerShopDto.getBusinessKey());
+        System.out.println("shopName: " + flowerShopDto.getShopName());
+        System.out.println("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
+        System.out.println("shopLocation: " + flowerShopDto.getShopLocation());
+        System.out.println("description: " + flowerShopDto.getDescription() + "\n");
+        System.out.println("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {
 
             System.out.println("bindingResult error!!!");
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
 
-        flowerShopService.addFlowerShop(sellerKey, flowerShopEntity.getShopName(), flowerShopEntity.getShopPhoneNum(), flowerShopEntity.getShopLocation(), flowerShopEntity.getDescription());
+        flowerShopService.addFlowerShop(flowerShopDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);

@@ -1,8 +1,8 @@
 //package Unknown.PreScent.controller;
 //
-//import net.prescent.dto.PreScent.SellerDto;
-//import net.prescent.dto.PreScent.SellerLoginRequestDto;
-//import net.prescent.repository.PreScent.SellerRepository;
+//import dto.net.prescent.SellerDto;
+//import dto.net.prescent.SellerLoginRequestDto;
+//import repository.net.prescent.SellerRepository;
 //import Unknown.PreScent.service.JwtUserDetailsService;
 //import Unknown.PreScent.jwt.JwtTokenUtil;
 //import org.apache.commons.logging.Log;

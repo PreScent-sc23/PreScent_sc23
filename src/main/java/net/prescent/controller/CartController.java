@@ -1,11 +1,11 @@
 //package Unknown.PreScent.controller;
 //
 //
-//import net.prescent.dto.PreScent.CustomerDto;
-//import net.prescent.entity.PreScent.FinishedProductEntity;
+//import dto.net.prescent.CustomerDto;
+//import entity.net.prescent.FinishedProductEntity;
 //import Unknown.PreScent.service.CartService;
-//import net.prescent.service.PreScent.CustomerService;
-//import net.prescent.service.PreScent.FinishedProductService;
+//import service.net.prescent.CustomerService;
+//import service.net.prescent.FinishedProductService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.*;
 //
@@ -28,7 +28,6 @@
 //
 //    @PostMapping("/{customerKey}/{fpKey}")
 //    public String addCartItem(@PathVariable("customerKey") Integer customerKey, @PathVariable("fpKey") Integer fpKey, int amount) {
-//        System.out.println("Cart start!!!----------------");
 //        CustomerDto foundCustomer = customerService.findCustomer(customerKey);
 //        FinishedProductEntity foundFp = finishedProductService.getFinishedProductWithFpKey(fpKey).get();
 //

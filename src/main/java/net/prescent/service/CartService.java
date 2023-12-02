@@ -1,13 +1,13 @@
 //package Unknown.PreScent.service;
 //
-//import net.prescent.dto.PreScent.CustomerDto;
+//import dto.net.prescent.CustomerDto;
 //import Unknown.PreScent.entity.CartEntity;
 //import Unknown.PreScent.entity.CartItemEntity;
-//import net.prescent.entity.PreScent.CustomerEntity;
-//import net.prescent.entity.PreScent.FinishedProductEntity;
+//import entity.net.prescent.CustomerEntity;
+//import entity.net.prescent.FinishedProductEntity;
 //import Unknown.PreScent.repository.CartItemRepository;
 //import Unknown.PreScent.repository.CartRepository;
-//import net.prescent.repository.PreScent.FinishedProductRepository;
+//import repository.net.prescent.FinishedProductRepository;
 //import org.springframework.stereotype.Service;
 //
 //import java.util.List;

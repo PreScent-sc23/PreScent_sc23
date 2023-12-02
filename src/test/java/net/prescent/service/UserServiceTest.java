@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
