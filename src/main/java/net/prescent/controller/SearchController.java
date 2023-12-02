@@ -110,14 +110,13 @@ public class SearchController {
             System.out.println("fpTag: " + finalResult.getFpTag());
             System.out.println("shopKey: " + finalResult.getShopKey());
             System.out.println("fpDetail: " + finalResult.getFpDetail());
+            String[] arr = finalResult.getFpFlowerList();
+            System.out.println("fpFlowerList: " + arr[0]);
             System.out.println("---------------------------------====================================");
 
             return ResponseEntity.ok(finalResult);
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.noContent().build();
-
     }
-
-
 }
