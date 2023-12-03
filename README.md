@@ -21,19 +21,18 @@
 
 ## 사용 라이브러리 및 개발 환경
 ![image](https://github.com/PreScent-sc23/backend/assets/118275773/26bde00a-22a3-435d-b21d-2d294830245d)
-
-![0_R60lnmJl4hanOBaJ](https://github.com/PreScent-sc23/backend/assets/118275773/2b7eb1e7-127b-43b2-ad9d-0f9fb47706e5)
-
-![IntelliJ_IDEA_Icon svg](https://github.com/PreScent-sc23/backend/assets/118275773/d34f4708-c430-4d98-8250-848bceaf5853)
+![image](https://github.com/PreScent-sc23/backend/assets/118275773/254b283c-cad0-4202-aa6c-ead1ff7c9b9c)
 
 ## 패키지 구조
 |**패키지**|**역할**|
 |--|-----|
-|controller|API역할로 프론트와 통신을 담당|
-|dto|정보를 주고받는데 사용하는 객체|
+|controller|MVC의 컨트롤러 역할|
+|service|비즈니스 로직 구현|
+|repository|데이터베이스 접근|
 |entity|데이터베이스에 저장할 객체|
-|repository|데이터베이스 CRUD 역할|
-|service|비즈니스 로직을 담당한다|
+|dto|정보 전달 객체|
+
+
 ## 서비스 요약
 
 ![PreScent_sc23](https://github.com/PreScent-sc23/PreScent/assets/118275773/002444e4-928d-4f7a-ab85-aedb05f58924)
