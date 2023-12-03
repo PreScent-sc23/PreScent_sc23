@@ -31,16 +31,6 @@ public class FinishedProductService
         return addFinishedProductToShop(finishedProductDto);
     }
 
-    // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, String fpDetail, String fpFlowerList) {
-        validateDuplicatedFp(shopKey, fpName);
-
-        FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(finishedProductDto);
-
-        return finishedProductRepo.save(addedFinishedProductEntity);
-    }
-
 
     private FinishedProductEntity addFinishedProductToShop(FinishedProductDto finishedProductDto) {
         FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);

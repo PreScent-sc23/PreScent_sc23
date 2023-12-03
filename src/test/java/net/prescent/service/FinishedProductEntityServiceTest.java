@@ -46,7 +46,8 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-        finishedProductDto.setFpFlowerList("장미 안개꽃");
+        String[] arr = {"장미 안개꽃"};
+        finishedProductDto.setFpFlowerList(arr);
         return finishedProductDto;
     }
     public FlowerShopDto createFlowerShopDto(){
