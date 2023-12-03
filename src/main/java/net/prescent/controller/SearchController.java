@@ -22,32 +22,6 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-//    @GetMapping("/search")
-//    public ResponseEntity<Map<List<FinishedProductEntity>, Object>> searchTag(@RequestParam String query,
-//                                                                HttpServletRequest request, HttpServletResponse response){
-//        System.out.println("Qurey: " + query + "----------------\n");
-//
-//        if(query.startsWith("#")){
-//            String[] queryResult = query.split("#");
-//
-//            System.out.println("query split: " + queryResult[0] + "----------------\n");
-//
-//            Map<List<FinishedProductEntity>,Object> result = new HashMap<>();
-//            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
-////            Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
-//            result.put(searchResult.get(), request.getAttribute(ERROR_EXCEPTION));
-////            result.put("Message", ex.getMessage());
-//
-//            Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
-//
-//            return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
-//        }
-//
-//        return ResponseEntity.noContent().build();
-//
-//    }
-
-
     @GetMapping("/search")
     public ResponseEntity<List<FinishedProductDto>> searchTag(@RequestParam String query){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
