@@ -40,7 +40,7 @@ SpringBoot
 - Cart : 장바구니 관련 기능
 - FPORder : 주문 관련 기능
 - AIAnalysis : AI분석 관련 기능
-
+<br/> <br/>
 ## 서비스 요약
 
 ![PreScent_sc23](https://github.com/PreScent-sc23/PreScent/assets/118275773/002444e4-928d-4f7a-ab85-aedb05f58924)
