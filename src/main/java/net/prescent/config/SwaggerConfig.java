@@ -1,4 +1,4 @@
-//package Unknown.PreScent.config;
+//package net.prescent.config;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;

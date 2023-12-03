@@ -1,21 +1,18 @@
-<<<<<<< HEAD
 package net.prescent.controller;
 
 
-import net.prescent.dto.CustomerDto;
-import net.prescent.entity.FinishedProductEntity;
+import net.prescent.dto.CartResponseDto;
 import net.prescent.service.CartService;
 import net.prescent.service.UserService;
 import net.prescent.service.FinishedProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/Cart")
+@RequestMapping("customer/cart")
 public class CartController {
 
     @Autowired
@@ -24,16 +21,23 @@ public class CartController {
     private UserService userService;
     @Autowired
     private FinishedProductService finishedProductService;
-    @Autowired
-    private FinishedProductEntity finishedProductEntity;
 
-    @PostMapping("/{customerKey}/{fpKey}")
-    public String addCartItem(@PathVariable("customerKey") Integer customerKey, @PathVariable("fpKey") Integer fpKey, int amount) {
-        CustomerDto foundCustomer = userService.findCustomer(customerKey);
-        FinishedProductEntity foundFp = finishedProductService.getFinishedProductWithFpKey(fpKey).get();
+    @PostMapping("/addToCart")
+    public ResponseEntity<?> addCartItem(@RequestParam("userKey") Integer userKey, @RequestParam Integer fpKey, int amount, String pickupDate, String pickupTime) {
+        cartService.addToCart(userKey, fpKey, amount,pickupDate, pickupTime);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
-        cartService.addCartItem(foundCustomer, foundFp, amount);
+    @GetMapping()
+    public CartResponseDto viewInCart(@RequestParam("userKey") Integer userKey)
+    {
+        return cartService.viewInCart(userKey);
+    }
 
-        return "redirect:/item/view/{fpKey}";
+    @DeleteMapping()
+    public ResponseEntity<?> clearCartItem(@RequestParam("userKey")Integer userKey)
+    {
+        cartService.clearCartItem(userKey);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

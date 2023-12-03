@@ -1,8 +1,12 @@
 package net.prescent.service;
 
+import net.prescent.dto.CartItemResponseDto;
+import net.prescent.dto.CartResponseDto;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.CartEntity;
 import net.prescent.entity.CartItemEntity;
 import net.prescent.entity.CustomerEntity;
+import net.prescent.entity.FinishedProductEntity;
 import net.prescent.repository.CartItemRepository;
 import net.prescent.repository.CartRepository;
 import net.prescent.repository.CustomerRepository;
@@ -14,48 +18,59 @@ import java.util.Optional;
 
 @Service
 public class CartService {
-    private FinishedProductRepository finishedProductRepository;
-    private final CartRepository cartRepository;
-    private final CartItemRepository cartItemRepository;
+    private final FinishedProductRepository finishedProductRepo;
+    private final CartRepository cartRepo;
+    private final CartItemRepository cartItemRepo;
     private final UserService userService;
-    private final CustomerRepository customerRepository;
-    private final CustomerEntity customerEntity;
+    private final CustomerRepository customerRepo;
 
-    public CartService(FinishedProductRepository finishedProductRepository, CartRepository cartRepository, CartItemRepository cartItemRepository, UserService userService, CustomerRepository customerRepository, CustomerEntity customerEntity) {
-        this.finishedProductRepository = finishedProductRepository;
-        this.cartRepository = cartRepository;
-        this.cartItemRepository = cartItemRepository;
+    public CartService(FinishedProductRepository finishedProductRepository, CartRepository cartRepository, CartItemRepository cartItemRepository, UserService userService, CustomerRepository customerRepository) {
+        this.finishedProductRepo = finishedProductRepository;
+        this.cartRepo = cartRepository;
+        this.cartItemRepo = cartItemRepository;
         this.userService = userService;
-        this.customerRepository = customerRepository;
-        this.customerEntity = customerEntity;
+        this.customerRepo = customerRepository;
     }
-    public void addCartItem(Integer custKey, Integer fpKey, Integer amount){
+
+    public void calculateTotalPrice(CartEntity cartEntity)
+    {
+        Integer totalPrice = 0, totalCount = 0;
+        if(cartEntity.getCartItemEntityList()!=null)
+        {
+            for(CartItemEntity cartItemEntity : cartEntity.getCartItemEntityList())
+            {
+                totalPrice+= cartItemEntity.getPrice();
+                totalCount+= cartItemEntity.getCount();
+            }
+        }
+        cartEntity.setTotalPriceAndCount(totalPrice, totalCount);
+    }
+
+    //추후에 count올리는 로직도 구현
+    public void addToCart(Integer userKey, Integer fpKey, Integer count, String pickupDate, String pickupTime){
         // 나중엔 토큰으로 받으니까 custDto로 받아와도 될 듯
-        Optional<CustomerEntity> foundCustomerEntity = customerRepository.findByUserKey(custKey);
+        Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(userKey);
         if(foundCustomerEntity.isPresent())
         {
             CustomerEntity customerEntity = foundCustomerEntity.get();
-            CartEntity cartEntity = customerEntity.getCartEntity();
-            if(cartEntity == null)
+            if(customerEntity.getCartEntity() == null)
             {
-                cartEntity = new CartEntity(customerEntity, 0, 0);
-
+                CartEntity cartEntity = new CartEntity(0, 0);
+                cartEntity.setCustomerEntity(customerEntity);
+                cartRepo.save(cartEntity);
             }
+            CartEntity cartEntity = customerEntity.getCartEntity();
+            CartItemEntity cartItemEntity = addCartItem(fpKey, count, pickupDate, pickupTime);
+            cartEntity.setCartItemEntityList(cartItemEntity);
+            calculateTotalPrice(cartEntity);
+            cartItemRepo.save(cartItemEntity);
+            cartRepo.save(cartEntity);
+            customerRepo.save(customerEntity);
         }
         else
         {
             throw new IllegalStateException("장바구니를 소유한 customer를 찾을 수 없습니다.");
         }
-
-
-
-
-
-
-
-
-
-
 
 
 //        Optional<CartEntity> cart = cartRepository.findByCustomerKey(customerDto.getCustomerKey());
@@ -79,15 +94,66 @@ public class CartService {
 //
 //        cart.get().setCount(cart.get().getCount() + amount);
     }
-
-    private void increaseItemN(Integer amount, CartItemEntity foundCartItem) {
-        CartItemEntity update = foundCartItem;
-        update.setCart(foundCartItem.getCart());
-        update.setFinishedProduct(foundCartItem.getFinishedProduct());
-        update.addCount(amount);
-        update.setCount(update.getCount());
-        cartItemRepository.save(update);
+    public CartItemEntity addCartItem(Integer fpKey, Integer count, String pickupDate, String pickupTime)
+    {
+        Optional<FinishedProductEntity> foundFPEntity = finishedProductRepo.findByFpKey(fpKey);
+        if(foundFPEntity.isPresent())
+        {
+            FinishedProductEntity fpEntity = foundFPEntity.get();
+            return CartItemEntity.createCartItem(fpEntity, count, pickupDate, pickupTime);
+        }
+        else {
+            throw new IllegalStateException("fpKey로 완제품을 찾을 수 없습니다.");
+        }
     }
 
+    public CartItemResponseDto entityToCartResponseDto(CartItemResponseDto cartItemResponseDto, FinishedProductEntity finishedProductEntity)
+    {
+        cartItemResponseDto.setFpImage(finishedProductEntity.getFpImage());
+        cartItemResponseDto.setFpName(finishedProductEntity.getFpName());
+        cartItemResponseDto.setFpTag(finishedProductEntity.getFpTag());
+        cartItemResponseDto.setFpPrice(finishedProductEntity.getFpPrice());
+        cartItemResponseDto.setFpDetail(finishedProductEntity.getFpDetail());
+        return cartItemResponseDto;
+    }
+    public CartResponseDto viewInCart(Integer userKey) {
+        CartResponseDto cartResponseDto = new CartResponseDto();
+        Optional<CustomerEntity> foundCustomerEntity =customerRepo.findByUserKey(userKey);
+        if(foundCustomerEntity.isPresent())
+        {
+            CustomerEntity customerEntity = foundCustomerEntity.get();
 
+            if(customerEntity.getCartEntity() !=null)
+            {CartEntity cartEntity = customerEntity.getCartEntity();
+                cartResponseDto.setTotalCount(cartEntity.getTotalCount());
+                cartResponseDto.setTotalPrice(cartEntity.getTotalPrice());
+                if(cartEntity.getCartItemEntityList()!=null)
+                {
+                    for(CartItemEntity cartItementity: cartEntity.getCartItemEntityList())
+                    {
+                        CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
+                        FinishedProductEntity finishedProductEntity = cartItementity.getFinishedProductEntity();
+                        entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
+                        cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
+                        cartResponseDto.setCartItemResponseDtoList(cartItemResponseDto);
+                    }
+                    return cartResponseDto;
+                }
+                else {
+                    throw new IllegalStateException("Cart가 비어있습니다.");
+                }
+            }
+            else {
+                throw new IllegalStateException("Cart가 존재하지 않습니다.");
+            }
+        }
+        else {
+            throw new IllegalStateException("사용자를 찾을 수 없습니다.");
+        }
+    }
+
+    public void clearCartItem(Integer userKey) {
+
+    }
 }
+

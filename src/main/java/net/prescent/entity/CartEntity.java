@@ -36,10 +36,9 @@ public class CartEntity {
 //    public void createDate(){
 //        this.createDate = LocalDate.now();
 //    }
-    public CartEntity(CustomerEntity customerEntity, Integer totalCount, Integer totalPrice)
+    public CartEntity(Integer totalCount, Integer totalPrice)
     {
         CartEntity cartEntity = new CartEntity();
-        cartEntity.setCustomerEntity(customerEntity);
         this.totalCount = totalCount;
         this.totalPrice = totalPrice;
     }
@@ -47,6 +46,19 @@ public class CartEntity {
     public void setCustomerEntity(CustomerEntity customerEntity)
     {
         this.customerEntity = customerEntity;
-        customerEntity.setCartEntity(this);
+        this.customerEntity.setCartEntity(this);
+    }
+    public void setCartItemEntityList(CartItemEntity cartItemEntity)
+    {
+        if(this.cartItemEntityList == null)
+        {
+            this.cartItemEntityList = new ArrayList<>();
+        }
+        this.cartItemEntityList.add(cartItemEntity);
+    }
+
+    public void setTotalPriceAndCount(Integer totalPrice, Integer totalCount) {
+        this.totalPrice = totalPrice;
+        this.totalCount = totalCount;
     }
 }
