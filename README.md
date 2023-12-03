@@ -21,9 +21,10 @@
 
 ## 사용 라이브러리 및 개발 환경
 ![image](https://github.com/PreScent-sc23/backend/assets/118275773/26bde00a-22a3-435d-b21d-2d294830245d)
-![image](https://github.com/PreScent-sc23/backend/assets/118275773/254b283c-cad0-4202-aa6c-ead1ff7c9b9c)
+SpringBoot
 
 ## 패키지 구조
+#### 기능별로 Controller, Service, Repository, Entity, Dto를 생성하여 사용
 |**패키지**|**역할**|
 |--|-----|
 |controller|MVC의 컨트롤러 역할|
@@ -32,15 +33,13 @@
 |entity|데이터베이스에 저장할 객체|
 |dto|정보 전달 객체|
 
-|**이름**|**기능**|
-|--|-----|
-|User|회원 관리 기능|
-|FlowerShop|매장 관리 기능|
-|FinishedProduct|완제품 관리 기능|
-|Search|검색 관련 기능|
-|Cart|장바구니 관련 기능|
-|FPORder|주문 관련 기능|
-|AIAnalysis|AI분석 관련 기능|
+- User : 회원 관리 기능
+- FlowerShop : 매장 관리 기능
+- FinishedProduct : 완제품 관리 기능
+- Search : 검색 관련 기능
+- Cart : 장바구니 관련 기능
+- FPORder : 주문 관련 기능
+- AIAnalysis : AI분석 관련 기능
 
 ## 서비스 요약
 
