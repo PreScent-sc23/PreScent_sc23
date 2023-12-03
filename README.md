@@ -21,7 +21,7 @@
 
 ## 사용 라이브러리 및 개발 환경
 ![image](https://github.com/PreScent-sc23/backend/assets/118275773/26bde00a-22a3-435d-b21d-2d294830245d)
-SpringBoot
+
 
 ## 패키지 구조
 #### 기능별로 Controller, Service, Repository, Entity, Dto를 생성하여 사용
