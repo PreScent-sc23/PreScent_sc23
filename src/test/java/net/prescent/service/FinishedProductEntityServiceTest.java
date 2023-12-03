@@ -38,7 +38,6 @@ public class FinishedProductEntityServiceTest {
     public void setUp() {
         finishedProductRepository.deleteAllInBatch();
     }
-
     public FinishedProductDto createFinishedProductDto()
     {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
