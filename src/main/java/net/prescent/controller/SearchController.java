@@ -66,7 +66,6 @@ public class SearchController {
 
     @GetMapping("/detail/{fpKey}")
     public ResponseEntity<FinishedProductDto> showDetail(@PathVariable String fpKey){
-        System.out.println("received fpKey:" + fpKey + "==================");
 
         Integer intFpKey = Integer.parseInt(fpKey);
 
