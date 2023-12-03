@@ -32,6 +32,15 @@
 |entity|데이터베이스에 저장할 객체|
 |dto|정보 전달 객체|
 
+|**이름**|**기능**|
+|--|-----|
+|User|회원 관리 기능|
+|FlowerShop|매장 관리 기능|
+|FinishedProduct|완제품 관리 기능|
+|Search|검색 관련 기능|
+|Cart|장바구니 관련 기능|
+|FPORder|주문 관련 기능|
+|AIAnalysis|AI분석 관련 기능|
 
 ## 서비스 요약
 
