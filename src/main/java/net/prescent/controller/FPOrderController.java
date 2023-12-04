@@ -5,6 +5,8 @@ import net.prescent.dto.FPOrderListDto;
 import net.prescent.entity.FPOrderEntity;
 import net.prescent.service.FPOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,8 +20,9 @@ public class FPOrderController {
 
 
     @PostMapping("/customer/fp-order")
-    public FPOrderEntity customerOrder(@RequestBody FPOrderCustomerDto fpOrderCustomerDto) {
-        return fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto);
+    public ResponseEntity<?> customerOrder(@RequestBody FPOrderCustomerDto fpOrderCustomerDto) {
+        fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("customer/fp-order-list")
