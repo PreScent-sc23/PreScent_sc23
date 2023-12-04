@@ -69,16 +69,7 @@ public class SearchController {
                 finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
             }
 
-            System.out.println("---------------------------------====================================");
-            for(FinishedProductDto fp : finalResult){
-                System.out.println("fpKey: " + fp.getFpKey());
-                System.out.println("fpName: " + fp.getFpName());
-                System.out.println("fpPrice: " + fp.getFpPrice());
-                System.out.println("fpTag: " + fp.getFpTag());
-                System.out.println("shopKey: " + fp.getShopKey());
-                System.out.println("----------------------------------");
-            }
-            System.out.println("---------------------------------====================================");
+            printManyResult(finalResult);
 
             return ResponseEntity.ok(finalResult);
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -87,7 +78,6 @@ public class SearchController {
         return ResponseEntity.noContent().build();
 
     }
-
 
     @GetMapping("/detail/{fpKey}")
     public ResponseEntity<FinishedProductDto> showDetail(@PathVariable String fpKey){
@@ -102,19 +92,38 @@ public class SearchController {
 
             FinishedProductDto finalResult = FinishedProductDto.toFinishedProductDto(result);
 
-            System.out.println("---------------------------------====================================");
-            System.out.println("fpKey: " + finalResult.getFpKey());
-            System.out.println("fpName: " + finalResult.getFpName());
-            System.out.println("fpPrice: " + finalResult.getFpPrice());
-            System.out.println("fpTag: " + finalResult.getFpTag());
-            System.out.println("shopKey: " + finalResult.getShopKey());
-            System.out.println("fpDetail: " + finalResult.getFpDetail());
-            System.out.println("---------------------------------====================================");
+            printResult(finalResult);
 
             return ResponseEntity.ok(finalResult);
 //            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.noContent().build();
+    }
+
+
+    private static void printManyResult(List<FinishedProductDto> finalResult) {
+        System.out.println("---------------------------------====================================");
+        for(FinishedProductDto fp : finalResult){
+            System.out.println("fpKey: " + fp.getFpKey());
+            System.out.println("fpName: " + fp.getFpName());
+            System.out.println("fpPrice: " + fp.getFpPrice());
+            System.out.println("fpTag: " + fp.getFpTag());
+            System.out.println("shopKey: " + fp.getShopKey());
+            System.out.println("----------------------------------");
+        }
+        System.out.println("---------------------------------====================================");
+    }
+
+
+    private static void printResult(FinishedProductDto finalResult) {
+        System.out.println("---------------------------------====================================");
+        System.out.println("fpKey: " + finalResult.getFpKey());
+        System.out.println("fpName: " + finalResult.getFpName());
+        System.out.println("fpPrice: " + finalResult.getFpPrice());
+        System.out.println("fpTag: " + finalResult.getFpTag());
+        System.out.println("shopKey: " + finalResult.getShopKey());
+        System.out.println("fpDetail: " + finalResult.getFpDetail());
+        System.out.println("---------------------------------====================================");
     }
 
 

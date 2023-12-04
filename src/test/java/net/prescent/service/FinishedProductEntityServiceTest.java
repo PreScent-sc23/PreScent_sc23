@@ -34,10 +34,6 @@ public class FinishedProductEntityServiceTest {
     @Autowired
     private FlowerShopService flowerShopService;
 
-    @BeforeEach
-    public void setUp() {
-        finishedProductRepository.deleteAllInBatch();
-    }
     public FinishedProductDto createFinishedProductDto()
     {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
