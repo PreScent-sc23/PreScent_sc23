@@ -26,7 +26,7 @@ public class FPOrderController {
     }
 
     @GetMapping("customer/fp-order-list")
-    public ArrayList<FPOrderListDto> customerFPOrderList(@RequestBody Integer custKey){
+    public ArrayList<FPOrderListDto> customerFPOrderList(@RequestParam Integer custKey){
         return fpOrderService.customerFPOrderList(custKey);
     }
 }

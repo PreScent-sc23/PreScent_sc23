@@ -31,7 +31,7 @@ public class CartController {
     }
 
     @GetMapping("/view-in-cart")
-    public CartResponseDto viewInCart(@RequestBody Integer userKey)
+    public CartResponseDto viewInCart(@RequestParam Integer userKey)
     {
         return cartService.viewInCart(userKey);
     }
