@@ -114,7 +114,8 @@ public class FPOrderServiceTest {
         finishedProductDto.setFpTag("고백");
         finishedProductDto.setFpImage("https://prescentbucket.s3.ap-northeast-2.amazonaws.com/%EC%98%88%EC%A0%9C+%EA%BD%832.jpeg");
         finishedProductDto.setFpPrice(20000);
-        finishedProductDto.setFpFlowerList("장미 안개꽃");
+        String[] arr = {"장미 안개꽃"};
+        finishedProductDto.setFpFlowerList(arr);
         return finishedProductDto;
     }
 //

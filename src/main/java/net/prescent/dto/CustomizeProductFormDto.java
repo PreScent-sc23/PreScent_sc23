@@ -1,4 +1,4 @@
-//package Unknown.PreScent.dto;
+//package net.prescent.dto;
 //
 //
 //import lombok.Getter;

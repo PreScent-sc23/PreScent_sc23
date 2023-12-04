@@ -1,7 +1,7 @@
-//package Unknown.PreScent.entity;
+//package net.prescent.entity;
 //
-//import net.prescent.dto.PreScent.AdditionalFormDto;
-//import Unknown.PreScent.dto.CustomizeProductFormDto;
+//import net.prescent.dto.AdditionalFormDto;
+//import net.prescent.dto.CustomizeProductFormDto;
 //import lombok.Getter;
 //import lombok.Setter;
 //
