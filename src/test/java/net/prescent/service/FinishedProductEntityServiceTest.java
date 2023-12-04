@@ -34,10 +34,10 @@ public class FinishedProductEntityServiceTest {
     @Autowired
     private FlowerShopService flowerShopService;
 
-    @BeforeEach
-    public void setUp() {
-        finishedProductRepository.deleteAllInBatch();
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        finishedProductRepository.deleteAllInBatch();
+//    }
 
     public FinishedProductDto createFinishedProductDto()
     {
@@ -49,9 +49,28 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
+
+    private Integer tempNumForTest = 1;
+    private String  tempStringForTest = "1";
+    //    @BeforeEach
+//    public void setup()
+//    {
+//        sellerRepository.deleteAllInBatch();
+//        flowerShopRepository.deleteAllInBatch();
+//    }
+    public SellerDto createSellerDto(){
+        SellerDto sellerDto = new SellerDto();
+        sellerDto.setBusinessKey(1234567890L+tempNumForTest);
+        sellerDto.setName("kimkmim"+tempStringForTest);
+        sellerDto.setPhonenum("010-1111-222"+tempStringForTest);
+        sellerDto.setIdEmail("sooh"+tempStringForTest);
+        sellerDto.setPassword("04prescent"+tempStringForTest);
+        sellerDto.setConfirmPassword(("04prescent"+tempStringForTest));
+        return sellerDto;
+    }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(12345678L);
+        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -63,22 +82,11 @@ public class FinishedProductEntityServiceTest {
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
     }
-    public SellerDto createSellerDto(Long businessKey) {
-        SellerDto sellerDto = new SellerDto();
-        sellerDto.setBusinessKey(businessKey);
-        sellerDto.setName("suhyeon");
-        sellerDto.setPhonenum("010-1111-2222");
-        sellerDto.setIdEmail("ajou@gmail.com");
-        sellerDto.setPassword("04prescent");
-        sellerDto.setConfirmPassword(("04prescent"));
-        return sellerDto;
-    }
-
     @Test
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        SellerDto sellerDto = createSellerDto(12345678L);
+        SellerDto sellerDto = createSellerDto();
         Long businessKey = sellerService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();

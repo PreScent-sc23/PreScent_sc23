@@ -22,7 +22,6 @@ public class FPOrderListDto {
     private String fpName;
     private String fpTag;
     private String fpImage;
-    private boolean fpState= true;
 
     private String[] fpFlowerList;
 
@@ -45,7 +44,6 @@ public class FPOrderListDto {
         this.fpName = finishedProductEntity.getFpName();
         this.fpTag = finishedProductEntity.getFpTag();
         this.fpImage = finishedProductEntity.getFpImage();
-        this.fpState = finishedProductEntity.isFpState();
         this.fpFlowerList = finishedProductEntity.getFpFlowerList();
         this.fpDetail = finishedProductEntity.getFpDetail();
 

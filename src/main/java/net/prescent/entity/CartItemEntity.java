@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@NoArgsConstructor
+
 @Getter
 @Setter
 @Entity
@@ -20,13 +20,19 @@ public class CartItemEntity {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="fpKey")
     private FinishedProductEntity finishedProductEntity;
+    private String pickupDate;
+    private String pickupTime;
+    private Integer price;
 
     private int count; // 상품 개수
 
-    public static CartItemEntity createCartItem(CartEntity cart, FinishedProductEntity fp, Integer amount) {
+    public static CartItemEntity createCartItem(FinishedProductEntity fp, Integer amount, String pickupDate, String pickupTime) {
         CartItemEntity cartItemEntity = new CartItemEntity();
         cartItemEntity.setFinishedProductEntity(fp);
         cartItemEntity.setCount(amount);
+        cartItemEntity.setPickupDate(pickupDate);
+        cartItemEntity.setPickupTime(pickupTime);
+        cartItemEntity.setPrice(fp.getFpPrice());
         return cartItemEntity;
     }
 
