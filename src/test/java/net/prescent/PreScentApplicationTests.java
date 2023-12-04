@@ -19,7 +19,7 @@ class PreScentApplicationTests {
 		seller.setSellerPhoneNum("010-1111-2222");
 
 		SellerDto newUser = sellerRepository.save(seller);
-		System.out.println(newUser);
+		log.debug(newUser);
 	}
 
 	@Test
@@ -27,10 +27,10 @@ class PreScentApplicationTests {
 		Optional<SellerDto> seller = sellerRepository.findBySellerKey(L);
 
 		seller.ifPresent(selectSeller ->{
-			System.out.println("sellerKey: " + selectSeller.getSellerKey());
-			System.out.println("sellerName: " + selectSeller.getSellerName());
-			System.out.println("ID: " + selectSeller.getID());
-			System.out.println("sellerPhoneNum: " + selectSeller.getSellerPhoneNum());
+			log.debug("sellerKey: " + selectSeller.getSellerKey());
+			log.debug("sellerName: " + selectSeller.getSellerName());
+			log.debug("ID: " + selectSeller.getID());
+			log.debug("sellerPhoneNum: " + selectSeller.getSellerPhoneNum());
 		});
 
 	}

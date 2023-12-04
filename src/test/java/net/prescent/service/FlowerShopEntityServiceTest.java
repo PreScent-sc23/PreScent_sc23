@@ -30,6 +30,8 @@ public class FlowerShopEntityServiceTest {
     @Autowired
     private UserService sellerService;
 
+    private Integer tempNumForTest = 1;
+    private String  tempStringForTest = "1";
 //    @BeforeEach
 //    public void setup()
 //    {
@@ -38,17 +40,17 @@ public class FlowerShopEntityServiceTest {
 //    }
     public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setBusinessKey(12345678L);
-        sellerDto.setName("suhyeonn");
-        sellerDto.setPhonenum("010-1111-2222");
-        sellerDto.setIdEmail("sooh");
-        sellerDto.setPassword("04prescent");
-        sellerDto.setConfirmPassword(("04prescent"));
+        sellerDto.setBusinessKey(1234567890L+tempNumForTest);
+        sellerDto.setName("kimkmim"+tempStringForTest);
+        sellerDto.setPhonenum("010-1111-222"+tempStringForTest);
+        sellerDto.setIdEmail("sooh"+tempStringForTest);
+        sellerDto.setPassword("04prescent"+tempStringForTest);
+        sellerDto.setConfirmPassword(("04prescent"+tempStringForTest));
         return sellerDto;
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(12345678L);
+        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -73,7 +75,7 @@ public class FlowerShopEntityServiceTest {
 
         assertThat(addedShop).isNotNull();
         assertThat(addedShop.getSellerEntity()).isNotNull();
-        assertThat((addedShop.getSellerEntity()).getBusinessKey()).isEqualTo(12345678L);
+        assertThat((addedShop.getSellerEntity()).getBusinessKey()).isEqualTo(1234567890L+tempNumForTest);
 
         Integer testShopKeyIndex = addedShop.getShopKey();
 

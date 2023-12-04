@@ -49,9 +49,28 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpFlowerList(arr);
         return finishedProductDto;
     }
+
+    private Integer tempNumForTest = 1;
+    private String  tempStringForTest = "1";
+    //    @BeforeEach
+//    public void setup()
+//    {
+//        sellerRepository.deleteAllInBatch();
+//        flowerShopRepository.deleteAllInBatch();
+//    }
+    public SellerDto createSellerDto(){
+        SellerDto sellerDto = new SellerDto();
+        sellerDto.setBusinessKey(1234567890L+tempNumForTest);
+        sellerDto.setName("kimkmim"+tempStringForTest);
+        sellerDto.setPhonenum("010-1111-222"+tempStringForTest);
+        sellerDto.setIdEmail("sooh"+tempStringForTest);
+        sellerDto.setPassword("04prescent"+tempStringForTest);
+        sellerDto.setConfirmPassword(("04prescent"+tempStringForTest));
+        return sellerDto;
+    }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(12345678L);
+        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -63,22 +82,11 @@ public class FinishedProductEntityServiceTest {
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
     }
-    public SellerDto createSellerDto(Long businessKey) {
-        SellerDto sellerDto = new SellerDto();
-        sellerDto.setBusinessKey(businessKey);
-        sellerDto.setName("suhyeon");
-        sellerDto.setPhonenum("010-1111-2222");
-        sellerDto.setIdEmail("ajou@gmail.com");
-        sellerDto.setPassword("04prescent");
-        sellerDto.setConfirmPassword(("04prescent"));
-        return sellerDto;
-    }
-
     @Test
     @DisplayName("완제품 등록")
     public void testAddFinishedProduct()
     {
-        SellerDto sellerDto = createSellerDto(12345678L);
+        SellerDto sellerDto = createSellerDto();
         Long businessKey = sellerService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
@@ -94,9 +102,8 @@ public class FinishedProductEntityServiceTest {
 
         Integer testFpIndex = addedFinishedProductEntity.getFpKey();
 
-        FinishedProductEntity retrievedShop = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
-        assertThat(retrievedShop).isNotNull();
-        assertThat(retrievedShop.getFpName()).isEqualTo("장미꽃다발");
+        FinishedProductEntity retrievedFP = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
+        assertThat(retrievedFP.getFpName()).isEqualTo("장미꽃다발");
     }
 
 //    @Test
@@ -128,7 +135,7 @@ public class FinishedProductEntityServiceTest {
 //
 //        List<FinishedProductEntity> finishedProductEntities = fpList.get();
 //
-//        for(FinishedProductEntity fp : finishedProductEntities) System.out.println(fp.getFpPrice());
+//        for(FinishedProductEntity fp : finishedProductEntities) log.debug(fp.getFpPrice());
 //    }
 
 //    @Test
@@ -140,16 +147,16 @@ public class FinishedProductEntityServiceTest {
 //
 //        assertThat(fpPage).isNotNull();
 //
-//        System.out.println("---------Start---------Start---------");
+//        log.debug("---------Start---------Start---------");
 //
 //        List<Optional<FinishedProductEntity>> fpList = fpPage.getContent();
 //
 //        assertThat(fpList).isNotNull();
 //
-//        for(Optional<FinishedProductEntity> fp : fpList) System.out.println(fp);
+//        for(Optional<FinishedProductEntity> fp : fpList) log.debug(fp);
 //
 //
-//        System.out.println("---------End---------End---------");
+//        log.debug("---------End---------End---------");
 //
 //
 //    }
@@ -165,7 +172,7 @@ public class FinishedProductEntityServiceTest {
 //        assertThat(searchResult).isNotNull();
 //        assertThat(searchResult1).isNotNull();
 //
-//        System.out.println("---------Start---------Start---------");
+//        log.debug("---------Start---------Start---------");
 //
 //        List<FinishedProductEntity> fpList = searchResult.get();
 //        List<FinishedProductEntity> fpList1 = searchResult1.get();
@@ -173,12 +180,12 @@ public class FinishedProductEntityServiceTest {
 //        assertThat(fpList).isNotNull();
 //        assertThat(fpList1).isNotNull();
 //
-//        for(FinishedProductEntity fp : fpList) System.out.println(fp.getFpName() + "\t" + fp.getFpPrice());
-//        System.out.println("---------Asc---------Asc---------");
-//        for(FinishedProductEntity fp : fpList1) System.out.println(fp.getFpName() + "\t" + fp.getFpPrice());
+//        for(FinishedProductEntity fp : fpList) log.debug(fp.getFpName() + "\t" + fp.getFpPrice());
+//        log.debug("---------Asc---------Asc---------");
+//        for(FinishedProductEntity fp : fpList1) log.debug(fp.getFpName() + "\t" + fp.getFpPrice());
 //
 //
-//        System.out.println("---------End---------End---------");
+//        log.debug("---------End---------End---------");
 //
 //
 //    }

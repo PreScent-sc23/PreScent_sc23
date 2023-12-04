@@ -28,20 +28,20 @@
 //    @PostMapping("/seller/signup")
 //    public ResponseEntity<?> registerSeller(@Valid @RequestBody SellerDto sellerDto,
 //                                            BindingResult bindingResult) {
-//        System.out.println("Enter registerSeller!!!");
-//        System.out.println("=>result: " + sellerDto.getSellerName());
-//        System.out.println("=>result: " + sellerDto.getSellerPassword());
-//        System.out.println("=>result: " + sellerDto.getSellerIdEmail());
-//        System.out.println("=>result: " + sellerDto.getSellerPhonenum());
+//        log.debug("Enter registerSeller!!!");
+//        log.debug("=>result: " + sellerDto.getSellerName());
+//        log.debug("=>result: " + sellerDto.getSellerPassword());
+//        log.debug("=>result: " + sellerDto.getSellerIdEmail());
+//        log.debug("=>result: " + sellerDto.getSellerPhonenum());
 //
 //        if (bindingResult.hasErrors()) {
 //
-//            System.out.println("bindingResult error!!!");
+//            log.debug("bindingResult error!!!");
 //            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
 //        }
-//        System.out.println("sellerService start!!!");
+//        log.debug("sellerService start!!!");
 //        sellerService.signup(sellerDto);
-//        System.out.println("sellerService ended!!!");
+//        log.debug("sellerService ended!!!");
 //        return ResponseEntity.status(HttpStatus.CREATED).build();
 //    }
 //

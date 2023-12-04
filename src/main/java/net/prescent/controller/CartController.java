@@ -1,38 +1,45 @@
-//package Unknown.PreScent.controller;
-//
-//
-//import dto.net.prescent.CustomerDto;
-//import entity.net.prescent.FinishedProductEntity;
-//import Unknown.PreScent.service.CartService;
-//import service.net.prescent.CustomerService;
-//import service.net.prescent.FinishedProductService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//import java.util.Optional;
-//
-//@RestController
-//@CrossOrigin(origins = "*")
-//@RequestMapping("/Cart")
-//public class CartController {
-//
-//    @Autowired
-//    private CartService cartService;
-//    @Autowired
-//    private CustomerService customerService;
-//    @Autowired
-//    private FinishedProductService finishedProductService;
-//    @Autowired
-//    private FinishedProductEntity finishedProductEntity;
-//
-//    @PostMapping("/{customerKey}/{fpKey}")
-//    public String addCartItem(@PathVariable("customerKey") Integer customerKey, @PathVariable("fpKey") Integer fpKey, int amount) {
-//        CustomerDto foundCustomer = customerService.findCustomer(customerKey);
-//        FinishedProductEntity foundFp = finishedProductService.getFinishedProductWithFpKey(fpKey).get();
-//
-//        cartService.addCartItem(foundCustomer, foundFp, amount);
-//
-//        return "redirect:/item/view/{fpKey}";
-//    }
-//}
+package net.prescent.controller;
+
+
+import net.prescent.dto.CartItemAddRequestDto;
+import net.prescent.dto.CartItemResponseDto;
+import net.prescent.dto.CartResponseDto;
+import net.prescent.service.CartService;
+import net.prescent.service.UserService;
+import net.prescent.service.FinishedProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("customer/cart")
+public class CartController {
+
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private FinishedProductService finishedProductService;
+
+    @PostMapping("/add-to-cart")
+    public ResponseEntity<?> addCartItem(@RequestBody CartItemAddRequestDto cartItemAddRequestDto) {
+        cartService.addToCart(cartItemAddRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/view-in-cart")
+    public CartResponseDto viewInCart(@RequestParam Integer userKey)
+    {
+        return cartService.viewInCart(userKey);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<?> clearCartItem(@RequestBody Integer userKey)
+    {
+        cartService.clearCartItem(userKey);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+}

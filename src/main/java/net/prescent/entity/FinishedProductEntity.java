@@ -1,5 +1,6 @@
 package net.prescent.entity;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Slf4j
 @Table(name = "finished_product")
 public class FinishedProductEntity {
 
@@ -34,17 +36,12 @@ public class FinishedProductEntity {
 
     private String fpDetail;
 
-
-//    @ManyToOne
-//    @JoinColumn(name = "cart_id")
-//    private CartEntity cart;
-
     @ManyToOne
     @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-    @OneToMany(mappedBy = "finishedProductEntity",fetch = FetchType.EAGER)
-    private List<FPOrderEntity> fpOrderEntityList= new ArrayList<>();
+//    @OneToMany(mappedBy = "finishedProductEntity", fetch = FetchType.EAGER)
+//    private List<FPOrderEntity> fpOrderEntityList= new ArrayList<>();
 
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
@@ -52,14 +49,14 @@ public class FinishedProductEntity {
         this.flowerShopEntity.setFinishedProductEntityList(this);
     }
 
-    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
-    {
-        if(this.fpOrderEntityList == null)
-        {
-            fpOrderEntityList = new ArrayList<>();
-        }
-        this.fpOrderEntityList.add(fpOrderEntity);
-    }
+//    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
+//    {
+//        if(this.fpOrderEntityList == null)
+//        {
+//            this.fpOrderEntityList = new ArrayList<>();
+//        }
+//        this.fpOrderEntityList.add(fpOrderEntity);
+//    }
 
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;
@@ -93,10 +90,10 @@ public class FinishedProductEntity {
             if(finishedProductDto.getFpImage()!=null)
             {
                 finishedProductEntity.setFpImage(finishedProductDto.getFpImage());
-                System.out.println("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage()+"---------------");
+                log.debug("여긴 DtoToEntity내부 fpImage여부를 확인"+finishedProductEntity.getFpImage()+"---------------");
             }
             else {
-                System.out.println("DtoToEntity내부 fpImage가 비어있습니다 ******************************");
+                log.debug("DtoToEntity내부 fpImage가 비어있습니다 ******************************");
             }
         finishedProductEntity.setFpName(finishedProductDto.getFpName());
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
