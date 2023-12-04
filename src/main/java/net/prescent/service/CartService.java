@@ -14,9 +14,11 @@ import net.prescent.repository.CustomerRepository;
 import net.prescent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
+@Transactional
 @Service
 public class CartService {
     private final FinishedProductRepository finishedProductRepo;
@@ -110,6 +112,7 @@ public class CartService {
 
     public CartItemResponseDto entityToCartResponseDto(CartItemResponseDto cartItemResponseDto, FinishedProductEntity finishedProductEntity)
     {
+        cartItemResponseDto.setFpKey(finishedProductEntity.getFpKey());
         cartItemResponseDto.setFpImage(finishedProductEntity.getFpImage());
         cartItemResponseDto.setFpName(finishedProductEntity.getFpName());
         cartItemResponseDto.setFpTag(finishedProductEntity.getFpTag());
@@ -154,7 +157,23 @@ public class CartService {
     }
 
     public void clearCartItem(Integer userKey) {
-
+    Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(userKey);
+    if(foundCustomerEntity.isPresent())
+    {
+        CustomerEntity customerEntity = foundCustomerEntity.get();
+        if(customerEntity.getCartEntity()==null)
+        {
+            throw new IllegalStateException("사용자의 카트가 비었습니다.");
+        }
+        else
+        {
+            CartEntity cartEntity = customerEntity.getCartEntity();
+            for(CartItemEntity cartItemEntity : cartEntity.getCartItemEntityList())
+            {
+                cartItemRepo.delete(cartItemEntity);
+            }
+        }
+    }
     }
 }
 
