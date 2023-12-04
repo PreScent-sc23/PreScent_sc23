@@ -15,7 +15,7 @@
 |--|-------|-----|-----|
 |서상원|담당 구현 : 판매자 주문양식 등록 기능, 고객 주문제작 상품 주문 기능, 태그 검색 기능, 가게 등록 기능|yyy0304@ajou.ac.kr|https://github.com/SnagwonSeo|
 |김수현|담당 구현 : Detection & Classification AI 모델 학습, 꽃 분석 기능 (PS:Len), GPT 기반 꽃 이미지 분위기 추출 기능, 판매자/고객 회원가입 기능, 판매자/고객 로그인 기능 <br/>  기타 담당 : Detection 데이터 수집, Swagger 설정, Jenkins 배포 자동화, 메인 로고 디자인|sooh@ajou.ac.kr|https://github.com/susooo|
-|김도윤|담당 구현 : 장바구니 기능, 판매자/고객 예약 내역 기능, 완제품 상품 등록 기능, 완제품 주문 기능  <br/>  기타 담당 : AWS 서버, 네이버 클라우드, MySQL 인프라 설정|rlaehdbs20@ajou.ac.kr|https://github.com/Ajou-sipdo|
+|김도윤|담당 구현 : 가게 등록 기능, 완제품 등록 기능, 장바구니 기능, 완제품 주문 기능, 판매자/고객 예약 내역 조회 기능 <br/>  기타 담당 : AWS 서버, 네이버 클라우드, MySQL 인프라 설정|rlaehdbs20@ajou.ac.kr|https://github.com/Ajou-sipdo|
 
 <br/>
 
