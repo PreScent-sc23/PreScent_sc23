@@ -39,20 +39,28 @@ public class FPOrderServiceTest {
     FPOrderService fpOrderService;
     @Autowired
     PasswordEncoder passwordEncoder;
-    public SellerDto createSellerDto(Long businessKey) {
+    private Integer tempNumForTest = 1;
+    private String  tempStringForTest = "1";
+    //    @BeforeEach
+//    public void setup()
+//    {
+//        sellerRepository.deleteAllInBatch();
+//        flowerShopRepository.deleteAllInBatch();
+//    }
+
+    public SellerDto createSellerDto(){
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setBusinessKey(businessKey);
-        sellerDto.setName("suhyeon");
-        sellerDto.setPhonenum("010-1111-2222");
-        sellerDto.setIdEmail("ajou@gmail.com");
-        sellerDto.setPassword("04prescent");
-        sellerDto.setConfirmPassword(("04prescent"));
+        sellerDto.setBusinessKey(1234567890L+tempNumForTest);
+        sellerDto.setName("kimkmim"+tempStringForTest);
+        sellerDto.setPhonenum("010-1111-222"+tempStringForTest);
+        sellerDto.setIdEmail("sooh"+tempStringForTest);
+        sellerDto.setPassword("04prescent"+tempStringForTest);
+        sellerDto.setConfirmPassword(("04prescent"+tempStringForTest));
         return sellerDto;
     }
-
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(12345678L);
+        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -64,7 +72,6 @@ public class FPOrderServiceTest {
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
     }
-
     public FinishedProductDto createFinishedProductDto() {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
         finishedProductDto.setFpName("장미꽃다발");
@@ -76,10 +83,10 @@ public class FPOrderServiceTest {
     }
     public SellerDto createSeller1Dto() {
         SellerDto sellerDto = new SellerDto();
-        sellerDto.setBusinessKey(111111111L);
+        sellerDto.setBusinessKey(111111111L+tempNumForTest);
         sellerDto.setName("예시 사업자");
         sellerDto.setPhonenum("010-1111-2222");
-        sellerDto.setIdEmail("seller@naver.com");
+        sellerDto.setIdEmail("seller@naver.com"+tempStringForTest);
         sellerDto.setPassword("1234");
         sellerDto.setConfirmPassword(("1234"));
         return sellerDto;
@@ -87,7 +94,7 @@ public class FPOrderServiceTest {
 
     public FlowerShopDto createFlowerShop1Dto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(111111111L);
+        flowerShopDto.setBusinessKey(111111111L+tempNumForTest);
         flowerShopDto.setShopName("예시 꽃집");
         flowerShopDto.setShopPhoneNum("031-111-2222");
         flowerShopDto.setShopLocation("suwon city");
@@ -122,8 +129,8 @@ public class FPOrderServiceTest {
 
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
-        customerDto.setName("예시 구매자");
-        customerDto.setIdEmail("buyer@naver.com");
+        customerDto.setName("예시 구매자"+tempStringForTest);
+        customerDto.setIdEmail(tempStringForTest+"buyer@naver.com");
         customerDto.setPassword("12345");
         customerDto.setConfirmPassword("12345");
         customerDto.setPhonenum("010-2222-3333");
@@ -150,7 +157,7 @@ public class FPOrderServiceTest {
         Integer customerKey = userService.signupCustomer(customerDto);
         assertNotNull(customerKey);
 
-        SellerDto sellerDto = createSellerDto(12345678L);
+        SellerDto sellerDto = createSellerDto();
         Long businessKey = userService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
