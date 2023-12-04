@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import net.prescent.dto.CartItemAddRequestDto;
 import net.prescent.dto.CartItemResponseDto;
 import net.prescent.dto.CartResponseDto;
 import net.prescent.dto.FinishedProductDto;
@@ -47,9 +48,9 @@ public class CartService {
     }
 
     //추후에 count올리는 로직도 구현
-    public void addToCart(Integer userKey, Integer fpKey, Integer count, String pickupDate, String pickupTime){
+    public void addToCart(CartItemAddRequestDto cartItemAddRequestDto){
         // 나중엔 토큰으로 받으니까 custDto로 받아와도 될 듯
-        Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(userKey);
+        Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(cartItemAddRequestDto.getUserKey());
         if(foundCustomerEntity.isPresent())
         {
             CustomerEntity customerEntity = foundCustomerEntity.get();
@@ -60,7 +61,7 @@ public class CartService {
                 cartRepo.save(cartEntity);
             }
             CartEntity cartEntity = customerEntity.getCartEntity();
-            CartItemEntity cartItemEntity = addCartItem(fpKey, count, pickupDate, pickupTime);
+            CartItemEntity cartItemEntity = addCartItem(cartItemAddRequestDto);
             cartEntity.setCartItemEntityList(cartItemEntity);
             calculateTotalPrice(cartEntity);
             cartItemRepo.save(cartItemEntity);
@@ -94,13 +95,13 @@ public class CartService {
 //
 //        cart.get().setCount(cart.get().getCount() + amount);
     }
-    public CartItemEntity addCartItem(Integer fpKey, Integer count, String pickupDate, String pickupTime)
+    public CartItemEntity addCartItem(CartItemAddRequestDto cartItemAddRequestDto)
     {
-        Optional<FinishedProductEntity> foundFPEntity = finishedProductRepo.findByFpKey(fpKey);
+        Optional<FinishedProductEntity> foundFPEntity = finishedProductRepo.findByFpKey(cartItemAddRequestDto.getFpKey());
         if(foundFPEntity.isPresent())
         {
             FinishedProductEntity fpEntity = foundFPEntity.get();
-            return CartItemEntity.createCartItem(fpEntity, count, pickupDate, pickupTime);
+            return CartItemEntity.createCartItem(fpEntity, cartItemAddRequestDto.getAmount(), cartItemAddRequestDto.getPickupDate(), cartItemAddRequestDto.getPickupTime());
         }
         else {
             throw new IllegalStateException("fpKey로 완제품을 찾을 수 없습니다.");

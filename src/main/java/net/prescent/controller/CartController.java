@@ -1,6 +1,8 @@
 package net.prescent.controller;
 
 
+import net.prescent.dto.CartItemAddRequestDto;
+import net.prescent.dto.CartItemResponseDto;
 import net.prescent.dto.CartResponseDto;
 import net.prescent.service.CartService;
 import net.prescent.service.UserService;
@@ -23,19 +25,19 @@ public class CartController {
     private FinishedProductService finishedProductService;
 
     @PostMapping("/add-to-cart")
-    public ResponseEntity<?> addCartItem(@RequestParam("userKey") Integer userKey, @RequestParam Integer fpKey, int amount, String pickupDate, String pickupTime) {
-        cartService.addToCart(userKey, fpKey, amount,pickupDate, pickupTime);
+    public ResponseEntity<?> addCartItem(@RequestBody CartItemAddRequestDto cartItemAddRequestDto) {
+        cartService.addToCart(cartItemAddRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/view-in-cart")
-    public CartResponseDto viewInCart(@RequestParam("userKey") Integer userKey)
+    public CartResponseDto viewInCart(@RequestBody Integer userKey)
     {
         return cartService.viewInCart(userKey);
     }
 
     @DeleteMapping()
-    public ResponseEntity<?> clearCartItem(@RequestParam("userKey")Integer userKey)
+    public ResponseEntity<?> clearCartItem(@RequestBody Integer userKey)
     {
         cartService.clearCartItem(userKey);
         return ResponseEntity.status(HttpStatus.CREATED).build();

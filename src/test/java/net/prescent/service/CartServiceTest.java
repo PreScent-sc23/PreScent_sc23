@@ -106,7 +106,8 @@ public class CartServiceTest {
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
 
-        cartService.addToCart(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+        cartService.addToCart(cartItemAddRequestDto);
         assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
     }
 
@@ -128,7 +129,9 @@ public class CartServiceTest {
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
 
-        cartService.addToCart(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+
+        cartService.addToCart(cartItemAddRequestDto);
         assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
 
         CartResponseDto cartResponseDto = cartService.viewInCart(customerKey);
