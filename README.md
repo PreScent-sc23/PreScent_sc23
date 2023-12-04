@@ -17,11 +17,26 @@
 |김수현|sooh@ajou.ac.kr|https://github.com/susooo|
 |김도윤|rlaehdbs20@ajou.ac.kr|https://github.com/Ajou-sipdo|
 
-<br/> <br/>
+<br/>
 
 ## 사용 라이브러리 및 개발 환경
-![image](https://github.com/PreScent-sc23/backend/assets/118275773/26bde00a-22a3-435d-b21d-2d294830245d)
+<img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"/>
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/>
+<img src="https://img.shields.io/badge/NAVER Cloud-03C75A?style=for-the-badge&logo=NAVER Cloud&logoColor=white"/>
+<img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white"/>
+<img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white"/>
 
+<br/>
+
+## 협업 툴
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+<img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">
+<img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white">
+
+<br/>
 
 ## 패키지 구조
 #### 기능별로 Controller, Service, Repository, Entity, Dto를 생성하여 사용
