@@ -2,7 +2,6 @@ package net.prescent.service;
 
 import net.prescent.dto.CartItemAddRequestDto;
 import net.prescent.dto.CartItemResponseDto;
-import net.prescent.dto.CartResponseDto;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.CartEntity;
 import net.prescent.entity.CartItemEntity;
@@ -15,6 +14,8 @@ import net.prescent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -120,8 +121,7 @@ public class CartService {
         cartItemResponseDto.setFpDetail(finishedProductEntity.getFpDetail());
         return cartItemResponseDto;
     }
-    public CartResponseDto viewInCart(Integer userKey) {
-        CartResponseDto cartResponseDto = new CartResponseDto();
+    public List<CartItemResponseDto> viewInCart(Integer userKey) {
         Optional<CustomerEntity> foundCustomerEntity =customerRepo.findByUserKey(userKey);
         if(foundCustomerEntity.isPresent())
         {
@@ -129,19 +129,18 @@ public class CartService {
 
             if(customerEntity.getCartEntity() !=null)
             {CartEntity cartEntity = customerEntity.getCartEntity();
-                cartResponseDto.setTotalCount(cartEntity.getTotalCount());
-                cartResponseDto.setTotalPrice(cartEntity.getTotalPrice());
                 if(cartEntity.getCartItemEntityList()!=null)
                 {
-                    for(CartItemEntity cartItementity: cartEntity.getCartItemEntityList())
+                    List<CartItemResponseDto> cartItemResponseDtoList = new ArrayList<>();
+                    for(CartItemEntity cartItemEntity: cartEntity.getCartItemEntityList())
                     {
                         CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
-                        FinishedProductEntity finishedProductEntity = cartItementity.getFinishedProductEntity();
+                        FinishedProductEntity finishedProductEntity = cartItemEntity.getFinishedProductEntity();
                         entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
                         cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
-                        cartResponseDto.setCartItemResponseDtoList(cartItemResponseDto);
+                        cartItemResponseDtoList.add(cartItemResponseDto);
                     }
-                    return cartResponseDto;
+                    return cartItemResponseDtoList;
                 }
                 else {
                     throw new IllegalStateException("Cart가 비어있습니다.");
