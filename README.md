@@ -11,10 +11,10 @@
 
 ## 팀원 소개
 #### 백엔드
-|**이름**|**email**|**github**|
-|--|-----|-----|
+|**이름**|**역할**|**email**|**github**|
+|--|-------|-----|-----|
 |서상원|yyy0304@ajou.ac.kr|https://github.com/SnagwonSeo|
-|김수현|sooh@ajou.ac.kr|https://github.com/susooo|
+|김수현|담당 구현 : Detection & Classification AI 모델 학습, 꽃 분석 기능 (PS:Len), GPT 기반 꽃 이미지 분위기 추출 기능, 판매자/고객 회원가입 기능, 판매자/고객 로그인 기능 <br/>  기타 담당 : Detection 데이터 수집, Swagger 설정, Jenkins 배포 자동화, 메인 로고 디자인|sooh@ajou.ac.kr|https://github.com/susooo|
 |김도윤|rlaehdbs20@ajou.ac.kr|https://github.com/Ajou-sipdo|
 
 <br/>
