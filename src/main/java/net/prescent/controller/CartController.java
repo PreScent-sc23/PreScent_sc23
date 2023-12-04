@@ -22,13 +22,13 @@ public class CartController {
     @Autowired
     private FinishedProductService finishedProductService;
 
-    @PostMapping("/addToCart")
+    @PostMapping("/add-to-cart")
     public ResponseEntity<?> addCartItem(@RequestParam("userKey") Integer userKey, @RequestParam Integer fpKey, int amount, String pickupDate, String pickupTime) {
         cartService.addToCart(userKey, fpKey, amount,pickupDate, pickupTime);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping()
+    @GetMapping("/view-in-cart")
     public CartResponseDto viewInCart(@RequestParam("userKey") Integer userKey)
     {
         return cartService.viewInCart(userKey);
