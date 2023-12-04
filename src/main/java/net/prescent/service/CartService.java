@@ -119,6 +119,7 @@ public class CartService {
         cartItemResponseDto.setFpTag(finishedProductEntity.getFpTag());
         cartItemResponseDto.setFpPrice(finishedProductEntity.getFpPrice());
         cartItemResponseDto.setFpDetail(finishedProductEntity.getFpDetail());
+        cartItemResponseDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
         return cartItemResponseDto;
     }
     public List<CartItemResponseDto> viewInCart(Integer userKey) {

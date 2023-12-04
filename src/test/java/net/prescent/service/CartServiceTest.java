@@ -81,6 +81,7 @@ public class CartServiceTest {
     }
     public FinishedProductDto createFinishedProductDto(String fpDetail, String fpImage, String fpFlowerList, String fpName, String fpTag, Integer fpPrice) {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
+        finishedProductDto.setFpDetail(fpDetail);
         finishedProductDto.setFpName(fpName);
         finishedProductDto.setFpTag(fpTag);
         finishedProductDto.setFpImage(fpImage);
