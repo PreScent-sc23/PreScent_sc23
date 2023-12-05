@@ -27,7 +27,7 @@ public class FPOrderController {
     }
 
     @PostMapping("/customer/cart/order-in-cart")
-    public ResponseEntity<?> customerOrderInCart(@RequestBody Integer userKey, @RequestBody String purchaseInfo)
+    public ResponseEntity<?> customerOrderInCart(@RequestParam Integer userKey, @RequestBody String purchaseInfo)
     {
         fpOrderService.customerOrderInCart(userKey, purchaseInfo);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -44,7 +44,7 @@ public class FPOrderController {
     }
 
     @PostMapping("seller/fp-order-list/manage-order")
-    public String sellerManageOrder(@RequestBody Integer userKey, @RequestBody Integer fpOrderKey, @RequestBody String state){
+    public String sellerManageOrder(@RequestParam Integer userKey, @RequestParam Integer fpOrderKey, @RequestBody String state){
         return fpOrderService.sellerManageOrder(userKey,fpOrderKey, state);
     }
 }
