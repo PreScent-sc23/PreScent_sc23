@@ -1,5 +1,6 @@
 package net.prescent.controller.ai;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.entity.ImageInfo;
 import net.prescent.service.ai.AIModelService;
 import net.prescent.service.ai.AITestService;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 public class AITestController {
@@ -31,10 +33,13 @@ public class AITestController {
 
 
     @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> uploadAndProcessImage(MultipartFile formData) {
+    public ResponseEntity<?> uploadAndProcessImage(MultipartFile file) {
         try {
-            String fileKey = "uploads/" + UUID.randomUUID() + "-" + formData.getOriginalFilename();
-            aiModelService.uploadFileToS3(formData, fileKey);
+            log.debug("Generated fileKey: " + file);
+            String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
+            log.debug("Generated fileKey: " + fileKey);
+            aiModelService.uploadFileToS3(file, fileKey);
+
             String fileUrl = aiModelService.getFileUrl(fileKey);
 
             List<Object> response = new ArrayList<>();
