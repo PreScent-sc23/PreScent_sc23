@@ -24,5 +24,6 @@ public class FPOrderCustomerDto {
     private String pickupDate;
     @NotNull
     private String pickupTime;
+    private Integer count;
 
 }

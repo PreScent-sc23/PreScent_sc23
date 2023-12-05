@@ -40,23 +40,11 @@ public class FinishedProductEntity {
     @JoinColumn(name = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
-//    @OneToMany(mappedBy = "finishedProductEntity", fetch = FetchType.EAGER)
-//    private List<FPOrderEntity> fpOrderEntityList= new ArrayList<>();
-
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
     {
         this.flowerShopEntity = flowerShopEntity;
         this.flowerShopEntity.setFinishedProductEntityList(this);
     }
-
-//    public void setFpOrderEntityList(FPOrderEntity fpOrderEntity)
-//    {
-//        if(this.fpOrderEntityList == null)
-//        {
-//            this.fpOrderEntityList = new ArrayList<>();
-//        }
-//        this.fpOrderEntityList.add(fpOrderEntity);
-//    }
 
     public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) { // 테스트용
         this.fpName = fpName;
@@ -66,20 +54,6 @@ public class FinishedProductEntity {
         this.fpState = fpState;
         this.fpFlowerList = fpFlowerList;
     }
-
-//    public FinishedProductEntity(String fpName, String fpTag, String fpImage, Integer fpPrice, boolean fpState, String[] fpFlowerList) {
-//        FlowerShopRepository flowerShopRepo = null;
-//
-//        Optional<FlowerShopEntity> flowerShopEntity = flowerShopRepo.findByshopKey(shopKey);
-//
-//        this.flowerShopEntity = shopKey;
-//        this.fpName = fpName;
-//        this.fpTag = fpTag;
-//        this.fpImage = fpImage;
-//        this.fpPrice = fpPrice;
-//        this.fpState = fpState;
-//        this.fpFlowerList = fpFlowerList;
-//    }
 
     public FinishedProductEntity() {
     }
@@ -99,7 +73,7 @@ public class FinishedProductEntity {
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
         finishedProductEntity.setFpDetail(finishedProductDto.getFpDetail());
-        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList()[0].split(","));
+        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList()[0].split(",| "));
         return finishedProductEntity;
     }
 }

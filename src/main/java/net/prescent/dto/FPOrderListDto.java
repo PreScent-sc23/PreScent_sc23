@@ -13,7 +13,7 @@ import javax.persistence.Column;
 @ToString
 public class FPOrderListDto {
     private Integer fpOrderKey;
-    private Byte fpOrderState;
+    private String fpOrderState;
     private String pickupDate;
     private String pickupTime;
     private String purchaseInfo;
