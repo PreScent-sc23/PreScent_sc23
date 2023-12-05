@@ -1,7 +1,6 @@
 package net.prescent.controller.ai;
 
 import net.prescent.service.ai.AIModelService;
-import net.prescent.service.ai.DockerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.CrossOrigin;

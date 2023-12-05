@@ -30,7 +30,7 @@ public class AITestController {
     }
 
 
-    @PostMapping("/pslens")
+    @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> uploadAndProcessImage(@RequestParam("file") MultipartFile file) {
         try {
             String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
