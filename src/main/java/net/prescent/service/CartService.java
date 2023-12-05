@@ -136,8 +136,7 @@ public class CartService {
                     for(CartItemEntity cartItemEntity: cartEntity.getCartItemEntityList())
                     {
                         CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
-                        cartItemResponseDto.setCartItemKey(cartItemEntity.getCartItemKey());
-                        cartItemResponseDto.setCount(cartItemEntity.getCount());
+                        CartItemEntityToCartItemResponseDto(cartItemEntity, cartItemResponseDto);
                         FinishedProductEntity finishedProductEntity = cartItemEntity.getFinishedProductEntity();
                         entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
                         cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
@@ -156,6 +155,13 @@ public class CartService {
         else {
             throw new IllegalStateException("사용자를 찾을 수 없습니다.");
         }
+    }
+
+    private void CartItemEntityToCartItemResponseDto(CartItemEntity cartItemEntity, CartItemResponseDto cartItemResponseDto) {
+        cartItemResponseDto.setCartItemKey(cartItemEntity.getCartItemKey());
+        cartItemResponseDto.setCount(cartItemEntity.getCount());
+        cartItemResponseDto.setPickupDate(cartItemEntity.getPickupDate());
+        cartItemResponseDto.setPickupTime(cartItemEntity.getPickupTime());
     }
 
     public void clearCartItem(Integer userKey) {
