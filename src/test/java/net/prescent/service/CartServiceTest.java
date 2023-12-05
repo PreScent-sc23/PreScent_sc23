@@ -76,7 +76,8 @@ public class CartServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage("https://prescentbucket.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20231123_203956157_01.png");
         finishedProductDto.setFpPrice(20000);
-        finishedProductDto.setFpFlowerList("장미 안개꽃");
+        String[] arr = {"장미 안개꽃"};
+        finishedProductDto.setFpFlowerList(arr);
         return finishedProductDto;
     }
     public FinishedProductDto createFinishedProductDto(String fpDetail, String fpImage, String fpFlowerList, String fpName, String fpTag, Integer fpPrice) {

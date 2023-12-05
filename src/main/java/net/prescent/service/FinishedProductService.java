@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,16 +33,6 @@ public class FinishedProductService
         validateDuplicatedFp(finishedProductDto.getShopKey(), finishedProductDto.getFpName());
         // FinishedProductEntity finishedProductEntity = FinishedProductEntity.finishedProductDtotoEntity(finishedProductDto);
         return addFinishedProductToShop(finishedProductDto);
-    }
-
-    // 테스트용
-    public FinishedProductEntity addFinishedProduct(Integer shopKey, String fpName, String fpTag, String fpImage, Integer fpPrice, String fpDetail, String fpFlowerList) {
-        validateDuplicatedFp(shopKey, fpName);
-
-        FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-        FinishedProductEntity addedFinishedProductEntity = addFinishedProductToShop(finishedProductDto);
-
-        return finishedProductRepo.save(addedFinishedProductEntity);
     }
 
 

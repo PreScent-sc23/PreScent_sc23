@@ -1,27 +1,19 @@
 package net.prescent.controller;
 
 
-import lombok.extern.slf4j.Slf4j;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
-@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -33,12 +25,12 @@ public class SearchController {
 //    @GetMapping("/search")
 //    public ResponseEntity<Map<List<FinishedProductEntity>, Object>> searchTag(@RequestParam String query,
 //                                                                HttpServletRequest request, HttpServletResponse response){
-//        log.debug("Qurey: " + query + "----------------\n");
+//        System.out.println("Qurey: " + query + "----------------\n");
 //
 //        if(query.startsWith("#")){
 //            String[] queryResult = query.split("#");
 //
-//            log.debug("query split: " + queryResult[0] + "----------------\n");
+//            System.out.println("query split: " + queryResult[0] + "----------------\n");
 //
 //            Map<List<FinishedProductEntity>,Object> result = new HashMap<>();
 //            Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[0]);
@@ -57,41 +49,81 @@ public class SearchController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<FinishedProductEntity>> searchTag(@RequestParam String query,
-                                                                 HttpServletRequest request,
-                                                                 HttpServletResponse response){
+    public ResponseEntity<List<FinishedProductDto>> searchTag(@RequestParam String query){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
-//        log.debug("Qurey: " + query + "----------------");
-//        log.debug("decodedQuery: " + decodedQuery + "----------------\n");
+//        System.out.println("Qurey: " + query + "----------------");
+//        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
 
         if(decodedQuery.startsWith("#")){
             String[] queryResult = decodedQuery.split("#");
 
-            log.debug("query split0: " + queryResult[0] + "----------------\n");
-            log.debug("query split1: " + queryResult[1] + "----------------\n");
+            System.out.println("query split0: " + queryResult[0] + "----------------\n");
+            System.out.println("query split1: " + queryResult[1] + "----------------\n");
+            queryResult[1] = "#" + queryResult[1];
 
             Optional<List<FinishedProductEntity>> searchResult = searchService.searchByTagDefault(queryResult[1]);
             List<FinishedProductEntity> result = searchResult.get();
-
-            log.debug("---------------------------------------------------------------------");
+            
+            List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
             for(FinishedProductEntity fp : result){
-                log.debug("fpName: " + fp.getFpName());
-                log.debug("fpPrice: " + fp.getFpPrice());
-                log.debug("fpTag: " + fp.getFpTag());
-                log.debug("----------------------------------");
+                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
             }
-            log.debug("---------------------------------------------------------------------");
 
-            Integer statusCode = (Integer) request.getAttribute(ERROR_EXCEPTION);
+            printManyResult(finalResult);
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-
-            return new ResponseEntity<>(result, headers, HttpStatus.OK);
+            return ResponseEntity.ok(finalResult);
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
 
         return ResponseEntity.noContent().build();
 
+    }
+
+    @GetMapping("/detail/{fpKey}")
+    public ResponseEntity<FinishedProductDto> showDetail(@PathVariable String fpKey){
+        System.out.println("received fpKey:" + fpKey + "==================");
+
+        Integer intFpKey = Integer.parseInt(fpKey);
+
+        Optional<FinishedProductEntity> searchResult = searchService.searchByFpKey(intFpKey);
+
+        if(searchResult.isPresent()) {
+            FinishedProductEntity result = searchResult.get();
+
+            FinishedProductDto finalResult = FinishedProductDto.toFinishedProductDto(result);
+
+            printResult(finalResult);
+
+            return ResponseEntity.ok(finalResult);
+//            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
+
+    private static void printManyResult(List<FinishedProductDto> finalResult) {
+        System.out.println("---------------------------------====================================");
+        for(FinishedProductDto fp : finalResult){
+            System.out.println("fpKey: " + fp.getFpKey());
+            System.out.println("fpName: " + fp.getFpName());
+            System.out.println("fpPrice: " + fp.getFpPrice());
+            System.out.println("fpTag: " + fp.getFpTag());
+            System.out.println("shopKey: " + fp.getShopKey());
+            System.out.println("----------------------------------");
+        }
+        System.out.println("---------------------------------====================================");
+    }
+
+
+    private static void printResult(FinishedProductDto finalResult) {
+        System.out.println("---------------------------------====================================");
+        System.out.println("fpKey: " + finalResult.getFpKey());
+        System.out.println("fpName: " + finalResult.getFpName());
+        System.out.println("fpPrice: " + finalResult.getFpPrice());
+        System.out.println("fpTag: " + finalResult.getFpTag());
+        System.out.println("shopKey: " + finalResult.getShopKey());
+        System.out.println("fpDetail: " + finalResult.getFpDetail());
+        System.out.println("---------------------------------====================================");
     }
 
 

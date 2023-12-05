@@ -36,7 +36,7 @@ public class UserServiceTest {
 //        customerRepository.deleteAll();
 //        sellerRepository.deleteAll();
 //    }
-
+]
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("Test Customer");
