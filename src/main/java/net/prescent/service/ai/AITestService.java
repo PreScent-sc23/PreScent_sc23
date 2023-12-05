@@ -20,11 +20,8 @@ public class AITestService {
     public List<Object> processAdditionalImages() throws IOException {
         List<Object> images = new ArrayList<>();
 
-        // 이미지 처리 로직
-        // 예를 들어, "path/to/" 디렉터리 안에 있는 이미지 파일들을 처리
-
         String image2Key = "predefined/159_2021042815384918.jpg";
-        aiModelService.uploadPredefinedFileToS3("src/main/python/detects/159_2021042815384918.jpg", image2Key);
+        aiModelService.uploadPredefinedFileToS3("src/main/python/crops/159_2021042815384918.jpg", image2Key);
         images.add(Map.of("url", aiModelService.getFileUrl(image2Key)));
 
         List<ImageInfo> additionalImages = Arrays.asList(
@@ -36,7 +33,7 @@ public class AITestService {
 
         for (ImageInfo image : additionalImages) {
             String fileKey = "predefined/" + image.getUrl();
-            aiModelService.uploadPredefinedFileToS3("src/main/python/cros/" + image.getUrl(), fileKey);
+            aiModelService.uploadPredefinedFileToS3("src/main/python/crops/" + image.getUrl(), fileKey);
             image.setUrl(aiModelService.getFileUrl(fileKey));
             images.add(Map.of("url", image.getUrl(), "name", image.getName(), "meaning", image.getMeaning()));
         }
