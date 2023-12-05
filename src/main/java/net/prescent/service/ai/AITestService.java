@@ -20,11 +20,13 @@ public class AITestService {
     public List<Object> processAdditionalImages() throws IOException {
         List<Object> images = new ArrayList<>();
 
-        // image2.jpg 처리 (URL만 반환)
-        String image2Url = aiModelService.uploadPredefinedFileToS3("159_2021042815384918.jpg");
-        images.add(Map.of("url", aiModelService.getFileUrl(image2Url)));
+        // 이미지 처리 로직
+        // 예를 들어, "path/to/" 디렉터리 안에 있는 이미지 파일들을 처리
 
-        // image3.jpg, image4.jpg, image5.jpg, image6.jpg 처리 (URL, 이름, 꽃말 반환)
+        String image2Key = "predefined/159_2021042815384918.jpg";
+        aiModelService.uploadPredefinedFileToS3("src/main/python/detects/159_2021042815384918.jpg", image2Key);
+        images.add(Map.of("url", aiModelService.getFileUrl(image2Key)));
+
         List<ImageInfo> additionalImages = Arrays.asList(
                 new ImageInfo("159_20210428153849183.jpg", "Daisy", "Lovely"),
                 new ImageInfo("159_20210428153849184.jpg", "Gerbera", "Mysterious"),
@@ -33,9 +35,10 @@ public class AITestService {
         );
 
         for (ImageInfo image : additionalImages) {
-            String fileKey = aiModelService.uploadPredefinedFileToS3(image.getUrl());
+            String fileKey = "predefined/" + image.getUrl();
+            aiModelService.uploadPredefinedFileToS3("src/main/python/cros/" + image.getUrl(), fileKey);
             image.setUrl(aiModelService.getFileUrl(fileKey));
-            images.add(image);
+            images.add(Map.of("url", image.getUrl(), "name", image.getName(), "meaning", image.getMeaning()));
         }
 
         return images;

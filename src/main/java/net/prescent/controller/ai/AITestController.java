@@ -22,8 +22,6 @@ public class AITestController {
 
     private final AIModelService aiModelService;
     private final AITestService aiTestService;
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucket;
 
     @Autowired
     public AITestController(AIModelService aiModelService, AITestService aiTestService) {
@@ -31,27 +29,14 @@ public class AITestController {
         this.aiTestService = aiTestService;
     }
 
-
     @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> uploadAndProcessImage(MultipartFile file) {
         try {
-            log.debug("Generated fileKey: " + file);
-            String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
-            log.debug("Generated fileKey: " + fileKey);
-            aiModelService.uploadFileToS3(file, fileKey);
-
-            String fileUrl = aiModelService.getFileUrl(fileKey);
-
-            List<Object> response = new ArrayList<>();
-            if (fileUrl != null && !fileUrl.isEmpty()) {
-                response.add(Map.of("url", fileUrl));
-            }
-
-            response.addAll(aiTestService.processAdditionalImages());
-
+            // 이미지 처리는 하지 않고, 추가 이미지만 처리
+            List<Object> response = aiTestService.processAdditionalImages();
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error processing image: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing image: " + e.getMessage());
         }
     }

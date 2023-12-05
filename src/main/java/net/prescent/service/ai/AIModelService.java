@@ -4,6 +4,7 @@ package net.prescent.service.ai;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import net.prescent.repository.FlowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +35,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class AIModelService {
 
     @Value("${cloud.aws.s3.bucket}")
@@ -44,48 +47,20 @@ public class AIModelService {
         this.amazonS3Client = amazonS3Client;
     }
 
-
-    public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
-        File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileKey);
-        multipartFile.transferTo(convFile);
-
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength(convFile.length());
-        amazonS3Client.putObject(bucket, fileKey, new FileInputStream(convFile), metadata);
-    }
-    public void uploadFileToS3(File file, String fileKey) throws IOException {
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength(file.length());
-        amazonS3Client.putObject(bucket, fileKey, new FileInputStream(file), metadata);
-    }
-
-    public String uploadPredefinedFileToS3(String filePath) throws IOException {
+    public String uploadPredefinedFileToS3(String filePath, String fileKey) throws IOException {
         File file = new File(filePath);
-        String fileKey = "predefined/" + file.getName();
-        uploadFileToS3(file, fileKey);
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(file.length());
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, fileKey, fileInputStream.toString())
+                    .withCannedAcl(CannedAccessControlList.PublicRead);
+            amazonS3Client.putObject(putObjectRequest);
+        }
         return fileKey;
     }
-
-    /*
-    public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength(multipartFile.getSize());
-        s3client.putObject(bucket, fileKey, multipartFile.getInputStream(), metadata);
-    }
-
-    public String uploadPredefinedFileToS3(String filePath) throws IOException {
-        File file = new File(filePath);
-        String fileKey = "predefined/" + file.getName();
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength(file.length());
-        s3client.putObject(bucket, fileKey, new FileInputStream(file), metadata);
-        return fileKey;
-    }
-
-     */
 
     public String getFileUrl(String fileKey) {
-        return amazonS3Client.getUrl(bucket, fileKey).toString();
+        return "https://" + bucket + ".s3.amazonaws.com/" + fileKey;
     }
 }
 
