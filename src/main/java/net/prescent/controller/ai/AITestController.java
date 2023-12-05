@@ -31,9 +31,10 @@ public class AITestController {
 
     @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> uploadAndProcessImage(MultipartFile file) {
+        log.info("Received image upload request");
         try {
-            // 이미지 처리는 하지 않고, 추가 이미지만 처리
             List<Object> response = aiTestService.processAdditionalImages();
+            log.info("Processed additional images and generated response");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             log.error("Error processing image: ", e);

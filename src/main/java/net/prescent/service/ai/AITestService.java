@@ -1,5 +1,6 @@
 package net.prescent.service.ai;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.entity.ImageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 @Service
+@Slf4j
 public class AITestService {
 
     private final AIModelService aiModelService;
@@ -18,6 +20,7 @@ public class AITestService {
     }
 
     public List<Object> processAdditionalImages() throws IOException {
+        log.info("Processing additional images");
         List<Object> images = new ArrayList<>();
 
         String image2Key = "predefined/159_2021042815384918.jpg";
@@ -32,12 +35,13 @@ public class AITestService {
         );
 
         for (ImageInfo image : additionalImages) {
+            log.info("Processed image: {}", image.getUrl());
             String fileKey = "predefined/" + image.getUrl();
             aiModelService.uploadPredefinedFileToS3("src/main/python/crops/" + image.getUrl(), fileKey);
             image.setUrl(aiModelService.getFileUrl(fileKey));
             images.add(Map.of("url", image.getUrl(), "name", image.getName(), "meaning", image.getMeaning()));
         }
-
+        log.info("Finished processing additional images");
         return images;
     }
 }
