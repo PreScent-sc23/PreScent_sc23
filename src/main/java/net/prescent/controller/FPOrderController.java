@@ -26,11 +26,6 @@ public class FPOrderController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("customer/fp-order-list")
-    public ArrayList<FPOrderListDto> customerFPOrderList(@RequestParam Integer userKey){
-        return fpOrderService.customerFPOrderList(userKey);
-    }
-
     @PostMapping("/customer/cart/order-in-cart")
     public ResponseEntity<?> customerOrderInCart(@RequestBody Integer userKey, @RequestBody String purchaseInfo)
     {
@@ -38,8 +33,13 @@ public class FPOrderController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @GetMapping("customer/fp-order-list")
+    public ArrayList<FPOrderListDto> customerViewFPOrderList(@RequestParam Integer userKey){
+        return fpOrderService.customerFPOrderList(userKey);
+    }
+
     @GetMapping("seller/fp-order-list")
-    public List<FPOrderListDto> sellerFPOrderList(@RequestParam Integer userKey){
+    public List<FPOrderListDto> sellerViewFPOrderList(@RequestParam Integer userKey){
         return fpOrderService.sellerFPOrderList(userKey);
     }
 

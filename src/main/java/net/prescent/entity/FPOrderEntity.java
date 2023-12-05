@@ -59,6 +59,7 @@ public class FPOrderEntity {
         fpOrderEntity.setPickupDate(pickupDate);
         fpOrderEntity.setPickupTime(pickupTime);
         fpOrderEntity.setCount(count);
+        log.info("))))))))))))))))))))totalPrice찾기"+finishedProductEntity.getFpPrice());
         fpOrderEntity.setTotalPrice(count*finishedProductEntity.getFpPrice());
         log.debug("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 

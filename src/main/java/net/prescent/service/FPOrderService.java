@@ -36,6 +36,7 @@ public class FPOrderService {
     {
 
         FPOrderEntity fpOrderEntity = this.preFPOrderCustomerDtoToFPOrderEntity(fpOrderCustomerDto); //이름 어떡할지 모르곘음
+        log.info("*****************************\nfpOrderEntity내부 totalPrice값: "+fpOrderEntity.getTotalPrice() );
         fpOrderRepo.save(fpOrderEntity);
         finishedProductRepo.save(fpOrderEntity.getFinishedProductEntity());
         customerRepo.save(fpOrderEntity.getCustomerEntity());
