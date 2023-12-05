@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FlowerDto;
 import net.prescent.dto.FlowerResponse;
 import net.prescent.entity.FlowerEntity;
@@ -31,19 +32,41 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-
 @Service
 public class AIModelService {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-    private final AmazonS3 s3client;
+    private final AmazonS3Client amazonS3Client;
 
     @Autowired
-    public AIModelService(AmazonS3 s3client) {
-        this.s3client = s3client;
+    public AIModelService(AmazonS3Client amazonS3Client) {
+        this.amazonS3Client = amazonS3Client;
     }
 
+
+    public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
+        File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileKey);
+        multipartFile.transferTo(convFile);
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(convFile.length());
+        amazonS3Client.putObject(bucket, fileKey, new FileInputStream(convFile), metadata);
+    }
+    public void uploadFileToS3(File file, String fileKey) throws IOException {
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(file.length());
+        amazonS3Client.putObject(bucket, fileKey, new FileInputStream(file), metadata);
+    }
+
+    public String uploadPredefinedFileToS3(String filePath) throws IOException {
+        File file = new File(filePath);
+        String fileKey = "predefined/" + file.getName();
+        uploadFileToS3(file, fileKey);
+        return fileKey;
+    }
+
+    /*
     public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(multipartFile.getSize());
@@ -59,8 +82,10 @@ public class AIModelService {
         return fileKey;
     }
 
+     */
+
     public String getFileUrl(String fileKey) {
-        return s3client.getUrl(bucket, fileKey).toString();
+        return amazonS3Client.getUrl(bucket, fileKey).toString();
     }
 }
 

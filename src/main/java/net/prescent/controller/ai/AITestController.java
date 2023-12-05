@@ -3,7 +3,7 @@ package net.prescent.controller.ai;
 import net.prescent.entity.ImageInfo;
 import net.prescent.service.ai.AIModelService;
 import net.prescent.service.ai.AITestService;
-import net.prescent.service.ai.DockerService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,21 +18,24 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 public class AITestController {
 
-    private final AIModelService s3Service;
+    private final AIModelService aiModelService;
     private final AITestService aiTestService;
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
 
     @Autowired
     public AITestController(AIModelService s3Service, AITestService aiTestService) {
-        this.s3Service = s3Service;
+        this.aiModelService = s3Service;
         this.aiTestService = aiTestService;
     }
+
 
     @PostMapping("/pslens")
     public ResponseEntity<?> uploadAndProcessImage(@RequestParam("file") MultipartFile file) {
         try {
             String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
-            s3Service.uploadFileToS3(file, fileKey);
-            String fileUrl = s3Service.getFileUrl(fileKey);
+            aiModelService.uploadFileToS3(file, fileKey);
+            String fileUrl = aiModelService.getFileUrl(fileKey);
 
             List<Object> response = new ArrayList<>();
             if (fileUrl != null && !fileUrl.isEmpty()) {

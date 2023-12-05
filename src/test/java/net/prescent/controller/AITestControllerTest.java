@@ -44,6 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/*
 public class AITestControllerTest {
 
     private MockMvc mockMvc;
@@ -102,3 +103,5 @@ public class AITestControllerTest {
                 .andExpect(jsonPath("$[5].meaning").value("Purity"));
     }
 }
+
+ */

@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 
+/*
 @Service
 public class DockerService {
 
@@ -58,3 +59,5 @@ public class DockerService {
         return detectedImageKeys;
     }
 }
+}
+ */
