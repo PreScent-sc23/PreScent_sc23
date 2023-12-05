@@ -67,8 +67,8 @@ public class FlowerShopEntityServiceTest {
     public void testAddFlowerShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Long businessKey = sellerService.signupSeller(sellerDto);
-        assertNotNull(businessKey);
+        Integer sellerKey = sellerService.signupSeller(sellerDto);
+        assertNotNull(sellerKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
@@ -89,8 +89,8 @@ public class FlowerShopEntityServiceTest {
     public void testSameSellerKeyShop()
     {
         SellerDto sellerDto = createSellerDto();
-        Long businessKey = sellerService.signupSeller(sellerDto);
-        assertNotNull(businessKey);
+        Integer sellerKey = sellerService.signupSeller(sellerDto);
+        assertNotNull(sellerKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
 

@@ -158,7 +158,7 @@ public class FPOrderServiceTest {
         assertNotNull(customerKey);
 
         SellerDto sellerDto = createSellerDto();
-        Long businessKey = userService.signupSeller(sellerDto);
+        Integer sellerKey0 = userService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
@@ -173,7 +173,7 @@ public class FPOrderServiceTest {
 
 
         SellerDto anotherSellerDto = createSeller1Dto();
-        Long busiKey = userService.signupSeller(anotherSellerDto);
+        Integer sellerKey1 = userService.signupSeller(anotherSellerDto);
 
         FlowerShopDto anotherFlowerShopDto = createFlowerShop1Dto();
         FlowerShopEntity anotherAddedShop = flowerShopService.addFlowerShop(anotherFlowerShopDto);
@@ -187,9 +187,13 @@ public class FPOrderServiceTest {
         FPOrderCustomerDto anotherFpOrderCustomerDto = createFPOrderCustomerDto(anotherAddedFinishedProductEntity.getFpKey(), customerKey, "다른 국민카드 결제정보","20231204", "1900");
         assertEquals(fpOrderService.customerOrderFinishedProduct(anotherFpOrderCustomerDto).getPickupDate(),"20231204");
 
-        ArrayList<FPOrderListDto> fpOrderListDtoArrayList = fpOrderService.customerFPOrderList(customerKey);
-        assertEquals(fpOrderListDtoArrayList.get(0).getPurchaseInfo(),"국민카드 결제정보");
-        assertEquals(fpOrderListDtoArrayList.get(1).getPurchaseInfo(),"다른 국민카드 결제정보");
+        ArrayList<FPOrderListDto> customerFpOrderListDtoArrayList = fpOrderService.customerFPOrderList(customerKey);
+        assertEquals(customerFpOrderListDtoArrayList.get(0).getPurchaseInfo(),"국민카드 결제정보");
+        assertEquals(customerFpOrderListDtoArrayList.get(1).getPurchaseInfo(),"다른 국민카드 결제정보");
+
+        ArrayList<FPOrderListDto> sellerFpOrderListDtoArrayList = fpOrderService.sellerFPOrderList(sellerKey0);
+        assertEquals(sellerFpOrderListDtoArrayList.get(0).getPurchaseInfo(),"국민카드 결제정보");
+
     }
 
     /*

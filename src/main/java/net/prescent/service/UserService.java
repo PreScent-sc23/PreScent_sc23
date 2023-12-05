@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -28,18 +29,16 @@ public class UserService {
         verifyCustomerNotRegistered(customerDto.getIdEmail());
         CustomerEntity customer = CustomerEntity.toCustomerEntity(customerDto);
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        customerRepository.save(customer);
-        return customer.getUserKey();
+        return customerRepository.save(customer).getUserKey();
     }
 
     // signup여부 확인용으로 businessKey반환
-    public Long signupSeller(SellerDto sellerDto) {
+    public Integer signupSeller(SellerDto sellerDto) {
         verifyPasswordMatch(sellerDto.getPassword(), sellerDto.getConfirmPassword());
         verifySellerNotRegistered(sellerDto.getBusinessKey(), sellerDto.getIdEmail());
         SellerEntity seller = SellerEntity.toSellerEntity(sellerDto);
         seller.setPassword(passwordEncoder.encode(seller.getPassword()));
-        sellerRepository.save(seller);
-        return sellerDto.getBusinessKey();
+        return sellerRepository.save(seller).getUserKey();
     }
 
     private void verifyPasswordMatch(String password, String confirmPassword) {

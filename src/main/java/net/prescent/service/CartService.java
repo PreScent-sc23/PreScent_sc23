@@ -136,6 +136,7 @@ public class CartService {
                     for(CartItemEntity cartItemEntity: cartEntity.getCartItemEntityList())
                     {
                         CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
+                        cartItemResponseDto.setCartItemKey(cartItemEntity.getCartItemKey());
                         FinishedProductEntity finishedProductEntity = cartItemEntity.getFinishedProductEntity();
                         entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
                         cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
@@ -174,6 +175,10 @@ public class CartService {
             }
         }
     }
+    }
+
+    public void deleteCartItem(Integer cartItemKey) {
+        cartItemRepo.deleteById(cartItemKey);
     }
 }
 

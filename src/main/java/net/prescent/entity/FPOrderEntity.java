@@ -30,7 +30,7 @@ public class FPOrderEntity {
     private String pickupDate;
     private String pickupTime;
     @Column(nullable = false)
-    private Byte fpOrderState=0;
+    private String fpOrderState= "주문중입니다";
 
     private Integer count=1;
     private Integer totalPrice;

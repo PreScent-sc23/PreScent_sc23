@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,7 +27,24 @@ public class FPOrderController {
     }
 
     @GetMapping("customer/fp-order-list")
-    public ArrayList<FPOrderListDto> customerFPOrderList(@RequestParam Integer custKey){
-        return fpOrderService.customerFPOrderList(custKey);
+    public ArrayList<FPOrderListDto> customerFPOrderList(@RequestParam Integer userKey){
+        return fpOrderService.customerFPOrderList(userKey);
+    }
+
+    @PostMapping("/customer/cart/order-in-cart")
+    public ResponseEntity<?> customerOrderInCart(@RequestBody Integer userKey, String purchaseInfo)
+    {
+        fpOrderService.customerOrderInCart(userKey, purchaseInfo);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("seller/fp-order-list")
+    public List<FPOrderListDto> sellerFPOrderList(@RequestParam Integer userKey){
+        return fpOrderService.sellerFPOrderList(userKey);
+    }
+
+    @PostMapping("seller/fp-order-list/manage-order")
+    public String sellerManageOrder(@RequestBody Integer userKey, Integer fpOrderKey, String state){
+        return fpOrderService.sellerManageOrder(userKey,fpOrderKey, state);
     }
 }

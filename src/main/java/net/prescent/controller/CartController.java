@@ -37,10 +37,17 @@ public class CartController {
         return cartService.viewInCart(userKey);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/clearCart")
     public ResponseEntity<?> clearCartItem(@RequestBody Integer userKey)
     {
         cartService.clearCartItem(userKey);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @DeleteMapping("/delete-cart-item")
+    public ResponseEntity<?> deleteCartItem(@RequestBody Integer cartItemKey)
+    {
+        cartService.deleteCartItem(cartItemKey);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }

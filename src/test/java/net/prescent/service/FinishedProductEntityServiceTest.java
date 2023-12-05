@@ -87,7 +87,7 @@ public class FinishedProductEntityServiceTest {
     public void testAddFinishedProduct()
     {
         SellerDto sellerDto = createSellerDto();
-        Long businessKey = sellerService.signupSeller(sellerDto);
+        Integer sellerKey = sellerService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
