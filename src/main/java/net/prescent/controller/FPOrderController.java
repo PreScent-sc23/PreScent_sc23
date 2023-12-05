@@ -2,6 +2,7 @@ package net.prescent.controller;
 
 import net.prescent.dto.FPOrderCustomerDto;
 import net.prescent.dto.FPOrderListDto;
+import net.prescent.dto.OrderInCartDto;
 import net.prescent.entity.FPOrderEntity;
 import net.prescent.service.FPOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class FPOrderController {
     }
 
     @PostMapping("/customer/cart/order-in-cart")
-    public ResponseEntity<?> customerOrderInCart(@RequestParam Integer userKey, @RequestBody String purchaseInfo)
+    public ResponseEntity<?> customerOrderInCart(@RequestBody OrderInCartDto orderInCartDto)
     {
-        fpOrderService.customerOrderInCart(userKey, purchaseInfo);
+        fpOrderService.customerOrderInCart(orderInCartDto.getUserKey(), orderInCartDto.getImp_uid());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
