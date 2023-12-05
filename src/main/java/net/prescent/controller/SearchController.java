@@ -91,7 +91,7 @@ public class SearchController {
             FinishedProductEntity result = searchResult.get();
 
             FinishedProductDto finalResult = FinishedProductDto.toFinishedProductDto(result);
-
+            finalResult.setShopKey(result.getFlowerShopEntity().getShopKey());
             printResult(finalResult);
 
             return ResponseEntity.ok(finalResult);

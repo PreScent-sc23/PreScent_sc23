@@ -37,6 +37,12 @@ public class CartController {
         return cartService.viewInCart(userKey);
     }
 
+    @GetMapping("/order-in-cart")
+    public List<CartItemResponseDto> viewInCartBeforePurchase(@RequestParam Integer userKey)
+    {
+        return cartService.viewInCart(userKey);
+    }
+
     @DeleteMapping("/clearCart")
     public ResponseEntity<?> clearCartItem(@RequestParam Integer userKey)
     {
