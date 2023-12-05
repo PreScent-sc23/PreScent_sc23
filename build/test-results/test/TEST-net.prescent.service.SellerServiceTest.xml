@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="net.prescent.service.SellerServiceTest" tests="6" skipped="0" failures="6" errors="0" timestamp="2023-12-05T17:46:16" hostname="LAPTOP-Q5F6TAOM" time="14.257">
+<testsuite name="net.prescent.service.SellerServiceTest" tests="6" skipped="0" failures="6" errors="0" timestamp="2023-12-05T18:05:40" hostname="LAPTOP-Q5F6TAOM" time="20.079">
   <properties/>
   <testcase name="판매자 회원가입 테스트" classname="net.prescent.service.SellerServiceTest" time="0.001">
     <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
@@ -249,7 +249,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	... 102 more
 </failure>
   </testcase>
-  <testcase name="판매자 로그아웃 테스트" classname="net.prescent.service.SellerServiceTest" time="0.001">
+  <testcase name="판매자 로그아웃 테스트" classname="net.prescent.service.SellerServiceTest" time="0.0">
     <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
@@ -373,7 +373,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	... 102 more
 </failure>
   </testcase>
-  <testcase name="판매자 로그인 실패 - 잘못된 비밀번호 테스트" classname="net.prescent.service.SellerServiceTest" time="0.0">
+  <testcase name="판매자 로그인 실패 - 잘못된 비밀번호 테스트" classname="net.prescent.service.SellerServiceTest" time="0.001">
     <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
@@ -621,7 +621,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	... 102 more
 </failure>
   </testcase>
-  <testcase name="판매자 로그인 실패 - 잘못된 Email 테스트" classname="net.prescent.service.SellerServiceTest" time="0.001">
+  <testcase name="판매자 로그인 실패 - 잘못된 Email 테스트" classname="net.prescent.service.SellerServiceTest" time="0.0">
     <failure message="java.lang.IllegalStateException: Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
@@ -745,12 +745,12 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	... 102 more
 </failure>
   </testcase>
-  <system-out><![CDATA[2023-12-06 02:46:13.652  INFO 21384 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [net.prescent.service.SellerServiceTest], using SpringBootContextLoader
-2023-12-06 02:46:13.655  INFO 21384 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [net.prescent.service.SellerServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-12-06 02:46:13.655  INFO 21384 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [net.prescent.service.SellerServiceTest]: SellerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-12-06 02:46:13.661  INFO 21384 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration net.prescent.PreScentApplication for test class net.prescent.service.SellerServiceTest
-2023-12-06 02:46:13.662  INFO 21384 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-12-06 02:46:13.662  INFO 21384 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@79414283, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@31857c80, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7ff61924, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2164f202, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5242e9f7, org.springframework.test.context.transaction.TransactionalTestExecutionListener@48b9ee43, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7c9e149, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1bbf750, org.springframework.test.context.event.EventPublishingTestExecutionListener@4473bbc1, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@433f8efa, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@bb4fc7d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@55eb9b2c, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@c9f9fe3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@33e888d4, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1f93cdc0, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@162807e5]
+  <system-out><![CDATA[2023-12-06 03:05:32.323  INFO 28076 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [net.prescent.service.SellerServiceTest], using SpringBootContextLoader
+2023-12-06 03:05:32.326  INFO 28076 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [net.prescent.service.SellerServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-12-06 03:05:32.327  INFO 28076 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [net.prescent.service.SellerServiceTest]: SellerServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-12-06 03:05:32.333  INFO 28076 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration net.prescent.PreScentApplication for test class net.prescent.service.SellerServiceTest
+2023-12-06 03:05:32.335  INFO 28076 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-12-06 03:05:32.336  INFO 28076 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@bb4fc7d, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@55eb9b2c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@c9f9fe3, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@33e888d4, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1f93cdc0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@162807e5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@66b8f244, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1161786f, org.springframework.test.context.event.EventPublishingTestExecutionListener@101d4a4e, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@46dc6087, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@675790ca, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7def2e4f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7da4486, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@22a7d4a2, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@792dc1fc, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7d3405c0]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -760,29 +760,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:13.734  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:13.734  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:14.635  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:14.788  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 153 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:14.882  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1b0947c3' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:14.889  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#3e3e9f3e' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:14.897  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#7c556af2' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:14.913  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:14.914  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:15.251  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:15.282  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
-2023-12-06 02:46:15.371  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
-2023-12-06 02:46:15.371  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:15.760  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:15.761  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:16.273  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:16.274  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:16.275  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
-2023-12-06 02:46:16.279  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
-2023-12-06 02:46:16.292  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:32.550  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:32.552  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:36.841  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:37.669  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 826 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:37.935  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#23ba044f' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:37.946  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#270b527f' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:37.962  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#5eeb7b5b' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:38.002  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:38.004  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:39.153  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:39.192  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-12-06 03:05:39.268  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-12-06 03:05:39.269  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:05:39.966  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:05:39.967  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:40.729  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:05:40.732  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:40.733  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2023-12-06 03:05:40.755  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2023-12-06 03:05:40.763  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:16.312 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:05:40.800 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -903,7 +903,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:16.331 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@174cd1a4]
+2023-12-06 03:05:40.827 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@127abbbe]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -1036,29 +1036,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:16.418  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:16.419  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:17.426  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:17.725  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 298 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:17.860  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#4aa5a13a' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:17.867  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#726e142d' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:17.874  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#6d2a92c2' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:17.894  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:17.894  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:18.265  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:18.301  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
-2023-12-06 02:46:18.432  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
-2023-12-06 02:46:18.432  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:18.897  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:18.898  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:19.290  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:19.291  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:19.293  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
-2023-12-06 02:46:19.298  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
-2023-12-06 02:46:19.302  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:40.996  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:40.997  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:43.164  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:43.585  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 420 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:43.774  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#6d2a92c2' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:43.784  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#46f66a66' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:43.797  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#681ae1ce' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:43.824  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:43.825  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:44.476  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:44.527  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2023-12-06 03:05:44.628  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2023-12-06 03:05:44.629  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:05:45.212  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:05:45.213  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:45.970  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:05:45.977  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:45.978  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2023-12-06 03:05:45.988  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2023-12-06 03:05:46.000  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:19.317 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:05:46.040 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -1179,7 +1179,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:19.332 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@93370c5]
+2023-12-06 03:05:46.086 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@237b93f5]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -1312,29 +1312,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:19.388  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:19.389  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:20.141  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:20.281  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:20.347  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#7643c43' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:20.353  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#58c9bef9' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:20.363  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#6e1ece3d' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:20.376  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:20.376  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:20.704  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:20.739  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
-2023-12-06 02:46:20.803  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
-2023-12-06 02:46:20.804  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:21.417  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:21.418  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:21.742  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:21.744  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:21.746  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
-2023-12-06 02:46:21.755  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
-2023-12-06 02:46:21.762  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:46.204  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:46.205  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:47.248  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:47.479  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 231 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:47.652  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#6e1ece3d' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:47.660  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1fe2da60' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:47.672  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#459d81f1' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:47.702  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:47.702  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:48.228  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:48.256  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2023-12-06 03:05:48.358  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2023-12-06 03:05:48.359  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:05:48.911  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:05:48.912  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:49.271  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:05:49.273  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:49.274  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2023-12-06 03:05:49.280  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2023-12-06 03:05:49.298  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:21.794 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:05:49.319 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -1455,7 +1455,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:21.815 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@7f096ea0]
+2023-12-06 03:05:49.337 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@282c2bbd]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -1588,29 +1588,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:21.921  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:21.922  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:22.634  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:22.807  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 172 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:22.974  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#129bc797' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:22.987  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#769fbb26' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:22.998  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#575dab37' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:23.016  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:23.017  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:23.484  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:23.505  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
-2023-12-06 02:46:23.572  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
-2023-12-06 02:46:23.575  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:24.118  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:24.118  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:24.676  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:24.678  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:24.681  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
-2023-12-06 02:46:24.691  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
-2023-12-06 02:46:24.699  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:49.449  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:49.450  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:50.574  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:50.736  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 161 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:50.833  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#5e805a0d' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:50.837  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#4ee127c6' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:50.847  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#254ed9ba' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:50.865  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:50.865  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:51.312  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:51.352  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2023-12-06 03:05:51.456  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2023-12-06 03:05:51.457  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:05:52.105  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:05:52.106  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:53.047  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:05:53.049  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:53.050  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2023-12-06 03:05:53.077  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2023-12-06 03:05:53.095  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:24.741 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:05:53.142 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -1731,7 +1731,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:24.776 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@ac00987]
+2023-12-06 03:05:53.200 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@42e0f71e]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -1864,29 +1864,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:24.880  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:24.881  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:25.550  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:25.753  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 201 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:25.852  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1bffbac' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:25.858  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#2a6ca8d0' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:25.865  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#21084cbe' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:25.881  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:25.881  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:26.261  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:26.306  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
-2023-12-06 02:46:26.424  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
-2023-12-06 02:46:26.426  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:26.999  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:27.000  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:27.458  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:27.459  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:27.459  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
-2023-12-06 02:46:27.463  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
-2023-12-06 02:46:27.467  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:53.418  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:53.419  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:55.015  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:55.295  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 279 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:55.498  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#21084cbe' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:55.510  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1e6e59d8' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:55.522  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#3171c5e6' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:55.552  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:55.552  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:56.308  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:56.365  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2023-12-06 03:05:56.489  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2023-12-06 03:05:56.490  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:05:57.149  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:05:57.149  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:57.698  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:05:57.700  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:05:57.701  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2023-12-06 03:05:57.723  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2023-12-06 03:05:57.732  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:27.481 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:05:57.763 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -2007,7 +2007,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:27.492 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@230fbdf5]
+2023-12-06 03:05:57.780 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@8f08b5]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -2140,29 +2140,29 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 02:46:27.584  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 21384 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 02:46:27.585  INFO 21384 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
-2023-12-06 02:46:28.419  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 02:46:28.554  INFO 21384 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 8 JPA repository interfaces.
-2023-12-06 02:46:28.648  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#4c0a3fde' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:28.655  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#8d94d1e' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:28.659  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#84ab902' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:28.688  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:28.689  INFO 21384 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 02:46:29.213  INFO 21384 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 02:46:29.249  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
-2023-12-06 02:46:29.312  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
-2023-12-06 02:46:29.313  INFO 21384 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 02:46:29.832  INFO 21384 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 02:46:29.832  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:30.509  WARN 21384 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
-2023-12-06 02:46:30.510  INFO 21384 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 02:46:30.511  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
-2023-12-06 02:46:30.517  INFO 21384 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
-2023-12-06 02:46:30.526  INFO 21384 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 03:05:57.909  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : Starting SellerServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 28076 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 03:05:57.909  INFO 28076 --- [    Test worker] net.prescent.service.SellerServiceTest   : No active profile set, falling back to 1 default profile: "default"
+2023-12-06 03:05:59.073  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 03:05:59.280  INFO 28076 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 206 ms. Found 8 JPA repository interfaces.
+2023-12-06 03:05:59.411  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#137720f3' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:59.422  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#5362b064' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:59.431  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#2793f84c' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:59.456  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:59.456  INFO 28076 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 03:05:59.898  INFO 28076 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 03:05:59.918  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2023-12-06 03:05:59.998  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2023-12-06 03:05:59.999  INFO 28076 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 03:06:00.476  INFO 28076 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 03:06:00.476  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:06:00.865  WARN 28076 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
+2023-12-06 03:06:00.867  INFO 28076 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 03:06:00.868  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2023-12-06 03:06:00.874  INFO 28076 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2023-12-06 03:06:00.878  INFO 28076 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 02:46:30.563 ERROR 21384 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
+2023-12-06 03:06:00.895 ERROR 28076 --- [    Test worker] o.s.boot.SpringApplication               : Application run failed
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dockerService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'app.docker.volume.images' in value "${app.docker.volume.images}"
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:414) ~[spring-beans-5.3.30.jar:5.3.30]
@@ -2283,7 +2283,7 @@ Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ap
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408) ~[spring-beans-5.3.30.jar:5.3.30]
 	... 102 common frames omitted
 
-2023-12-06 02:46:30.586 ERROR 21384 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@70b38e0] to prepare test instance [net.prescent.service.SellerServiceTest@16d8ee2e]
+2023-12-06 03:06:00.908 ERROR 28076 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@433f8efa] to prepare test instance [net.prescent.service.SellerServiceTest@4c8a893e]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
