@@ -28,20 +28,13 @@ public class CustomerController {
     @PostMapping("/customer/signup")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto,
                                               BindingResult bindingResult) {
-        System.out.println("Enter registerCustomer!!!");
-        System.out.println("=>result: " + customerDto.getCustomerName());
-        System.out.println("=>result: " + customerDto.getCustomerPassword());
-        System.out.println("=>result: " + customerDto.getCustomerIdEmail());
-        System.out.println("=>result: " + customerDto.getCustomerPhonenum());
 
         if (bindingResult.hasErrors()) {
 
-            System.out.println("bindingResult error!!!");
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
         }
-        System.out.println("customerService start!!!");
         customerService.signup(customerDto);
-        System.out.println("customerService ended!!!");
+
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

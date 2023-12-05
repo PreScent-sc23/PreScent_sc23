@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class AITestController {
 
     private final AIModelService s3Service;
