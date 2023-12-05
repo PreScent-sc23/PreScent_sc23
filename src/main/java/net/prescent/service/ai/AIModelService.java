@@ -77,12 +77,4 @@ public class AIModelService {
 //        String fileKey = "uploads/" + UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
 //        ObjectMetadata metadata = new ObjectMetadata();
 //        metadata.setContentLength(multipartFile.getSize());
-//        s3client.putObject(bucket, fileKey, multipartFile.getInputStream(), metadata);
-//        return fileKey;
-//    }
-//
-//    public String getFileUrl(String fileKey) {
-//        return s3client.getUrl(bucket, fileKey).toString();
-//    }
-//}
-
+//        s3client.putObject(bucket, fi
