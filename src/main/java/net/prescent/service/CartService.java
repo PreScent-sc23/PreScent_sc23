@@ -137,6 +137,7 @@ public class CartService {
                     {
                         CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
                         cartItemResponseDto.setCartItemKey(cartItemEntity.getCartItemKey());
+                        cartItemResponseDto.setCount(cartItemResponseDto.getCount());
                         FinishedProductEntity finishedProductEntity = cartItemEntity.getFinishedProductEntity();
                         entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
                         cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
