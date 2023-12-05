@@ -31,10 +31,10 @@ public class AITestController {
 
 
     @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> uploadAndProcessImage(MultipartFile file) {
+    public ResponseEntity<?> uploadAndProcessImage(MultipartFile formData) {
         try {
-            String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
-            aiModelService.uploadFileToS3(file, fileKey);
+            String fileKey = "uploads/" + UUID.randomUUID() + "-" + formData.getOriginalFilename();
+            aiModelService.uploadFileToS3(formData, fileKey);
             String fileUrl = aiModelService.getFileUrl(fileKey);
 
             List<Object> response = new ArrayList<>();
