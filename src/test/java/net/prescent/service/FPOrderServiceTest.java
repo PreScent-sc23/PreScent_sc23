@@ -146,6 +146,7 @@ public class FPOrderServiceTest {
         fpOrderCustomerDto.setPurchaseInfo(purchaseInfo);
         fpOrderCustomerDto.setPickupDate(pickupDate);
         fpOrderCustomerDto.setPickupTime(pickupTime);
+        fpOrderCustomerDto.setCount(1);
         return fpOrderCustomerDto;
     }
     //테스트 목록. 주문서 작성.

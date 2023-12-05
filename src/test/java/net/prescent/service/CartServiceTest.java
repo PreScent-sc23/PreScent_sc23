@@ -164,7 +164,7 @@ public class CartServiceTest {
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
-        FinishedProductDto finishedProductDto0 = createFinishedProductDto("메리골드가 돋보이는 화이트데이 꽃다발입니다","메리골드 장미 안개", "https://prescentbucket.s3.ap-northeast-2.amazonaws.com/orange.jpg","메리골드 다발","#화이트데이", 63000);
+        FinishedProductDto finishedProductDto0 = createFinishedProductDto("메리골드가 돋보이는 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/orange.jpg","메리골드 라넌큘려스 사탕수수","메리골드 다발","#화이트데이", 63000);
         finishedProductDto0.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity0 = finishedProductService.addFinishedProduct(finishedProductDto0);
@@ -179,7 +179,7 @@ public class CartServiceTest {
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity2 = finishedProductService.addFinishedProduct(finishedProductDto2);
 
-        FinishedProductDto finishedProductDto3 = createFinishedProductDto("봄의 화사함을 담은 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/spring.jpg","개나리 진달래","스프링 델피늄","",55000);
+        FinishedProductDto finishedProductDto3 = createFinishedProductDto("봄의 화사함을 담은 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/spring.jpg","개나리 진달래","스프링 델피늄","#화이트데이",55000);
         finishedProductDto3.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity3 = finishedProductService.addFinishedProduct(finishedProductDto3);

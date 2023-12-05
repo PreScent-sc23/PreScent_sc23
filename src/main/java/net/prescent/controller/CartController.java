@@ -38,13 +38,13 @@ public class CartController {
     }
 
     @DeleteMapping("/clearCart")
-    public ResponseEntity<?> clearCartItem(@RequestBody Integer userKey)
+    public ResponseEntity<?> clearCartItem(@RequestParam Integer userKey)
     {
         cartService.clearCartItem(userKey);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     @DeleteMapping("/delete-cart-item")
-    public ResponseEntity<?> deleteCartItem(@RequestBody Integer cartItemKey)
+    public ResponseEntity<?> deleteCartItem(@RequestParam Integer cartItemKey)
     {
         cartService.deleteCartItem(cartItemKey);
         return ResponseEntity.status(HttpStatus.CREATED).build();

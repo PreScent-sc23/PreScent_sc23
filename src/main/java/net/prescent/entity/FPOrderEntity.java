@@ -49,7 +49,7 @@ public class FPOrderEntity {
     }
 
 
-    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, String pickupDate, String pickupTime)
+    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, String pickupDate, String pickupTime, Integer count)
     {
         FPOrderEntity fpOrderEntity = new FPOrderEntity();
 
@@ -58,6 +58,8 @@ public class FPOrderEntity {
         fpOrderEntity.setPurchaseInfo(purchaseInfo);
         fpOrderEntity.setPickupDate(pickupDate);
         fpOrderEntity.setPickupTime(pickupTime);
+        fpOrderEntity.setCount(count);
+        fpOrderEntity.setTotalPrice(count*finishedProductEntity.getFpPrice());
         log.debug("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 
         return fpOrderEntity;

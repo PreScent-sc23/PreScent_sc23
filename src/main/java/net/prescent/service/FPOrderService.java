@@ -21,12 +21,14 @@ public class FPOrderService {
     final FinishedProductRepository finishedProductRepo;
     final CustomerRepository customerRepo;
     final SellerRepository sellerRepo;
+    final CartService cartService;
 
-    public FPOrderService(FPOrderRepository fpOrderRepo, FinishedProductRepository finishedProductRepo, CustomerRepository customerRepo, SellerRepository sellerRepo) {
+    public FPOrderService(FPOrderRepository fpOrderRepo, FinishedProductRepository finishedProductRepo, CustomerRepository customerRepo, SellerRepository sellerRepo, CartService cartService) {
         this.fpOrderRepo = fpOrderRepo;
         this.finishedProductRepo = finishedProductRepo;
         this.customerRepo = customerRepo;
         this.sellerRepo = sellerRepo;
+        this.cartService = cartService;
     }
 
 
@@ -61,7 +63,7 @@ public class FPOrderService {
             throw new IllegalStateException("주문하려는 고객의 정보가 존재하지 않습니다.");
         }
         log.debug("=----------------------------------------------------------------preFPOrderToEntity내부 체크까진 끝)");
-        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate(), fpOrderCustomerDto.getPickupTime());
+        return fpOrderEntity.FPOrderCustomerDtoToFPOrderEntity(finishedProductEntity.get(), customerEntity.get(), fpOrderCustomerDto.getPurchaseInfo(), fpOrderCustomerDto.getPickupDate(), fpOrderCustomerDto.getPickupTime(),fpOrderCustomerDto.getCount());
     }
 
     public ArrayList<FPOrderListDto> customerFPOrderList(Integer custKey) {
@@ -161,7 +163,7 @@ public class FPOrderService {
                 throw new IllegalStateException("카트에 담긴 상품이 존재하지 않습니다");
             }
         }
-
+        cartService.clearCartItem(userKey);
     }
 
     private FPOrderCustomerDto cartItemToFpOrderCustomerDto(CartItemEntity cartItemEntity) {
@@ -169,6 +171,7 @@ public class FPOrderService {
         fpOrderCustomerDto.setFpKey(cartItemEntity.getFinishedProductEntity().getFpKey());
         fpOrderCustomerDto.setPickupDate(cartItemEntity.getPickupDate());
         fpOrderCustomerDto.setPickupTime(cartItemEntity.getPickupTime());
+        fpOrderCustomerDto.setCount(cartItemEntity.getCount());
         return fpOrderCustomerDto;
     }
 
@@ -178,6 +181,7 @@ public class FPOrderService {
         {
             FPOrderEntity fpOrderEntity = foundFpOrderEntity.get();
             fpOrderEntity.setFpOrderState(state);
+            fpOrderRepo.save(fpOrderEntity);
             return fpOrderEntity.getFpOrderState();
         }
         else {
