@@ -24,8 +24,8 @@ public class AITestController {
     private String bucket;
 
     @Autowired
-    public AITestController(AIModelService s3Service, AITestService aiTestService) {
-        this.aiModelService = s3Service;
+    public AITestController(AIModelService aiModelService, AITestService aiTestService) {
+        this.aiModelService = aiModelService;
         this.aiTestService = aiTestService;
     }
 
