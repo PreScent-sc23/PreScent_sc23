@@ -7,21 +7,12 @@ import lombok.Setter;
 @Getter
 public class ImageInfo {
     private String url;
-    private String flowerName;
-    private String flowerDescription;
+    private String name;
+    private String meaning;
 
-    public ImageInfo(String url, String flowerName, String flowerDescription) {
+    public ImageInfo(String url, String name, String meaning) {
         this.url = url;
-        this.flowerName = flowerName;
-        this.flowerDescription = flowerDescription;
-    }
-
-    @Override
-    public String toString() {
-        return "ImageInfo{" +
-                "url='" + url + '\'' +
-                ", flowerName='" + flowerName + '\'' +
-                ", flowerDescription='" + flowerDescription + '\'' +
-                '}';
+        this.name = name;
+        this.meaning = meaning;
     }
 }

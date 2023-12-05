@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.plaf.synth.Region;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -32,12 +33,16 @@ import java.util.UUID;
 
 
 @Service
-@RequiredArgsConstructor
 public class AIModelService {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
     private final AmazonS3 s3client;
+
+    @Autowired
+    public AIModelService(AmazonS3 s3client) {
+        this.s3client = s3client;
+    }
 
     public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
         ObjectMetadata metadata = new ObjectMetadata();
@@ -45,10 +50,21 @@ public class AIModelService {
         s3client.putObject(bucket, fileKey, multipartFile.getInputStream(), metadata);
     }
 
+    public String uploadPredefinedFileToS3(String filePath) throws IOException {
+        File file = new File(filePath);
+        String fileKey = "predefined/" + file.getName();
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(file.length());
+        s3client.putObject(bucket, fileKey, new FileInputStream(file), metadata);
+        return fileKey;
+    }
+
     public String getFileUrl(String fileKey) {
         return s3client.getUrl(bucket, fileKey).toString();
     }
 }
+
+
 //@Service
 //@RequiredArgsConstructor
 //public class AIModelService {
