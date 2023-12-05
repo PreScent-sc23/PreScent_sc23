@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.002s</div>
+<div class="counter">0.004s</div>
 <p>duration</p>
 </div>
 </td>
@@ -373,7 +373,7 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 <tr>
 <td class="failures">Sellerkey같은 매장 생성 테스트</td>
 <td class="failures">testSameSellerKeyShop()</td>
-<td class="failures">0.001s</td>
+<td class="failures">0.003s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -381,12 +381,12 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 <div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2023-12-06 03:56:50.736  INFO 1732 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [net.prescent.service.FlowerShopEntityServiceTest], using SpringBootContextLoader
-2023-12-06 03:56:50.740  INFO 1732 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [net.prescent.service.FlowerShopEntityServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-12-06 03:56:50.741  INFO 1732 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [net.prescent.service.FlowerShopEntityServiceTest]: FlowerShopEntityServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-12-06 03:56:50.749  INFO 1732 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration net.prescent.PreScentApplication for test class net.prescent.service.FlowerShopEntityServiceTest
-2023-12-06 03:56:50.751  INFO 1732 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-12-06 03:56:50.752  INFO 1732 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@50dfceff, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@26a5007, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4d4f6121, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2845fd12, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6c366d3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5679e464, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6089c1e3, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@67231d8d, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@7acb0a44, org.springframework.test.context.event.EventPublishingTestExecutionListener@63088bbd, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4d20d8e6, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@32107bba, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@102bce96, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3759ea4d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7c75f3a8, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4d099a37, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@398a27e]
+<pre>2023-12-06 04:00:11.185  INFO 3092 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [net.prescent.service.FlowerShopEntityServiceTest], using SpringBootContextLoader
+2023-12-06 04:00:11.190  INFO 3092 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [net.prescent.service.FlowerShopEntityServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-12-06 04:00:11.191  INFO 3092 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [net.prescent.service.FlowerShopEntityServiceTest]: FlowerShopEntityServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-12-06 04:00:11.203  INFO 3092 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration net.prescent.PreScentApplication for test class net.prescent.service.FlowerShopEntityServiceTest
+2023-12-06 04:00:11.207  INFO 3092 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-12-06 04:00:11.210  INFO 3092 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7acb0a44, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@63088bbd, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4d20d8e6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@32107bba, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@102bce96, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3759ea4d, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7c75f3a8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4d099a37, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@398a27e, org.springframework.test.context.event.EventPublishingTestExecutionListener@7beb2bc2, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@28d07fa4, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@298990ab, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@6fc44cb6, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4d53dfb7, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6655b4e6, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@33c6c4f, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4e502162]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -396,29 +396,29 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 03:56:50.883  INFO 1732 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : Starting FlowerShopEntityServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 1732 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 03:56:50.884  INFO 1732 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-12-06 03:56:52.126  INFO 1732 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 03:56:52.328  INFO 1732 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 201 ms. Found 8 JPA repository interfaces.
-2023-12-06 03:56:52.522  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#f758e05' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:52.530  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#6b886e86' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:52.545  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1dd1093c' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:52.591  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:52.591  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:53.404  INFO 1732 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 03:56:53.442  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
-2023-12-06 03:56:53.531  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
-2023-12-06 03:56:53.531  INFO 1732 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 03:56:54.139  INFO 1732 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 03:56:54.140  INFO 1732 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 03:56:55.030  WARN 1732 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AITestController' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\controller\ai\AITestController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AIModelService' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\service\ai\AIModelService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.amazonaws.services.s3.AmazonS3' available: expected single matching bean but found 2: amazonS3Client,amazonS3
-2023-12-06 03:56:55.032  INFO 1732 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 03:56:55.033  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
-2023-12-06 03:56:55.056  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
-2023-12-06 03:56:55.066  INFO 1732 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 04:00:11.315  INFO 3092 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : Starting FlowerShopEntityServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 3092 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 04:00:11.316  INFO 3092 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-12-06 04:00:12.516  INFO 3092 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 04:00:12.770  INFO 3092 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 252 ms. Found 8 JPA repository interfaces.
+2023-12-06 04:00:13.059  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#3552eb5b' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:13.075  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#48b53f3d' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:13.093  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#e30573c' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:13.162  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:13.164  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:13.981  INFO 3092 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 04:00:14.064  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-12-06 04:00:14.193  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-12-06 04:00:14.194  INFO 3092 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 04:00:14.911  INFO 3092 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 04:00:14.912  INFO 3092 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 04:00:15.508  WARN 3092 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AITestController' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\controller\ai\AITestController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AIModelService' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\service\ai\AIModelService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.amazonaws.services.s3.AmazonS3' available: expected single matching bean but found 2: amazonS3Client,amazonS3
+2023-12-06 04:00:15.510  INFO 3092 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 04:00:15.510  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-12-06 04:00:15.531  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2023-12-06 04:00:15.540  INFO 3092 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 03:56:55.075 ERROR 1732 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2023-12-06 04:00:15.545 ERROR 3092 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -435,7 +435,7 @@ Action:
 
 Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
 
-2023-12-06 03:56:55.107 ERROR 1732 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@50dfceff] to prepare test instance [net.prescent.service.FlowerShopEntityServiceTest@7ceb432c]
+2023-12-06 04:00:15.572 ERROR 3092 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@7acb0a44] to prepare test instance [net.prescent.service.FlowerShopEntityServiceTest@46b376bb]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -580,29 +580,29 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::               (v2.7.17)
 
-2023-12-06 03:56:55.285  INFO 1732 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : Starting FlowerShopEntityServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 1732 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
-2023-12-06 03:56:55.286  INFO 1732 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-12-06 03:56:57.288  INFO 1732 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-06 03:56:57.974  INFO 1732 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 681 ms. Found 8 JPA repository interfaces.
-2023-12-06 03:56:58.376  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#9e7d82e' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:58.397  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#1d957b5a' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:58.418  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#7dd4f726' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:58.482  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:58.483  INFO 1732 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2023-12-06 03:56:59.722  INFO 1732 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-06 03:56:59.825  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
-2023-12-06 03:56:59.962  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
-2023-12-06 03:56:59.963  INFO 1732 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-12-06 03:57:01.208  INFO 1732 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-12-06 03:57:01.209  INFO 1732 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 03:57:02.193  WARN 1732 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AITestController' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\controller\ai\AITestController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AIModelService' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\service\ai\AIModelService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.amazonaws.services.s3.AmazonS3' available: expected single matching bean but found 2: amazonS3Client,amazonS3
-2023-12-06 03:57:02.195  INFO 1732 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-06 03:57:02.196  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
-2023-12-06 03:57:02.319  INFO 1732 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
-2023-12-06 03:57:02.333  INFO 1732 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
+2023-12-06 04:00:15.758  INFO 3092 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : Starting FlowerShopEntityServiceTest using Java 11.0.21 on LAPTOP-Q5F6TAOM with PID 3092 (started by soohyeon in C:\Users\user\IdeaProjects\PreScent_sc23)
+2023-12-06 04:00:15.759  INFO 3092 --- [    Test worker] n.p.service.FlowerShopEntityServiceTest  : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-12-06 04:00:16.644  INFO 3092 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-06 04:00:16.824  INFO 3092 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 178 ms. Found 8 JPA repository interfaces.
+2023-12-06 04:00:16.934  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#614427b2' of type [com.amazonaws.auth.BasicAWSCredentials] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:16.942  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#252d690' of type [com.amazonaws.auth.AWSStaticCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:16.955  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean '(inner bean)#5344b208' of type [com.amazonaws.auth.profile.ProfileCredentialsProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:16.987  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [org.springframework.cloud.aws.core.credentials.CredentialsProviderFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:16.988  INFO 3092 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'credentialsProvider' of type [com.amazonaws.auth.AWSCredentialsProviderChain] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2023-12-06 04:00:17.906  INFO 3092 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-06 04:00:18.034  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2023-12-06 04:00:18.136  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2023-12-06 04:00:18.137  INFO 3092 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-12-06 04:00:18.959  INFO 3092 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-12-06 04:00:18.959  INFO 3092 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 04:00:20.171  WARN 3092 --- [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AITestController' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\controller\ai\AITestController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'AIModelService' defined in file [C:\Users\user\IdeaProjects\PreScent_sc23\build\classes\java\main\net\prescent\service\ai\AIModelService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.amazonaws.services.s3.AmazonS3' available: expected single matching bean but found 2: amazonS3Client,amazonS3
+2023-12-06 04:00:20.173  INFO 3092 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-06 04:00:20.175  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2023-12-06 04:00:20.215  INFO 3092 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2023-12-06 04:00:20.226  INFO 3092 --- [    Test worker] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-12-06 03:57:02.341 ERROR 1732 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2023-12-06 04:00:20.236 ERROR 3092 --- [    Test worker] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -619,7 +619,7 @@ Action:
 
 Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
 
-2023-12-06 03:57:02.390 ERROR 1732 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@50dfceff] to prepare test instance [net.prescent.service.FlowerShopEntityServiceTest@3919e2d7]
+2023-12-06 04:00:20.281 ERROR 3092 --- [    Test worker] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@7acb0a44] to prepare test instance [net.prescent.service.FlowerShopEntityServiceTest@67e42fd6]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-5.3.30.jar:5.3.30]
@@ -766,7 +766,7 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.3</a> at 2023. 12. 6. 오전 3:57:30</p>
+<a href="http://www.gradle.org">Gradle 8.3</a> at 2023. 12. 6. 오전 4:00:40</p>
 </div>
 </div>
 </body>
