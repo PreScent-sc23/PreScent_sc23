@@ -1,8 +1,9 @@
-package net.prescent.dto;
-
-import lombok.Getter;
-
-@Getter
-@Setter
-public class customerOrderInCartRequestDto {
-}
+//package net.prescent.dto;
+//
+//import lombok.Getter;
+//import lombok.Setter;
+//
+//@Getter
+//@Setter
+//public class customerOrderInCartRequestDto {
+//}
