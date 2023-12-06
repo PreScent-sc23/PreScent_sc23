@@ -12,20 +12,20 @@ import java.util.*;
 @Slf4j
 public class AITestService {
 
-    private final AIModelService aiModelService;
+    private final AIs3Service aiModelService;
 
     @Autowired
-    public AITestService(AIModelService aiModelService) {
+    public AITestService(AIs3Service aiModelService) {
         this.aiModelService = aiModelService;
     }
 
     public List<Object> processAdditionalImages() throws IOException {
-        log.info("Processing additional images");
+        //log.info("Processing additional images");
         List<Object> images = new ArrayList<>();
 
-        String image2Key = "predefined/159_2021042815384918.jpg";
-        aiModelService.uploadPredefinedFileToS3("src/main/python/crops/159_2021042815384918.jpg", image2Key);
-        images.add(Map.of("url", aiModelService.getFileUrl(image2Key)));
+        //String image2Key = "predefined/159_2021042815384918.jpg";
+        //aiModelService.uploadPredefinedFileToS3("/crops/159_2021042815384918.jpg", image2Key);
+        //images.add(Map.of("url", aiModelService.getFileUrl(image2Key)));
 
         List<ImageInfo> additionalImages = Arrays.asList(
                 new ImageInfo("159_20210428153849183.jpg", "Daisy", "Lovely"),
@@ -35,9 +35,9 @@ public class AITestService {
         );
 
         for (ImageInfo image : additionalImages) {
-            log.info("Processed image: {}", image.getUrl());
             String fileKey = "predefined/" + image.getUrl();
-            aiModelService.uploadPredefinedFileToS3("src/main/python/crops/" + image.getUrl(), fileKey);
+            String filePath = "src/main/resources/static/crops/" + image.getUrl(); // Adjust the path as needed
+            aiModelService.uploadFileToS3(filePath, fileKey);
             image.setUrl(aiModelService.getFileUrl(fileKey));
             images.add(Map.of("url", image.getUrl(), "name", image.getName(), "meaning", image.getMeaning()));
         }
@@ -45,6 +45,7 @@ public class AITestService {
         return images;
     }
 }
+
 //@Service
 //public class AITestService {
 //
