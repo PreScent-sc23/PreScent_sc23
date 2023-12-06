@@ -91,4 +91,7 @@ public class UserService {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
     }
+
+    public Integer getRole(String idEmail) {
+    }
 }

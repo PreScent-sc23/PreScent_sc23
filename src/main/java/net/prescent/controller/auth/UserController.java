@@ -49,8 +49,9 @@ public class UserController {
 
         String token = userService.login(loginRequest.getIdEmail(), loginRequest.getPassword());
         HttpHeaders headers = new HttpHeaders();
+        Integer role = userService.getRole(loginRequest.getIdEmail());
         headers.add("Authorization", "Bearer " + token);
-        return new ResponseEntity<>(new LoginResponse(token), headers, HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResponse(token,role), headers, HttpStatus.OK);
     }
 
     @PostMapping("/logout")
