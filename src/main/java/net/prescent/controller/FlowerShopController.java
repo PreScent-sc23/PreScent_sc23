@@ -44,7 +44,8 @@ public class FlowerShopController {
     public ResponseEntity<?> addFlowerShop(@RequestHeader String Authorization,@RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
-        String token = Authorization.substring(6);
+        String token = Authorization.substring(7);
+        System.out.println(("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+token));
         SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
         flowerShopDto.setBusinessKey(sellerEntity.getBusinessKey());
         log.info("token값은 다음과 같습니다."+token);
