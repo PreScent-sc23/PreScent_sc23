@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
 @Transactional
 @SpringBootTest
@@ -34,6 +35,7 @@ public class FinishedProductEntityServiceTest {
     @Autowired
     private FlowerShopService flowerShopService;
 
+
 //    @BeforeEach
 //    public void setUp() {
 //        finishedProductRepository.deleteAllInBatch();
@@ -46,8 +48,8 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-        String[] arr = {"장미 안개꽃"};
-        finishedProductDto.setFpFlowerList(arr);
+        String arr = "장미 안개꽃";
+        finishedProductDto.setGetFpFlowerList(arr);
         return finishedProductDto;
     }
 
@@ -105,7 +107,8 @@ public class FinishedProductEntityServiceTest {
 
         FinishedProductEntity retrievedFP = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
         assertThat(retrievedFP.getFpName()).isEqualTo("장미꽃다발");
-    }   assertNotnull();
+        assertNotNull(flowerShopService.sellerViewFPinShop(sellerKey));
+    }
 
 //    @Test
 //    @DisplayName("완제품 복수 등록")
