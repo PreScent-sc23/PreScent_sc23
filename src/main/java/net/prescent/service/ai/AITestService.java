@@ -27,10 +27,10 @@ public class AITestService {
 
         List<ImageInfo> ResultImage = Arrays.asList(
                 // Update these paths according to your project structure
-                new ImageInfo("src/main/python/crops/159_20210428153849183.jpg", "Daisy", "Lovely"),
-                new ImageInfo("src/main/python/crops/159_20210428153849184.jpg", "Gerbera", "Mysterious"),
-                new ImageInfo("src/main/python/crops/159_20210428153849185.jpg", "Rose", "Love"),
-                new ImageInfo("src/main/python/crops/159_20210428153849186.jpg", "Lily", "Purity")
+                new ImageInfo("../../../../python/crops/159_20210428153849183.jpg", "Daisy", "Lovely"),
+                new ImageInfo("../../../../python/crops/159_20210428153849184.jpg", "Gerbera", "Mysterious"),
+                new ImageInfo("../../../../python/crops/159_20210428153849185.jpg", "Rose", "Love"),
+                new ImageInfo("../../../../python/crops/159_20210428153849186.jpg", "Lily", "Purity")
         );
 
         for (ImageInfo image : ResultImage) {
