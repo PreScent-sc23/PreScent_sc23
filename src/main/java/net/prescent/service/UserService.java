@@ -71,7 +71,6 @@ public class UserService {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
-
         return accessTokenService.createAccessToken(user);
     }
 
@@ -89,5 +88,13 @@ public class UserService {
                 .filter(Objects::nonNull)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+    }
+
+    public Integer getRole(String idEmail) {
+        if(customerRepository.findByIdEmail(idEmail).isPresent())
+        {
+            return 0;
+        }
+        else return 1;
     }
 }
