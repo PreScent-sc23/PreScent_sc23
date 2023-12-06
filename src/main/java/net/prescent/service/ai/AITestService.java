@@ -27,10 +27,10 @@ public class AITestService {
 
         List<ImageInfo> additionalImages = Arrays.asList(
                 // Update these paths according to your project structure
-                new ImageInfo("src/main/resources/images/daisy.jpg", "Daisy", "Lovely"),
-                new ImageInfo("src/main/resources/images/gerbera.jpg", "Gerbera", "Mysterious"),
-                new ImageInfo("src/main/resources/images/rose.jpg", "Rose", "Love"),
-                new ImageInfo("src/main/resources/images/lily.jpg", "Lily", "Purity")
+                new ImageInfo("daisy.jpg", "Daisy", "Lovely"),
+                new ImageInfo("gerbera.jpg", "Gerbera", "Mysterious"),
+                new ImageInfo("rose.jpg", "Rose", "Love"),
+                new ImageInfo("lily.jpg", "Lily", "Purity")
         );
 
         for (ImageInfo image : additionalImages) {
