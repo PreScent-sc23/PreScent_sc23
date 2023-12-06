@@ -108,6 +108,7 @@ public class FPOrderService {
         {
             if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey) {
                 FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, fpOrderEntity.getFinishedProductEntity());
+                fpOrderListDto.setFlowerShopName(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getShopName());
                 fpOrderListDtoList.add(fpOrderListDto);
             }
         // DB에 sellerKey를 포함시킬 경우
