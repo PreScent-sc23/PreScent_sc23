@@ -15,11 +15,13 @@ import java.util.Optional;
 public class FlowerShopService {
     private final FlowerShopRepository flowerShopRepo;
     private final SellerRepository sellerRepo;
+    private final AccessTokenService accessTokenService;
 
-    public FlowerShopService(FlowerShopRepository flowerShopRepo, SellerRepository sellerRepo)
+    public FlowerShopService(FlowerShopRepository flowerShopRepo, SellerRepository sellerRepo, AccessTokenService accessTokenService)
     {
         this.flowerShopRepo = flowerShopRepo;
         this.sellerRepo = sellerRepo;
+        this.accessTokenService = accessTokenService;
     }
 
 
@@ -86,4 +88,7 @@ public class FlowerShopService {
         return flowerShopRepo.findByshopKey(shopKey);
     }
 
+//    public List<FinishedProductEntity> sellerViewFPinShop(String token) {
+//        accessTokenService.
+//    }
 }
