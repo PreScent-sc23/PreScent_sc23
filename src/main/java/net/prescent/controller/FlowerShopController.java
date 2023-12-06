@@ -3,8 +3,10 @@ package net.prescent.controller;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
+import net.prescent.entity.SellerEntity;
+import net.prescent.entity.UserEntity;
+import net.prescent.service.AccessTokenService;
 import net.prescent.service.FlowerShopService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -19,11 +21,13 @@ import java.util.Optional;
 public class FlowerShopController {
 
     private final FlowerShopService flowerShopService;
+    private final AccessTokenService accessTokenService;
 
 
-    FlowerShopController(FlowerShopService flowerShopService)
+    FlowerShopController(FlowerShopService flowerShopService, AccessTokenService accessTokenService)
     {
         this.flowerShopService = flowerShopService;
+        this.accessTokenService = accessTokenService;
     }
 
 //    @PostMapping("/add")
@@ -34,10 +38,13 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@RequestBody FlowerShopDto flowerShopDto,
+    public ResponseEntity<?> addFlowerShop(@RequestHeader String Authorization,@RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
-
+        String token = Authorization.substring(6);
+        SellerEntity sellerEntity = (SellerEntity) accessTokenService.getUserFromToken(token);
+        flowerShopDto.setBusinessKey(sellerEntity.getBusinessKey());
+        log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
         log.debug("sellerKey: " + flowerShopDto.getBusinessKey());
         log.debug("shopName: " + flowerShopDto.getShopName());

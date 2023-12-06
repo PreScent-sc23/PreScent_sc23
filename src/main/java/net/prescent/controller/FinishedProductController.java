@@ -41,27 +41,6 @@ public class FinishedProductController {
     public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
             @RequestPart("finishedProduct") FinishedProductDto finishedProductDto)
     {
-//        // 미완
-//        @RequestPart("fpImage") MultipartFile fpImage,
-//        @RequestPart("shopKey") Integer shopKey,
-//        @RequestPart("fpName") String fpName,
-//        @RequestPart("fpTag") String fpTag,
-//        @RequestPart("fpPrice") Integer fpPrice,
-//        @RequestPart("fpDetail") String fpDetail,
-//        @RequestPart("fpFlowerList") String fpFlowerList
-//        log.debug("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
-//        log.debug("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
-//        log.debug("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
-//        log.debug("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
-//        log.debug("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
-//        log.debug("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
-
-//        log.debug("shopKey 값 : "+ shopKey +"--------------------------------------------");
-//        log.debug("fpName 값 : "+ fpName +"--------------------------------------------");
-//        log.debug("fpTag 값 : "+ fpTag+"--------------------------------------------");
-//        log.debug("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-//        log.debug("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-//        log.debug("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
 
         try {
             String fileName=fpImage.getOriginalFilename();
@@ -72,10 +51,7 @@ public class FinishedProductController {
             metadata.setContentType(fpImage.getContentType());
             metadata.setContentLength(fpImage.getSize());
             amazonS3Client.putObject(bucket,fileName,fpImage.getInputStream(),metadata);
-//            FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-//            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
-//                log.debug("file is not provided");
-//            }
+
             finishedProductDto.setFpImage(fileUrl);
             finishedProductService.addFinishedProduct(finishedProductDto);
             return ResponseEntity.ok(fileUrl);
