@@ -7,6 +7,7 @@ import net.prescent.entity.SellerEntity;
 import net.prescent.entity.UserEntity;
 import net.prescent.service.AccessTokenService;
 import net.prescent.service.FlowerShopService;
+import net.prescent.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -22,12 +23,14 @@ public class FlowerShopController {
 
     private final FlowerShopService flowerShopService;
     private final AccessTokenService accessTokenService;
+    private final UserService userService;
 
 
-    FlowerShopController(FlowerShopService flowerShopService, AccessTokenService accessTokenService)
+    FlowerShopController(FlowerShopService flowerShopService, AccessTokenService accessTokenService, UserService userService)
     {
         this.flowerShopService = flowerShopService;
         this.accessTokenService = accessTokenService;
+        this.userService = userService;
     }
 
 //    @PostMapping("/add")
@@ -42,7 +45,7 @@ public class FlowerShopController {
                                           BindingResult bindingResult)
     {
         String token = Authorization.substring(6);
-        SellerEntity sellerEntity = (SellerEntity) accessTokenService.getUserFromToken(token);
+        SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
         flowerShopDto.setBusinessKey(sellerEntity.getBusinessKey());
         log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
