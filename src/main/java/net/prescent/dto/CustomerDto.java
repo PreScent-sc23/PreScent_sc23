@@ -33,11 +33,11 @@ public class CustomerDto {
 
     public static CustomerDto toCustomerDto(CustomerEntity customerEntity){
         CustomerDto customerDto = new CustomerDto();
-
         customerDto.setName(customerEntity.getName());
         customerDto.setIdEmail(customerEntity.getIdEmail());
         customerDto.setPhonenum(customerEntity.getPhonenum());
         customerDto.setLocation(customerEntity.getLocation());
         return customerDto;
     }
+
 }
