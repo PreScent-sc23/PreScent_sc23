@@ -105,7 +105,7 @@ public class FinishedProductEntityServiceTest {
 
         FinishedProductEntity retrievedFP = finishedProductService.getFinishedProductWithFpKey(testFpIndex).orElse(null);
         assertThat(retrievedFP.getFpName()).isEqualTo("장미꽃다발");
-    }
+    }   assertNotnull();
 
 //    @Test
 //    @DisplayName("완제품 복수 등록")

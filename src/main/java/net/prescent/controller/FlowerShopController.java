@@ -1,6 +1,7 @@
 package net.prescent.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.service.FlowerShopService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -56,6 +58,12 @@ public class FlowerShopController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);
     }
+    @GetMapping("/fplist")
+    public List<FinishedProductDto> sellerViewFPinShop (@RequestParam Integer userKey)
+    {
+        return flowerShopService.sellerViewFPinShop(userKey);
+    }
+
 
     @GetMapping("/{shopKey}")
     public Optional<FlowerShopEntity> getFlowerShopBySellerKey(@PathVariable Integer shopKey)

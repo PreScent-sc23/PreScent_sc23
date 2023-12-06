@@ -1,13 +1,17 @@
 package net.prescent.service;
 
 import lombok.extern.slf4j.Slf4j;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
+import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.entity.SellerEntity;
 import net.prescent.repository.FlowerShopRepository;
 import net.prescent.repository.SellerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -77,8 +81,20 @@ public class FlowerShopService {
         return flowerShopRepo.save(flowerShopEntity);
     }
 
-    public void addFlowerShopSchedule(){
-
+    public List<FinishedProductDto> sellerViewFPinShop(Integer userKey) {
+        SellerEntity sellerEntity = sellerRepo.findByUserKey(userKey).get();
+        FlowerShopEntity flowershopEntity = sellerEntity.getFlowerShopEntity();
+        List<FinishedProductDto> finishedProductDtoList = new ArrayList<>();
+        if(flowershopEntity.getFinishedProductEntityList() == null)
+        {
+            return finishedProductDtoList;
+        }
+        for(FinishedProductEntity finishedProductEntity : flowershopEntity.getFinishedProductEntityList())
+        {
+            FinishedProductDto finishedProductDto = FinishedProductDto.toFinishedProductDto(finishedProductEntity);
+            finishedProductDtoList.add(finishedProductDto);
+        }
+        return finishedProductDtoList;
     }
 
     public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)
