@@ -25,7 +25,7 @@ public class AITestService {
     public List<Map<String, Object>> processAdditionalImages() throws IOException {
         List<Map<String, Object>> images = new ArrayList<>();
 
-        List<ImageInfo> additionalImages = Arrays.asList(
+        List<ImageInfo> ResultImage = Arrays.asList(
                 // Update these paths according to your project structure
                 new ImageInfo("src/main/python/crops/159_20210428153849183.jpg", "Daisy", "Lovely"),
                 new ImageInfo("src/main/python/crops/159_20210428153849184.jpg", "Gerbera", "Mysterious"),
@@ -33,13 +33,13 @@ public class AITestService {
                 new ImageInfo("src/main/python/crops/159_20210428153849186.jpg", "Lily", "Purity")
         );
 
-        for (ImageInfo image : additionalImages) {
-            String fileKey = new File(image.getUrl()).getName();
-            aiS3Service.uploadFileFromPath(image.getUrl(), fileKey);
+        for (ImageInfo image : ResultImage) {
+            String fileKey = new File(image.getCropImage()).getName();
+            aiS3Service.uploadFileFromPath(image.getCropImage(), fileKey);
             String fileUrl = aiS3Service.getFileUrl(fileKey);
 
             Map<String, Object> imageDetails = new HashMap<>();
-            imageDetails.put("url", fileUrl);
+            imageDetails.put("cropImage", fileUrl);
             imageDetails.put("name", image.getName());
             imageDetails.put("meaning", image.getMeaning());
 
