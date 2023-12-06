@@ -33,6 +33,7 @@ public class FPOrderListDto {
 
     public FPOrderListDto(FPOrderEntity fpOrderEntity, FinishedProductEntity finishedProductEntity)
     {
+        this.flowerShopName = finishedProductEntity.getFlowerShopEntity().getShopName();
         this.fpOrderKey = fpOrderEntity.getFpOrderKey();
         this.fpOrderState = fpOrderEntity.getFpOrderState();
         this.pickupDate =fpOrderEntity.getPickupDate();
