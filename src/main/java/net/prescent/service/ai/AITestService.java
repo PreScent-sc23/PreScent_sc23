@@ -5,47 +5,50 @@ import net.prescent.entity.ImageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
+
 
 @Service
 @Slf4j
 public class AITestService {
 
-    private final AIs3Service aiModelService;
+    private final AIs3Service aiS3Service;
 
     @Autowired
-    public AITestService(AIs3Service aiModelService) {
-        this.aiModelService = aiModelService;
+    public AITestService(AIs3Service aiS3Service) {
+        this.aiS3Service = aiS3Service;
     }
 
-    public List<Object> processAdditionalImages() throws IOException {
-        //log.info("Processing additional images");
-        List<Object> images = new ArrayList<>();
-
-        //String image2Key = "predefined/159_2021042815384918.jpg";
-        //aiModelService.uploadPredefinedFileToS3("/crops/159_2021042815384918.jpg", image2Key);
-        //images.add(Map.of("url", aiModelService.getFileUrl(image2Key)));
+    public List<Map<String, Object>> processAdditionalImages() throws IOException {
+        List<Map<String, Object>> images = new ArrayList<>();
 
         List<ImageInfo> additionalImages = Arrays.asList(
-                new ImageInfo("159_20210428153849183.jpg", "Daisy", "Lovely"),
-                new ImageInfo("159_20210428153849184.jpg", "Gerbera", "Mysterious"),
-                new ImageInfo("159_20210428153849185.jpg", "Rose", "Love"),
-                new ImageInfo("159_20210428153849186.jpg", "Lily", "Purity")
+                // Update these paths according to your project structure
+                new ImageInfo("src/main/resources/images/daisy.jpg", "Daisy", "Lovely"),
+                new ImageInfo("src/main/resources/images/gerbera.jpg", "Gerbera", "Mysterious"),
+                new ImageInfo("src/main/resources/images/rose.jpg", "Rose", "Love"),
+                new ImageInfo("src/main/resources/images/lily.jpg", "Lily", "Purity")
         );
 
         for (ImageInfo image : additionalImages) {
-            String fileKey = "predefined/" + image.getUrl();
-            String filePath = "src/main/resources/static/crops/" + image.getUrl(); // Adjust the path as needed
-            aiModelService.uploadFileToS3(filePath, fileKey);
-            image.setUrl(aiModelService.getFileUrl(fileKey));
-            images.add(Map.of("url", image.getUrl(), "name", image.getName(), "meaning", image.getMeaning()));
+            String fileKey = new File(image.getUrl()).getName();
+            aiS3Service.uploadFileFromPath(image.getUrl(), fileKey);
+            String fileUrl = aiS3Service.getFileUrl(fileKey);
+
+            Map<String, Object> imageDetails = new HashMap<>();
+            imageDetails.put("url", fileUrl);
+            imageDetails.put("name", image.getName());
+            imageDetails.put("meaning", image.getMeaning());
+
+            images.add(imageDetails);
         }
-        log.info("Finished processing additional images");
+
         return images;
     }
 }
-
 //@Service
 //public class AITestService {
 //

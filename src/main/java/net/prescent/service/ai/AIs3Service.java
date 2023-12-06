@@ -26,7 +26,7 @@ public class AIs3Service {
     }
 
     public void uploadFileToS3(MultipartFile multipartFile, String fileKey) throws IOException {
-        File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileKey);
+        File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileKey);
         multipartFile.transferTo(convFile);
 
         try (FileInputStream fileInputStream = new FileInputStream(convFile)) {
@@ -35,13 +35,11 @@ public class AIs3Service {
             amazonS3Client.putObject(bucket, fileKey, fileInputStream, metadata);
         }
     }
-
-    public void uploadFileToS3(String filePath, String fileKey) throws IOException {
+    public void uploadFileFromPath(String filePath, String fileKey) throws IOException {
         File file = new File(filePath);
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setContentLength(file.length());
-
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(file.length());
             amazonS3Client.putObject(bucket, fileKey, fileInputStream, metadata);
         }
     }

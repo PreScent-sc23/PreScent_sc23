@@ -27,27 +27,23 @@ public class AIanalysisController {
         this.aiTestService = aiTestService;
     }
 
-    @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> uploadAndProcessImage(@RequestPart("pslens") MultipartFile file) {
+    @PostMapping(value = "/pslens", consumes = "multipart/form-data")
+    public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
-            String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
+            String fileKey = file.getOriginalFilename();
             aIs3Service.uploadFileToS3(file, fileKey);
+
             String fileUrl = aIs3Service.getFileUrl(fileKey);
+            List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages();
 
-            Map<String, Object> uploadedImageResponse = new HashMap<>();
-            if (fileUrl != null && !fileUrl.isEmpty()) {
-                uploadedImageResponse.put("url", fileUrl);
-            }
+            Map<String, Object> response = new HashMap<>();
+            response.put("url", fileUrl);
+            response.put("additionalImages", additionalImages);
 
-            List<Object> additionalImagesResponse = aiTestService.processAdditionalImages();
-            uploadedImageResponse.put("additionalImages", additionalImagesResponse);
-
-            return ResponseEntity.ok(uploadedImageResponse);
+            return ResponseEntity.ok(response);
         } catch (IOException e) {
-            // Log the exception and return an appropriate response
             log.error("Error processing image", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing image: " + e.getMessage());
         }
     }
-
 }
