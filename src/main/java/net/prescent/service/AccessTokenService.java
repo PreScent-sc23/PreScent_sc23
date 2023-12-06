@@ -54,13 +54,10 @@ public class AccessTokenService {
     public SellerEntity getSellerFromUser(UserEntity userEntity)
     {
         System.out.println(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
-<<<<<<< HEAD
         if(!sellerRepo.findByUserKey(userEntity.getUserKey()).isPresent())
         {
             throw new IllegalStateException("UserEntity로 seller를 찾을 수 없습니다.");
         }
-=======
->>>>>>> 765fe1881b4a5f20f4cbad175b387a738a88a767
         return sellerRepo.findByUserKey(userEntity.getUserKey()).get();
     }
 

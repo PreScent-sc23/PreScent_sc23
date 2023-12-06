@@ -21,11 +21,11 @@ public class FlowerShopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer shopKey;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String shopName;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String shopPhoneNum;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String shopLocation;
     private boolean isOpened=true;
 
