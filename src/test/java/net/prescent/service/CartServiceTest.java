@@ -19,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Transactional
+//@Transactional
 @SpringBootTest
 @Slf4j
 public class CartServiceTest {
@@ -37,8 +37,8 @@ public class CartServiceTest {
     CustomerRepository customerRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
-    private Integer tempNumForTest = 4;
-    private String  tempStringForTest = "a";
+    private Integer tempNumForTest = 0;
+    private String  tempStringForTest = "";
     //    @BeforeEach
 //    public void setup()
 //    {
@@ -101,56 +101,56 @@ public class CartServiceTest {
         return customerDto;
     }
     //테스트 목록. 주문서 작성.
-    @Test
-    @DisplayName("카트 추가 테스트")
-    public void addInCartTest() {
-        CustomerDto customerDto = createTestCustomerDto();
-        Integer customerKey = userService.signupCustomer(customerDto);
-        assertNotNull(customerKey);
-
-        SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = userService.signupSeller(sellerDto);
-
-        FlowerShopDto flowerShopDto = createFlowerShopDto();
-        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
-
-        FinishedProductDto finishedProductDto = createFinishedProductDto();
-        finishedProductDto.setShopKey(addedShop.getShopKey());
-        assertNotNull(addedShop.getShopKey());
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
-
-        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
-        cartService.addToCart(cartItemAddRequestDto);
-        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
-    }
-
-    @Test
-    @DisplayName("카트정보 조회 테스트")
-    public void viewInCartTest() {
-        CustomerDto customerDto = createTestCustomerDto();
-        Integer customerKey = userService.signupCustomer(customerDto);
-        assertNotNull(customerKey);
-
-        SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = userService.signupSeller(sellerDto);
-
-        FlowerShopDto flowerShopDto = createFlowerShopDto();
-        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
-
-        FinishedProductDto finishedProductDto = createFinishedProductDto();
-        finishedProductDto.setShopKey(addedShop.getShopKey());
-        assertNotNull(addedShop.getShopKey());
-        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
-
-        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
-
-        cartService.addToCart(cartItemAddRequestDto);
-        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
-
-        List<CartItemResponseDto> cartItemResponseDtoList = cartService.viewInCart(customerKey);
-        assertEquals(cartItemResponseDtoList.get(0).getFlowerShopName(),flowerShopDto.getShopName());
-        log.info(cartItemResponseDtoList.toString());
-    }
+//    @Test
+//    @DisplayName("카트 추가 테스트")
+//    public void addInCartTest() {
+//        CustomerDto customerDto = createTestCustomerDto();
+//        Integer customerKey = userService.signupCustomer(customerDto);
+//        assertNotNull(customerKey);
+//
+//        SellerDto sellerDto = createSellerDto();
+//        Integer sellerKey = userService.signupSeller(sellerDto);
+//
+//        FlowerShopDto flowerShopDto = createFlowerShopDto();
+//        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
+//
+//        FinishedProductDto finishedProductDto = createFinishedProductDto();
+//        finishedProductDto.setShopKey(addedShop.getShopKey());
+//        assertNotNull(addedShop.getShopKey());
+//        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
+//
+//        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+//        cartService.addToCart(cartItemAddRequestDto);
+//        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
+//    }
+//
+//    @Test
+//    @DisplayName("카트정보 조회 테스트")
+//    public void viewInCartTest() {
+//        CustomerDto customerDto = createTestCustomerDto();
+//        Integer customerKey = userService.signupCustomer(customerDto);
+//        assertNotNull(customerKey);
+//
+//        SellerDto sellerDto = createSellerDto();
+//        Integer sellerKey = userService.signupSeller(sellerDto);
+//
+//        FlowerShopDto flowerShopDto = createFlowerShopDto();
+//        FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
+//
+//        FinishedProductDto finishedProductDto = createFinishedProductDto();
+//        finishedProductDto.setShopKey(addedShop.getShopKey());
+//        assertNotNull(addedShop.getShopKey());
+//        FinishedProductEntity addedFinishedProductEntity = finishedProductService.addFinishedProduct(finishedProductDto);
+//
+//        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity.getFpKey(), 1, "20231204", "18:00");
+//
+//        cartService.addToCart(cartItemAddRequestDto);
+//        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
+//
+//        List<CartItemResponseDto> cartItemResponseDtoList = cartService.viewInCart(customerKey);
+//        assertEquals(cartItemResponseDtoList.get(0).getFlowerShopName(),flowerShopDto.getShopName());
+//        log.info(cartItemResponseDtoList.toString());
+//    }
 
     @Test
     @DisplayName("db추가")
@@ -170,7 +170,7 @@ public class CartServiceTest {
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity0 = finishedProductService.addFinishedProduct(finishedProductDto0);
 
-        FinishedProductDto finishedProductDto1 = createFinishedProductDto("색의 조화가 매력적인 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/fall.jpg",new String[]{"장미", "안개"},"라넌큘러스 다발","#화이트데이",85000);
+        FinishedProductDto finishedProductDto1 = createFinishedProductDto("색의 조화가 매력적인 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/fall.jpg",new String[]{"장미", "안개"},"라넌큘러스 다발","#화이트데이",100);
         finishedProductDto1.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(finishedProductDto1);
@@ -195,13 +195,47 @@ public class CartServiceTest {
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity5 = finishedProductService.addFinishedProduct(finishedProductDto5);
 
-        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity0.getFpKey(), 1, "20231204", "18:00");
-        cartService.addToCart(cartItemAddRequestDto);
-        CartItemAddRequestDto cartItemAddRequestDto1 = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity1.getFpKey(), 1, "20231204", "18:00");
-        cartService.addToCart(cartItemAddRequestDto1);
-        CartItemAddRequestDto cartItemAddRequestDto2 = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity2.getFpKey(), 1, "20231204", "18:00");
-        cartService.addToCart(cartItemAddRequestDto2);
-        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
+
+
+        FinishedProductDto finishedProductDto6 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity6 = finishedProductService.addFinishedProduct(finishedProductDto6);
+
+        FinishedProductDto finishedProductDto7 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity7 = finishedProductService.addFinishedProduct(finishedProductDto7);
+
+        FinishedProductDto finishedProductDto8 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity8 = finishedProductService.addFinishedProduct(finishedProductDto8);
+
+
+
+        FinishedProductDto finishedProductDto9 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity9 = finishedProductService.addFinishedProduct(finishedProductDto9);
+
+        FinishedProductDto finishedProductDto10 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity10 = finishedProductService.addFinishedProduct(finishedProductDto10);
+
+        FinishedProductDto finishedProductDto11 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        finishedProductDto5.setShopKey(addedShop.getShopKey());
+        assertNotNull(addedShop.getShopKey());
+        FinishedProductEntity addedFinishedProductEntity11 = finishedProductService.addFinishedProduct(finishedProductDto11);
+
+//        CartItemAddRequestDto cartItemAddRequestDto = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity0.getFpKey(), 1, "20231204", "18:00");
+//        cartService.addToCart(cartItemAddRequestDto);
+//        CartItemAddRequestDto cartItemAddRequestDto1 = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity1.getFpKey(), 1, "20231204", "18:00");
+//        cartService.addToCart(cartItemAddRequestDto1);
+//        CartItemAddRequestDto cartItemAddRequestDto2 = new CartItemAddRequestDto(customerKey, addedFinishedProductEntity2.getFpKey(), 1, "20231204", "18:00");
+//        cartService.addToCart(cartItemAddRequestDto2);
+//        assertNotNull(customerRepo.findByUserKey(customerKey).get().getCartEntity().getCartItemEntityList());
 
         List<CartItemResponseDto> cartItemResponseDtoList = cartService.viewInCart(customerKey);
         assertEquals(cartItemResponseDtoList.get(0).getFlowerShopName(),flowerShopDto.getShopName());

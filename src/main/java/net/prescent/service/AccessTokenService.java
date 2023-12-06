@@ -18,12 +18,10 @@ public class AccessTokenService {
 
     @Autowired
     private AccessTokenRepository accessTokenRepository;
-    private final AccessTokenRepository accessTokenRepo;
     private final SellerRepository sellerRepo;
     private final CustomerRepository customerRepo;
-    public AccessTokenService(AccessTokenRepository accessTokenRepository, AccessTokenRepository accessTokenRepo, SellerRepository sellerRepo, CustomerRepository customerRepo) {
+    public AccessTokenService(AccessTokenRepository accessTokenRepository, SellerRepository sellerRepo, CustomerRepository customerRepo) {
         this.accessTokenRepository = accessTokenRepository;
-        this.accessTokenRepo = accessTokenRepo;
         this.sellerRepo = sellerRepo;
         this.customerRepo = customerRepo;
     }
