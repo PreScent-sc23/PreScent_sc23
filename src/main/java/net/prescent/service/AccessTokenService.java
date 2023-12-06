@@ -52,6 +52,7 @@ public class AccessTokenService {
 
     public SellerEntity getSellerFromUser(UserEntity userEntity)
     {
+        System.out.println(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
         return sellerRepo.findByUserKey(userEntity.getUserKey()).get();
     }
 
