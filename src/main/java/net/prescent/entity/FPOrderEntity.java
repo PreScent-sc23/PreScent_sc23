@@ -30,7 +30,7 @@ public class FPOrderEntity {
     private String pickupDate;
     private String pickupTime;
     @Column(nullable = false)
-    private Byte fpOrderState=0;
+    private String fpOrderState= "주문중입니다";
 
     private Integer count=1;
     private Integer totalPrice;
@@ -49,7 +49,7 @@ public class FPOrderEntity {
     }
 
 
-    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, String pickupDate, String pickupTime)
+    public FPOrderEntity FPOrderCustomerDtoToFPOrderEntity(FinishedProductEntity finishedProductEntity, CustomerEntity customerEntity, String purchaseInfo, String pickupDate, String pickupTime, Integer count)
     {
         FPOrderEntity fpOrderEntity = new FPOrderEntity();
 
@@ -58,6 +58,9 @@ public class FPOrderEntity {
         fpOrderEntity.setPurchaseInfo(purchaseInfo);
         fpOrderEntity.setPickupDate(pickupDate);
         fpOrderEntity.setPickupTime(pickupTime);
+        fpOrderEntity.setCount(count);
+        log.info("))))))))))))))))))))totalPrice찾기"+finishedProductEntity.getFpPrice());
+        fpOrderEntity.setTotalPrice(count*finishedProductEntity.getFpPrice());
         log.debug("=----------------------------------------------------------------FPOrderToEntity 내부 set까지 끝)");
 
         return fpOrderEntity;

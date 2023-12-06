@@ -31,6 +31,12 @@ public class UserServiceTest {
     @Autowired
     private AccessTokenService accessTokenService;
 
+//    @BeforeEach
+//    public void setUp() {
+//        customerRepository.deleteAll();
+//        sellerRepository.deleteAll();
+//    }
+
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("Test Customer");

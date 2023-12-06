@@ -2,7 +2,6 @@ package net.prescent.service;
 
 import net.prescent.dto.CartItemAddRequestDto;
 import net.prescent.dto.CartItemResponseDto;
-import net.prescent.dto.CartResponseDto;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.CartEntity;
 import net.prescent.entity.CartItemEntity;
@@ -14,9 +13,13 @@ import net.prescent.repository.CustomerRepository;
 import net.prescent.repository.FinishedProductRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
+@Transactional
 @Service
 public class CartService {
     private final FinishedProductRepository finishedProductRepo;
@@ -110,15 +113,16 @@ public class CartService {
 
     public CartItemResponseDto entityToCartResponseDto(CartItemResponseDto cartItemResponseDto, FinishedProductEntity finishedProductEntity)
     {
+        cartItemResponseDto.setFpKey(finishedProductEntity.getFpKey());
         cartItemResponseDto.setFpImage(finishedProductEntity.getFpImage());
         cartItemResponseDto.setFpName(finishedProductEntity.getFpName());
         cartItemResponseDto.setFpTag(finishedProductEntity.getFpTag());
         cartItemResponseDto.setFpPrice(finishedProductEntity.getFpPrice());
         cartItemResponseDto.setFpDetail(finishedProductEntity.getFpDetail());
+        cartItemResponseDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
         return cartItemResponseDto;
     }
-    public CartResponseDto viewInCart(Integer userKey) {
-        CartResponseDto cartResponseDto = new CartResponseDto();
+    public List<CartItemResponseDto> viewInCart(Integer userKey) {
         Optional<CustomerEntity> foundCustomerEntity =customerRepo.findByUserKey(userKey);
         if(foundCustomerEntity.isPresent())
         {
@@ -126,19 +130,19 @@ public class CartService {
 
             if(customerEntity.getCartEntity() !=null)
             {CartEntity cartEntity = customerEntity.getCartEntity();
-                cartResponseDto.setTotalCount(cartEntity.getTotalCount());
-                cartResponseDto.setTotalPrice(cartEntity.getTotalPrice());
                 if(cartEntity.getCartItemEntityList()!=null)
                 {
-                    for(CartItemEntity cartItementity: cartEntity.getCartItemEntityList())
+                    List<CartItemResponseDto> cartItemResponseDtoList = new ArrayList<>();
+                    for(CartItemEntity cartItemEntity: cartEntity.getCartItemEntityList())
                     {
                         CartItemResponseDto cartItemResponseDto = new CartItemResponseDto();
-                        FinishedProductEntity finishedProductEntity = cartItementity.getFinishedProductEntity();
+                        CartItemEntityToCartItemResponseDto(cartItemEntity, cartItemResponseDto);
+                        FinishedProductEntity finishedProductEntity = cartItemEntity.getFinishedProductEntity();
                         entityToCartResponseDto(cartItemResponseDto, finishedProductEntity);
                         cartItemResponseDto.setFlowerShopName(finishedProductEntity.getFlowerShopEntity().getShopName());
-                        cartResponseDto.setCartItemResponseDtoList(cartItemResponseDto);
+                        cartItemResponseDtoList.add(cartItemResponseDto);
                     }
-                    return cartResponseDto;
+                    return cartItemResponseDtoList;
                 }
                 else {
                     throw new IllegalStateException("Cart가 비어있습니다.");
@@ -153,8 +157,35 @@ public class CartService {
         }
     }
 
-    public void clearCartItem(Integer userKey) {
+    private void CartItemEntityToCartItemResponseDto(CartItemEntity cartItemEntity, CartItemResponseDto cartItemResponseDto) {
+        cartItemResponseDto.setCartItemKey(cartItemEntity.getCartItemKey());
+        cartItemResponseDto.setCount(cartItemEntity.getCount());
+        cartItemResponseDto.setPickupDate(cartItemEntity.getPickupDate());
+        cartItemResponseDto.setPickupTime(cartItemEntity.getPickupTime());
+    }
 
+    public void clearCartItem(Integer userKey) {
+    Optional<CustomerEntity> foundCustomerEntity = customerRepo.findByUserKey(userKey);
+    if(foundCustomerEntity.isPresent())
+    {
+        CustomerEntity customerEntity = foundCustomerEntity.get();
+        if(customerEntity.getCartEntity()==null)
+        {
+            throw new IllegalStateException("사용자의 카트가 비었습니다.");
+        }
+        else
+        {
+            CartEntity cartEntity = customerEntity.getCartEntity();
+            for(CartItemEntity cartItemEntity : cartEntity.getCartItemEntityList())
+            {
+                cartItemRepo.delete(cartItemEntity);
+            }
+        }
+    }
+    }
+
+    public void deleteCartItem(Integer cartItemKey) {
+        cartItemRepo.deleteById(cartItemKey);
     }
 }
 

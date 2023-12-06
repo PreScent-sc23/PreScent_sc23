@@ -38,7 +38,6 @@ public class FinishedProductController {
     }
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-//            produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
             @RequestPart("finishedProduct") FinishedProductDto finishedProductDto)
     {

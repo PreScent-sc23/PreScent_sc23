@@ -7,6 +7,10 @@ import net.prescent.entity.FinishedProductEntity;
 @Getter
 @Setter
 public class CartItemResponseDto {
+    private Integer cartItemKey;
+    private Integer count;
+    private String pickupDate;
+    private String pickupTime;
     private String flowerShopName;
     private Integer fpKey;
     private String fpImage;
