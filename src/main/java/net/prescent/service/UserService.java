@@ -93,5 +93,10 @@ public class UserService {
     }
 
     public Integer getRole(String idEmail) {
+        if(customerRepository.findByIdEmail(idEmail).isPresent())
+        {
+            return 0;
+        }
+        else return 1;
     }
 }
