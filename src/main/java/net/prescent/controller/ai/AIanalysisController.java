@@ -28,7 +28,7 @@ public class AIanalysisController {
     }
 
     @PostMapping(value = "/pslens", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> uploadAndProcessImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadAndProcessImage(@RequestPart("pslens") MultipartFile file) {
         try {
             String fileKey = "uploads/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
             aIs3Service.uploadFileToS3(file, fileKey);
