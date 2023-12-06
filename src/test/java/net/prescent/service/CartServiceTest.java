@@ -37,8 +37,8 @@ public class CartServiceTest {
     CustomerRepository customerRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
-    private Integer tempNumForTest = 3;
-    private String  tempStringForTest = "1";
+    private Integer tempNumForTest = 4;
+    private String  tempStringForTest = "a";
     //    @BeforeEach
 //    public void setup()
 //    {

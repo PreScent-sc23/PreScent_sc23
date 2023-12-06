@@ -1,6 +1,7 @@
 package net.prescent.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
@@ -78,9 +79,9 @@ public class FlowerShopController {
         return flowerShopService.getFlowerShopByshopKey(shopKey);
     }
 
-//    @GetMapping("/finished-products-in-shop")
-//    public List<FinishedProductEntity> sellerViewFPinShop (@RequestHeader String token)
-//    {
-//        return flowerShopService.sellerViewFPinShop(token);
-//    }
+    @GetMapping("/finished-products-in-shop")
+    public List<FinishedProductDto> sellerViewFPinShop (@RequestHeader String token)
+    {
+        return flowerShopService.sellerViewFPinShop(token);
+    }
 }

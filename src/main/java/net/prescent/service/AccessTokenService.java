@@ -1,9 +1,11 @@
 package net.prescent.service;
 
 import net.prescent.entity.AccessToken;
+import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
 import net.prescent.entity.UserEntity;
 import net.prescent.repository.AccessTokenRepository;
+import net.prescent.repository.CustomerRepository;
 import net.prescent.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,12 @@ public class AccessTokenService {
     private AccessTokenRepository accessTokenRepository;
     private final AccessTokenRepository accessTokenRepo;
     private final SellerRepository sellerRepo;
-    public AccessTokenService(AccessTokenRepository accessTokenRepository, AccessTokenRepository accessTokenRepo, SellerRepository sellerRepo) {
+    private final CustomerRepository customerRepo;
+    public AccessTokenService(AccessTokenRepository accessTokenRepository, AccessTokenRepository accessTokenRepo, SellerRepository sellerRepo, CustomerRepository customerRepo) {
         this.accessTokenRepository = accessTokenRepository;
         this.accessTokenRepo = accessTokenRepo;
         this.sellerRepo = sellerRepo;
+        this.customerRepo = customerRepo;
     }
 
     public String createAccessToken(UserEntity user) {
@@ -61,4 +65,18 @@ public class AccessTokenService {
         return sellerRepo.findByUserKey(userEntity.getUserKey()).get();
     }
 
+    public CustomerEntity getCustomerFromToken(String token) {
+        UserEntity userEntity = getUserFromToken(token);
+        if(userEntity==null) {throw new IllegalStateException("토큰에 맞는 사용자를 정보를 찾을 수 없습니다.");}
+        return getCustomerFromUser(userEntity);
+    }
+    public CustomerEntity getCustomerFromUser(UserEntity userEntity)
+    {
+        System.out.println(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
+        if(!customerRepo.findByUserKey(userEntity.getUserKey()).isPresent())
+        {
+            throw new IllegalStateException("UserEntity로 seller를 찾을 수 없습니다.");
+        }
+        return customerRepo.findByUserKey(userEntity.getUserKey()).get();
+    }
 }

@@ -2,7 +2,7 @@ package net.prescent.controller;
 
 import net.prescent.dto.FPOrderCustomerDto;
 import net.prescent.dto.FPOrderListDto;
-import net.prescent.entity.FPOrderEntity;
+import net.prescent.service.AccessTokenService;
 import net.prescent.service.FPOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,35 +16,60 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping()
 public class FPOrderController {
-    @Autowired
-    private FPOrderService fpOrderService;
+
+    private final FPOrderService fpOrderService;
+    private final AccessTokenService accessTokenService;
+
+    public FPOrderController(FPOrderService fpOrderService, AccessTokenService accessTokenService) {
+        this.fpOrderService = fpOrderService;
+        this.accessTokenService = accessTokenService;
+    }
 
 
     @PostMapping("/customer/fp-order")
-    public ResponseEntity<?> customerOrder(@RequestBody FPOrderCustomerDto fpOrderCustomerDto) {
+    public ResponseEntity<?> customerOrder(@RequestHeader String Authorization, @RequestBody FPOrderCustomerDto fpOrderCustomerDto) {
+
+        String token = Authorization.substring(7);
+        fpOrderCustomerDto.setCustomerKey(accessTokenService.getCustomerFromToken(token).getUserKey());
+
+
         fpOrderService.customerOrderFinishedProduct(fpOrderCustomerDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/customer/cart/order-in-cart")
-    public ResponseEntity<?> customerOrderInCart(@RequestBody Integer userKey, @RequestBody String purchaseInfo)
+    public ResponseEntity<?> customerOrderInCart(@RequestHeader String Authorization, @RequestBody String purchaseInfo)
     {
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
+
         fpOrderService.customerOrderInCart(userKey, purchaseInfo);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("customer/fp-order-list")
-    public ArrayList<FPOrderListDto> customerViewFPOrderList(@RequestParam Integer userKey){
+    public ArrayList<FPOrderListDto> customerViewFPOrderList(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
+
         return fpOrderService.customerFPOrderList(userKey);
     }
 
     @GetMapping("seller/fp-order-list")
-    public List<FPOrderListDto> sellerViewFPOrderList(@RequestParam Integer userKey){
+    public List<FPOrderListDto> sellerViewFPOrderList(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
         return fpOrderService.sellerFPOrderList(userKey);
     }
 
     @PostMapping("seller/fp-order-list/manage-order")
-    public String sellerManageOrder(@RequestBody Integer userKey, @RequestBody Integer fpOrderKey, @RequestBody String state){
+    public String sellerManageOrder(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey, @RequestBody String state){
+
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
+
         return fpOrderService.sellerManageOrder(userKey,fpOrderKey, state);
     }
 }

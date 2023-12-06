@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
+import net.prescent.service.AccessTokenService;
 import net.prescent.service.FinishedProductService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,21 +26,25 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/finished-product")
 public class FinishedProductController {
 
+    private final AccessTokenService accessTokenService;
     private final AmazonS3Client amazonS3Client;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
     private final FinishedProductService finishedProductService;
-    public FinishedProductController(AmazonS3Client amazonS3Client, FinishedProductService finishedProductService)
+    public FinishedProductController(AccessTokenService accessTokenService, AmazonS3Client amazonS3Client, FinishedProductService finishedProductService)
     {
+        this.accessTokenService = accessTokenService;
         this.amazonS3Client = amazonS3Client;
         this.finishedProductService = finishedProductService;
     }
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
+    public ResponseEntity<?> addFinishedProduct(@RequestHeader String Authorization, HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
             @RequestPart("finishedProduct") FinishedProductDto finishedProductDto)
     {
+        String token = Authorization.substring(7);
+        Integer shopKey = accessTokenService.getSellerFromToken(token).getFlowerShopEntity().getShopKey();
 
         try {
             String fileName=fpImage.getOriginalFilename();
