@@ -11,25 +11,57 @@ import lombok.ToString;
 public class FinishedProductDto {
     private Integer fpKey;
     private Integer shopKey;
+    private String fpImage;
     private String fpName;
     private String fpTag;
-    private String fpImage;
     private Integer fpPrice;
-    private boolean fpState=false;
+    private String fpDetail;
     private String[] fpFlowerList;
+    private String getFpFlowerList;
 
+
+    public FinishedProductDto(Integer fpKey, Integer shopKey, String fpImage, String fpName, String fpTag, Integer fpPrice, String fpDetail, String[] fpFlowerList) {
+        this.fpKey = fpKey;
+        this.shopKey = shopKey;
+        this.fpImage = fpImage;
+        this.fpName = fpName;
+        this.fpTag = fpTag;
+        this.fpPrice = fpPrice;
+        this.fpDetail = fpDetail;
+        this.fpFlowerList = fpFlowerList;
+    }
+
+    public FinishedProductDto() {
+
+    }
     public static FinishedProductDto toFinishedProductDto(FinishedProductEntity finishedProductEntity)
     {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
 
         finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
-        finishedProductDto.setShopKey(finishedProductEntity.getShopKey());
+        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
         finishedProductDto.setFpName(finishedProductEntity.getFpName());
         finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
-        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
         finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
-        finishedProductDto.setFpState(finishedProductEntity.isFpState());
+        finishedProductDto.setFpDetail(finishedProductEntity.getFpDetail());
         finishedProductDto.setFpFlowerList(finishedProductEntity.getFpFlowerList());
         return finishedProductDto;
+    }
+
+    public static FinishedProductDto toFinishedProductDto2(FinishedProductEntity finishedProductEntity)
+    {
+        FinishedProductDto finishedProductDto = new FinishedProductDto();
+
+        finishedProductDto.setFpKey(finishedProductEntity.getFpKey());
+        finishedProductDto.setFpImage(finishedProductEntity.getFpImage());
+        finishedProductDto.setFpName(finishedProductEntity.getFpName());
+        finishedProductDto.setFpTag(finishedProductEntity.getFpTag());
+        finishedProductDto.setFpPrice(finishedProductEntity.getFpPrice());
+//        finishedProductDto.setShopKey(finishedProductEntity.getShopKey());
+        return finishedProductDto;
+    }
+
+    public void setFpFlowerList(String[] fpFlowerList) {
+        this.fpFlowerList = fpFlowerList;
     }
 }

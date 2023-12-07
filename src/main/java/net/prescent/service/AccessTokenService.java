@@ -1,12 +1,9 @@
 package net.prescent.service;
 
-import lombok.RequiredArgsConstructor;
 import net.prescent.entity.AccessToken;
-import net.prescent.dto.SellerDto;
-import net.prescent.entity.SellerEntity;
+import net.prescent.entity.UserEntity;
 import net.prescent.repository.AccessTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,9 +19,9 @@ public class AccessTokenService {
         this.accessTokenRepository = accessTokenRepository;
     }
 
-    public String createAccessToken(SellerEntity seller) {
+    public String createAccessToken(UserEntity user) {
         String token = UUID.randomUUID().toString();
-        AccessToken accessToken = new AccessToken(token, seller);
+        AccessToken accessToken = new AccessToken(token, user);
         accessTokenRepository.save(accessToken);
         return token;
     }
@@ -37,9 +34,9 @@ public class AccessTokenService {
         return accessTokenRepository.findByToken(token).isPresent();
     }
 
-    public SellerEntity getSellerFromToken(String token) {
+    public UserEntity getUserFromToken(String token) {
         return accessTokenRepository.findByToken(token)
-                .map(AccessToken::getSeller)
+                .map(AccessToken::getUser)
                 .orElse(null);
     }
 }

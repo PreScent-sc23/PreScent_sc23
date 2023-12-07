@@ -10,22 +10,20 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "seller")
-public class SellerEntity {
-    @Id
+public class SellerEntity extends UserEntity {
+
     @Column(nullable = false)
-    private Integer sellerKey;
+    private Long businessKey;
     @Column(nullable = false)
-    private String sellerName;
+    private String name;
     @Column(nullable = false, unique = true)
-    private String sellerIdEmail;
+    private String idEmail;
     @Column(nullable = false)
-    private String sellerPassword;
-    @Column(nullable = false)
-    private String sellerPhonenum;
+    private String phonenum;
     private Integer isgrant;
 
     @OneToOne
-    @JoinColumn(name = "shopKey")
+    @JoinColumn(name = "shopKey", referencedColumnName = "shopKey")
     private FlowerShopEntity flowerShopEntity;
 
     public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
@@ -35,12 +33,18 @@ public class SellerEntity {
     }
     public static SellerEntity toSellerEntity(SellerDto sellerDto){
         SellerEntity sellerEntity = new SellerEntity();
-        sellerEntity.setSellerKey(sellerDto.getSellerKey());
-        sellerEntity.setSellerName(sellerDto.getSellerName());
-        sellerEntity.setSellerPhonenum(sellerDto.getSellerPhonenum());
-        sellerEntity.setSellerIdEmail(sellerDto.getSellerIdEmail());
-        sellerEntity.setSellerPassword(sellerDto.getSellerPassword());
+
+        sellerEntity.setBusinessKey(sellerDto.getBusinessKey());
+        sellerEntity.setName(sellerDto.getName());
+        sellerEntity.setPhonenum(sellerDto.getPhonenum());
+        sellerEntity.setIdEmail(sellerDto.getIdEmail());
+        sellerEntity.setPassword(sellerDto.getPassword());
         sellerEntity.setIsgrant(sellerDto.getIsgrant());
         return sellerEntity;
+    }
+
+    @Override
+    public String getUserType() {
+        return "Seller";
     }
 }

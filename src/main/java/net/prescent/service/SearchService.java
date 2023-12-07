@@ -27,6 +27,10 @@ public class SearchService {
         return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.asc("fpName")));
     }
 
+    public Optional<FinishedProductEntity> searchByFpKey(Integer fpKey){
+        return finishedProductRepository.findByFpKey(fpKey, Sort.by(Sort.Order.asc("fpName")));
+    }
+
     public Optional<List<FinishedProductEntity>> searchByTagAsc(String fpTag, String sortHow){
         return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.asc(sortHow)));
     }
