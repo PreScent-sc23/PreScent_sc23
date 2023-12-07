@@ -38,7 +38,7 @@ public class AIs3Service {
         }
     }
     public void uploadFileFromPath(String filePath, String fileKey) throws IOException {
-        log.debug("fileKey 값 : "+filePath);
+        log.debug("filePath 값 : "+filePath);
         log.debug("fileKey 값 : "+fileKey);
         File file = new File(filePath);
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
