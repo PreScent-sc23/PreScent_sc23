@@ -37,6 +37,7 @@ public class AIanalysisController {
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
 
             Map<String, Object> response = new HashMap<>();
+
             response.put("boundingImage", fileUrl);
             response.put("resultImage", additionalImages);
 
