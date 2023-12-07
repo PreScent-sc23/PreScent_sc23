@@ -2,6 +2,7 @@ package net.prescent.service;
 
 import net.prescent.dto.CartItemAddRequestDto;
 import net.prescent.dto.CartItemResponseDto;
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.CartEntity;
 import net.prescent.entity.CartItemEntity;
 import net.prescent.entity.CustomerEntity;
