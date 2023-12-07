@@ -51,11 +51,11 @@ public class AITestService {
         if ("611b0a999b5f0e43bb8894e35244f14e.jpg".equals(fileKey)) {
             final_ResultImage = ResultImage4;
         } else if ("a97cfb883461041ad44ae26d95e9f6b2.jpg".equals(fileKey)) {
-            final_ResultImage = ResultImage3;
+            final_ResultImage = ResultImage1;
         } else if ("c399d8470670dab0253e6490974da9aa.jpg".equals(fileKey)) {
             final_ResultImage = ResultImage3;
         } else {
-            final_ResultImage = ResultImage4;
+            final_ResultImage = ResultImage2;
         }
 
         for (ImageInfo image : final_ResultImage) {
