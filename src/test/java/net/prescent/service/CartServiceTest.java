@@ -19,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Transactional
+//@Transactional
 @SpringBootTest
 @Slf4j
 public class CartServiceTest {
