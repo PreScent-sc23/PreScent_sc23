@@ -32,7 +32,7 @@ public class AIanalysisController {
     public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
             String fileKey = file.getOriginalFilename();
-
+            log.debug("fileKey 값 : "+fileKey);
             aIs3Service.uploadFileFromPath(fileKey,"backend/src/main/python/detects/"+fileKey);
             String fileUrl = aIs3Service.getFileUrl(fileKey);
 
