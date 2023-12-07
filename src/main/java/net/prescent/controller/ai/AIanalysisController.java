@@ -33,7 +33,7 @@ public class AIanalysisController {
         try {
             String fileKey = file.getOriginalFilename();
 
-            aIs3Service.uploadFileFromPath("backend/src/main/python/detects/", fileKey);
+            aIs3Service.uploadFileFromPath(fileKey,"backend/src/main/python/detects/"+fileKey);
             String fileUrl = aIs3Service.getFileUrl(fileKey);
 
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
