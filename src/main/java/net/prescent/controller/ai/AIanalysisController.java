@@ -34,7 +34,7 @@ public class AIanalysisController {
             String fileKey = file.getOriginalFilename();
             log.debug("fileKey 값 : "+fileKey);
             //aIs3Service.uploadFileFromPath(fileKey,"backend/src/main/python/detects/"+fileKey);
-            String fileUrl = aIs3Service.getFileUrl(fileKey);
+            String fileUrl = aIs3Service.getFileUrl("backend/src/main/python/detects/"+fileKey);
 
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
 
