@@ -31,7 +31,7 @@ public class AIanalysisController {
     public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
             String fileKey = file.getOriginalFilename();
-            aIs3Service.uploadFileFromPath("backend/src/main/python/detect/file.getOriginalFilename()", fileKey);
+            aIs3Service.uploadFileFromPath("backend/src/main/python/detects/file.getOriginalFilename()", fileKey);
 
             String fileUrl = aIs3Service.getFileUrl(fileKey);
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
