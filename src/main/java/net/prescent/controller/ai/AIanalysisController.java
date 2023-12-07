@@ -9,6 +9,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,9 +32,9 @@ public class AIanalysisController {
     public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
             String fileKey = file.getOriginalFilename();
-            aIs3Service.uploadFileToS3(file, fileKey);
+            aIs3Service.uploadFileFromPath("backend/src/main/python/detects/"+file, fileKey);
+            String fileUrl = aIs3Service.getFileUrl(fileKey);
 
-            String fileUrl = "backend/src/main/python/detects/" + aIs3Service.getFileUrl(fileKey);
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
 
             Map<String, Object> response = new HashMap<>();
