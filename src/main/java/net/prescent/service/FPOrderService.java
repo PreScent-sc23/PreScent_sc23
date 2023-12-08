@@ -176,7 +176,7 @@ public class FPOrderService {
         return fpOrderCustomerDto;
     }
 
-    public String sellerManageOrder(Integer userKey, Integer fpOrderKey, String state) {
+    public String sellerSetOrder(Integer userKey, Integer fpOrderKey, String state) {
         Optional<FPOrderEntity> foundFpOrderEntity = fpOrderRepo.findById(fpOrderKey);
         if(foundFpOrderEntity.isPresent())
         {

@@ -6,7 +6,6 @@ import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
 import net.prescent.repository.CustomerRepository;
 import net.prescent.repository.SellerRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

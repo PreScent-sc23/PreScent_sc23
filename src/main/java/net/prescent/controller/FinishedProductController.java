@@ -45,6 +45,7 @@ public class FinishedProductController {
     {
         String token = Authorization.substring(7);
         Integer shopKey = accessTokenService.getSellerFromToken(token).getFlowerShopEntity().getShopKey();
+        finishedProductDto.setShopKey(shopKey);
 
         try {
             String fileName=fpImage.getOriginalFilename();

@@ -7,8 +7,8 @@ import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.repository.FinishedProductRepository;
 //import org.junit.Test;
+import net.prescent.repository.SellerRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,11 +33,8 @@ public class FinishedProductEntityServiceTest {
     private UserService sellerService;
     @Autowired
     private FlowerShopService flowerShopService;
-
-//    @BeforeEach
-//    public void setUp() {
-//        finishedProductRepository.deleteAllInBatch();
-//    }
+    @Autowired
+    private SellerRepository sellerRepo;
 
     public FinishedProductDto createFinishedProductDto()
     {
@@ -71,7 +68,6 @@ public class FinishedProductEntityServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -91,7 +87,9 @@ public class FinishedProductEntityServiceTest {
         Integer sellerKey = sellerService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
+        flowerShopDto.setUserKey(sellerKey);
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
+
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
         finishedProductDto.setShopKey(addedShop.getShopKey());

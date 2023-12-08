@@ -64,12 +64,20 @@ public class FPOrderController {
         return fpOrderService.sellerFPOrderList(userKey);
     }
 
-    @PostMapping("seller/fp-order-list/manage-order")
-    public String sellerManageOrder(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey, @RequestBody String state){
+    @PostMapping("seller/fp-order-list/set-complete")
+    public String sellerSetOrderComplete(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
 
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
 
-        return fpOrderService.sellerManageOrder(userKey,fpOrderKey, state);
+        return fpOrderService.sellerSetOrder(userKey,fpOrderKey, "픽업 완료");
+    }
+    @PostMapping("seller/fp-order-list/set-waiting")
+    public String sellerSetOrderWaiting(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
+
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
+
+        return fpOrderService.sellerSetOrder(userKey,fpOrderKey, "픽업 대기중");
     }
 }

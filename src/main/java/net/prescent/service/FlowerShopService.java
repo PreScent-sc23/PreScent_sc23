@@ -32,7 +32,7 @@ public class FlowerShopService {
     public FlowerShopEntity addFlowerShop(FlowerShopDto flowerShopDto)
     {
         FlowerShopEntity flowerShopEntity = FlowerShopEntity.FlowerShopDtoToEntity(flowerShopDto);
-        Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(flowerShopDto.getBusinessKey());
+        Optional<SellerEntity> sellerEntity = sellerRepo.findByUserKey(flowerShopDto.getUserKey());
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            log.debug(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");

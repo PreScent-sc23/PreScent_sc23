@@ -60,7 +60,6 @@ public class FPOrderServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
@@ -95,7 +94,6 @@ public class FPOrderServiceTest {
 
     public FlowerShopDto createFlowerShop1Dto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(111111111L+tempNumForTest);
         flowerShopDto.setShopName("예시 꽃집");
         flowerShopDto.setShopPhoneNum("031-111-2222");
         flowerShopDto.setShopLocation("suwon city");
@@ -164,6 +162,7 @@ public class FPOrderServiceTest {
         Integer sellerKey0 = userService.signupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
+        flowerShopDto.setUserKey(sellerKey0);
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
@@ -179,6 +178,7 @@ public class FPOrderServiceTest {
         Integer sellerKey1 = userService.signupSeller(anotherSellerDto);
 
         FlowerShopDto anotherFlowerShopDto = createFlowerShop1Dto();
+        anotherFlowerShopDto.setUserKey(sellerKey1);
         FlowerShopEntity anotherAddedShop = flowerShopService.addFlowerShop(anotherFlowerShopDto);
 
         FinishedProductDto anotherFinishedProductDto = createFinishedProduct1Dto();

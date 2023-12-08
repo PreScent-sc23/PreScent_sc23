@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SellerRepository extends JpaRepository<SellerEntity, Integer> {
+public interface SellerRepository extends JpaRepository<SellerEntity, String> {
 
     //SellerDto save(SellerDto seller);
     Optional<SellerEntity> findByUserKey(Integer userKey);

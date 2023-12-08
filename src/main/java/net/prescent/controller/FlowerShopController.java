@@ -49,13 +49,13 @@ public class FlowerShopController {
     {
 
         String token = Authorization.substring(7);
+        flowerShopDto.setUserKey(accessTokenService.getUserFromToken(token).getUserKey());
 
         System.out.println(("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+token));
-        SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
-        flowerShopDto.setBusinessKey(sellerEntity.getBusinessKey());
+        UserEntity userEntity = accessTokenService.getUserFromToken(token);
+        flowerShopDto.setUserKey(userEntity.getUserKey());
         log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
-        log.debug("sellerKey: " + flowerShopDto.getBusinessKey());
         log.debug("shopName: " + flowerShopDto.getShopName());
         log.debug("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
         log.debug("shopLocation: " + flowerShopDto.getShopLocation());
