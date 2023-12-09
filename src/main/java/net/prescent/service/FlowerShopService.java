@@ -84,8 +84,20 @@ public class FlowerShopService {
         return flowerShopRepo.save(flowerShopEntity);
     }
 
-    public void addFlowerShopSchedule(){
-
+    public List<FinishedProductDto> sellerViewFPinShop(Integer userKey) {
+        SellerEntity sellerEntity = sellerRepo.findByUserKey(userKey).get();
+        FlowerShopEntity flowershopEntity = sellerEntity.getFlowerShopEntity();
+        List<FinishedProductDto> finishedProductDtoList = new ArrayList<>();
+        if(flowershopEntity.getFinishedProductEntityList() == null)
+        {
+            return finishedProductDtoList;
+        }
+        for(FinishedProductEntity finishedProductEntity : flowershopEntity.getFinishedProductEntityList())
+        {
+            FinishedProductDto finishedProductDto = FinishedProductDto.toFinishedProductDto(finishedProductEntity);
+            finishedProductDtoList.add(finishedProductDto);
+        }
+        return finishedProductDtoList;
     }
 
     public Optional<FlowerShopEntity> getFlowerShopByshopKey(Integer shopKey)

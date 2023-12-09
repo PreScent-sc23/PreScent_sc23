@@ -119,6 +119,7 @@ public class FPOrderService {
         {
             if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey&& fpOrderEntity.getFpOrderState().equals("픽업완료")) {
                 FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, fpOrderEntity.getFinishedProductEntity());
+                fpOrderListDto.setFlowerShopName(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getShopName());
                 fpOrderListDtoList.add(fpOrderListDto);
             }
         }

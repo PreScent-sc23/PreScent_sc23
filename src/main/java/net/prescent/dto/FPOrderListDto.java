@@ -12,6 +12,7 @@ import javax.persistence.Column;
 @Setter
 @ToString
 public class FPOrderListDto {
+    private String flowerShopName;
     private Integer fpOrderKey;
     private String fpOrderState;
     private String pickupDate;
@@ -32,6 +33,7 @@ public class FPOrderListDto {
 
     public FPOrderListDto(FPOrderEntity fpOrderEntity, FinishedProductEntity finishedProductEntity)
     {
+        this.flowerShopName = finishedProductEntity.getFlowerShopEntity().getShopName();
         this.fpOrderKey = fpOrderEntity.getFpOrderKey();
         this.fpOrderState = fpOrderEntity.getFpOrderState();
         this.pickupDate =fpOrderEntity.getPickupDate();

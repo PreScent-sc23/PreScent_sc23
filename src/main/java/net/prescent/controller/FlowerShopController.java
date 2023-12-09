@@ -75,6 +75,12 @@ public class FlowerShopController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
 //        return flowerShopService.addFlowerShop(sellerKey, shopName, shopPhoneNum, shopLocation, description);
     }
+    @GetMapping("/fplist")
+    public List<FinishedProductDto> sellerViewFPinShop (@RequestParam Integer userKey)
+    {
+        return flowerShopService.sellerViewFPinShop(userKey);
+    }
+
 
     @GetMapping("/{shopKey}")
     public Optional<FlowerShopEntity> getFlowerShopBySellerKey(@PathVariable Integer shopKey)

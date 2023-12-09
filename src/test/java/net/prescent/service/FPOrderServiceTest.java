@@ -120,17 +120,6 @@ public class FPOrderServiceTest {
         finishedProductDto.setGetFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
-//
-//    public CustomerDto createCustomerDto() {
-//        CustomerDto customerDto = new CustomerDto();
-//        customerDto.setName("suhyeon");
-//        customerDto.setPhonenum("010-1111-2222");
-//        customerDto.setIdEmail("ajou.gmail.com");
-//        customerDto.setPassword("04prescent");
-//        customerDto.setConfirmPassword(("04prescent"));
-//        return customerDto;
-//    }
-
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("예시 구매자"+tempStringForTest);
