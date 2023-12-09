@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import net.prescent.dto.*;
 import net.prescent.entity.AccessToken;
 import net.prescent.entity.CustomerEntity;
+import net.prescent.entity.UserEntity;
+import net.prescent.repository.CustomerRepository;
 import net.prescent.service.AccessTokenService;
 import net.prescent.service.FlowerShopService;
 import net.prescent.service.UserService;
@@ -23,6 +25,7 @@ public class UserController {
     private final UserService userService;
     private final AccessTokenService accessTokenService;
     private final FlowerShopService flowerShopService;
+    private final CustomerRepository customerRepo;
 
     @PostMapping("/customer/signup")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
@@ -83,7 +86,8 @@ public class UserController {
     public ResponseEntity<?> setLocation(@RequestHeader String Authorization, @RequestBody LocationDto locationDto)
     {
         String token = Authorization.substring(7);
-        if(accessTokenService.getCustomerFromToken(token) != null) {
+        UserEntity userEntity = accessTokenService.getUserFromToken(token);
+        if(!customerRepo.findByUserKey(userEntity.getUserKey()).isPresent()) {
             userService.setCustomerLocation(token, locationDto);
         }
         else {
