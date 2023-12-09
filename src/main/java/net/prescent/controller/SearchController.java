@@ -22,22 +22,20 @@ public class SearchController {
     private SearchService searchService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<FinishedProductDto>> searchTag(@RequestParam String query){
+    public ResponseEntity<List<FinishedProductDto>> searchTag(@RequestHeader String Authorization, @RequestParam String query){
         String decodedQuery = URLDecoder.decode(query, StandardCharsets.UTF_8);
-//        System.out.println("Qurey: " + query + "----------------");
-//        System.out.println("decodedQuery: " + decodedQuery + "----------------\n");
+        String token = Authorization.substring(7);
 
         if(decodedQuery.startsWith("#")){
-            List<FinishedProductDto> finalResult = searchService.returnSearchByTag(decodedQuery);
+            List<FinishedProductDto> finalResult = searchService.returnSearchByTag(token,decodedQuery);
 
             if(finalResult == null) return ResponseEntity.noContent().build();
 
             return ResponseEntity.ok(finalResult);
-//            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         else
         {
-            List<FinishedProductDto> finalResult = searchService.returnSearchByFPName(decodedQuery);
+            List<FinishedProductDto> finalResult = searchService.returnSearchByFlower(token,decodedQuery);
 
             if(finalResult == null) return ResponseEntity.noContent().build();
 

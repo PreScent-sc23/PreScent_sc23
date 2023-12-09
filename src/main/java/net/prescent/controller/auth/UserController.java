@@ -88,6 +88,8 @@ public class UserController {
         String token = Authorization.substring(7);
         UserEntity userEntity = accessTokenService.getUserFromToken(token);
         if(customerRepo.findByUserKey(userEntity.getUserKey()).isPresent()) {
+            System.out.println("여긴 유저키________________latitude는 다음과 같다: "+locationDto.getLatitude());
+            System.out.println("여긴 유저키________________longitude는 다음과 같다: "+ locationDto.getLongitude());
             userService.setCustomerLocation(token, locationDto);
         }
         else {

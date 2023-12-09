@@ -1,9 +1,11 @@
 package net.prescent.service;
 
 import net.prescent.dto.FinishedProductDto;
+import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.repository.FinishedProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,9 +20,9 @@ import java.util.Optional;
 public class SearchService {
 
     private final FinishedProductRepository finishedProductRepository;
+    private final AccessTokenService accessTokenService;
 
-
-
+    Double MAX_DISTANCE = 3000.0;
     public Page<Optional<FinishedProductEntity>> searchByTag(String fpTag, String sortHow, Integer pageNum){
         return finishedProductRepository.findByFpTagContaining(fpTag, PageRequest.of(pageNum, 5, Sort.by(Sort.Order.asc(sortHow))));
     }
@@ -41,7 +43,8 @@ public class SearchService {
         return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.desc(sortHow)));
     }
 
-    public List<FinishedProductDto> returnSearchByTag(String decodedQuery) {
+    public List<FinishedProductDto> returnSearchByTag(String token, String decodedQuery) {
+        CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
 
         String[] queryResult = decodedQuery.split("#");
 
@@ -54,19 +57,41 @@ public class SearchService {
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
         for(FinishedProductEntity fp : result){
-            finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+            Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
+            if(distance<= MAX_DISTANCE) {
+                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+            }
         }
         return finalResult;
     }
-
-    public List<FinishedProductDto> returnSearchByFPName(String decodedQuery) {
+    public List<FinishedProductDto> returnSearchByFlower(String token, String decodedQuery) {
+        CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
         Optional<List<FinishedProductEntity>> searchResult = finishedProductRepository.findByFpNameContaining(decodedQuery);
         List<FinishedProductEntity> result = searchResult.get();
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
         for(FinishedProductEntity fp : result){
-            finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+            Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
+            if(distance<= MAX_DISTANCE) {
+                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+            }
         }
         return finalResult;
+    }
+    public static double deg2rad(double angle) {
+        return angle * Math.PI / 180;
+    }
+    public static double rad2deg(double rad){
+        return rad*180/Math.PI;
+    }
+    private Double calculateDistance(Double lat1, Double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+
+        double dist = Math.sin(deg2rad(lat1))* Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1))*Math.cos(deg2rad(lat2))*Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60*1.1515*1609.344;
+
+        return dist; //단위 meter
     }
 }

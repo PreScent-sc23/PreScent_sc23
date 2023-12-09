@@ -21,7 +21,7 @@ public interface FinishedProductRepository extends JpaRepository<FinishedProduct
     Optional<List<FinishedProductEntity>> findByFpTagContaining(String fpTag, Sort sort);
     Page<Optional<FinishedProductEntity>> findByFpTagContaining(String fpTag, Pageable pageable);
 //    @Query("SELECT e FROM FinishedProduct e WHERE :flower  MEMBER OF e.fpFlowerList")
-//    Optional<List<FinishedProduct>> findByValue(@Param("flower") String flower);
+//    Optional<List<FinishedProductEntity>> findByValue(@Param("flower") String flower);
 //    @Query(value = "SELECT p" +
 //            "FROM FinishedProductEntity p " +
 //            "JOIN p.FlowerShop s " +
