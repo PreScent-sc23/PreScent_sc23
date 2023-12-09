@@ -32,16 +32,11 @@ public class AIanalysisController {
     public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
             String fileKey = file.getOriginalFilename();
-            log.debug("fileKey 값 : "+fileKey);
-            //aIs3Service.uploadFileFromPath(fileKey,"backend/src/main/python/detects/"+fileKey);
-            String fileUrl = aIs3Service.getFileUrl("backend/src/main/python/detects/"+fileKey);
 
-            List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
-
+            Map<String, Object> processedImages = aiTestService.processAdditionalImages(fileKey);
             Map<String, Object> response = new HashMap<>();
 
-            response.put("boundingImage", fileUrl);
-            response.put("resultImage", additionalImages);
+            response.putAll(processedImages); // Add all entries from processedImages
 
             return ResponseEntity.ok(response);
         } catch (IOException e) {

@@ -22,8 +22,13 @@ public class AITestService {
         this.aiS3Service = aiS3Service;
     }
 
-    public List<Map<String, Object>> processAdditionalImages(String fileKey) throws IOException {
+    public Map<String, Object> processAdditionalImages(String fileKey) throws IOException {
         List<Map<String, Object>> images = new ArrayList<>();
+        String s3BoundingImagesDirectory = "backend/src/main/python/detects/";
+
+        String boundingImageFileKey = s3BoundingImagesDirectory + fileKey;
+        String boundingImageUrl = aiS3Service.getFileUrl(boundingImageFileKey);
+
 
         List<ImageInfo> ResultImage1 = Arrays.asList(
                 new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b2.jpg", "분홍 장미", "영원한 사랑, 사랑의 맹세"),
@@ -71,7 +76,11 @@ public class AITestService {
             images.add(imageDetails);
         }
 
-        return images;
+        Map<String, Object> response = new HashMap<>();
+        response.put("boundingImage", boundingImageUrl);
+        response.put("images", images);
+
+        return response;
     }
 }
 //@Service
