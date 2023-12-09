@@ -81,10 +81,10 @@ public class FlowerShopController {
     {
         return flowerShopService.getFlowerShopByshopKey(shopKey);
     }
-
     @GetMapping("/finished-products-in-shop")
-    public List<FinishedProductDto> sellerViewFPinShop (@RequestHeader String token)
+    public List<FinishedProductDto> sellerViewFPinShop (@RequestHeader String Authorization)
     {
+        String token = Authorization.substring(7);
         return flowerShopService.sellerViewFPinShop(token);
     }
 }
