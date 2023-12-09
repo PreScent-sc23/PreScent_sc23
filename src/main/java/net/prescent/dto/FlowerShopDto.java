@@ -19,7 +19,7 @@ public class FlowerShopDto {
     private String shopPhoneNum;
     private String shopLocation;
     private String[] storedFlowerList;
-    private String FlowerListGetFromFE;
+    private String flowerListGetFromFE;
 
     private Integer openHour;
     private Integer openMinute;
