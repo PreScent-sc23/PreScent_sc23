@@ -198,7 +198,7 @@ public class FPOrderServiceTest {
         assertEquals(customerFpOrderListDtoArrayList.get(0).getPurchaseInfo(),"국민카드 결제정보");
         assertEquals(customerFpOrderListDtoArrayList.get(1).getPurchaseInfo(),"다른 국민카드 결제정보");
 
-        ArrayList<FPOrderListDto> sellerFpOrderListDtoArrayList = fpOrderService.sellerFPOrderList(sellerKey0);
+        ArrayList<FPOrderListDto> sellerFpOrderListDtoArrayList = fpOrderService.sellerWaitingFPOrderList(sellerKey0);
         assertEquals(sellerFpOrderListDtoArrayList.get(0).getPurchaseInfo(),"국민카드 결제정보");
 
     }

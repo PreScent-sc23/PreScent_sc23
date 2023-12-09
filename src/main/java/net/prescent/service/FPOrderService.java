@@ -102,44 +102,25 @@ public class FPOrderService {
         }
     }
 
-    public ArrayList<FPOrderListDto> sellerFPOrderList(Integer userKey) {
+    public ArrayList<FPOrderListDto> sellerWaitingFPOrderList(Integer userKey) {
         List<FPOrderListDto> fpOrderListDtoList = new ArrayList<>();
         for(FPOrderEntity fpOrderEntity : fpOrderRepo.findAll())
         {
-            if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey) {
+            if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey&& fpOrderEntity.getFpOrderState().equals("픽업 대기중")) {
                 FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, fpOrderEntity.getFinishedProductEntity());
                 fpOrderListDtoList.add(fpOrderListDto);
             }
-        // DB에 sellerKey를 포함시킬 경우
-//        Optional<SellerEntity> foundSellerEntity = sellerRepo.findByUserKey(userKey);
-//        if(foundSellerEntity.isPresent()) {
-//            SellerEntity sellerEntity = foundSellerEntity.get();
-//            log.debug("FPOrderService내부 customerFPOrderList메서드" + sellerEntity.getIdEmail());
-//            List<FPOrderEntity> fpOrderEntityList = sellerEntity.getFpOrderEntityList();
-//            if(fpOrderEntityList == null)
-//            {
-//                return null;
-//            }
-//            else
-//            {
-//                List<FPOrderListDto> fpOrderListDtoArrayList = new ArrayList<>();
-//                for(FPOrderEntity fpOrderEntity : fpOrderEntityList)
-//                {
-//                    FinishedProductEntity finishedProductEntity = fpOrderEntity.getFinishedProductEntity();
-//                    if(finishedProductEntity == null)
-//                    {
-//                        throw new IllegalStateException("상품이 더이상 존재하지 않습니다.");
-//                    }
-//                    else
-//                    {
-//                        FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, finishedProductEntity);
-//                        log.debug("FPOrderService내부 customerFPOrderList메서드 for문 내부"+fpOrderListDto.getFpDetail());
-//                        fpOrderListDtoArrayList.add(fpOrderListDto);
-//                    }
-//                }
-//                return (ArrayList<FPOrderListDto>) fpOrderListDtoArrayList;
-//            }
-//        }
+        }
+        return (ArrayList<FPOrderListDto>) fpOrderListDtoList;
+    }
+    public ArrayList<FPOrderListDto> sellerCompleteFPOrderList(Integer userKey) {
+        List<FPOrderListDto> fpOrderListDtoList = new ArrayList<>();
+        for(FPOrderEntity fpOrderEntity : fpOrderRepo.findAll())
+        {
+            if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey&& fpOrderEntity.getFpOrderState().equals("픽업완료")) {
+                FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, fpOrderEntity.getFinishedProductEntity());
+                fpOrderListDtoList.add(fpOrderListDto);
+            }
         }
         return (ArrayList<FPOrderListDto>) fpOrderListDtoList;
     }

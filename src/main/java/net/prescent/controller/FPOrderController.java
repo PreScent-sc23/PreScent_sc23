@@ -55,16 +55,23 @@ public class FPOrderController {
 
         return fpOrderService.customerFPOrderList(userKey);
     }
-
-    @GetMapping("seller/fp-order-list")
-    public List<FPOrderListDto> sellerViewFPOrderList(@RequestHeader String Authorization)
+    @GetMapping("seller/fp-order-list/waiting")
+    public List<FPOrderListDto> sellerViewWaitingFPOrderList(@RequestHeader String Authorization)
     {
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
-        return fpOrderService.sellerFPOrderList(userKey);
+        return fpOrderService.sellerWaitingFPOrderList(userKey);
+
+    }
+    @GetMapping("seller/fp-order-list/complete")
+    public List<FPOrderListDto> sellerViewCompleteFPOrderList(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
+        Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
+        return fpOrderService.sellerCompleteFPOrderList(userKey);
     }
 
-    @PostMapping("seller/fp-order-list/set-complete")
+    @PutMapping("seller/fp-order-list/set-complete")
     public String sellerSetOrderComplete(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
 
         String token = Authorization.substring(7);
@@ -72,7 +79,7 @@ public class FPOrderController {
 
         return fpOrderService.sellerSetOrder(userKey,fpOrderKey, "픽업 완료");
     }
-    @PostMapping("seller/fp-order-list/set-waiting")
+    @PutMapping("seller/fp-order-list/set-waiting")
     public String sellerSetOrderWaiting(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
 
         String token = Authorization.substring(7);

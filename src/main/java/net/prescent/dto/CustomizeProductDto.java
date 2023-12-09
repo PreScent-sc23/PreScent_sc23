@@ -13,7 +13,5 @@ public class CustomizeProductDto {
     private Integer cpKey;
     private String[] answers;
 
-    private FlowerShopEntity flowerShopEntity;
-
-
+    private Integer shopKey;
 }

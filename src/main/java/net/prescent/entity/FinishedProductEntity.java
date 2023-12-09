@@ -32,7 +32,6 @@ public class FinishedProductEntity {
     private boolean fpState = true;
 
     private String[] fpFlowerList;
-//    private String fpFlowerList;
 
     private String fpDetail;
 

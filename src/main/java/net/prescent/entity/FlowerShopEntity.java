@@ -45,7 +45,7 @@ public class FlowerShopEntity {
     @OneToMany(mappedBy = "flowerShopEntity", fetch = FetchType.EAGER)
     private Set<FinishedProductEntity> finishedProductEntityList = new HashSet<>();
 
-//    private List<CustomizeProductEntity> customizeProductEntityList = new ArrayList<>();
+    private Integer customizeProductKey;
 
     public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
     {
@@ -54,13 +54,7 @@ public class FlowerShopEntity {
         }
         this.finishedProductEntityList.add(finishedProductEntity);
     }
-//    public void setCustomizedProductEntityList(CustomizeProductEntity customizeProductEntity)
-//    {
-//        if (this.finishedProductEntityList == null) {
-//            this.customizeProductEntityList = new ArrayList<>();
-//        }
-//        this.customizeProductEntityList.add(customizeProductEntity);
-//    }
+
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
@@ -72,13 +66,7 @@ public class FlowerShopEntity {
         this.Address = address;
         this.description = description;
     }
-//    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
-//        this.shopName = shopName;
-//        this.shopPhoneNum = shopPhoneNum;
-//        this.shopLocation = shopLocation;
-//        this.isOpened = isOpened;
-//        this.holiday = holiday;
-//    }
+
 
     public FlowerShopEntity() {
     }
@@ -104,7 +92,4 @@ public class FlowerShopEntity {
 
         return flowerShopEntity;
     }
-
-    // public void setSellerEntity(Optional<SellerEntity> sellerEntity) {
-    // }
 }
