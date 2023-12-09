@@ -31,12 +31,13 @@ public class AIanalysisController {
     public ResponseEntity<?> uploadAndProcessImage(@RequestPart("file") MultipartFile file) {
         try {
             String fileKey = file.getOriginalFilename();
-            aIs3Service.uploadFileFromPath("backend/src/main/python/detects/file.getOriginalFilename()", fileKey);
+            aIs3Service.uploadFileToS3(file, fileKey);
 
-            String fileUrl = aIs3Service.getFileUrl(fileKey);
+            String fileUrl = "backend/src/main/python/detects/" + aIs3Service.getFileUrl(fileKey);
             List<Map<String, Object>> additionalImages = aiTestService.processAdditionalImages(fileKey);
 
             Map<String, Object> response = new HashMap<>();
+
             response.put("boundingImage", fileUrl);
             response.put("resultImage", additionalImages);
 
