@@ -24,10 +24,10 @@ public class AITestService {
 
     public Map<String, Object> processAdditionalImages(String fileKey) throws IOException {
         List<Map<String, Object>> images = new ArrayList<>();
-        String s3BoundingImagesDirectory = "backend/src/main/python/detects/";
 
-        String boundingImageFileKey = s3BoundingImagesDirectory + fileKey;
-        String boundingImageUrl = aiS3Service.getFileUrl(boundingImageFileKey);
+        String s3BoundingImagesDirectory = "backend/src/main/python/detects/"+fileKey;
+        aiS3Service.uploadFileFromPath(s3BoundingImagesDirectory, fileKey);
+        String boundingImageUrl = aiS3Service.getFileUrl(fileKey);
 
 
         List<ImageInfo> ResultImage1 = Arrays.asList(
