@@ -28,6 +28,20 @@ public class FlowerShopDto {
     private String[] workday;
     private String description;
 
+    public FlowerShopDto(String shopName, String shopPhoneNum, String shopLocation, String flowerListGetFromFE, Integer openHour, Integer openMinute, Integer closeHour, Integer closeMinute, String[] workday, String description)
+    {
+        this.shopName = shopName;
+        this.shopPhoneNum = shopPhoneNum;
+        this.shopLocation = shopLocation;
+        this.flowerListGetFromFE=flowerListGetFromFE;
+        this.openHour = openHour;
+        this.openMinute = openMinute;
+        this.closeHour = closeHour;
+        this.closeMinute = closeMinute;
+        this.workday = workday;
+        this.description = description;
+    }
+
 
     public static FlowerShopDto FlowerShopEntityToDto(FlowerShopEntity flowerShopEntity) {
         FlowerShopDto flowerShopDto = new FlowerShopDto();

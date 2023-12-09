@@ -44,7 +44,7 @@ public class FlowerShopController {
 
 //@RequestBody String shopName, String shopPhoneNum, String shopLocation, String description,
     @PostMapping("/add")
-    public ResponseEntity<?> addFlowerShop(@RequestHeader String Authorization,@RequestBody FlowerShopDto flowerShopDto,
+    public ResponseEntity<?> addFlowerShop(@RequestHeader String Authorization, @RequestBody FlowerShopDto flowerShopDto,
                                           BindingResult bindingResult)
     {
 
