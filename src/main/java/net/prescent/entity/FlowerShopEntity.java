@@ -26,7 +26,9 @@ public class FlowerShopEntity {
     //@Column(nullable = false)
     private String shopPhoneNum;
     //@Column(nullable = false)
-    private String shopLocation;
+    private String Address;
+    private double latitude;
+    private double longitude;
     private boolean isOpened=true;
 
     private Integer openHour;
@@ -56,10 +58,10 @@ public class FlowerShopEntity {
         this.sellerEntity = sellerEntity;
         this.sellerEntity.setFlowerShopEntity(this);
     }
-    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, String description) {
+    public FlowerShopEntity(String shopName, String shopPhoneNum, String address, String description) {
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
-        this.shopLocation = shopLocation;
+        this.Address = address;
         this.description = description;
     }
 //    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
@@ -79,7 +81,9 @@ public class FlowerShopEntity {
         flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
         flowerShopEntity.setShopPhoneNum(flowerShopDto.getShopPhoneNum());
-        flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
+        flowerShopEntity.setAddress(flowerShopDto.getAddress());
+        flowerShopEntity.setLatitude(flowerShopDto.getLatitude());
+        flowerShopEntity.setLongitude(flowerShopDto.getLongitude());
         flowerShopEntity.setFlowerList(flowerShopDto.getFlowerListGetFromFE().split(",| "));
 
         flowerShopEntity.setOpenHour(flowerShopDto.getOpenHour());

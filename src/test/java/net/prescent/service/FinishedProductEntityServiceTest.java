@@ -69,7 +69,9 @@ public class FinishedProductEntityServiceTest {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
         flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);

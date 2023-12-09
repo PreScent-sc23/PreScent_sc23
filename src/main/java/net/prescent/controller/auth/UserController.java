@@ -1,12 +1,11 @@
 package net.prescent.controller.auth;
 
 import lombok.RequiredArgsConstructor;
-import net.prescent.dto.CustomerDto;
-import net.prescent.dto.LoginRequest;
-import net.prescent.dto.LoginResponse;
-import net.prescent.dto.SellerDto;
+import net.prescent.dto.*;
 import net.prescent.entity.AccessToken;
+import net.prescent.entity.CustomerEntity;
 import net.prescent.service.AccessTokenService;
+import net.prescent.service.FlowerShopService;
 import net.prescent.service.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,7 @@ public class UserController {
 
     private final UserService userService;
     private final AccessTokenService accessTokenService;
+    private final FlowerShopService flowerShopService;
 
     @PostMapping("/customer/signup")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
@@ -58,18 +58,37 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> logout(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
         userService.logout(token);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/customer-my-info")
-    public CustomerDto getCustomerInfo(@RequestHeader("Authorization") String token) {
+    public CustomerDto getCustomerInfo(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
          return CustomerDto.toCustomerDto(accessTokenService.getCustomerFromToken(token));
     }
 
     @GetMapping("/seller-my-info")
-    public SellerDto getSellerInfo(@RequestHeader("Authorization") String token) {
+    public SellerDto getSellerInfo(@RequestHeader String Authorization)
+    {
+        String token = Authorization.substring(7);
         return SellerDto.toSellerDto(accessTokenService.getSellerFromToken(token));
+    }
+
+    @PostMapping("set-location")
+    public ResponseEntity<?> setLocation(@RequestHeader String Authorization, @RequestBody LocationDto locationDto)
+    {
+        String token = Authorization.substring(7);
+        if(accessTokenService.getCustomerFromToken(token) != null) {
+            userService.setCustomerLocation(token, locationDto);
+        }
+        else {
+            flowerShopService.setShopLocation(token, locationDto);
+        }
+        return ResponseEntity.ok(locationDto);
     }
 }

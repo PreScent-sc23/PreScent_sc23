@@ -62,7 +62,9 @@ public class FPOrderServiceTest {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
         flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
@@ -96,7 +98,9 @@ public class FPOrderServiceTest {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
         flowerShopDto.setShopName("예시 꽃집");
         flowerShopDto.setShopPhoneNum("031-111-2222");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
         flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
@@ -134,7 +138,7 @@ public class FPOrderServiceTest {
         customerDto.setPassword("12345");
         customerDto.setConfirmPassword("12345");
         customerDto.setPhonenum("010-2222-3333");
-        customerDto.setLocation("Test Location");
+        customerDto.setAddress("Test Location");
         return customerDto;
     }
 

@@ -43,7 +43,7 @@ public class UserServiceTest {
         customerDto.setPassword("password1");
         customerDto.setConfirmPassword("password1");
         customerDto.setPhonenum("010-1234-5678");
-        customerDto.setLocation("Test Location");
+        customerDto.setAddress("Test Location");
         return customerDto;
     }
 

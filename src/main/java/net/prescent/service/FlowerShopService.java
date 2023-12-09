@@ -3,6 +3,7 @@ package net.prescent.service;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
+import net.prescent.dto.LocationDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.entity.SellerEntity;
@@ -106,5 +107,14 @@ public class FlowerShopService {
             finishedProductDtoList.add(finishedProductDto);
         }
         return finishedProductDtoList;
+    }
+
+    public void setShopLocation(String token, LocationDto locationDto) {
+        SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
+        FlowerShopEntity flowerShopEntity = sellerEntity.getFlowerShopEntity();
+        flowerShopEntity.setLatitude(locationDto.getLatitude());
+        flowerShopEntity.setLongitude(locationDto.getLongitude());
+        if(locationDto.getAddress()!=null)flowerShopEntity.setAddress(locationDto.getAddress());
+        flowerShopRepo.save(flowerShopEntity);
     }
 }

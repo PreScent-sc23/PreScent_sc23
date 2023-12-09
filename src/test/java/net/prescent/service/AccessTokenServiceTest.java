@@ -47,7 +47,7 @@ public class AccessTokenServiceTest {
         customerDto.setPassword("12345");
         customerDto.setConfirmPassword("12345");
         customerDto.setPhonenum("010-2222-3333");
-        customerDto.setLocation("Test Location");
+        customerDto.setAddress("Test Location");
         return customerDto;
     }
 

@@ -56,12 +56,12 @@ public class FlowerShopController {
         flowerShopDto.setUserKey(userEntity.getUserKey());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n플라워리스트 값 : "+flowerShopDto.getFlowerListGetFromFE());
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n가게이름 값 : "+flowerShopDto.getShopName());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n위치 값 : "+flowerShopDto.getShopLocation());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n위치 값 : "+flowerShopDto.getAddress());
         log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
         log.debug("shopName: " + flowerShopDto.getShopName());
         log.debug("shopPhoneNum: " + flowerShopDto.getShopPhoneNum());
-        log.debug("shopLocation: " + flowerShopDto.getShopLocation());
+        log.debug("shopLocation: " + flowerShopDto.getAddress());
         log.debug("description: " + flowerShopDto.getDescription() + "\n");
         log.debug("---------------------------------------------------------------------");
         if (bindingResult.hasErrors()) {

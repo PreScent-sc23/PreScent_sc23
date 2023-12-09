@@ -2,6 +2,7 @@ package net.prescent.service;
 
 import lombok.RequiredArgsConstructor;
 import net.prescent.dto.CustomerDto;
+import net.prescent.dto.LocationDto;
 import net.prescent.dto.SellerDto;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
@@ -96,5 +97,13 @@ public class UserService {
             return 0;
         }
         else return 1;
+    }
+
+    public void setCustomerLocation(String token, LocationDto locationDto) {
+        CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
+        customerEntity.setLatitude(locationDto.getLatitude());
+        customerEntity.setLongitude(locationDto.getLongitude());
+        if(locationDto.getAddress()!=null) customerEntity.setAddress(locationDto.getAddress());
+        customerRepository.save(customerEntity);
     }
 }

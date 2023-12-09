@@ -59,7 +59,9 @@ public class CartServiceTest {
         FlowerShopDto flowerShopDto = new FlowerShopDto();
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("000-111-2222");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
@@ -97,7 +99,7 @@ public class CartServiceTest {
         customerDto.setPassword("12345");
         customerDto.setConfirmPassword("12345");
         customerDto.setPhonenum("010-2222-3333");
-        customerDto.setLocation("Test Location");
+        customerDto.setAddress("Test Location");
         return customerDto;
     }
     //테스트 목록. 주문서 작성.
