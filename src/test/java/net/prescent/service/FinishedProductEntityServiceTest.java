@@ -34,17 +34,9 @@ public class FinishedProductEntityServiceTest {
     private UserService sellerService;
     @Autowired
     private FlowerShopService flowerShopService;
-<<<<<<< HEAD
     @Autowired
     private SellerRepository sellerRepo;
-=======
 
-
-//    @BeforeEach
-//    public void setUp() {
-//        finishedProductRepository.deleteAllInBatch();
-//    }
->>>>>>> origin/main
 
     public FinishedProductDto createFinishedProductDto()
     {
@@ -53,12 +45,7 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-<<<<<<< HEAD
         finishedProductDto.setGetFpFlowerList("장미 안개꽃");
-=======
-        String arr = "장미 안개꽃";
-        finishedProductDto.setGetFpFlowerList(arr);
->>>>>>> origin/main
         return finishedProductDto;
     }
 

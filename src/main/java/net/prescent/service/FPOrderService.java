@@ -117,7 +117,7 @@ public class FPOrderService {
         List<FPOrderListDto> fpOrderListDtoList = new ArrayList<>();
         for(FPOrderEntity fpOrderEntity : fpOrderRepo.findAll())
         {
-            if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey&& fpOrderEntity.getFpOrderState().equals("픽업완료")) {
+            if(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getSellerEntity().getUserKey() == userKey&& fpOrderEntity.getFpOrderState().equals("픽업 완료")) {
                 FPOrderListDto fpOrderListDto = new FPOrderListDto(fpOrderEntity, fpOrderEntity.getFinishedProductEntity());
                 fpOrderListDto.setFlowerShopName(fpOrderEntity.getFinishedProductEntity().getFlowerShopEntity().getShopName());
                 fpOrderListDtoList.add(fpOrderListDto);
