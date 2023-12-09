@@ -66,11 +66,11 @@ public class SearchService {
     }
     public List<FinishedProductDto> searchByFlower(String token, String decodedQuery) {
         CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
-        List<FinishedProductEntity> searchResult = finishedProductRepository.findAll();
+        List<FinishedProductEntity> Result = finishedProductRepository.findAll();
 
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
-        for(FinishedProductEntity fp : searchResult){
+        for(FinishedProductEntity fp : Result){
             Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE) {
                 finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
