@@ -40,7 +40,7 @@ public class CustomerDto {
         customerDto.setPhonenum(customerEntity.getPhonenum());
         customerDto.setAddress(customerEntity.getAddress());
         if(customerEntity.getLatitude()!=null) customerDto.setLatitude(customerEntity.getLatitude());
-        if(customerEntity.getLongitude()!=null) customerDto.setLatitude(customerEntity.getLongitude());
+        if(customerEntity.getLongitude()!=null) customerDto.setLongitude(customerEntity.getLongitude());
         return customerDto;
     }
 

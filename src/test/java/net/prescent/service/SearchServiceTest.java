@@ -4,10 +4,13 @@ import net.prescent.dto.CustomerDto;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.dto.SellerDto;
+import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.repository.FinishedProductRepository;
 import net.prescent.repository.SellerRepository;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
@@ -36,6 +40,8 @@ public class SearchServiceTest {
     private FlowerShopService flowerShopService;
     @Autowired
     private SellerRepository sellerRepo;
+    @Autowired
+    private AccessTokenService accessTokenService;
 
 
     public FinishedProductDto createFinishedProductDto()
@@ -93,6 +99,8 @@ public class SearchServiceTest {
         customerDto.setAddress("Test Location");
         return customerDto;
     }
+    @Test
+    @DisplayName("태그검색, 꽃이름 검색 테스트")
     public void seacrchTest()
     {
         SellerDto sellerDto = createSellerDto();
@@ -101,6 +109,10 @@ public class SearchServiceTest {
         CustomerDto customerDto = createTestCustomerDto();
         Integer userKey = sellerService.signupCustomer(customerDto);
         String token = sellerService.login("customer@test.com", "password1");
+        CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
+        customerEntity.setLatitude(17.77);
+        customerEntity.setLongitude(17.77);
+
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         flowerShopDto.setUserKey(sellerKey);
@@ -121,9 +133,11 @@ public class SearchServiceTest {
         List<FinishedProductEntity> finishedProductEntityListByTag= searchService.searchByTagDefault("#연인").get();
         assertEquals(finishedProductEntityListByTag.get(0).getFpName(), "장미꽃다발");
 
-        List<FinishedProductDto> finishedProductDtoListByFlower = searchService.searchByFlower(token, "안개");
+        List<FinishedProductDto> finishedProductDtoListByFlower = searchService.searchByFlower(token, "안개꽃");
+        assertNotNull(finishedProductDtoListByFlower);
         assertEquals(finishedProductDtoListByFlower.get(0).getFpName(),"장미꽃다발");
 
-
+        List<FinishedProductDto> finishedProductDtoListByFlower1 = searchService.searchByFlower(token, "장미");
+        assertEquals(finishedProductDtoListByFlower.get(0).getFpName(),"장미꽃다발");
     }
 }

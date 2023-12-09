@@ -1,6 +1,6 @@
-//package Unknown.PreScent.entity;
+//package net.prescent.entity;
 //
-//import Unknown.PreScent.dto.CustomizeProductDto;
+//import net.prescent.dto.CustomizeProductDto;
 //import lombok.Getter;
 //import lombok.Setter;
 //
@@ -14,20 +14,14 @@
 //public class CustomizeProductEntity {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer orderNum;
 //    private Integer cpKey;
-//    private List<String> answers;
-//    private String orderTime;
-//    private boolean isAccept;
+//    private String[] answers;
 //
-//    public static CustomizeProductEntity customizeProductDtoToEntity(CustomizeProductDto customizeProductDto){
-//        CustomizeProductEntity customizeProductEntity = new CustomizeProductEntity();
-////        customizeProductEntity.setOrderNum(customizeProductDto.getOrderNum());
-//        customizeProductEntity.setCpKey(customizeProductDto.getCpKey());
-//        customizeProductEntity.setAnswers(customizeProductDto.getAnswers());
-//        customizeProductEntity.setOrderTime(customizeProductDto.getOrderTime());
-//        customizeProductEntity.setAccept(customizeProductDto.isAccept());
+//    private FlowerShopEntity flowerShopEntity;
 //
-//        return customizeProductEntity;
+//    public void setFlowerShopEntity(FlowerShopEntity flowerShopEntity)
+//    {
+//        this.flowerShopEntity = flowerShopEntity;
+//        this.flowerShopEntity.setCustomizedProductEntityList(this);
 //    }
 //}

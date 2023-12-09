@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,8 +72,9 @@ public class SearchService {
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
         for(FinishedProductEntity fp : Result){
+            List<String> fpFlowerList = new ArrayList<>(Arrays.asList(fp.getFpFlowerList()));
             Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
-            if(distance<= MAX_DISTANCE) {
+            if(distance<= MAX_DISTANCE && fpFlowerList.contains(decodedQuery)) {
                 finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
             }
         }

@@ -1,7 +1,8 @@
-//package Unknown.PreScent.repository;
+//package net.prescent.repository;
 //
-//import Unknown.PreScent.entity.CustomizeProductEntity;
+//import net.prescent.entity.CustomizeProductEntity;
 //import org.springframework.data.jpa.repository.JpaRepository;
 //
 //public interface CustomizeProductRepository extends JpaRepository<CustomizeProductEntity, Integer> {
+//
 //}

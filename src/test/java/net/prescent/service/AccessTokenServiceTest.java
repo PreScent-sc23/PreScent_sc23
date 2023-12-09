@@ -26,8 +26,8 @@ public class AccessTokenServiceTest {
     private UserService userService;
 
 
-    Integer tempNumForTest = 1;
-    String tempStringForTest="0";
+    Integer tempNumForTest = 2;
+    String tempStringForTest="1";
 
 
     public SellerDto createSellerDto(){

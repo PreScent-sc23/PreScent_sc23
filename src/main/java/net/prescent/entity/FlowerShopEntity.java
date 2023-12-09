@@ -45,6 +45,7 @@ public class FlowerShopEntity {
     @OneToMany(mappedBy = "flowerShopEntity", fetch = FetchType.EAGER)
     private Set<FinishedProductEntity> finishedProductEntityList = new HashSet<>();
 
+//    private List<CustomizeProductEntity> customizeProductEntityList = new ArrayList<>();
 
     public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
     {
@@ -53,6 +54,13 @@ public class FlowerShopEntity {
         }
         this.finishedProductEntityList.add(finishedProductEntity);
     }
+//    public void setCustomizedProductEntityList(CustomizeProductEntity customizeProductEntity)
+//    {
+//        if (this.finishedProductEntityList == null) {
+//            this.customizeProductEntityList = new ArrayList<>();
+//        }
+//        this.customizeProductEntityList.add(customizeProductEntity);
+//    }
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
