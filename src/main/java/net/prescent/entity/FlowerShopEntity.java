@@ -35,6 +35,7 @@ public class FlowerShopEntity {
     private Integer closeMinute;
     private String[] workday;
     private String description;
+    private String[] flowerList;
 
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity")
@@ -79,6 +80,7 @@ public class FlowerShopEntity {
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
         flowerShopEntity.setShopPhoneNum(flowerShopDto.getShopPhoneNum());
         flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
+        flowerShopEntity.setFlowerList(flowerShopDto.getFlowerListGetFromFE().split(",| "));
 
         flowerShopEntity.setOpenHour(flowerShopDto.getOpenHour());
         flowerShopEntity.setOpenMinute(flowerShopDto.getOpenMinute());

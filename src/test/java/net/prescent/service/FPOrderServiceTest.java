@@ -63,6 +63,7 @@ public class FPOrderServiceTest {
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
@@ -77,8 +78,7 @@ public class FPOrderServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage("https://prescentbucket.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20231123_203956157_01.png");
         finishedProductDto.setFpPrice(20000);
-        String[] arr = {"장미 안개꽃"};
-        finishedProductDto.setFpFlowerList(arr);
+        finishedProductDto.setGetFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
     public SellerDto createSeller1Dto() {
@@ -97,6 +97,7 @@ public class FPOrderServiceTest {
         flowerShopDto.setShopName("예시 꽃집");
         flowerShopDto.setShopPhoneNum("031-111-2222");
         flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
@@ -112,8 +113,7 @@ public class FPOrderServiceTest {
         finishedProductDto.setFpTag("고백");
         finishedProductDto.setFpImage("https://prescentbucket.s3.ap-northeast-2.amazonaws.com/%EC%98%88%EC%A0%9C+%EA%BD%832.jpeg");
         finishedProductDto.setFpPrice(20000);
-        String[] arr = {"장미 안개꽃"};
-        finishedProductDto.setFpFlowerList(arr);
+        finishedProductDto.setGetFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
 //

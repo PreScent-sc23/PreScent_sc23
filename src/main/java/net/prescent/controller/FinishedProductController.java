@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
+import net.prescent.entity.SellerEntity;
 import net.prescent.service.AccessTokenService;
 import net.prescent.service.FinishedProductService;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,6 +66,17 @@ public class FinishedProductController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> addFinishedProduct(@RequestHeader String Authorization, @RequestParam Integer fpKey)
+    {
+        String token = Authorization.substring(7);
+        Integer sellerKey = accessTokenService.getUserFromToken(token).getUserKey();
+        finishedProductService.deleteFinishedProduct(sellerKey, fpKey);
+
+        return ResponseEntity.ok(fpKey);
+    }
+
 
     @GetMapping("/key/{fpKey}")
     public Optional<FinishedProductEntity> getFinishedProductByFpKey(@PathVariable Integer fpKey)

@@ -73,7 +73,7 @@ public class FinishedProductEntity {
         finishedProductEntity.setFpTag(finishedProductDto.getFpTag());
         finishedProductEntity.setFpPrice(finishedProductDto.getFpPrice());
         finishedProductEntity.setFpDetail(finishedProductDto.getFpDetail());
-        finishedProductEntity.setFpFlowerList(finishedProductDto.getFpFlowerList()[0].split(",| "));
+        finishedProductEntity.setFpFlowerList(finishedProductDto.getGetFpFlowerList().split(",| "));
         return finishedProductEntity;
     }
 }

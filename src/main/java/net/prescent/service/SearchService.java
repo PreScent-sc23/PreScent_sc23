@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.repository.FinishedProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,4 +41,32 @@ public class SearchService {
         return finishedProductRepository.findByFpTagContaining(fpTag, Sort.by(Sort.Order.desc(sortHow)));
     }
 
+    public List<FinishedProductDto> returnSearchByTag(String decodedQuery) {
+
+        String[] queryResult = decodedQuery.split("#");
+
+        System.out.println("query split0: " + queryResult[0] + "----------------\n");
+        System.out.println("query split1: " + queryResult[1] + "----------------\n");
+        queryResult[1] = "#" + queryResult[1];
+
+        Optional<List<FinishedProductEntity>> searchResult = searchByTagDefault(queryResult[1]);
+        List<FinishedProductEntity> result = searchResult.get();
+
+        List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
+        for(FinishedProductEntity fp : result){
+            finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+        }
+        return finalResult;
+    }
+
+    public List<FinishedProductDto> returnSearchByFPName(String decodedQuery) {
+        Optional<List<FinishedProductEntity>> searchResult = finishedProductRepository.findByFpNameContaining(decodedQuery);
+        List<FinishedProductEntity> result = searchResult.get();
+
+        List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
+        for(FinishedProductEntity fp : result){
+            finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+        }
+        return finalResult;
+    }
 }

@@ -53,6 +53,7 @@ public class FlowerShopEntityServiceTest {
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);

@@ -37,8 +37,8 @@ public class CartServiceTest {
     CustomerRepository customerRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
-    private Integer tempNumForTest = 0;
-    private String  tempStringForTest = "";
+    private Integer tempNumForTest = 1;
+    private String  tempStringForTest = "0";
     //    @BeforeEach
 //    public void setup()
 //    {
@@ -64,6 +64,7 @@ public class CartServiceTest {
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
         flowerShopDto.setCloseMinute(0);
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setWorkday(new String[]{"월", "화", "수", "목", "금"});
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
@@ -79,14 +80,14 @@ public class CartServiceTest {
         finishedProductDto.setFpFlowerList(arr);
         return finishedProductDto;
     }
-    public FinishedProductDto createFinishedProductDto(String fpDetail, String fpImage, String[] fpFlowerList, String fpName, String fpTag, Integer fpPrice) {
+    public FinishedProductDto createFinishedProductDto(String fpDetail, String fpImage, String fpFlowerList, String fpName, String fpTag, Integer fpPrice) {
         FinishedProductDto finishedProductDto = new FinishedProductDto();
         finishedProductDto.setFpDetail(fpDetail);
         finishedProductDto.setFpName(fpName);
         finishedProductDto.setFpTag(fpTag);
         finishedProductDto.setFpImage(fpImage);
         finishedProductDto.setFpPrice(fpPrice);
-        finishedProductDto.setFpFlowerList(fpFlowerList);
+        finishedProductDto.setGetFpFlowerList(fpFlowerList);
         return finishedProductDto;
     }
     private CustomerDto createTestCustomerDto() {
@@ -165,33 +166,33 @@ public class CartServiceTest {
         flowerShopDto.setUserKey(sellerKey);
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
-        FinishedProductDto finishedProductDto0 = createFinishedProductDto("메리골드가 돋보이는 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/orange.jpg",new String[]{"메리골드", "라넌큘려스", "사탕수수"},"메리골드 다발","#화이트데이", 63000);
+        FinishedProductDto finishedProductDto0 = createFinishedProductDto("메리골드가 돋보이는 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/orange.jpg","메리골드 라넌큘려스 사탕수수","메리골드 다발","#화이트데이", 63000);
         finishedProductDto0.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity0 = finishedProductService.addFinishedProduct(finishedProductDto0);
 
-        FinishedProductDto finishedProductDto1 = createFinishedProductDto("색의 조화가 매력적인 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/fall.jpg",new String[]{"장미", "안개"},"라넌큘러스 다발","#화이트데이",100);
+        FinishedProductDto finishedProductDto1 = createFinishedProductDto("색의 조화가 매력적인 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/fall.jpg","장미 안개꽃","라넌큘러스 다발","#화이트데이",100);
 
         finishedProductDto1.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity1 = finishedProductService.addFinishedProduct(finishedProductDto1);
 
-        FinishedProductDto finishedProductDto2 = createFinishedProductDto("핑크라넌과 코스모스를 조합한 꽃다발 입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/pink.jpg",new String[]{"라넌", "코스모스"},"핑크라넌","#화이트데이",73000);
+        FinishedProductDto finishedProductDto2 = createFinishedProductDto("핑크라넌과 코스모스를 조합한 꽃다발 입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/pink.jpg","라넌 코스모스","핑크라넌","#화이트데이",73000);
         finishedProductDto2.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity2 = finishedProductService.addFinishedProduct(finishedProductDto2);
 
-        FinishedProductDto finishedProductDto3 = createFinishedProductDto("봄의 화사함을 담은 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/spring.jpg", new String[]{"개나리", "진달래"},"스프링 델피늄","#화이트데이",55000);
+        FinishedProductDto finishedProductDto3 = createFinishedProductDto("봄의 화사함을 담은 화이트데이 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/spring.jpg", "개나리 진달래","스프링 델피늄","#화이트데이",55000);
         finishedProductDto3.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity3 = finishedProductService.addFinishedProduct(finishedProductDto3);
 
-        FinishedProductDto finishedProductDto4 = createFinishedProductDto("미니 델피늄이 한가득 담긴 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/winter.jpg", new String[]{"델피늄", "한가득"},"델피늄 한가득","#화이트데이",55000);
+        FinishedProductDto finishedProductDto4 = createFinishedProductDto("미니 델피늄이 한가득 담긴 꽃다발입니다","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/winter.jpg", "델피늄 한가득","델피늄 한가득","#화이트데이",55000);
         finishedProductDto4.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity4 = finishedProductService.addFinishedProduct(finishedProductDto4);
 
-        FinishedProductDto finishedProductDto5 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png",new String[]{"장미", "라넌큘러스"},"러블리 꽃다발","#화이트데이",49000);
+        FinishedProductDto finishedProductDto5 = createFinishedProductDto("곰인형과 화이트로즈로 구성된 화이트데이 꽃다발","https://prescentbucket.s3.ap-northeast-2.amazonaws.com/lovely.png","장미 라넌큘러스","러블리 꽃다발","#화이트데이",49000);
         finishedProductDto5.setShopKey(addedShop.getShopKey());
         assertNotNull(addedShop.getShopKey());
         FinishedProductEntity addedFinishedProductEntity5 = finishedProductService.addFinishedProduct(finishedProductDto5);

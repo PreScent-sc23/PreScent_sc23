@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +18,8 @@ public class FlowerShopDto {
     private String shopName;
     private String shopPhoneNum;
     private String shopLocation;
+    private String[] storedFlowerList;
+    private String FlowerListGetFromFE;
 
     private Integer openHour;
     private Integer openMinute;
@@ -35,6 +39,7 @@ public class FlowerShopDto {
         flowerShopDto.setShopLocation(flowerShopEntity.getShopLocation());
         flowerShopDto.setOpenHour(flowerShopEntity.getOpenHour());
         flowerShopDto.setOpenMinute(flowerShopEntity.getOpenMinute());
+        flowerShopDto.setStoredFlowerList(flowerShopEntity.getFlowerList());
         flowerShopDto.setCloseHour(flowerShopEntity.getCloseHour());
         flowerShopDto.setCloseMinute(flowerShopEntity.getCloseMinute());
         flowerShopDto.setWorkday(flowerShopEntity.getWorkday());

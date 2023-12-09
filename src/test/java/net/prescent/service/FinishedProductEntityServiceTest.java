@@ -43,8 +43,7 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-        String[] arr = {"장미 안개꽃"};
-        finishedProductDto.setFpFlowerList(arr);
+        finishedProductDto.setGetFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
 
@@ -71,6 +70,7 @@ public class FinishedProductEntityServiceTest {
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
         flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
