@@ -91,6 +91,8 @@ public class UserController {
             userService.setCustomerLocation(token, locationDto);
         }
         else {
+            System.out.println("________________latitude는 다음과 같다: "+locationDto.getLatitude());
+            System.out.println("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
             flowerShopService.setShopLocation(token, locationDto);
         }
         return ResponseEntity.ok(locationDto);

@@ -112,6 +112,9 @@ public class FlowerShopService {
     public void setShopLocation(String token, LocationDto locationDto) {
         SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
         FlowerShopEntity flowerShopEntity = sellerEntity.getFlowerShopEntity();
+
+        System.out.println("________________latitude는 다음과 같다: "+locationDto.getLatitude());
+        System.out.println("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
         flowerShopEntity.setLatitude(locationDto.getLatitude());
         flowerShopEntity.setLongitude(locationDto.getLongitude());
         if(locationDto.getAddress()!=null)flowerShopEntity.setAddress(locationDto.getAddress());
