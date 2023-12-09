@@ -78,7 +78,7 @@ public class AITestService {
 
         Map<String, Object> response = new HashMap<>();
         response.put("boundingImage", boundingImageUrl);
-        response.put("images", images);
+        response.put("resultImage", images);
 
         return response;
     }
