@@ -81,9 +81,9 @@ public class FlowerShopEntity {
         flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
         flowerShopEntity.setShopPhoneNum(flowerShopDto.getShopPhoneNum());
-        flowerShopEntity.setAddress(flowerShopDto.getAddress());
-        flowerShopEntity.setLatitude(flowerShopDto.getLatitude());
-        flowerShopEntity.setLongitude(flowerShopDto.getLongitude());
+        if(flowerShopDto.getAddress()!=null) flowerShopEntity.setAddress(flowerShopDto.getAddress());
+        if(flowerShopDto.getLatitude()!=null) flowerShopEntity.setLatitude(flowerShopDto.getLatitude());
+        if(flowerShopDto.getLongitude()!=null) flowerShopEntity.setLongitude(flowerShopDto.getLongitude());
         flowerShopEntity.setFlowerList(flowerShopDto.getFlowerListGetFromFE().split(",| "));
 
         flowerShopEntity.setOpenHour(flowerShopDto.getOpenHour());
