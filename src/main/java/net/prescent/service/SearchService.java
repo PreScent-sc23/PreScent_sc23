@@ -60,7 +60,7 @@ public class SearchService {
         for(FinishedProductEntity fp : result){
             Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE) {
-                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+                finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
             }
         }
         return finalResult;
@@ -75,7 +75,7 @@ public class SearchService {
             List<String> fpFlowerList = new ArrayList<>(Arrays.asList(fp.getFpFlowerList()));
             Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE && fpFlowerList.contains(decodedQuery)) {
-                finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));
+                finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
             }
         }
         return finalResult;
