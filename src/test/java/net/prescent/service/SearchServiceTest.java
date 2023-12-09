@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import net.prescent.dto.CustomerDto;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
 import net.prescent.dto.SellerDto;
@@ -82,10 +83,24 @@ public class SearchServiceTest {
         flowerShopDto.setDescription("안녕하세요 디스크립션 입니다.");
         return flowerShopDto;
     }
+    private CustomerDto createTestCustomerDto() {
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setName("Test Customer");
+        customerDto.setIdEmail("customer@test.com");
+        customerDto.setPassword("password1");
+        customerDto.setConfirmPassword("password1");
+        customerDto.setPhonenum("010-1234-5678");
+        customerDto.setAddress("Test Location");
+        return customerDto;
+    }
     public void seacrchTest()
     {
         SellerDto sellerDto = createSellerDto();
         Integer sellerKey = sellerService.signupSeller(sellerDto);
+
+        CustomerDto customerDto = createTestCustomerDto();
+        Integer userKey = sellerService.signupCustomer(customerDto);
+        String token = sellerService.login("customer@test.com", "password1");
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
         flowerShopDto.setUserKey(sellerKey);
@@ -106,7 +121,8 @@ public class SearchServiceTest {
         List<FinishedProductEntity> finishedProductEntityListByTag= searchService.searchByTagDefault("#연인").get();
         assertEquals(finishedProductEntityListByTag.get(0).getFpName(), "장미꽃다발");
 
-//        List<FinishedProductEntity> finishedProductEntityListByFlower = searchService.searchByFlower();
+        List<FinishedProductDto> finishedProductDtoListByFlower = searchService.searchByFlower(token, "안개");
+        assertEquals(finishedProductDtoListByFlower.get(0).getFpName(),"장미꽃다발");
 
 
     }

@@ -35,7 +35,7 @@ public class SearchController {
         }
         else
         {
-            List<FinishedProductDto> finalResult = searchService.returnSearchByFlower(token,decodedQuery);
+            List<FinishedProductDto> finalResult = searchService.searchByFlower(token,decodedQuery);
 
             if(finalResult == null) return ResponseEntity.noContent().build();
 

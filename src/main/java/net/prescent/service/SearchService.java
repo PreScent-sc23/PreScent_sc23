@@ -64,13 +64,13 @@ public class SearchService {
         }
         return finalResult;
     }
-    public List<FinishedProductDto> returnSearchByFlower(String token, String decodedQuery) {
+    public List<FinishedProductDto> searchByFlower(String token, String decodedQuery) {
         CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
-        Optional<List<FinishedProductEntity>> searchResult = finishedProductRepository.findByFpNameContaining(decodedQuery);
-        List<FinishedProductEntity> result = searchResult.get();
+        List<FinishedProductEntity> searchResult = finishedProductRepository.findAll();
+
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
-        for(FinishedProductEntity fp : result){
+        for(FinishedProductEntity fp : searchResult){
             Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE) {
                 finalResult.add(FinishedProductDto.toFinishedProductDto2(fp));

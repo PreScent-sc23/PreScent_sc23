@@ -42,15 +42,17 @@ public class CartController {
     }
 
     @GetMapping("/view-in-cart")
-    public List<CartItemResponseDto> viewInCart(@RequestHeader String token)
+    public List<CartItemResponseDto> viewInCart(@RequestHeader String Authorization)
     {
+        String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
         return cartService.viewInCart(userKey);
     }
 
     @DeleteMapping("/clearCart")
-    public ResponseEntity<?> clearCartItem(@RequestHeader String token)
+    public ResponseEntity<?> clearCartItem(@RequestHeader String Authorization)
     {
+        String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
         cartService.clearCartItem(userKey);
         return ResponseEntity.status(HttpStatus.CREATED).build();
