@@ -87,7 +87,7 @@ public class UserController {
     {
         String token = Authorization.substring(7);
         UserEntity userEntity = accessTokenService.getUserFromToken(token);
-        if(!customerRepo.findByUserKey(userEntity.getUserKey()).isPresent()) {
+        if(customerRepo.findByUserKey(userEntity.getUserKey()).isPresent()) {
             userService.setCustomerLocation(token, locationDto);
         }
         else {
