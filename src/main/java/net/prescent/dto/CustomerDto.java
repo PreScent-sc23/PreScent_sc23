@@ -26,18 +26,22 @@ public class CustomerDto {
     private String confirmPassword;
     @NotBlank(message = "전화번호를 작성해주세요")
     private String phonenum;
-    private String location;
+    private String address;
+    private Double latitude;
+    private Double longitude;
 
 
 
 
     public static CustomerDto toCustomerDto(CustomerEntity customerEntity){
         CustomerDto customerDto = new CustomerDto();
-
         customerDto.setName(customerEntity.getName());
         customerDto.setIdEmail(customerEntity.getIdEmail());
         customerDto.setPhonenum(customerEntity.getPhonenum());
-        customerDto.setLocation(customerEntity.getLocation());
+        customerDto.setAddress(customerEntity.getAddress());
+        if(customerEntity.getLatitude()!=null) customerDto.setLatitude(customerEntity.getLatitude());
+        if(customerEntity.getLongitude()!=null) customerDto.setLongitude(customerEntity.getLongitude());
         return customerDto;
     }
+
 }

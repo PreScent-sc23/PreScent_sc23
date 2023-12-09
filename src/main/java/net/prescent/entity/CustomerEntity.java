@@ -29,7 +29,9 @@ public class CustomerEntity extends UserEntity {
     @Column(nullable = false)
     private String phonenum;
 
-    private String location;
+    private String address;
+    private Double latitude;
+    private Double longitude;
 
     @OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER)
     private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();
@@ -43,7 +45,7 @@ public class CustomerEntity extends UserEntity {
         customerEntity.setPhonenum(customerDto.getPhonenum());
         customerEntity.setIdEmail(customerDto.getIdEmail());
         customerEntity.setPassword(customerDto.getPassword());
-        customerEntity.setLocation(customerDto.getLocation());
+        customerEntity.setAddress(customerDto.getAddress());
         return customerEntity;
     }
 

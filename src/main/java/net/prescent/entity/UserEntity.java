@@ -18,12 +18,6 @@ public abstract class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    public Integer getUserKey() {
-        return userKey;
-    }
-    public String getPassword() {
-        return password;
-    }
     public abstract String getUserType();
 
 }

@@ -21,12 +21,14 @@ public class FlowerShopEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer shopKey;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String shopName;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String shopPhoneNum;
-    @Column(nullable = false)
-    private String shopLocation;
+    //@Column(nullable = false)
+    private String Address;
+    private double latitude;
+    private double longitude;
     private boolean isOpened=true;
 
     private Integer openHour;
@@ -35,6 +37,7 @@ public class FlowerShopEntity {
     private Integer closeMinute;
     private String[] workday;
     private String description;
+    private String[] flowerList;
 
     private boolean isSub;
     @OneToOne(mappedBy = "flowerShopEntity")
@@ -42,6 +45,7 @@ public class FlowerShopEntity {
     @OneToMany(mappedBy = "flowerShopEntity", fetch = FetchType.EAGER)
     private Set<FinishedProductEntity> finishedProductEntityList = new HashSet<>();
 
+    private Integer customizeProductKey;
 
     public void setFinishedProductEntityList(FinishedProductEntity finishedProductEntity)
     {
@@ -50,24 +54,19 @@ public class FlowerShopEntity {
         }
         this.finishedProductEntityList.add(finishedProductEntity);
     }
+
     public void setSellerEntity(SellerEntity sellerEntity)
     {
         this.sellerEntity = sellerEntity;
         this.sellerEntity.setFlowerShopEntity(this);
     }
-    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, String description) {
+    public FlowerShopEntity(String shopName, String shopPhoneNum, String address, String description) {
         this.shopName = shopName;
         this.shopPhoneNum = shopPhoneNum;
-        this.shopLocation = shopLocation;
+        this.Address = address;
         this.description = description;
     }
-//    public FlowerShopEntity(String shopName, String shopPhoneNum, String shopLocation, int[][] openingHours, boolean isOpened, String[] holiday) {
-//        this.shopName = shopName;
-//        this.shopPhoneNum = shopPhoneNum;
-//        this.shopLocation = shopLocation;
-//        this.isOpened = isOpened;
-//        this.holiday = holiday;
-//    }
+
 
     public FlowerShopEntity() {
     }
@@ -78,7 +77,10 @@ public class FlowerShopEntity {
         flowerShopEntity.setShopKey(flowerShopDto.getShopKey());
         flowerShopEntity.setShopName(flowerShopDto.getShopName());
         flowerShopEntity.setShopPhoneNum(flowerShopDto.getShopPhoneNum());
-        flowerShopEntity.setShopLocation(flowerShopDto.getShopLocation());
+        if(flowerShopDto.getAddress()!=null) flowerShopEntity.setAddress(flowerShopDto.getAddress());
+        if(flowerShopDto.getLatitude()!=null) flowerShopEntity.setLatitude(flowerShopDto.getLatitude());
+        if(flowerShopDto.getLongitude()!=null) flowerShopEntity.setLongitude(flowerShopDto.getLongitude());
+        flowerShopEntity.setFlowerList(flowerShopDto.getFlowerListGetFromFE().split(",| "));
 
         flowerShopEntity.setOpenHour(flowerShopDto.getOpenHour());
         flowerShopEntity.setOpenMinute(flowerShopDto.getOpenMinute());
@@ -90,7 +92,4 @@ public class FlowerShopEntity {
 
         return flowerShopEntity;
     }
-
-    // public void setSellerEntity(Optional<SellerEntity> sellerEntity) {
-    // }
 }

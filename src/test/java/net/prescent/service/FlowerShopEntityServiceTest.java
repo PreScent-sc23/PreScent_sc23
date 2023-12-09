@@ -50,10 +50,12 @@ public class FlowerShopEntityServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
@@ -71,6 +73,7 @@ public class FlowerShopEntityServiceTest {
         assertNotNull(sellerKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
+        flowerShopDto.setUserKey(sellerKey);
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
 
         assertThat(addedShop).isNotNull();
@@ -93,6 +96,7 @@ public class FlowerShopEntityServiceTest {
         assertNotNull(sellerKey);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
+        flowerShopDto.setUserKey(sellerKey);
 
         FlowerShopEntity addedShop1 = flowerShopService.addFlowerShop(flowerShopDto);
         Throwable e = assertThrows(IllegalStateException.class, () -> {
