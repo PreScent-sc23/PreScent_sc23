@@ -54,6 +54,7 @@ public class FlowerShopController {
         System.out.println(("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+token));
         UserEntity userEntity = accessTokenService.getUserFromToken(token);
         flowerShopDto.setUserKey(userEntity.getUserKey());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n플라워리스트 값 : "+flowerShopDto.getFlowerListGetFromFE());
         log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
         log.debug("shopName: " + flowerShopDto.getShopName());
