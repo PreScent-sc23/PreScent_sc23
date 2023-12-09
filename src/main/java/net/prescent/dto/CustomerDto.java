@@ -27,6 +27,8 @@ public class CustomerDto {
     @NotBlank(message = "전화번호를 작성해주세요")
     private String phonenum;
     private String address;
+    private Double latitude;
+    private Double longitude;
 
 
 
@@ -37,6 +39,8 @@ public class CustomerDto {
         customerDto.setIdEmail(customerEntity.getIdEmail());
         customerDto.setPhonenum(customerEntity.getPhonenum());
         customerDto.setAddress(customerEntity.getAddress());
+        if(customerEntity.getLatitude()!=null) customerDto.setLatitude(customerEntity.getLatitude());
+        if(customerEntity.getLongitude()!=null) customerDto.setLatitude(customerEntity.getLongitude());
         return customerDto;
     }
 
