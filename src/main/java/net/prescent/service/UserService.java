@@ -132,27 +132,17 @@ public class UserService {
     }
     public void sendVerificationEmail(String idEmail) {
         String verificationCode = UUID.randomUUID().toString().substring(0, 6);
-        customerRepository.findByIdEmail(idEmail)
-                .ifPresent(customer -> {
-                    customer.setVerificationCode(verificationCode);
-                    customerRepository.save(customer);
-                });
-        sellerRepository.findByIdEmail(idEmail)
-                .ifPresent(seller -> {
-                    seller.setVerificationCode(verificationCode);
-                    sellerRepository.save(seller);
-                });
         mailService.sendVerificationEmail(idEmail, verificationCode);
     }
 
-    public boolean verifyEmail(String idEmail, String verificationCode) {
-        return customerRepository.findByIdEmail(idEmail)
-                .map(customer -> customer.getVerificationCode().equals(verificationCode))
-                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
-                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
-                        .orElse(false));
-
-    }
+//    public boolean verifyEmail(String idEmail, String verificationCode) {
+//        return customerRepository.findByIdEmail(idEmail)
+//                .map(customer -> customer.getVerificationCode().equals(verificationCode))
+//                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
+//                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
+//                        .orElse(false));
+//
+//    }
 
 //    public boolean verifyEmail(String idEmail, String verificationCode) {
 //        return customerRepository.findByIdEmail(idEmail)

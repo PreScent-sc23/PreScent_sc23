@@ -8,6 +8,7 @@ import net.prescent.entity.UserEntity;
 import net.prescent.repository.CustomerRepository;
 import net.prescent.service.AccessTokenService;
 import net.prescent.service.FlowerShopService;
+import net.prescent.service.MailService;
 import net.prescent.service.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,6 +29,7 @@ public class UserController {
     private final AccessTokenService accessTokenService;
     private final FlowerShopService flowerShopService;
     private final CustomerRepository customerRepo;
+    private final MailService mailService;
 
     @PostMapping("/customer/signup")
     public ResponseEntity<?> registerCustomer(@Valid @RequestBody CustomerDto customerDto, BindingResult bindingResult) {
@@ -99,17 +103,25 @@ public class UserController {
         }
         return ResponseEntity.ok(locationDto);
     }
+
     @PostMapping("/send-verification-email")
     public ResponseEntity<?> sendVerificationEmail(@RequestBody String idEmail) {
-        userService.sendVerificationEmail(idEmail);
-        return ResponseEntity.ok().body("Verification email sent successfully");
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        mailService.sendVerificationEmail(idEmail, verificationCode);
+        return ResponseEntity.ok().body(Map.of("verificationCode", verificationCode));
     }
-    @GetMapping("/verify-email")
-    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, @RequestParam String verificationCode) {
-        if (userService.verifyEmail(idEmail, verificationCode)) {
-            return ResponseEntity.ok().body("Email verified successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Invalid verification code");
-        }
-    }
+//    @PostMapping("/send-verification-email")
+//    public ResponseEntity<?> sendVerificationEmail(@RequestBody String idEmail) {
+//
+//        userService.sendVerificationEmail(idEmail);
+//        return ResponseEntity.ok().body("Verification email sent successfully");
+//    }
+//    @GetMapping("/verify-email")
+//    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, @RequestParam String verificationCode) {
+//        if (userService.verifyEmail(idEmail, verificationCode)) {
+//            return ResponseEntity.ok().body("Email verified successfully");
+//        } else {
+//            return ResponseEntity.badRequest().body("Invalid verification code");
+//        }
+//    }
 }
