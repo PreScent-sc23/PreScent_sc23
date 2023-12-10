@@ -30,6 +30,8 @@ public class CustomerEntity extends UserEntity {
     private String phonenum;
 
     private String location;
+    private String verificationCode;
+
 
     @OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER)
     private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();

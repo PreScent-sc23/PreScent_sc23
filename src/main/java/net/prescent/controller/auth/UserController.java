@@ -59,4 +59,13 @@ public class UserController {
         userService.logout(token);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, String verificationCode) {
+        if (userService.verifyEmail(idEmail, verificationCode)) {
+            return ResponseEntity.ok().body("Email verified successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid verification code");
+        }
+    }
 }

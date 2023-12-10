@@ -18,6 +18,7 @@ public abstract class UserEntity {
     @Column(nullable = false)
     private String password;
 
+
     public Integer getUserKey() {
         return userKey;
     }
