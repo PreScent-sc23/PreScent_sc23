@@ -21,6 +21,8 @@ public class SellerEntity extends UserEntity {
     @Column(nullable = false)
     private String phonenum;
     private Integer isgrant;
+    private String verificationCode;
+
 
     @OneToOne
     @JoinColumn(name = "shopKey", referencedColumnName = "shopKey")
