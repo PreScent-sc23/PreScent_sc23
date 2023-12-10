@@ -32,6 +32,8 @@ public class CustomerEntity extends UserEntity {
     private String address;
     private Double latitude;
     private Double longitude;
+    private String location;
+    private String verificationCode;
 
     @OneToMany(mappedBy = "customerEntity", fetch = FetchType.EAGER)
     private List<FPOrderEntity> fpOrderEntityList = new ArrayList<>();

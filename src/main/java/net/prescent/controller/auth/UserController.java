@@ -99,4 +99,17 @@ public class UserController {
         }
         return ResponseEntity.ok(locationDto);
     }
+    @PostMapping("/send-verification-email")
+    public ResponseEntity<?> sendVerificationEmail(@RequestBody String idEmail) {
+        userService.sendVerificationEmail(idEmail);
+        return ResponseEntity.ok().body("Verification email sent successfully");
+    }
+    @PostMapping("/verify-email")
+    public ResponseEntity<?> verifyEmail(@RequestBody String idEmail, @RequestBody String verificationCode) {
+        if (userService.verifyEmail(idEmail, verificationCode)) {
+            return ResponseEntity.ok().body("Email verified successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid verification code");
+        }
+    }
 }

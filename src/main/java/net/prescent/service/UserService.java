@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -24,22 +25,43 @@ public class UserService {
     private final SellerRepository sellerRepository;
     private final PasswordEncoder passwordEncoder;
     private final AccessTokenService accessTokenService;
+    private final MailService mailService;
 
     public Integer signupCustomer(CustomerDto customerDto) {
+//        verifyPasswordMatch(customerDto.getPassword(), customerDto.getConfirmPassword());
+//        verifyCustomerNotRegistered(customerDto.getIdEmail());
+//        CustomerEntity customer = CustomerEntity.toCustomerEntity(customerDto);
+//        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+//        return customerRepository.save(customer).getUserKey();
+
         verifyPasswordMatch(customerDto.getPassword(), customerDto.getConfirmPassword());
         verifyCustomerNotRegistered(customerDto.getIdEmail());
         CustomerEntity customer = CustomerEntity.toCustomerEntity(customerDto);
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer).getUserKey();
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        customer.setVerificationCode(verificationCode);
+        customerRepository.save(customer);
+        mailService.sendVerificationEmail(customer.getIdEmail(), verificationCode);
+        return customer.getUserKey();
     }
 
     // signup여부 확인용으로 businessKey반환
     public Integer signupSeller(SellerDto sellerDto) {
+//        verifyPasswordMatch(sellerDto.getPassword(), sellerDto.getConfirmPassword());
+//        verifySellerNotRegistered(sellerDto.getBusinessKey(), sellerDto.getIdEmail());
+//        SellerEntity seller = SellerEntity.toSellerEntity(sellerDto);
+//        seller.setPassword(passwordEncoder.encode(seller.getPassword()));
+//        return sellerRepository.save(seller).getUserKey();
+
         verifyPasswordMatch(sellerDto.getPassword(), sellerDto.getConfirmPassword());
         verifySellerNotRegistered(sellerDto.getBusinessKey(), sellerDto.getIdEmail());
         SellerEntity seller = SellerEntity.toSellerEntity(sellerDto);
         seller.setPassword(passwordEncoder.encode(seller.getPassword()));
-        return sellerRepository.save(seller).getUserKey();
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        seller.setVerificationCode(verificationCode);
+        sellerRepository.save(seller);
+        mailService.sendVerificationEmail(seller.getIdEmail(), verificationCode);
+        return seller.getUserKey();
     }
 
     private void verifyPasswordMatch(String password, String confirmPassword) {
@@ -108,4 +130,51 @@ public class UserService {
         if(locationDto.getAddress()!=null) customerEntity.setAddress(locationDto.getAddress());
         customerRepository.save(customerEntity);
     }
+    public void sendVerificationEmail(String idEmail) {
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        customerRepository.findByIdEmail(idEmail)
+                .ifPresent(customer -> {
+                    customer.setVerificationCode(verificationCode);
+                    customerRepository.save(customer);
+                });
+        sellerRepository.findByIdEmail(idEmail)
+                .ifPresent(seller -> {
+                    seller.setVerificationCode(verificationCode);
+                    sellerRepository.save(seller);
+                });
+        mailService.sendVerificationEmail(idEmail, verificationCode);
+    }
+
+    public boolean verifyEmail(String idEmail, String verificationCode) {
+        return customerRepository.findByIdEmail(idEmail)
+                .map(customer -> customer.getVerificationCode().equals(verificationCode))
+                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
+                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
+                        .orElse(false));
+
+    }
+
+//    public boolean verifyEmail(String idEmail, String verificationCode) {
+//        return customerRepository.findByIdEmail(idEmail)
+//                .map(customer -> {
+//                    if (customer.getVerificationCode().equals(verificationCode)) {
+//                        customer.setVerificationCode(null);
+//                        customerRepository.save(customer);
+//                        return true;
+//                    } else {
+//                        return false;
+//                    }
+//                })
+//                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
+//                        .map(seller -> {
+//                            if (seller.getVerificationCode().equals(verificationCode)) {
+//                                seller.setVerificationCode(null);
+//                                sellerRepository.save(seller);
+//                                return true;
+//                            } else {
+//                                return false;
+//                            }
+//                        })
+//                        .orElse(false));
+//    }
 }
