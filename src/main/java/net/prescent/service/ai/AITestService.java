@@ -22,11 +22,16 @@ public class AITestService {
         this.aiS3Service = aiS3Service;
     }
 
-    public List<Map<String, Object>> processAdditionalImages(String fileKey) throws IOException {
+    public Map<String, Object> processAdditionalImages(String fileKey) throws IOException {
         List<Map<String, Object>> images = new ArrayList<>();
 
+        String s3BoundingImagesDirectory = "backend/src/main/python/detects/"+fileKey;
+        aiS3Service.uploadFileFromPath(s3BoundingImagesDirectory, fileKey);
+        String boundingImageUrl = aiS3Service.getFileUrl(fileKey);
+
+
         List<ImageInfo> ResultImage1 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b2.jpg", "분홍 장미", "영원한 사랑, 사랑의 맹세"),
+                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b20.jpg", "분홍 장미", "영원한 사랑, 사랑의 맹세"),
                 new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b22.jpg", "다알리아", "화려함, 우아함"),
                 new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b27.jpg", "거베라", "신비로움, 수수께끼")
         );
@@ -41,7 +46,7 @@ public class AITestService {
                 new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa5.jpg", "메리골드", "반드시 오고야 말 행복")
         );
         List<ImageInfo> ResultImage4 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e.jpg", "라넌큘러스", "매력, 매혹, 비난하다"),
+                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e1.jpg", "라넌큘러스", "매력, 매혹, 비난하다"),
                 new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e2.jpg", "델피니움", "제 마음을 헤아려 주세요"),
                 new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e4.jpg", "아네모네", "배신, 속절없는 사랑"),
                 new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e5.jpg", "데이지", "희망, 평화, 사랑스러움")
@@ -71,7 +76,11 @@ public class AITestService {
             images.add(imageDetails);
         }
 
-        return images;
+        Map<String, Object> response = new HashMap<>();
+        response.put("boundingImage", boundingImageUrl);
+        response.put("resultImage", images);
+
+        return response;
     }
 }
 //@Service
