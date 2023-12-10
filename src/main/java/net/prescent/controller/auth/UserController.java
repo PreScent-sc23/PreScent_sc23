@@ -104,25 +104,25 @@ public class UserController {
         return ResponseEntity.ok(locationDto);
     }
 
-//    @PostMapping("/send-verification-email")
-//    public ResponseEntity<?> sendVerificationEmail(@RequestBody EmailRequest emailRequest) {
-//        String idEmail = emailRequest.getIdEmail();
-//        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
-//        mailService.sendVerificationEmail(idEmail, verificationCode);
-//        return ResponseEntity.ok().body(Map.of("verificationCode", verificationCode));
-//    }
     @PostMapping("/send-verification-email")
     public ResponseEntity<?> sendVerificationEmail(@RequestBody EmailRequest emailRequest) {
         String idEmail = emailRequest.getIdEmail();
-        userService.sendVerificationEmail(idEmail);
-        return ResponseEntity.ok().body("Verification email sent successfully");
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        mailService.sendVerificationEmail(idEmail, verificationCode);
+        return ResponseEntity.ok().body(Map.of("verificationCode", verificationCode));
     }
-    @GetMapping("/verify-email")
-    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, @RequestParam String verificationCode) {
-        if (userService.verifyEmail(idEmail, verificationCode)) {
-            return ResponseEntity.ok().body("Email verified successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Invalid verification code");
-        }
-    }
+//    @PostMapping("/send-verification-email")
+//    public ResponseEntity<?> sendVerificationEmail(@RequestBody EmailRequest emailRequest) {
+//        String idEmail = emailRequest.getIdEmail();
+//        userService.sendVerificationEmail(idEmail);
+//        return ResponseEntity.ok().body("Verification email sent successfully");
+//    }
+//    @GetMapping("/verify-email")
+//    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, @RequestParam String verificationCode) {
+//        if (userService.verifyEmail(idEmail, verificationCode)) {
+//            return ResponseEntity.ok().body("Email verified successfully");
+//        } else {
+//            return ResponseEntity.badRequest().body("Invalid verification code");
+//        }
+//    }
 }
