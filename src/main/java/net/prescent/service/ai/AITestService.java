@@ -41,9 +41,9 @@ public class AITestService {
                 new ImageInfo("backend/src/main/python/crops2/flower_test9.jpg", "백합", "순결, 변함없는 사랑")
         );
         List<ImageInfo> ResultImage3 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa2.jpg", "거베라", "신비로움, 수수께끼"),
-                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa3.jpg", "노란장미", "완벽한 성취, 시기, 질투"),
-                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa5.jpg", "메리골드", "반드시 오고야 말 행복")
+                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa2.JPG", "거베라", "신비로움, 수수께끼"),
+                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa3.JPG", "노란장미", "완벽한 성취, 시기, 질투"),
+                new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa5.JPG", "메리골드", "반드시 오고야 말 행복")
         );
         List<ImageInfo> ResultImage4 = Arrays.asList(
                 new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e1.jpg", "라넌큘러스", "매력, 매혹, 비난하다"),
@@ -57,7 +57,7 @@ public class AITestService {
             final_ResultImage = ResultImage4;
         } else if ("a97cfb883461041ad44ae26d95e9f6b2.jpg".equals(fileKey)) {
             final_ResultImage = ResultImage1;
-        } else if ("c399d8470670dab0253e6490974da9aa.jpg".equals(fileKey)) {
+        } else if ("c399d8470670dab0253e6490974da9aa.JPG".equals(fileKey)) {
             final_ResultImage = ResultImage3;
         } else {
             final_ResultImage = ResultImage2;
