@@ -33,7 +33,7 @@ public class UserServiceTest {
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("Test Customer");
-        customerDto.setIdEmail("sooh@ajou.ac.kr");
+        customerDto.setIdEmail("soohh@ajou.ac.kr");
         customerDto.setPassword("password1");
         customerDto.setConfirmPassword("password1");
         customerDto.setPhonenum("010-1234-5678");
@@ -106,7 +106,7 @@ public class UserServiceTest {
         CustomerDto customerDto = createTestCustomerDto();
         userService.testSignupCustomer(customerDto);
 
-        String token = userService.login("sooh@ajou.ac.kr", "password1");
+        String token = userService.login("soohh@ajou.ac.kr", "password1");
         assertNotNull(token, "로그인에 성공하면 토큰이 반환되어야 합니다.");
         assertTrue(accessTokenService.validateAccessToken(token), "반환된 토큰은 유효해야 합니다.");
     }
@@ -127,7 +127,7 @@ public class UserServiceTest {
     public void testLogout() {
         CustomerDto customerDto = createTestCustomerDto();
         userService.testSignupCustomer(customerDto);
-        String token = userService.login("sooh@ajou.ac.kr", "password1");
+        String token = userService.login("soohh@ajou.ac.kr", "password1");
 
         userService.logout(token);
         assertFalse(accessTokenService.validateAccessToken(token), "로그아웃 후에는 토큰이 무효화되어야 합니다.");
