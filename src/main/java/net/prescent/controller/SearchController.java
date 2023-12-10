@@ -1,6 +1,7 @@
 package net.prescent.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.service.SearchService;
@@ -13,6 +14,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -47,7 +49,7 @@ public class SearchController {
 
     @GetMapping("/detail/{fpKey}")
     public ResponseEntity<FinishedProductDto> showDetail(@PathVariable String fpKey){
-        System.out.println("received fpKey:" + fpKey + "==================");
+        log.info("received fpKey:" + fpKey + "==================");
 
         Integer intFpKey = Integer.parseInt(fpKey);
 
@@ -68,28 +70,28 @@ public class SearchController {
 
 
     private static void printManyResult(List<FinishedProductDto> finalResult) {
-        System.out.println("---------------------------------====================================");
+        log.info("---------------------------------====================================");
         for(FinishedProductDto fp : finalResult){
-            System.out.println("fpKey: " + fp.getFpKey());
-            System.out.println("fpName: " + fp.getFpName());
-            System.out.println("fpPrice: " + fp.getFpPrice());
-            System.out.println("fpTag: " + fp.getFpTag());
-            System.out.println("shopKey: " + fp.getShopKey());
-            System.out.println("----------------------------------");
+            log.info("fpKey: " + fp.getFpKey());
+            log.info("fpName: " + fp.getFpName());
+            log.info("fpPrice: " + fp.getFpPrice());
+            log.info("fpTag: " + fp.getFpTag());
+            log.info("shopKey: " + fp.getShopKey());
+            log.info("----------------------------------");
         }
-        System.out.println("---------------------------------====================================");
+        log.info("---------------------------------====================================");
     }
 
 
     private static void printResult(FinishedProductDto finalResult) {
-        System.out.println("---------------------------------====================================");
-        System.out.println("fpKey: " + finalResult.getFpKey());
-        System.out.println("fpName: " + finalResult.getFpName());
-        System.out.println("fpPrice: " + finalResult.getFpPrice());
-        System.out.println("fpTag: " + finalResult.getFpTag());
-        System.out.println("shopKey: " + finalResult.getShopKey());
-        System.out.println("fpDetail: " + finalResult.getFpDetail());
-        System.out.println("---------------------------------====================================");
+        log.info("---------------------------------====================================");
+        log.info("fpKey: " + finalResult.getFpKey());
+        log.info("fpName: " + finalResult.getFpName());
+        log.info("fpPrice: " + finalResult.getFpPrice());
+        log.info("fpTag: " + finalResult.getFpTag());
+        log.info("shopKey: " + finalResult.getShopKey());
+        log.info("fpDetail: " + finalResult.getFpDetail());
+        log.info("---------------------------------====================================");
     }
 
 

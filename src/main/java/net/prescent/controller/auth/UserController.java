@@ -1,6 +1,7 @@
 package net.prescent.controller.auth;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.*;
 import net.prescent.entity.AccessToken;
 import net.prescent.entity.CustomerEntity;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
@@ -88,13 +90,13 @@ public class UserController {
         String token = Authorization.substring(7);
         UserEntity userEntity = accessTokenService.getUserFromToken(token);
         if(customerRepo.findByUserKey(userEntity.getUserKey()).isPresent()) {
-            System.out.println("여긴 유저키________________latitude는 다음과 같다: "+locationDto.getLatitude());
-            System.out.println("여긴 유저키________________longitude는 다음과 같다: "+ locationDto.getLongitude());
+            log.info("여긴 유저키________________latitude는 다음과 같다: "+locationDto.getLatitude());
+            log.info("여긴 유저키________________longitude는 다음과 같다: "+ locationDto.getLongitude());
             userService.setCustomerLocation(token, locationDto);
         }
         else {
-            System.out.println("________________latitude는 다음과 같다: "+locationDto.getLatitude());
-            System.out.println("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
+            log.info("________________latitude는 다음과 같다: "+locationDto.getLatitude());
+            log.info("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
             flowerShopService.setShopLocation(token, locationDto);
         }
         return ResponseEntity.ok(locationDto);

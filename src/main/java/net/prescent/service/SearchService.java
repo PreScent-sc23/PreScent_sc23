@@ -49,8 +49,8 @@ public class SearchService {
 
         String[] queryResult = decodedQuery.split("#");
 
-        System.out.println("query split0: " + queryResult[0] + "----------------\n");
-        System.out.println("query split1: " + queryResult[1] + "----------------\n");
+        log.info("query split0: " + queryResult[0] + "----------------\n");
+        log.info("query split1: " + queryResult[1] + "----------------\n");
         queryResult[1] = "#" + queryResult[1];
 
         Optional<List<FinishedProductEntity>> searchResult = searchByTagDefault(queryResult[1]);

@@ -101,8 +101,8 @@ public class UserService {
 
     public void setCustomerLocation(String token, LocationDto locationDto) {
         CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
-        System.out.println("========================latitude는 이거 :"+locationDto.getLatitude());
-        System.out.println("========================longitude는 이거 :"+locationDto.getLongitude());
+        log.info("========================latitude는 이거 :"+locationDto.getLatitude());
+        log.info("========================longitude는 이거 :"+locationDto.getLongitude());
         customerEntity.setLatitude(locationDto.getLatitude());
         customerEntity.setLongitude(locationDto.getLongitude());
         if(locationDto.getAddress()!=null) customerEntity.setAddress(locationDto.getAddress());
