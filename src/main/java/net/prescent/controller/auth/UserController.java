@@ -105,7 +105,7 @@ public class UserController {
         return ResponseEntity.ok().body("Verification email sent successfully");
     }
     @GetMapping("/verify-email")
-    public ResponseEntity<?> verifyEmail(@RequestBody String idEmail, @RequestBody String verificationCode) {
+    public ResponseEntity<?> verifyEmail(@RequestParam String idEmail, @RequestParam String verificationCode) {
         if (userService.verifyEmail(idEmail, verificationCode)) {
             return ResponseEntity.ok().body("Email verified successfully");
         } else {
