@@ -3,6 +3,7 @@ package net.prescent.service;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.dto.FlowerShopDto;
+import net.prescent.dto.LocationDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.entity.SellerEntity;
@@ -19,18 +20,20 @@ import java.util.Optional;
 public class FlowerShopService {
     private final FlowerShopRepository flowerShopRepo;
     private final SellerRepository sellerRepo;
+    private final AccessTokenService accessTokenService;
 
-    public FlowerShopService(FlowerShopRepository flowerShopRepo, SellerRepository sellerRepo)
+    public FlowerShopService(FlowerShopRepository flowerShopRepo, SellerRepository sellerRepo, AccessTokenService accessTokenService)
     {
         this.flowerShopRepo = flowerShopRepo;
         this.sellerRepo = sellerRepo;
+        this.accessTokenService = accessTokenService;
     }
 
 
     public FlowerShopEntity addFlowerShop(FlowerShopDto flowerShopDto)
     {
         FlowerShopEntity flowerShopEntity = FlowerShopEntity.FlowerShopDtoToEntity(flowerShopDto);
-        Optional<SellerEntity> sellerEntity = sellerRepo.findByBusinessKey(flowerShopDto.getBusinessKey());
+        Optional<SellerEntity> sellerEntity = sellerRepo.findByUserKey(flowerShopDto.getUserKey());
         if(sellerEntity.isPresent()){
             SellerEntity foundSellerEntity = sellerEntity.get();
 //            log.debug(foundSellerEntity.getSellerId() + foundSellerEntity.getSellerName() + foundSellerEntity.getFlowerShopEntity().getShopName()+"-----------------------------------\n\n");
@@ -102,4 +105,31 @@ public class FlowerShopService {
         return flowerShopRepo.findByshopKey(shopKey);
     }
 
+    public List<FinishedProductDto> sellerViewFPinShop(String token) {
+        SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
+        FlowerShopEntity flowershopEntity = sellerEntity.getFlowerShopEntity();
+        List<FinishedProductDto> finishedProductDtoList = new ArrayList<>();
+        if(flowershopEntity.getFinishedProductEntityList() == null)
+        {
+            return finishedProductDtoList;
+        }
+        for(FinishedProductEntity finishedProductEntity : flowershopEntity.getFinishedProductEntityList())
+        {
+            FinishedProductDto finishedProductDto = FinishedProductDto.toFinishedProductDto(finishedProductEntity);
+            finishedProductDtoList.add(finishedProductDto);
+        }
+        return finishedProductDtoList;
+    }
+
+    public void setShopLocation(String token, LocationDto locationDto) {
+        SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
+        FlowerShopEntity flowerShopEntity = sellerEntity.getFlowerShopEntity();
+
+        System.out.println("________________latitude는 다음과 같다: "+locationDto.getLatitude());
+        System.out.println("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
+        flowerShopEntity.setLatitude(locationDto.getLatitude());
+        flowerShopEntity.setLongitude(locationDto.getLongitude());
+        if(locationDto.getAddress()!=null)flowerShopEntity.setAddress(locationDto.getAddress());
+        flowerShopRepo.save(flowerShopEntity);
+    }
 }

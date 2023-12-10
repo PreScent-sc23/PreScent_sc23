@@ -2,6 +2,7 @@ package net.prescent.service;
 
 import lombok.RequiredArgsConstructor;
 import net.prescent.dto.CustomerDto;
+import net.prescent.dto.LocationDto;
 import net.prescent.dto.SellerDto;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -23,13 +25,19 @@ public class UserService {
     private final SellerRepository sellerRepository;
     private final PasswordEncoder passwordEncoder;
     private final AccessTokenService accessTokenService;
+    private final MailService mailService;
 
     public Integer signupCustomer(CustomerDto customerDto) {
+
         verifyPasswordMatch(customerDto.getPassword(), customerDto.getConfirmPassword());
         verifyCustomerNotRegistered(customerDto.getIdEmail());
         CustomerEntity customer = CustomerEntity.toCustomerEntity(customerDto);
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer).getUserKey();
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        customer.setVerificationCode(verificationCode);
+        customerRepository.save(customer);
+        mailService.sendVerificationEmail(customer.getIdEmail(), verificationCode);
+        return customer.getUserKey();
     }
 
     // signup여부 확인용으로 businessKey반환
@@ -38,7 +46,21 @@ public class UserService {
         verifySellerNotRegistered(sellerDto.getBusinessKey(), sellerDto.getIdEmail());
         SellerEntity seller = SellerEntity.toSellerEntity(sellerDto);
         seller.setPassword(passwordEncoder.encode(seller.getPassword()));
-        return sellerRepository.save(seller).getUserKey();
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        seller.setVerificationCode(verificationCode);
+        sellerRepository.save(seller);
+        mailService.sendVerificationEmail(seller.getIdEmail(), verificationCode);
+        return seller.getUserKey();
+    }
+    public Integer testSignupSeller(SellerDto sellerDto) {
+        verifyPasswordMatch(sellerDto.getPassword(), sellerDto.getConfirmPassword());
+        verifySellerNotRegistered(sellerDto.getBusinessKey(), sellerDto.getIdEmail());
+        SellerEntity seller = SellerEntity.toSellerEntity(sellerDto);
+        seller.setPassword(passwordEncoder.encode(seller.getPassword()));
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        seller.setVerificationCode(verificationCode);
+        sellerRepository.save(seller);
+        return seller.getUserKey();
     }
 
     private void verifyPasswordMatch(String password, String confirmPassword) {
@@ -71,7 +93,6 @@ public class UserService {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
-
         return accessTokenService.createAccessToken(user);
     }
 
@@ -97,5 +118,19 @@ public class UserService {
             return 0;
         }
         else return 1;
+    }
+
+    public void setCustomerLocation(String token, LocationDto locationDto) {
+        CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
+        System.out.println("========================latitude는 이거 :"+locationDto.getLatitude());
+        System.out.println("========================longitude는 이거 :"+locationDto.getLongitude());
+        customerEntity.setLatitude(locationDto.getLatitude());
+        customerEntity.setLongitude(locationDto.getLongitude());
+        if(locationDto.getAddress()!=null) customerEntity.setAddress(locationDto.getAddress());
+        customerRepository.save(customerEntity);
+    }
+    public void sendVerificationEmail(String idEmail) {
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        mailService.sendVerificationEmail(idEmail, verificationCode);
     }
 }

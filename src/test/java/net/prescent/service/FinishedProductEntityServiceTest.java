@@ -7,8 +7,8 @@ import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
 import net.prescent.repository.FinishedProductRepository;
 //import org.junit.Test;
+import net.prescent.repository.SellerRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,12 +34,9 @@ public class FinishedProductEntityServiceTest {
     private UserService sellerService;
     @Autowired
     private FlowerShopService flowerShopService;
+    @Autowired
+    private SellerRepository sellerRepo;
 
-
-//    @BeforeEach
-//    public void setUp() {
-//        finishedProductRepository.deleteAllInBatch();
-//    }
 
     public FinishedProductDto createFinishedProductDto()
     {
@@ -48,8 +45,7 @@ public class FinishedProductEntityServiceTest {
         finishedProductDto.setFpTag("연인");
         finishedProductDto.setFpImage(null);
         finishedProductDto.setFpPrice(20000);
-        String arr = "장미 안개꽃";
-        finishedProductDto.setGetFpFlowerList(arr);
+        finishedProductDto.setGetFpFlowerList("장미 안개꽃");
         return finishedProductDto;
     }
 
@@ -73,10 +69,12 @@ public class FinishedProductEntityServiceTest {
     }
     public FlowerShopDto createFlowerShopDto(){
         FlowerShopDto flowerShopDto = new FlowerShopDto();
-        flowerShopDto.setBusinessKey(1234567890L+tempNumForTest);
         flowerShopDto.setShopName("it's me");
         flowerShopDto.setShopPhoneNum("031-308-8223");
-        flowerShopDto.setShopLocation("suwon city");
+        flowerShopDto.setAddress("suwon city");
+        flowerShopDto.setLatitude(17.77);
+        flowerShopDto.setLongitude(17.77);
+        flowerShopDto.setFlowerListGetFromFE("장미 라넌큘려서");
         flowerShopDto.setOpenHour(10);
         flowerShopDto.setOpenMinute(0);
         flowerShopDto.setCloseHour(20);
@@ -90,10 +88,12 @@ public class FinishedProductEntityServiceTest {
     public void testAddFinishedProduct()
     {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = sellerService.signupSeller(sellerDto);
+        Integer sellerKey = sellerService.testSignupSeller(sellerDto);
 
         FlowerShopDto flowerShopDto = createFlowerShopDto();
+        flowerShopDto.setUserKey(sellerKey);
         FlowerShopEntity addedShop = flowerShopService.addFlowerShop(flowerShopDto);
+
 
         FinishedProductDto finishedProductDto = createFinishedProductDto();
         finishedProductDto.setShopKey(addedShop.getShopKey());

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
 import net.prescent.entity.FlowerShopEntity;
+import net.prescent.entity.SellerEntity;
 import net.prescent.repository.FinishedProductRepository;
 import net.prescent.repository.FlowerShopRepository;
 import org.springframework.stereotype.Service;
@@ -93,6 +94,19 @@ public class FinishedProductService
         {
             return finishedProductRepo.findByFpTagContaining(fpTag);
         }
+
+    public void deleteFinishedProduct(Integer sellerKey, Integer fpKey) {
+
+        if(sellerKey == finishedProductRepo.findByFpKey(fpKey).get().getFlowerShopEntity().getSellerEntity().getUserKey())
+        {
+            finishedProductRepo.deleteById(fpKey);
+        }
+        else
+        {
+            throw new IllegalStateException("삭제하려는 상품이 사용자에게 없습니다.");
+        }
+
+    }
 //    public Optional<List<FinishedProductEntity>> getFinishedProductWithShopKey(Integer shopKey){
 //        return finishedProductRepo.findByShopKey(shopKey);
 //    }

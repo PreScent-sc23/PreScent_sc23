@@ -5,6 +5,8 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.FinishedProductEntity;
+import net.prescent.entity.SellerEntity;
+import net.prescent.service.AccessTokenService;
 import net.prescent.service.FinishedProductService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,42 +27,26 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/finished-product")
 public class FinishedProductController {
 
+    private final AccessTokenService accessTokenService;
     private final AmazonS3Client amazonS3Client;
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
     private final FinishedProductService finishedProductService;
-    public FinishedProductController(AmazonS3Client amazonS3Client, FinishedProductService finishedProductService)
+    public FinishedProductController(AccessTokenService accessTokenService, AmazonS3Client amazonS3Client, FinishedProductService finishedProductService)
     {
+        this.accessTokenService = accessTokenService;
         this.amazonS3Client = amazonS3Client;
         this.finishedProductService = finishedProductService;
     }
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> addFinishedProduct(HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
+    public ResponseEntity<?> addFinishedProduct(@RequestHeader String Authorization, HttpServletRequest httpServletRequest, @RequestParam("fpImage") MultipartFile fpImage,
             @RequestPart("finishedProduct") FinishedProductDto finishedProductDto)
     {
-//        // 미완
-//        @RequestPart("fpImage") MultipartFile fpImage,
-//        @RequestPart("shopKey") Integer shopKey,
-//        @RequestPart("fpName") String fpName,
-//        @RequestPart("fpTag") String fpTag,
-//        @RequestPart("fpPrice") Integer fpPrice,
-//        @RequestPart("fpDetail") String fpDetail,
-//        @RequestPart("fpFlowerList") String fpFlowerList
-//        log.debug("shopKey 값 : "+finishedProductDto.getShopKey()+"--------------------------------------------");
-//        log.debug("fpName 값 : "+finishedProductDto.getFpName()+"--------------------------------------------");
-//        log.debug("fpTag 값 : "+finishedProductDto.getFpTag()+"--------------------------------------------");
-//        log.debug("fpPrice 값 : "+finishedProductDto.getFpPrice()+"--------------------------------------------");
-//        log.debug("fpDetail 값 : "+finishedProductDto.getFpDetail()+"--------------------------------------------");
-//        log.debug("fpFlowerList 값 : "+finishedProductDto.getFpFlowerList()+"--------------------------------------------");
-
-//        log.debug("shopKey 값 : "+ shopKey +"--------------------------------------------");
-//        log.debug("fpName 값 : "+ fpName +"--------------------------------------------");
-//        log.debug("fpTag 값 : "+ fpTag+"--------------------------------------------");
-//        log.debug("fpPrice 값 : "+fpPrice+"--------------------------------------------");
-//        log.debug("fpDetail 값 : "+fpDetail+"--------------------------------------------");
-//        log.debug("fpFlowerList 값 : "+fpFlowerList+"--------------------------------------------");
+        String token = Authorization.substring(7);
+        Integer shopKey = accessTokenService.getSellerFromToken(token).getFlowerShopEntity().getShopKey();
+        finishedProductDto.setShopKey(shopKey);
 
         try {
             String fileName=fpImage.getOriginalFilename();
@@ -72,10 +57,7 @@ public class FinishedProductController {
             metadata.setContentType(fpImage.getContentType());
             metadata.setContentLength(fpImage.getSize());
             amazonS3Client.putObject(bucket,fileName,fpImage.getInputStream(),metadata);
-//            FinishedProductDto finishedProductDto = new FinishedProductDto(shopKey, fpImage, fpName, fpTag, fpPrice, fpDetail, fpFlowerList);
-//            if (finishedProductDto.getFpImage() == null || finishedProductDto.getFpImage().isEmpty()) {
-//                log.debug("file is not provided");
-//            }
+
             finishedProductDto.setFpImage(fileUrl);
             finishedProductService.addFinishedProduct(finishedProductDto);
             return ResponseEntity.ok(fileUrl);
@@ -84,6 +66,17 @@ public class FinishedProductController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> addFinishedProduct(@RequestHeader String Authorization, @RequestParam Integer fpKey)
+    {
+        String token = Authorization.substring(7);
+        Integer sellerKey = accessTokenService.getUserFromToken(token).getUserKey();
+        finishedProductService.deleteFinishedProduct(sellerKey, fpKey);
+
+        return ResponseEntity.ok(fpKey);
+    }
+
 
     @GetMapping("/key/{fpKey}")
     public Optional<FinishedProductEntity> getFinishedProductByFpKey(@PathVariable Integer fpKey)
