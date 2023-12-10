@@ -49,7 +49,6 @@ public class UserService {
         String verificationCode = UUID.randomUUID().toString().substring(0, 6);
         customer.setVerificationCode(verificationCode);
         customerRepository.save(customer);
-        mailService.sendVerificationEmail(customer.getIdEmail(), verificationCode);
         return customer.getUserKey();
     }
     // signup여부 확인용으로 businessKey반환

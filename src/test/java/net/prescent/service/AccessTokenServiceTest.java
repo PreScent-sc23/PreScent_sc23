@@ -55,7 +55,7 @@ public class AccessTokenServiceTest {
     @DisplayName("사용자 토큰 테스트")
     public void AccessTokenCustomerTest() {
         CustomerDto customerDto = createTestCustomerDto();
-        Integer customerKey = userService.signupCustomer(customerDto);
+        Integer customerKey = userService.testSignupCustomer(customerDto);
 
         String token = userService.login(customerDto.getIdEmail(), customerDto.getPassword());
         log.info("token정보 :" + token);
@@ -69,7 +69,7 @@ public class AccessTokenServiceTest {
     @DisplayName("판매자 토큰 테스트")
     public void AccessTokenSellerTest() {
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = userService.signupSeller(sellerDto);
+        Integer sellerKey = userService.testSignupSeller(sellerDto);
 
         String token = userService.login(sellerDto.getIdEmail(), sellerDto.getPassword());
         log.info("token정보 :" + token);

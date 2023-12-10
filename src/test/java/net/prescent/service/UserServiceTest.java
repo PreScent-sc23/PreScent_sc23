@@ -66,7 +66,7 @@ public class UserServiceTest {
     @DisplayName("판매자 등록 테스트")
     public void testRegisterSeller() {
         SellerDto sellerDto = createTestSellerDto();
-        userService.signupSeller(sellerDto);
+        userService.testSignupSeller(sellerDto);
         SellerEntity registeredSeller = sellerRepository.findByIdEmail(sellerDto.getIdEmail()).orElse(null);
         assertNotNull(registeredSeller, "판매자가 성공적으로 등록되었습니다.");
         assertTrue(passwordEncoder.matches("password2", registeredSeller.getPassword()), "비밀번호가 정확히 암호화되었습니다.");
@@ -76,7 +76,7 @@ public class UserServiceTest {
     @DisplayName("등록된 판매자 테스트")
     public void testDuplicateSellerBusinessKeyRegistration() {
         SellerDto sellerDto1 = createTestSellerDto();
-        userService.signupSeller(sellerDto1);
+        userService.testSignupSeller(sellerDto1);
 
         SellerDto sellerDto2 = createTestSellerDto();
         sellerDto2.setIdEmail("suhyeon.k.official@gmail.com");

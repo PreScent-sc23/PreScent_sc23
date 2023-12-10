@@ -107,7 +107,7 @@ public class SearchServiceTest {
         Integer sellerKey = sellerService.testSignupSeller(sellerDto);
 
         CustomerDto customerDto = createTestCustomerDto();
-        Integer userKey = sellerService.signupCustomer(customerDto);
+        Integer userKey = sellerService.testSignupCustomer(customerDto);
         String token = sellerService.login("customer@test.com", "password1");
         CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
         customerEntity.setLatitude(17.77);

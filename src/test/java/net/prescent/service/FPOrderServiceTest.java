@@ -148,7 +148,7 @@ public class FPOrderServiceTest {
     public void customerFPOrderTest()
     {
         CustomerDto customerDto = createTestCustomerDto();
-        Integer customerKey = userService.signupCustomer(customerDto);
+        Integer customerKey = userService.testSignupCustomer(customerDto);
         assertNotNull(customerKey);
 
         SellerDto sellerDto = createSellerDto();
@@ -168,7 +168,7 @@ public class FPOrderServiceTest {
 
 
         SellerDto anotherSellerDto = createSeller1Dto();
-        Integer sellerKey1 = userService.signupSeller(anotherSellerDto);
+        Integer sellerKey1 = userService.testSignupSeller(anotherSellerDto);
 
         FlowerShopDto anotherFlowerShopDto = createFlowerShop1Dto();
         anotherFlowerShopDto.setUserKey(sellerKey1);
