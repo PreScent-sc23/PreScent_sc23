@@ -121,27 +121,51 @@ public class UserService {
         else return 1;
     }
 
+    public void sendVerificationEmail(String idEmail) {
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        customerRepository.findByIdEmail(idEmail)
+                .ifPresent(customer -> {
+                    customer.setVerificationCode(verificationCode);
+                    customerRepository.save(customer);
+                });
+        sellerRepository.findByIdEmail(idEmail)
+                .ifPresent(seller -> {
+                    seller.setVerificationCode(verificationCode);
+                    sellerRepository.save(seller);
+                });
+        mailService.sendVerificationEmail(idEmail, verificationCode);
+    }
+
     public boolean verifyEmail(String idEmail, String verificationCode) {
         return customerRepository.findByIdEmail(idEmail)
-                .map(customer -> {
-                    if (customer.getVerificationCode().equals(verificationCode)) {
-                        customer.setVerificationCode(null);
-                        customerRepository.save(customer);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                })
+                .map(customer -> customer.getVerificationCode().equals(verificationCode))
                 .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
-                        .map(seller -> {
-                            if (seller.getVerificationCode().equals(verificationCode)) {
-                                seller.setVerificationCode(null);
-                                sellerRepository.save(seller);
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        })
+                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
                         .orElse(false));
+
     }
+
+//    public boolean verifyEmail(String idEmail, String verificationCode) {
+//        return customerRepository.findByIdEmail(idEmail)
+//                .map(customer -> {
+//                    if (customer.getVerificationCode().equals(verificationCode)) {
+//                        customer.setVerificationCode(null);
+//                        customerRepository.save(customer);
+//                        return true;
+//                    } else {
+//                        return false;
+//                    }
+//                })
+//                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
+//                        .map(seller -> {
+//                            if (seller.getVerificationCode().equals(verificationCode)) {
+//                                seller.setVerificationCode(null);
+//                                sellerRepository.save(seller);
+//                                return true;
+//                            } else {
+//                                return false;
+//                            }
+//                        })
+//                        .orElse(false));
+//    }
 }
