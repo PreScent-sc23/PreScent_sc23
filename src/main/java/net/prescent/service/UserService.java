@@ -135,14 +135,14 @@ public class UserService {
         mailService.sendVerificationEmail(idEmail, verificationCode);
     }
 
-//    public boolean verifyEmail(String idEmail, String verificationCode) {
-//        return customerRepository.findByIdEmail(idEmail)
-//                .map(customer -> customer.getVerificationCode().equals(verificationCode))
-//                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
-//                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
-//                        .orElse(false));
-//
-//    }
+    public boolean verifyEmail(String idEmail, String verificationCode) {
+        return customerRepository.findByIdEmail(idEmail)
+                .map(customer -> customer.getVerificationCode().equals(verificationCode))
+                .orElseGet(() -> sellerRepository.findByIdEmail(idEmail)
+                        .map(seller -> seller.getVerificationCode().equals(verificationCode))
+                        .orElse(false));
+
+    }
 
 //    public boolean verifyEmail(String idEmail, String verificationCode) {
 //        return customerRepository.findByIdEmail(idEmail)
