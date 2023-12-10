@@ -51,12 +51,12 @@ public class FlowerShopController {
         String token = Authorization.substring(7);
         flowerShopDto.setUserKey(accessTokenService.getUserFromToken(token).getUserKey());
 
-        System.out.println(("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+token));
+        log.info(("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+token));
         UserEntity userEntity = accessTokenService.getUserFromToken(token);
         flowerShopDto.setUserKey(userEntity.getUserKey());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n플라워리스트 값 : "+flowerShopDto.getFlowerListGetFromFE());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n가게이름 값 : "+flowerShopDto.getShopName());
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n위치 값 : "+flowerShopDto.getAddress());
+        log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n플라워리스트 값 : "+flowerShopDto.getFlowerListGetFromFE());
+        log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n가게이름 값 : "+flowerShopDto.getShopName());
+        log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n위치 값 : "+flowerShopDto.getAddress());
         log.info("token값은 다음과 같습니다."+token);
         log.debug("---------------------------------------------------------------------");
         log.debug("shopName: " + flowerShopDto.getShopName());

@@ -30,12 +30,6 @@ public class UserServiceTest {
     @Autowired
     private AccessTokenService accessTokenService;
 
-//    @BeforeEach
-//    public void setUp() {
-//        customerRepository.deleteAll();
-//        sellerRepository.deleteAll();
-//    }
-
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("Test Customer");
@@ -62,7 +56,7 @@ public class UserServiceTest {
     @DisplayName("고객 등록 테스트")
     public void testRegisterCustomer() {
         CustomerDto customerDto = createTestCustomerDto();
-        userService.signupCustomer(customerDto);
+        userService.testSignupCustomer(customerDto);
         CustomerEntity registeredCustomer = customerRepository.findByIdEmail(customerDto.getIdEmail()).orElse(null);
         assertNotNull(registeredCustomer, "고객이 성공적으로 등록되었습니다.");
         assertTrue(passwordEncoder.matches("password1", registeredCustomer.getPassword()), "비밀번호가 정확히 암호화되었습니다.");
@@ -96,7 +90,7 @@ public class UserServiceTest {
     @DisplayName("등록된 고객 테스트")
     public void testDuplicateCustomerEmailRegistration() {
         CustomerDto customerDto1 = createTestCustomerDto();
-        userService.signupCustomer(customerDto1);
+        userService.testSignupCustomer(customerDto1);
 
         CustomerDto customerDto2 = createTestCustomerDto();
         customerDto2.setPhonenum("010-5678-1234");
@@ -110,7 +104,7 @@ public class UserServiceTest {
     @DisplayName("로그인 토큰 테스트")
     public void testLoginSuccess() {
         CustomerDto customerDto = createTestCustomerDto();
-        userService.signupCustomer(customerDto);
+        userService.testSignupCustomer(customerDto);
 
         String token = userService.login("sooh@ajou.ac.kr", "password1");
         assertNotNull(token, "로그인에 성공하면 토큰이 반환되어야 합니다.");
@@ -121,7 +115,7 @@ public class UserServiceTest {
     @DisplayName("로그인 실패 테스트")
     public void testLoginFailure() {
         CustomerDto customerDto = createTestCustomerDto();
-        userService.signupCustomer(customerDto);
+        userService.testSignupCustomer(customerDto);
 
         assertThrows(IllegalArgumentException.class, () -> {
             userService.login("sooh@ajou.ac.kr", "wrongpassword");
@@ -132,7 +126,7 @@ public class UserServiceTest {
     @DisplayName("로그아웃 테스트")
     public void testLogout() {
         CustomerDto customerDto = createTestCustomerDto();
-        userService.signupCustomer(customerDto);
+        userService.testSignupCustomer(customerDto);
         String token = userService.login("sooh@ajou.ac.kr", "password1");
 
         userService.logout(token);

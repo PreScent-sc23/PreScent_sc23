@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.dto.FinishedProductDto;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.FinishedProductEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Slf4j
 @Service
 public class SearchService {
 
@@ -49,8 +51,8 @@ public class SearchService {
 
         String[] queryResult = decodedQuery.split("#");
 
-        System.out.println("query split0: " + queryResult[0] + "----------------\n");
-        System.out.println("query split1: " + queryResult[1] + "----------------\n");
+        log.info("query split0: " + queryResult[0] + "----------------\n");
+        log.info("query split1: " + queryResult[1] + "----------------\n");
         queryResult[1] = "#" + queryResult[1];
 
         Optional<List<FinishedProductEntity>> searchResult = searchByTagDefault(queryResult[1]);
@@ -58,10 +60,13 @@ public class SearchService {
 
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
         for(FinishedProductEntity fp : result){
-            Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
+            if(customerEntity.getLatitude()!=null && customerEntity.getLongitude()!=null && (fp.getFlowerShopEntity().getLongitude() != 0.0) && (fp.getFlowerShopEntity().getLatitude()!=0.0) )
+            {Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE) {
                 finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
-            }
+            }}
+            else finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
+
         }
         return finalResult;
     }
@@ -73,10 +78,13 @@ public class SearchService {
         List<FinishedProductDto> finalResult = new ArrayList<FinishedProductDto>();
         for(FinishedProductEntity fp : Result){
             List<String> fpFlowerList = new ArrayList<>(Arrays.asList(fp.getFpFlowerList()));
-            Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
+            if(customerEntity.getLatitude()!=null && customerEntity.getLongitude()!=null && (fp.getFlowerShopEntity().getLongitude() != 0.0) && (fp.getFlowerShopEntity().getLatitude()!=0.0) )
+            { Double distance = calculateDistance(customerEntity.getLatitude(), customerEntity.getLongitude(), fp.getFlowerShopEntity().getLatitude(), fp.getFlowerShopEntity().getLongitude());
             if(distance<= MAX_DISTANCE && fpFlowerList.contains(decodedQuery)) {
                 finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
+                }
             }
+            else finalResult.add(FinishedProductDto.toFinishedProductDto(fp));
         }
         return finalResult;
     }

@@ -52,7 +52,7 @@ public class FinishedProductService
             log.debug("fpTag 값 : " + finishedProductEntity.getFpTag() + "--------------------------------------------");
             log.debug("fpPrice 값 : " + finishedProductEntity.getFpPrice() + "--------------------------------------------");
             log.debug("fpDetail 값 : " + finishedProductEntity.getFpDetail() + "--------------------------------------------");
-            System.out.printf("fpFlowerList 값 : %s--------------------------------------------%n", (Object) finishedProductEntity.getFpFlowerList());
+            log.info("fpFlowerList 값 : %s--------------------------------------------%n", (Object) finishedProductEntity.getFpFlowerList());
             if (finishedProductEntity.getFpImage() != null) {
                 log.debug("여긴 addFinishedProduct fpImage를 확인" + finishedProductEntity.getFpImage() + "---------------");
             }

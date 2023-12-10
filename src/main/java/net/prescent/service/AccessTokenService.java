@@ -1,5 +1,6 @@
 package net.prescent.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.prescent.entity.AccessToken;
 import net.prescent.entity.CustomerEntity;
 import net.prescent.entity.SellerEntity;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-
+@Slf4j
 @Service
 public class AccessTokenService {
 
@@ -55,7 +56,7 @@ public class AccessTokenService {
 
     public SellerEntity getSellerFromUser(UserEntity userEntity)
     {
-        System.out.println(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
+        log.info(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
         if(!sellerRepo.findByUserKey(userEntity.getUserKey()).isPresent())
         {
             throw new IllegalStateException("UserEntity로 seller를 찾을 수 없습니다.");
@@ -70,7 +71,7 @@ public class AccessTokenService {
     }
     public CustomerEntity getCustomerFromUser(UserEntity userEntity)
     {
-        System.out.println(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
+        log.info(userEntity.getUserKey()+"userKey는 이거 ++++++++++++++++++++");
         if(!customerRepo.findByUserKey(userEntity.getUserKey()).isPresent())
         {
             throw new IllegalStateException("UserEntity로 seller를 찾을 수 없습니다.");

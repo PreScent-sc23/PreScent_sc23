@@ -40,6 +40,18 @@ public class UserService {
         return customer.getUserKey();
     }
 
+    public Integer testSignupCustomer(CustomerDto customerDto) {
+
+        verifyPasswordMatch(customerDto.getPassword(), customerDto.getConfirmPassword());
+        verifyCustomerNotRegistered(customerDto.getIdEmail());
+        CustomerEntity customer = CustomerEntity.toCustomerEntity(customerDto);
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        customer.setVerificationCode(verificationCode);
+        customerRepository.save(customer);
+        mailService.sendVerificationEmail(customer.getIdEmail(), verificationCode);
+        return customer.getUserKey();
+    }
     // signup여부 확인용으로 businessKey반환
     public Integer signupSeller(SellerDto sellerDto) {
         verifyPasswordMatch(sellerDto.getPassword(), sellerDto.getConfirmPassword());
@@ -122,8 +134,6 @@ public class UserService {
 
     public void setCustomerLocation(String token, LocationDto locationDto) {
         CustomerEntity customerEntity = accessTokenService.getCustomerFromToken(token);
-        System.out.println("========================latitude는 이거 :"+locationDto.getLatitude());
-        System.out.println("========================longitude는 이거 :"+locationDto.getLongitude());
         customerEntity.setLatitude(locationDto.getLatitude());
         customerEntity.setLongitude(locationDto.getLongitude());
         if(locationDto.getAddress()!=null) customerEntity.setAddress(locationDto.getAddress());
