@@ -54,9 +54,9 @@ public class FlowerShopDto {
         flowerShopDto.setShopKey(flowerShopEntity.getShopKey());
         flowerShopDto.setShopName(flowerShopEntity.getShopName());
         flowerShopDto.setShopPhoneNum(flowerShopEntity.getShopPhoneNum());
-        flowerShopDto.setAddress(flowerShopEntity.getAddress());
-        flowerShopDto.setLatitude(flowerShopDto.getLatitude());
-        flowerShopDto.setLongitude(flowerShopEntity.getLongitude());
+        if(flowerShopDto.getAddress()!=null) flowerShopDto.setAddress(flowerShopEntity.getAddress());
+        if(flowerShopDto.getLatitude()!=null) flowerShopDto.setLatitude(flowerShopDto.getLatitude());
+        if(flowerShopDto.getLongitude()!=null) flowerShopDto.setLongitude(flowerShopEntity.getLongitude());
         flowerShopDto.setOpenHour(flowerShopEntity.getOpenHour());
         flowerShopDto.setOpenMinute(flowerShopEntity.getOpenMinute());
         flowerShopDto.setStoredFlowerList(flowerShopEntity.getFlowerList());

@@ -79,7 +79,7 @@ public class FlowerShopService {
         }
         else{
             // 일치하는 seller없음. 시스템 오류 seller가 서버에 저장되어 있지 않음
-            System.out.print("-----------------------------------------sellerEntity를 sellerKey로 찾았는데 없단다 -----------------------------------------");
+            log.info("-----------------------------------------sellerEntity를 sellerKey로 찾았는데 없단다 -----------------------------------------");
         }
         return flowerShopRepo.save(flowerShopEntity);
     }
@@ -125,8 +125,6 @@ public class FlowerShopService {
         SellerEntity sellerEntity = accessTokenService.getSellerFromToken(token);
         FlowerShopEntity flowerShopEntity = sellerEntity.getFlowerShopEntity();
 
-        System.out.println("________________latitude는 다음과 같다: "+locationDto.getLatitude());
-        System.out.println("________________longitude는 다음과 같다: "+ locationDto.getLongitude());
         flowerShopEntity.setLatitude(locationDto.getLatitude());
         flowerShopEntity.setLongitude(locationDto.getLongitude());
         if(locationDto.getAddress()!=null)flowerShopEntity.setAddress(locationDto.getAddress());
