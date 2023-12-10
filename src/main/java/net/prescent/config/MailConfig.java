@@ -32,7 +32,6 @@ public class MailConfig {
     @Bean
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
         javaMailSender.setHost(host);
         javaMailSender.setUsername(username);
         javaMailSender.setPassword(password);
