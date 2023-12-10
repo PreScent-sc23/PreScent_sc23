@@ -105,7 +105,8 @@ public class UserController {
     }
 
     @PostMapping("/send-verification-email")
-    public ResponseEntity<?> sendVerificationEmail(@RequestBody String idEmail) {
+    public ResponseEntity<?> sendVerificationEmail(@RequestBody EmailRequest emailRequest) {
+        String idEmail = emailRequest.getIdEmail();
         String verificationCode = UUID.randomUUID().toString().substring(0, 6);
         mailService.sendVerificationEmail(idEmail, verificationCode);
         return ResponseEntity.ok().body(Map.of("verificationCode", verificationCode));
