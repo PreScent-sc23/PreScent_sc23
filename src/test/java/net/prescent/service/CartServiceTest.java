@@ -159,11 +159,11 @@ public class CartServiceTest {
     @DisplayName("db추가")
     public void addToDB(){
         CustomerDto customerDto = createTestCustomerDto();
-        Integer customerKey = userService.signupCustomer(customerDto);
+        Integer customerKey = userService.testSignupCustomer(customerDto);
         assertNotNull(customerKey);
 
         SellerDto sellerDto = createSellerDto();
-        Integer sellerKey = userService.signupSeller(sellerDto);
+        Integer sellerKey = userService.testSignupSeller(sellerDto);
 
 //        FlowerShopDto flowerShopDto = createFlowerShopDto();
 //        flowerShopDto.setUserKey(sellerKey);

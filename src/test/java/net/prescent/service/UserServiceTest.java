@@ -33,7 +33,7 @@ public class UserServiceTest {
     private CustomerDto createTestCustomerDto() {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName("Test Customer");
-        customerDto.setIdEmail("sooh@ajou.ac.kr");
+        customerDto.setIdEmail("soohh@ajou.ac.kr");
         customerDto.setPassword("password1");
         customerDto.setConfirmPassword("password1");
         customerDto.setPhonenum("010-1234-5678");
@@ -66,7 +66,7 @@ public class UserServiceTest {
     @DisplayName("판매자 등록 테스트")
     public void testRegisterSeller() {
         SellerDto sellerDto = createTestSellerDto();
-        userService.signupSeller(sellerDto);
+        userService.testSignupSeller(sellerDto);
         SellerEntity registeredSeller = sellerRepository.findByIdEmail(sellerDto.getIdEmail()).orElse(null);
         assertNotNull(registeredSeller, "판매자가 성공적으로 등록되었습니다.");
         assertTrue(passwordEncoder.matches("password2", registeredSeller.getPassword()), "비밀번호가 정확히 암호화되었습니다.");
@@ -76,7 +76,7 @@ public class UserServiceTest {
     @DisplayName("등록된 판매자 테스트")
     public void testDuplicateSellerBusinessKeyRegistration() {
         SellerDto sellerDto1 = createTestSellerDto();
-        userService.signupSeller(sellerDto1);
+        userService.testSignupSeller(sellerDto1);
 
         SellerDto sellerDto2 = createTestSellerDto();
         sellerDto2.setIdEmail("suhyeon.k.official@gmail.com");
@@ -106,7 +106,7 @@ public class UserServiceTest {
         CustomerDto customerDto = createTestCustomerDto();
         userService.testSignupCustomer(customerDto);
 
-        String token = userService.login("sooh@ajou.ac.kr", "password1");
+        String token = userService.login("soohh@ajou.ac.kr", "password1");
         assertNotNull(token, "로그인에 성공하면 토큰이 반환되어야 합니다.");
         assertTrue(accessTokenService.validateAccessToken(token), "반환된 토큰은 유효해야 합니다.");
     }
@@ -127,7 +127,7 @@ public class UserServiceTest {
     public void testLogout() {
         CustomerDto customerDto = createTestCustomerDto();
         userService.testSignupCustomer(customerDto);
-        String token = userService.login("sooh@ajou.ac.kr", "password1");
+        String token = userService.login("soohh@ajou.ac.kr", "password1");
 
         userService.logout(token);
         assertFalse(accessTokenService.validateAccessToken(token), "로그아웃 후에는 토큰이 무효화되어야 합니다.");

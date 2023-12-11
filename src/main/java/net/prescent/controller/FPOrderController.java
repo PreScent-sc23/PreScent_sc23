@@ -72,7 +72,7 @@ public class FPOrderController {
     }
 
     @PutMapping("seller/fp-order-list/set-complete")
-    public String sellerSetOrderComplete(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
+    public String sellerSetOrderComplete(@RequestHeader String Authorization, @RequestParam Integer fpOrderKey){
 
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
@@ -80,7 +80,7 @@ public class FPOrderController {
         return fpOrderService.sellerSetOrder(userKey,fpOrderKey, "픽업 완료");
     }
     @PutMapping("seller/fp-order-list/set-waiting")
-    public String sellerSetOrderWaiting(@RequestHeader String Authorization, @RequestBody Integer fpOrderKey){
+    public String sellerSetOrderWaiting(@RequestHeader String Authorization, @RequestParam Integer fpOrderKey){
 
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
