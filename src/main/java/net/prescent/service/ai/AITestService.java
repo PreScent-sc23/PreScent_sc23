@@ -31,14 +31,14 @@ public class AITestService {
 
 
         List<ImageInfo> ResultImage1 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b20.jpg", "분홍 장미", "영원한 사랑, 사랑의 맹세"),
-                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b22.jpg", "다알리아", "화려함, 우아함"),
-                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b27.jpg", "거베라", "신비로움, 수수께끼")
+                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b20.JPG", "분홍 장미", "영원한 사랑, 사랑의 맹세"),
+                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b22.JPG", "다알리아", "화려함, 우아함"),
+                new ImageInfo("backend/src/main/python/crops/a97cfb883461041ad44ae26d95e9f6b27.JPG", "거베라", "신비로움, 수수께끼")
         );
         List<ImageInfo> ResultImage2 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops2/flower_test.jpg", "데이지", "희망, 평화, 사랑스러움"),
-                new ImageInfo("backend/src/main/python/crops2/flower_test2.jpg", "라넌큘러스", "매력, 매혹, 비난하다"),
-                new ImageInfo("backend/src/main/python/crops2/flower_test9.jpg", "백합", "순결, 변함없는 사랑")
+                new ImageInfo("backend/src/main/python/crops2/flower_test1.JPG", "데이지", "희망, 평화, 사랑스러움"),
+                new ImageInfo("backend/src/main/python/crops2/flower_test2.JPG", "라넌큘러스", "매력, 매혹, 비난하다"),
+                new ImageInfo("backend/src/main/python/crops2/flower_test9.JPG", "백합", "순결, 변함없는 사랑")
         );
         List<ImageInfo> ResultImage3 = Arrays.asList(
                 new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa2.JPG", "거베라", "신비로움, 수수께끼"),
@@ -46,16 +46,16 @@ public class AITestService {
                 new ImageInfo("backend/src/main/python/crops3/c399d8470670dab0253e6490974da9aa5.JPG", "메리골드", "반드시 오고야 말 행복")
         );
         List<ImageInfo> ResultImage4 = Arrays.asList(
-                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e1.jpg", "라넌큘러스", "매력, 매혹, 비난하다"),
-                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e2.jpg", "델피니움", "제 마음을 헤아려 주세요"),
-                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e4.jpg", "아네모네", "배신, 속절없는 사랑"),
-                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e5.jpg", "데이지", "희망, 평화, 사랑스러움")
+                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e1.JPG", "라넌큘러스", "매력, 매혹, 비난하다"),
+                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e2.JPG", "델피니움", "제 마음을 헤아려 주세요"),
+                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e4.JPG", "아네모네", "배신, 속절없는 사랑"),
+                new ImageInfo("backend/src/main/python/crops4/611b0a999b5f0e43bb8894e35244f14e5.JPG", "데이지", "희망, 평화, 사랑스러움")
         );
 
         List<ImageInfo> final_ResultImage;
-        if ("611b0a999b5f0e43bb8894e35244f14e.jpg".equals(fileKey)) {
+        if ("611b0a999b5f0e43bb8894e35244f14e.JPG".equals(fileKey)) {
             final_ResultImage = ResultImage4;
-        } else if ("a97cfb883461041ad44ae26d95e9f6b2.jpg".equals(fileKey)) {
+        } else if ("a97cfb883461041ad44ae26d95e9f6b2.JPG".equals(fileKey)) {
             final_ResultImage = ResultImage1;
         } else if ("c399d8470670dab0253e6490974da9aa.JPG".equals(fileKey)) {
             final_ResultImage = ResultImage3;
