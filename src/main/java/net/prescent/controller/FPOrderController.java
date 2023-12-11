@@ -68,7 +68,7 @@ public class FPOrderController {
     {
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
-        return fpOrderService.customerCompleteFPOrderList(userKey);
+        return fpOrderService.sellerCompleteFPOrderList(userKey);
     }
 
     @GetMapping("customer/fp-order-list/waiting")
@@ -84,7 +84,7 @@ public class FPOrderController {
     {
         String token = Authorization.substring(7);
         Integer userKey = accessTokenService.getUserFromToken(token).getUserKey();
-        return fpOrderService.sellerCompleteFPOrderList(userKey);
+        return fpOrderService.customerCompleteFPOrderList(userKey);
     }
     @PutMapping("seller/fp-order-list/set-complete")
     public String sellerSetOrderComplete(@RequestHeader String Authorization, @RequestParam Integer fpOrderKey){
